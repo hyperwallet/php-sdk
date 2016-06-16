@@ -1,0 +1,21 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# IntelliJ
+.idea
+
+# Dependency directory
+/vendor
+/composer.lock
+
+# Unit test config
+/phpunit.xml
+
+# Docs
+docs/
