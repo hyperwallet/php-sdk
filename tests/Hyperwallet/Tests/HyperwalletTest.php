@@ -7,6 +7,7 @@ use Hyperwallet\Exception\HyperwalletArgumentException;
 use Hyperwallet\Hyperwallet;
 use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
+use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\User;
@@ -903,6 +904,325 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/bank-accounts/{bank-account-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-account-token' => 'test-bank-account-token'), array('test' => 'value'));
+    }
+
+    //--------------------------------------
+    // Balances
+    //--------------------------------------
+
+    public function testListBalancesForUser_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listBalancesForUser('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListBalancesForUser_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/balances', array('user-token' => 'test-user-token'), array())->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $balanceList = $client->listBalancesForUser('test-user-token');
+        $this->assertNotNull($balanceList);
+        $this->assertCount(0, $balanceList);
+        $this->assertEquals(1, $balanceList->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/balances', array('user-token' => 'test-user-token'), array());
+    }
+
+    public function testListBalancesForUser_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/balances', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('count' => 1, 'data' => array(array('success' => 'true'))));
+
+        // Run test
+        $balanceList = $client->listBalancesForUser('test-user-token', array('test' => 'value'));
+        $this->assertNotNull($balanceList);
+        $this->assertCount(1, $balanceList);
+        $this->assertEquals(1, $balanceList->getCount());
+
+        $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/balances', array('user-token' => 'test-user-token'), array('test' => 'value'));
+    }
+    
+    public function testListBalancesForPrepaidCard_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listBalancesForPrepaidCard('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListBalancesForPrepaidCard_noPrepaidCardToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listBalancesForPrepaidCard('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('prepaidCardToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListBalancesForPrepaidCard_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array())->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $balanceList = $client->listBalancesForPrepaidCard('test-user-token', 'test-prepaid-card-token');
+        $this->assertNotNull($balanceList);
+        $this->assertCount(0, $balanceList);
+        $this->assertEquals(1, $balanceList->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array());
+    }
+
+    public function testListBalancesForPrepaidCard_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('test' => 'value'))->thenReturn(array('count' => 1, 'data' => array(array('success' => 'true'))));
+
+        // Run test
+        $balanceList = $client->listBalancesForPrepaidCard('test-user-token', 'test-prepaid-card-token', array('test' => 'value'));
+        $this->assertNotNull($balanceList);
+        $this->assertCount(1, $balanceList);
+        $this->assertEquals(1, $balanceList->getCount());
+
+        $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('test' => 'value'));
+    }
+
+    //--------------------------------------
+    // Payments
+    //--------------------------------------
+
+    public function testCreatePayment_withoutProgramToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $user = new Payment();
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/payments', array(), $user, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $this->assertNull($user->getProgramToken());
+
+        $newPayment = $client->createPayment($user);
+        $this->assertNotNull($newPayment);
+        $this->assertNull($user->getProgramToken());
+        $this->assertEquals(array('success' => 'true'), $newPayment->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/payments', array(), $user, array());
+    }
+
+    public function testCreatePayment_withProgramTokenAddedByDefault() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $user = new Payment();
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/payments', array(), $user, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $this->assertNull($user->getProgramToken());
+
+        $newPayment = $client->createPayment($user);
+        $this->assertNotNull($newPayment);
+        $this->assertEquals('test-program-token', $user->getProgramToken());
+        $this->assertEquals(array('success' => 'true'), $newPayment->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/payments', array(), $user, array());
+    }
+
+    public function testCreatePayment_withProgramTokenInPaymentObject() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $user = new Payment(array('programToken' => 'test-program-token2'));
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/payments', array(), $user, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $this->assertEquals('test-program-token2', $user->getProgramToken());
+
+        $newPayment = $client->createPayment($user);
+        $this->assertNotNull($newPayment);
+        $this->assertEquals('test-program-token2', $user->getProgramToken());
+        $this->assertEquals(array('success' => 'true'), $newPayment->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/payments', array(), $user, array());
+    }
+
+    public function testGetPayment_noPaymentToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->getPayment('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('paymentToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetPayment_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/payments/{payment-token}', array('payment-token' => 'test-payment-token'), array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $user = $client->getPayment('test-payment-token');
+        $this->assertNotNull($user);
+        $this->assertEquals(array('success' => 'true'), $user->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/payments/{payment-token}', array('payment-token' => 'test-payment-token'), array());
+    }
+
+    public function testListPayments_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/payments', array(), array())->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $userList = $client->listPayments();
+        $this->assertNotNull($userList);
+        $this->assertCount(0, $userList);
+        $this->assertEquals(1, $userList->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/payments', array(), array());
+    }
+
+    public function testListPayments_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/payments', array(), array('test' => 'value'))->thenReturn(array('count' => 1, 'data' => array(array('success' => 'true'))));
+
+        // Run test
+        $userList = $client->listPayments(array('test' => 'value'));
+        $this->assertNotNull($userList);
+        $this->assertCount(1, $userList);
+        $this->assertEquals(1, $userList->getCount());
+
+        $this->assertEquals(array('success' => 'true'), $userList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/payments', array(), array('test' => 'value'));
+    }
+
+    //--------------------------------------
+    // Programs
+    //--------------------------------------
+
+    public function testGetProgram_noProgramToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->getProgram('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('programToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetProgram_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/programs/{program-token}', array('program-token' => 'test-program-token'), array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $program = $client->getProgram('test-program-token');
+        $this->assertNotNull($program);
+        $this->assertEquals(array('success' => 'true'), $program->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/programs/{program-token}', array('program-token' => 'test-program-token'), array());
+    }
+
+    //--------------------------------------
+    // Program Accounts
+    //--------------------------------------
+
+    public function testGetProgramAccount_noProgramToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->getProgramAccount('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('programToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetProgramAccount_noAccountToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->getProgramAccount('test-program-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('accountToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetProgramAccount_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/programs/{program-token}/accounts/{account-token}', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $programAccount = $client->getProgramAccount('test-program-token', 'test-account-token');
+        $this->assertNotNull($programAccount);
+        $this->assertEquals(array('success' => 'true'), $programAccount->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/programs/{program-token}/accounts/{account-token}', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array());
     }
     
     //--------------------------------------
