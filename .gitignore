@@ -19,3 +19,6 @@ pids
 
 # Docs
 docs/
+
+# Build folder
+build/
