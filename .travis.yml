@@ -1,26 +1,21 @@
 language: php
 sudo: false
-
 php:
 - '5.5'
 - '5.6'
 - '7.0'
 - hhvm
-
 cache:
   directories:
-    - $HOME/.composer/cache
-
+  - $HOME/.composer/cache
 install:
 - composer install --prefer-source
-
 script:
 - ./vendor/bin/phpunit -v
-
 after_success:
-- if [ $TRAVIS_PHP_VERSION = '7.0' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then sh ./scripts/travisPublishDocs.sh; fi
+- if [ $TRAVIS_PHP_VERSION = '7.0' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST
+  = 'false' ]; then sh ./scripts/travisPublishDocs.sh; fi
 - if [ $TRAVIS_PHP_VERSION = '7.0' ]; then sh ./scripts/publishCodeCoverage.sh; fi
-
 env:
   global:
-    secure: hF67wTqrLfL3S98HeifIavk9gcx5WMeMXBSh5EwhhKY1y4C0AqLfC4yPSyd6nYZFg3uPAPQT/HSxWE0forkuXrdfrFNQxQfeT2CUBilyyYgrXkN+AUSNY6uzhdeNv73GB0mSQAE4//aphbV8HkcKkWeNjKa7LQ85rKjgVvZk7VorIVCMvKVqf7UYIDhoAF2S0ZT6vC48G5yoOlFFwa2qEgnIlkvv1CDCDzLDXhFvktJsSwUeG8zLFdMTSkheywDKG0G2YFowawHlIZDUnYGJev4O+tXtkCYNgCFIaK0GaMdlqqOoJHQ4pZFYo+sBwsUQxx5eA+XeNRu6W0URZi+F2gCVr+KEgP+mMOu37fQYbXvG6B0pxF3z8aSMfAmxgl5TFe0qVz8ngG2+9H08uU33t4T2Sxp5TX+3+gkKLrV0qt6b1R7WNoy1pEAzAIwHZi/ETB1gNcslLK78lOFwJAYa9HXdHDPk3o1NzWpvxmg+0lWPDG5NSk3mMRQFHz+aZjjPaZj0To+NPPhPURoTvvXtXk3BQG1jk6u9w61NgqlA2mjFVBqcpuz025iDHGANGwhJiytow3SbED23MC6SoqcvYI2tn9vWxkIDJ00t/nu8QeQVs92bl1zcGiIIKDoE1L4+nuUznPJbb/CjC3UG+q91rwr3/ou495E/hFp4/9d4rbs=
+    secure: ckn7neTUU/eArfK77cFQ7CpE976RNUlENacYF/lf0RmI+wgxmnOflATD6QhgD+hvnQ/knaAYRI5U+VuzQ0OU+BrgfhHXFYujw9d/OCHpY/4N07nMs4ZOv0eJkP/ja96RIlcsn+XNOzM+va+mVuMYxJFOKXoXqHdIgfA8DT9KqtwD6WrY2VcgwPj1pVSv6PR/LaIuSWnimib6knUGfhT+0bbfSVuwe3Iia7e/G1NsIYh1xcX7lsh/qwpvDFueftYbH3Syi05ace5qf1ehFFCgv4v9QN+R1iVFX1NekCwRdbXXqdpTUWA/uP6lZTVSscZy8VlHTXlhYxMERKm7LvVRjLz4PBU00xR0H9QvwMSUMPlag4TK9D1omEx0QhsOIk5mmiR8oW6FUwVAhO1IvG1zOU6S/s2p/O1KERT8M1d3k9lk0JlfmKpaOdx6kTJfOCYAOeiqvmZLK4m8co9qsNEnWx/Q2UlX6l86vf3GwAffSzCqc128W0uCzVhbCuk2KZUob/3sY3+j23l+N+BpsOgY3YX/BWXMj5MB6rTdnLVFIPYAlF1v3hsbnZCcLRhhPh7Li5lcRKIbDkGIR96QrPnJJ10rBEp98pRfbQ3xt0Iu84aCBw4/nltcdfw6eS4ODvhqB86FJayajcCjI5wG4g6YlQ8OW0m1sMuHulvWHKDJWQY=
