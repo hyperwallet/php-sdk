@@ -1224,6 +1224,158 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/programs/{program-token}/accounts/{account-token}', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array());
     }
+
+    //--------------------------------------
+    // Transfer Method Configurations
+    //--------------------------------------
+
+    public function testGetTransferMethodConfiguration_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getTransferMethodConfiguration('', '', '', '', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetTransferMethodConfiguration_noCountry() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getTransferMethodConfiguration('test-user-token', '', '', '', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('country is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetTransferMethodConfiguration_noCurrency() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getTransferMethodConfiguration('test-user-token', 'US', '', '', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('currency is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetTransferMethodConfiguration_noType() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getTransferMethodConfiguration('test-user-token', 'US', 'USD', '', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('type is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetTransferMethodConfiguration_noProfileType() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getTransferMethodConfiguration('test-user-token', 'US', 'USD', 'BANK_ACCOUNT', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('profileType is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetTransferMethodConfiguration_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/transfer-method-configurations', array(), array(
+            'userToken' => 'test-user-token',
+            'country' => 'US',
+            'currency' => 'USD',
+            'type' => 'BANK_ACCOUNT',
+            'profileType' => 'INDIVIDUAL'
+        ))->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $program = $client->getTransferMethodConfiguration('test-user-token', 'US', 'USD', 'BANK_ACCOUNT', 'INDIVIDUAL');
+        $this->assertNotNull($program);
+        $this->assertEquals(array('success' => 'true'), $program->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/transfer-method-configurations', array(), array(
+            'userToken' => 'test-user-token',
+            'country' => 'US',
+            'currency' => 'USD',
+            'type' => 'BANK_ACCOUNT',
+            'profileType' => 'INDIVIDUAL'
+        ));
+    }
+
+    public function testListTransferMethodConfigurations_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listTransferMethodConfigurations('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListTransferMethodConfigurations_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/transfer-method-configurations', array(), array('userToken' => 'test-user-token'))->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $userList = $client->listTransferMethodConfigurations('test-user-token');
+        $this->assertNotNull($userList);
+        $this->assertCount(0, $userList);
+        $this->assertEquals(1, $userList->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/transfer-method-configurations', array(), array('userToken' => 'test-user-token'));
+    }
+
+    public function testListTransferMethodConfigurations_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/transfer-method-configurations', array(), array(
+            'userToken' => 'test-user-token',
+            'test' => 'value'
+        ))->thenReturn(array('count' => 1, 'data' => array(array('success' => 'true'))));
+
+        // Run test
+        $tmcList = $client->listTransferMethodConfigurations('test-user-token', array('test' => 'value'));
+        $this->assertNotNull($tmcList);
+        $this->assertCount(1, $tmcList);
+        $this->assertEquals(1, $tmcList->getCount());
+
+        $this->assertEquals(array('success' => 'true'), $tmcList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/transfer-method-configurations', array(), array(
+            'userToken' => 'test-user-token',
+            'test' => 'value'
+        ));
+    }
     
     //--------------------------------------
     // Internal utils

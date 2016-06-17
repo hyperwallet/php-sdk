@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/hyperwallet/php-sdk.png?branch=master)](https://travis-ci.org/hyperwallet/php-sdk)
 [![Coverage Status](https://coveralls.io/repos/github/hyperwallet/php-sdk/badge.svg?branch=master)](https://coveralls.io/github/hyperwallet/php-sdk?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/hyperwallet/sdk/version)](https://packagist.org/packages/hyperwallet/sdk)
 
 Hyperwallet REST SDK (Beta)
 ===========================
@@ -11,7 +12,7 @@ Installation
 ------------
 
 ```bash
-$ composer require hyperwallet-sdk
+$ composer require hyperwallet/sdk
 ```
 
 
@@ -27,7 +28,7 @@ API Overview
 To write an app using the SDK
 
 * Register for a sandbox account and get your username, password and program token at the [Hyperwallet Program Portal](https://portal.hyperwallet.com).
-* Add dependency `hyperwallet-sdk` to your `composer.json`.
+* Add dependency `hyperwallet/sdk` to your `composer.json`.
 
 * Create a instance of the Hyperwallet Client (with username, password and program token)
   ```php
@@ -59,11 +60,11 @@ To write an app using the SDK
 Development
 -----------
 
-Run the tests using [`npm`](https://www.npmjs.com/):
+Run the tests using [`phpunit`](https://phpunit.de/):
 
 ```bash
-$ npm install
-$ npm test
+$ composer install
+$ ./vendor/bin/phpunit -v
 ```
 
 
