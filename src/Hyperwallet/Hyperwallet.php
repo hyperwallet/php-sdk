@@ -372,7 +372,7 @@ class Hyperwallet {
      * @param string $userToken The user token
      * @param string $prepaidCardToken The prepaid card token
      * @param array $options The query parameters
-     * @return array
+     * @return ListResponse
      *
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
