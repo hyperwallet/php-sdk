@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir -p ./build/cov
+mkdir -p ./build/logs
 
-./vendor/bin/phpunit --coverage-php build/cov/coverage.cov
+./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 ./vendor/bin/coveralls
