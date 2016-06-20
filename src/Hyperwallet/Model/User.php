@@ -347,7 +347,7 @@ class User extends BaseModel implements IProgramAware {
     /**
      * Get the date of birth
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getDateOfBirth() {
         return $this->dateOfBirth ? new \DateTime($this->dateOfBirth) : null;
@@ -356,7 +356,7 @@ class User extends BaseModel implements IProgramAware {
     /**
      * Set the date of birth
      *
-     * @param \DateTime $dateOfBirth
+     * @param \DateTime|null $dateOfBirth
      * @return User
      */
     public function setDateOfBirth(\DateTime $dateOfBirth = null) {

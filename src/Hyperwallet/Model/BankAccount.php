@@ -4,65 +4,65 @@ namespace Hyperwallet\Model;
 /**
  * Represents a V3 Bank Account
  *
- * @property string $token
- * @property string $type
+ * @property string $token The bank account token
+ * @property string $type The transfer method type
  *
- * @property string $status
- * @property \DateTime $createdOn
+ * @property string $status The bank account status
+ * @property \DateTime $createdOn The bank account creation date
  *
- * @property string $transferMethodCountry
- * @property string $transferMethodCurrency
+ * @property string $transferMethodCountry The transfer method country
+ * @property string $transferMethodCurrency The transfer method currency
  *
- * @property string $bankName
- * @property string $bankId
- * @property string $branchName
- * @property string $branchId
- * @property string $bankAccountId
- * @property string $bankAccountRelationship
- * @property string $bankAccountPurpose
+ * @property string $bankName The bank name
+ * @property string $bankId The bank id
+ * @property string $branchName The branch name
+ * @property string $branchId The branch id
+ * @property string $bankAccountId The bank account id
+ * @property string $bankAccountRelationship The bank account relationship
+ * @property string $bankAccountPurpose The bank account purpose
  *
- * @property string $branchAddressLine1
- * @property string $branchAddressLine2
- * @property string $branchCity
- * @property string $branchStateProvince
- * @property string $branchCountry
- * @property string $branchPostalCode
+ * @property string $branchAddressLine1 The branch address line 1
+ * @property string $branchAddressLine2 The branch address line 2
+ * @property string $branchCity The branch city
+ * @property string $branchStateProvince The branch state or province
+ * @property string $branchCountry The branch country
+ * @property string $branchPostalCode The branch postal code
  *
- * @property string $wireInstructions
+ * @property string $wireInstructions The wire instructions
  *
- * @property string $intermediaryBankId
- * @property string $intermediaryBankName
- * @property string $intermediaryBankAccountId
+ * @property string $intermediaryBankId The intermediary bank id
+ * @property string $intermediaryBankName The intermediary bank name
+ * @property string $intermediaryBankAccountId The intermediary bank account id
  *
- * @property string $intermediaryAddressLine1
- * @property string $intermediaryAddressLine2
- * @property string $intermediaryCity
- * @property string $intermediaryStateProvince
- * @property string $intermediaryCountry
- * @property string $intermediaryPostalCode
+ * @property string $intermediaryAddressLine1 The intermediary address line 1
+ * @property string $intermediaryAddressLine2 The intermediary address line 2
+ * @property string $intermediaryCity The intermediary city
+ * @property string $intermediaryStateProvince The intermediary state or province
+ * @property string $intermediaryCountry The intermediary country
+ * @property string $intermediaryPostalCode The intermediary postal code
  *
- * @property string $profileType
+ * @property string $profileType The profile type
  *
- * @property string $businessName
- * @property string $businessRegistrationId
- * @property string $businessRegistrationCountry
+ * @property string $businessName The business name
+ * @property string $businessRegistrationId The business registration id
+ * @property string $businessRegistrationCountry The business registration country
  *
- * @property string $firstName
- * @property string $middleName
- * @property string $lastName
- * @property \DateTime $dateOfBirth
- * @property string $countryOfBirth
- * @property string $countryOfNationality
- * @property string $phoneNumber
- * @property string $mobileNumber
+ * @property string $firstName The first name
+ * @property string $middleName The middle name
+ * @property string $lastName The last name
+ * @property \DateTime $dateOfBirth The date of birth
+ * @property string $countryOfBirth The country of birth
+ * @property string $countryOfNationality The country of nationality
+ * @property string $phoneNumber The phone number
+ * @property string $mobileNumber The mobile number
  *
- * @property string $governmentId
+ * @property string $governmentId The government id
  *
- * @property string $addressLine1
- * @property string $city
- * @property string $stateProvince
- * @property string $country
- * @property string $postalCode
+ * @property string $addressLine1 The address line 1
+ * @property string $city The city
+ * @property string $stateProvince The state or province
+ * @property string $country The country
+ * @property string $postalCode The postal code
  *
  * @package Hyperwallet\Model
  */
@@ -98,11 +98,18 @@ class BankAccount extends BaseModel {
     const PROFILE_TYPE_INDIVIDUAL = 'INDIVIDUAL';
     const PROFILE_TYPE_BUSINESS = 'BUSINESS';
 
+    /**
+     * Creates a instance of BankAccount
+     *
+     * @param string[] $properties The default properties
+     */
     public function __construct(array $properties = array()) {
         parent::__construct(self::$READ_ONLY_FIELDS, $properties);
     }
 
     /**
+     * Get the bank account token
+     *
      * @return string
      */
     public function getToken() {
@@ -110,6 +117,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the bank account token
+     *
      * @param string $token
      * @return BankAccount
      */
@@ -119,6 +128,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the bank account id
+     *
      * @return string
      */
     public function getBankAccountId() {
@@ -126,6 +137,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the bank account id
+     *
      * @param string $bankAccountId
      * @return BankAccount
      */
@@ -135,6 +148,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the transfer method type
+     *
      * @return string
      */
     public function getType() {
@@ -142,6 +157,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the transfer method type
+     *
      * @param string $type
      * @return BankAccount
      */
@@ -151,6 +168,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the transfer method country
+     *
      * @return string
      */
     public function getTransferMethodCountry() {
@@ -158,6 +177,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the transfer method country
+     *
      * @param string $transferMethodCountry
      * @return BankAccount
      */
@@ -167,6 +188,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the transfer method currency
+     *
      * @return string
      */
     public function getTransferMethodCurrency() {
@@ -174,6 +197,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the transfer method currency
+     *
      * @param string $transferMethodCurrency
      * @return BankAccount
      */
@@ -183,6 +208,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the bank name
+     *
      * @return string
      */
     public function getBankName() {
@@ -190,6 +217,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the bank name
+     *
      * @param string $bankName
      * @return BankAccount
      */
@@ -199,6 +228,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the bank id
+     *
      * @return string
      */
     public function getBankId() {
@@ -206,6 +237,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the bank id
+     *
      * @param string $bankId
      * @return BankAccount
      */
@@ -215,6 +248,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the branch name
+     *
      * @return string
      */
     public function getBranchName() {
@@ -222,6 +257,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the branch name
+     *
      * @param string $branchName
      * @return BankAccount
      */
@@ -231,6 +268,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the branch id
+     *
      * @return string
      */
     public function getBranchId() {
@@ -238,6 +277,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the branch id
+     *
      * @param string $branchId
      * @return BankAccount
      */
@@ -247,6 +288,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the bank account status
+     *
      * @return string
      */
     public function getStatus() {
@@ -254,6 +297,7 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the bank account creation date
      * @return \DateTime
      */
     public function getCreatedOn() {
@@ -261,6 +305,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the bank account relationship
+     *
      * @return string
      */
     public function getBankAccountRelationship() {
@@ -268,6 +314,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the bank account relationship
+     *
      * @param string $bankAccountRelationship
      * @return BankAccount
      */
@@ -277,6 +325,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the bank account purpose
+     *
      * @return string
      */
     public function getBankAccountPurpose() {
@@ -284,6 +334,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the bank account purpose
+     *
      * @param string $bankAccountPurpose
      * @return BankAccount
      */
@@ -293,6 +345,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the branch address line 1
+     *
      * @return string
      */
     public function getBranchAddressLine1() {
@@ -300,6 +354,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the branch address line 1
+     *
      * @param string $branchAddressLine1
      * @return BankAccount
      */
@@ -309,6 +365,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the branch address line 2
+     *
      * @return string
      */
     public function getBranchAddressLine2() {
@@ -316,6 +374,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the branch address line 2
+     *
      * @param string $branchAddressLine2
      * @return BankAccount
      */
@@ -325,6 +385,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the branch city
+     *
      * @return string
      */
     public function getBranchCity() {
@@ -332,6 +394,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the branch city
+     *
      * @param string $branchCity
      * @return BankAccount
      */
@@ -341,6 +405,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the branch state or province
+     *
      * @return string
      */
     public function getBranchStateProvince() {
@@ -348,6 +414,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the branch state or province
+     *
      * @param string $branchStateProvince
      * @return BankAccount
      */
@@ -357,6 +425,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the branch country
+     *
      * @return string
      */
     public function getBranchCountry() {
@@ -364,6 +434,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the branch country
+     *
      * @param string $branchCountry
      * @return BankAccount
      */
@@ -373,6 +445,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the branch postal code
+     *
      * @return string
      */
     public function getBranchPostalCode() {
@@ -380,6 +454,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the branch postal code
+     *
      * @param string $branchPostalCode
      * @return BankAccount
      */
@@ -389,6 +465,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the wire instructions
+     *
      * @return string
      */
     public function getWireInstructions() {
@@ -396,6 +474,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the wire instructions
+     *
      * @param string $wireInstructions
      * @return BankAccount
      */
@@ -405,6 +485,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the intermediary bank id
+     *
      * @return string
      */
     public function getIntermediaryBankId() {
@@ -412,6 +494,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the intermediary bank id
+     *
      * @param string $intermediaryBankId
      * @return BankAccount
      */
@@ -421,6 +505,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the intermediary bank name
+     *
      * @return string
      */
     public function getIntermediaryBankName() {
@@ -428,6 +514,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the intermediary bank name
+     *
      * @param string $intermediaryBankName
      * @return BankAccount
      */
@@ -437,6 +525,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the intermediary bank account id
+     *
      * @return string
      */
     public function getIntermediaryBankAccountId() {
@@ -444,6 +534,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the intermediary bank account id
+     *
      * @param string $intermediaryBankAccountId
      * @return BankAccount
      */
@@ -453,6 +545,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the intermediary address line 1
+     *
      * @return string
      */
     public function getIntermediaryAddressLine1() {
@@ -460,6 +554,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the intermediary address line 1
+     *
      * @param string $intermediaryAddressLine1
      * @return BankAccount
      */
@@ -469,6 +565,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the intermediary address line 2
+     *
      * @return string
      */
     public function getIntermediaryAddressLine2() {
@@ -476,6 +574,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the intermediary address line 2
+     *
      * @param string $intermediaryAddressLine2
      * @return BankAccount
      */
@@ -485,6 +585,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the intermediary city
+     *
      * @return string
      */
     public function getIntermediaryCity() {
@@ -492,6 +594,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the intermediary city
+     *
      * @param string $intermediaryCity
      * @return BankAccount
      */
@@ -501,6 +605,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the intermediary state or province
+     *
      * @return string
      */
     public function getIntermediaryStateProvince() {
@@ -508,6 +614,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the intermediary state or province
+     *
      * @param string $intermediaryStateProvince
      * @return BankAccount
      */
@@ -517,6 +625,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the intermediary country
+     *
      * @return string
      */
     public function getIntermediaryCountry() {
@@ -524,6 +634,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the intermediary country
+     *
      * @param string $intermediaryCountry
      * @return BankAccount
      */
@@ -533,6 +645,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the intermediary postal code
+     *
      * @return string
      */
     public function getIntermediaryPostalCode() {
@@ -540,6 +654,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the intermediary postal code
+     *
      * @param string $intermediaryPostalCode
      * @return BankAccount
      */
@@ -549,6 +665,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the profile type
+     *
      * @return string
      */
     public function getProfileType() {
@@ -556,6 +674,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the profile type
+     *
      * @param string $profileType
      * @return BankAccount
      */
@@ -565,6 +685,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the business name
+     *
      * @return string
      */
     public function getBusinessName() {
@@ -572,6 +694,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the business name
+     *
      * @param string $businessName
      * @return BankAccount
      */
@@ -581,6 +705,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the business registration id
+     *
      * @return string
      */
     public function getBusinessRegistrationId() {
@@ -588,6 +714,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the business registration id
+     *
      * @param string $businessRegistrationId
      * @return BankAccount
      */
@@ -597,6 +725,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the business registration country
+     *
      * @return string
      */
     public function getBusinessRegistrationCountry() {
@@ -604,6 +734,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the business registration country
+     *
      * @param string $businessRegistrationCountry
      * @return BankAccount
      */
@@ -613,6 +745,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the first name
+     *
      * @return string
      */
     public function getFirstName() {
@@ -620,6 +754,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the first name
+     *
      * @param string $firstName
      * @return BankAccount
      */
@@ -629,6 +765,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the middle name
+     *
      * @return string
      */
     public function getMiddleName() {
@@ -636,6 +774,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the middle name
+     *
      * @param string $middleName
      * @return BankAccount
      */
@@ -645,6 +785,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the last name
+     *
      * @return string
      */
     public function getLastName() {
@@ -652,6 +794,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the last name
+     *
      * @param string $lastName
      * @return BankAccount
      */
@@ -661,14 +805,18 @@ class BankAccount extends BaseModel {
     }
 
     /**
-     * @return \DateTime
+     * Get the date of birth
+     *
+     * @return \DateTime|null
      */
     public function getDateOfBirth() {
         return $this->dateOfBirth ? new \DateTime($this->dateOfBirth) : null;
     }
 
     /**
-     * @param \DateTime $dateOfBirth
+     * Set the date of birth
+     *
+     * @param \DateTime|null $dateOfBirth
      * @return BankAccount
      */
     public function setDateOfBirth(\DateTime $dateOfBirth = null) {
@@ -677,6 +825,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the country of birth
+     *
      * @return string
      */
     public function getCountryOfBirth() {
@@ -684,6 +834,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the country of birth
+     *
      * @param string $countryOfBirth
      * @return BankAccount
      */
@@ -693,6 +845,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the country of nationality
+     *
      * @return string
      */
     public function getCountryOfNationality() {
@@ -700,6 +854,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the country of nationality
+     *
      * @param string $countryOfNationality
      * @return BankAccount
      */
@@ -709,6 +865,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the phone number
+     *
      * @return string
      */
     public function getPhoneNumber() {
@@ -716,6 +874,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the phone number
+     *
      * @param string $phoneNumber
      * @return BankAccount
      */
@@ -725,6 +885,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the mobile number
+     *
      * @return string
      */
     public function getMobileNumber() {
@@ -732,6 +894,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the mobile number
+     *
      * @param string $mobileNumber
      * @return BankAccount
      */
@@ -741,6 +905,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the government id
+     *
      * @return string
      */
     public function getGovernmentId() {
@@ -748,6 +914,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the government id
+     *
      * @param string $governmentId
      * @return BankAccount
      */
@@ -757,6 +925,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the address line 1
+     *
      * @return string
      */
     public function getAddressLine1() {
@@ -764,6 +934,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the address line 1
+     *
      * @param string $addressLine1
      * @return BankAccount
      */
@@ -773,6 +945,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the city
+     *
      * @return string
      */
     public function getCity() {
@@ -780,6 +954,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the city
+     *
      * @param string $city
      * @return BankAccount
      */
@@ -789,6 +965,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the state or province
+     *
      * @return string
      */
     public function getStateProvince() {
@@ -796,6 +974,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the state or province
+     *
      * @param string $stateProvince
      * @return BankAccount
      */
@@ -805,6 +985,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the country
+     *
      * @return string
      */
     public function getCountry() {
@@ -812,6 +994,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the country
+     *
      * @param string $country
      * @return BankAccount
      */
@@ -821,6 +1005,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Get the postal code
+     *
      * @return string
      */
     public function getPostalCode() {
@@ -828,6 +1014,8 @@ class BankAccount extends BaseModel {
     }
 
     /**
+     * Set the postal code
+     *
      * @param string $postalCode
      * @return BankAccount
      */
