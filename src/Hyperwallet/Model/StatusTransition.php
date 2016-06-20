@@ -4,14 +4,14 @@ namespace Hyperwallet\Model;
 /**
  * Represents a V3 Status Transition
  *
- * @property string $token
- * @property \DateTime $createdOn
+ * @property string $token The status transition token
+ * @property \DateTime $createdOn The status transition creation date
  *
- * @property string $transition
+ * @property string $transition The status transition
  *
- * @property string $fromStatus
- * @property string $toStatus
- * @property string $notes
+ * @property string $fromStatus The old status
+ * @property string $toStatus The new status
+ * @property string $notes The status transition notes
  *
  * @package Hyperwallet\Model
  */
@@ -20,15 +20,24 @@ abstract class StatusTransition extends BaseModel {
     /**
      * @internal
      *
+     * Read only fields
+     *
      * @var string[]
      */
     protected static $READ_ONLY_FIELDS = array('token', 'createdOn', 'fromStatus', 'toStatus');
-    
+
+    /**
+     * Creates a instance of StatusTransition
+     *
+     * @param string[] $properties The default properties
+     */
     public function __construct(array $properties = array()) {
         parent::__construct(self::$READ_ONLY_FIELDS, $properties);
     }
 
     /**
+     * Get the status transition token
+     *
      * @return string
      */
     public function getToken() {
@@ -36,6 +45,8 @@ abstract class StatusTransition extends BaseModel {
     }
 
     /**
+     * Set the status transition token
+     *
      * @param string $token
      * @return StatusTransition
      */
@@ -45,6 +56,8 @@ abstract class StatusTransition extends BaseModel {
     }
 
     /**
+     * Get the status transition creation date
+     *
      * @return \DateTime
      */
     public function getCreatedOn() {
@@ -52,6 +65,8 @@ abstract class StatusTransition extends BaseModel {
     }
 
     /**
+     * Get the status transition
+     *
      * @return string
      */
     public function getTransition() {
@@ -59,6 +74,8 @@ abstract class StatusTransition extends BaseModel {
     }
 
     /**
+     * Set the status transition
+     *
      * @param string $transition
      * @return StatusTransition
      */
@@ -68,6 +85,8 @@ abstract class StatusTransition extends BaseModel {
     }
 
     /**
+     * Get the old status
+     *
      * @return string
      */
     public function getFromStatus() {
@@ -75,6 +94,8 @@ abstract class StatusTransition extends BaseModel {
     }
 
     /**
+     * Get the new status
+     *
      * @return string
      */
     public function getToStatus() {
@@ -82,6 +103,8 @@ abstract class StatusTransition extends BaseModel {
     }
 
     /**
+     * Get the status transition notes
+     *
      * @return string
      */
     public function getNotes() {
@@ -89,6 +112,8 @@ abstract class StatusTransition extends BaseModel {
     }
 
     /**
+     * Set the status transition notes
+     * 
      * @param string $notes
      * @return StatusTransition
      */

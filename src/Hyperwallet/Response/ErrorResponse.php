@@ -4,19 +4,23 @@ namespace Hyperwallet\Response;
 use Hyperwallet\Model\Error;
 
 /**
- * Represents a api error response
+ * Represents a API error response
  *
  * @package Hyperwallet\Response
  */
 class ErrorResponse implements \Countable, \ArrayAccess {
 
     /**
+     * The http status code
+     *
      * @var int
      */
     private $statusCode;
 
     /**
-     * @var array
+     * The list of errors
+     *
+     * @var Error[]
      */
     private $errors;
 
@@ -34,6 +38,8 @@ class ErrorResponse implements \Countable, \ArrayAccess {
     }
 
     /**
+     * Get the http status code
+     *
      * @return int
      */
     public function getStatusCode() {
@@ -41,6 +47,8 @@ class ErrorResponse implements \Countable, \ArrayAccess {
     }
 
     /**
+     * Get the list of errors
+     *
      * @return Error[]
      */
     public function getErrors() {

@@ -9,20 +9,31 @@ namespace Hyperwallet\Model;
 class Error {
 
     /**
+     * The field name
+     *
      * @var string
      */
     private $fieldName;
 
     /**
+     * The error message
+     *
      * @var string
      */
     private $message;
 
     /**
+     * The error code
+     *
      * @var string
      */
     private $code;
 
+    /**
+     * Creates a instance of Error
+     *
+     * @param array $error A single error response map
+     */
     public function __construct(array $error) {
         $this->message = $error['message'];
         $this->code = $error['code'];
@@ -33,6 +44,8 @@ class Error {
     }
 
     /**
+     * Get the field name
+     *
      * @return string
      */
     public function getFieldName() {
@@ -40,6 +53,8 @@ class Error {
     }
 
     /**
+     * Get the error message
+     *
      * @return string
      */
     public function getMessage() {
@@ -47,6 +62,8 @@ class Error {
     }
 
     /**
+     * Get the error code
+     *
      * @return string
      */
     public function getCode() {

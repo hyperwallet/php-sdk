@@ -2,18 +2,22 @@
 namespace Hyperwallet\Response;
 
 /**
- * Represents a api list response
+ * Represents a API list response
  *
  * @package Hyperwallet\Response
  */
 class ListResponse implements \Countable, \ArrayAccess {
 
     /**
+     * Total number of matching objects
+     *
      * @var int
      */
     private $count;
 
     /**
+     * Array of Model's
+     *
      * @var array
      */
     private $data;
@@ -40,6 +44,8 @@ class ListResponse implements \Countable, \ArrayAccess {
     }
 
     /**
+     * Get the total number of matching objects
+     *
      * @return int
      */
     public function getCount() {
@@ -47,6 +53,8 @@ class ListResponse implements \Countable, \ArrayAccess {
     }
 
     /**
+     * Get the array of Model's
+     *
      * @return array
      */
     public function getData() {

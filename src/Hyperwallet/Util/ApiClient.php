@@ -16,17 +16,21 @@ use Hyperwallet\Response\ErrorResponse;
 class ApiClient {
 
     /**
+     * The SDK version number
+     *
      * @var string
      */
     private static $VERSION = '0.0.1';
 
     /**
+     * The Guzzle http client
+     * 
      * @var Client
      */
     private $client;
 
     /**
-     * Create a instance of the API client
+     * Creates a instance of the API client
      *
      * @param string $username The API username
      * @param string $password The API password

@@ -3,19 +3,21 @@ namespace Hyperwallet\Exception;
 use Hyperwallet\Response\ErrorResponse;
 
 /**
- * The hyperwallet exception for api errors
+ * The Hyperwallet exception for api errors
  *
  * @package Hyperwallet
  */
 class HyperwalletApiException extends HyperwalletException {
 
     /**
+     * The error response
+     *
      * @var ErrorResponse
      */
     private $errorResponse;
 
     /**
-     * Create a instance of the HyperwalletArgumentException
+     * Creates a instance of the HyperwalletArgumentException
      *
      * @param ErrorResponse $errorResponse The error response
      * @param \Exception|null $previous The original exception

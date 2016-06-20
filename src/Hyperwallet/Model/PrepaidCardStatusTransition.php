@@ -15,6 +15,11 @@ class PrepaidCardStatusTransition extends StatusTransition {
     const TRANSITION_LOCKED = 'LOCKED';
     const TRANSITION_UNLOCKED = 'UNLOCKED';
 
+    /**
+     * Creates a instance of PrepaidCardStatusTransition
+     *
+     * @param string[] $properties The default properties
+     */
     public function __construct(array $properties = array()) {
         parent::__construct($properties);
     }

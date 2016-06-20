@@ -52,6 +52,8 @@ class User extends BaseModel implements IProgramAware {
     /**
      * @internal
      *
+     * Read only fields
+     *
      * @var string[]
      */
     private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn');

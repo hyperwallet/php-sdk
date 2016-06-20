@@ -4,20 +4,20 @@ namespace Hyperwallet\Model;
 /**
  * Represents a V3 Payment
  *
- * @property string $token
- * @property \DateTime $createdOn
+ * @property string $token The payment token
+ * @property \DateTime $createdOn The payment creation date
  *
- * @property string $clientPaymentId
- * @property string $amount
- * @property string $currency
+ * @property string $clientPaymentId The client payment id
+ * @property string $amount The payment amount
+ * @property string $currency The payment currency
  *
- * @property string $description
- * @property string $memo
- * @property string $purpose
- * @property \DateTime $releaseOn
+ * @property string $description The payment description
+ * @property string $memo The payment memo
+ * @property string $purpose The payment purpose
+ * @property \DateTime $releaseOn The payment release date
  *
- * @property string $destinationToken
- * @property string $programToken
+ * @property string $destinationToken The payment destination token
+ * @property string $programToken The payment program token
  *
  * @package Hyperwallet\Model
  */
@@ -26,15 +26,24 @@ class Payment extends BaseModel implements IProgramAware {
     /**
      * @internal
      *
+     * Read only fields
+     *
      * @var string[]
      */
     private static $READ_ONLY_FIELDS = array('token', 'createdOn');
 
+    /**
+     * Creates a instance of Payment
+     *
+     * @param string[] $properties The default properties
+     */
     public function __construct(array $properties = array()) {
         parent::__construct(self::$READ_ONLY_FIELDS, $properties);
     }
 
     /**
+     * Get the payment token
+     *
      * @return string
      */
     public function getToken() {
@@ -42,6 +51,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the payment token
+     *
      * @param string $token
      * @return Payment
      */
@@ -51,6 +62,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the payment creation date
+     *
      * @return \DateTime
      */
     public function getCreatedOn() {
@@ -58,6 +71,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the client payment id
+     *
      * @return string
      */
     public function getClientPaymentId() {
@@ -65,6 +80,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the client payment id
+     *
      * @param string $clientPaymentId
      * @return Payment
      */
@@ -74,6 +91,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the payment amount
+     *
      * @return string
      */
     public function getAmount() {
@@ -81,6 +100,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the payment amount
+     *
      * @param string $amount
      * @return Payment
      */
@@ -90,6 +111,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the payment currency
+     *
      * @return string
      */
     public function getCurrency() {
@@ -97,6 +120,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the payment currency
+     *
      * @param string $currency
      * @return Payment
      */
@@ -106,6 +131,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the payment description
+     *
      * @return string
      */
     public function getDescription() {
@@ -113,6 +140,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the payment description
+     *
      * @param string $description
      * @return Payment
      */
@@ -122,6 +151,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the payment memo
+     *
      * @return string
      */
     public function getMemo() {
@@ -129,6 +160,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the payment memo
+     *
      * @param string $memo
      * @return Payment
      */
@@ -138,6 +171,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the payment purpose
+     *
      * @return string
      */
     public function getPurpose() {
@@ -145,6 +180,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the paymeny purpose
+     *
      * @param string $purpose
      * @return Payment
      */
@@ -154,6 +191,7 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the payment release date
      * @return \DateTime
      */
     public function getReleaseOn() {
@@ -161,6 +199,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the payment release date
+     *
      * @param \DateTime $releaseOn
      * @return Payment
      */
@@ -170,6 +210,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the payment destination token
+     *
      * @return string
      */
     public function getDestinationToken() {
@@ -177,6 +219,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the payment destination token
+     *
      * @param string $destinationToken
      * @return Payment
      */
@@ -186,6 +230,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the payment program token
+     *
      * @return string
      */
     public function getProgramToken() {
@@ -193,6 +239,8 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the payment program token
+     * 
      * @param string $programToken
      * @return Payment
      */

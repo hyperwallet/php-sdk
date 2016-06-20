@@ -2,14 +2,14 @@
 namespace Hyperwallet\Exception;
 
 /**
- * The base exception for SDK errors
+ * The base exception for Hyperwallet SDK errors
  *
  * @package Hyperwallet
  */
 class HyperwalletException extends \Exception {
 
     /**
-     * Create a instance of the HyperwalletException
+     * Creates a instance of the HyperwalletException
      *
      * @param string $message The error message
      * @param int|null $code The error code

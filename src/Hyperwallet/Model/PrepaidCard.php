@@ -27,6 +27,8 @@ class PrepaidCard extends BaseModel {
     /**
      * @internal
      *
+     * Read only fields
+     *
      * @var string[]
      */
     private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn', 'transferMethodCountry', 'transferMethodCurrency', 'cardType', 'cardNumber', 'cardBrand', 'dateOfExpiry');

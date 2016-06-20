@@ -4,11 +4,11 @@ namespace Hyperwallet\Model;
 /**
  * Represents a V3 Program
  *
- * @property string[] $countries
- * @property string[] $currencies
- * @property string $type
- * @property string $profileType
- * @property array $fields
+ * @property string[] $countries The transfer method countries
+ * @property string[] $currencies The transfer method currencies
+ * @property string $type The transfer method type
+ * @property string $profileType The profile type
+ * @property array $fields All transfer method field definitions
  *
  * @package Hyperwallet\Model
  */
@@ -17,15 +17,24 @@ class TransferMethodConfiguration extends BaseModel {
     /**
      * @internal
      *
+     * Read only fields
+     *
      * @var string[]
      */
     private static $READ_ONLY_FIELDS = array('countries', 'currencies', 'type', 'profileType', 'fields');
 
+    /**
+     * Creates a instance of TransferMethodConfiguration
+     *
+     * @param string[] $properties The default properties
+     */
     public function __construct(array $properties = array()) {
         parent::__construct(self::$READ_ONLY_FIELDS, $properties);
     }
 
     /**
+     * Get the transfer method countries
+     *
      * @return string[]
      */
     public function getCountries() {
@@ -33,6 +42,8 @@ class TransferMethodConfiguration extends BaseModel {
     }
 
     /**
+     * Get the transfer method currencies
+     *
      * @return string[]
      */
     public function getCurrencies() {
@@ -40,6 +51,8 @@ class TransferMethodConfiguration extends BaseModel {
     }
 
     /**
+     * Get the transfer method type
+     *
      * @return string
      */
     public function getType() {
@@ -47,6 +60,8 @@ class TransferMethodConfiguration extends BaseModel {
     }
 
     /**
+     * Get the profile type
+     *
      * @return string
      */
     public function getProfileType() {
@@ -54,6 +69,8 @@ class TransferMethodConfiguration extends BaseModel {
     }
 
     /**
+     * Get all transfer method field definitions
+     *
      * @return array
      */
     public function getFields() {

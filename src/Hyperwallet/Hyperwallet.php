@@ -24,17 +24,21 @@ use Hyperwallet\Util\ApiClient;
 class Hyperwallet {
 
     /**
+     * The program token
+     *
      * @var string
      */
     private $programToken;
 
     /**
+     * The internal API client
+     *
      * @var ApiClient
      */
     private $client;
 
     /**
-     * Create a instance of the SDK Client
+     * Creates a instance of the SDK Client
      *
      * @param string $username The API username
      * @param string $password The API password
@@ -559,6 +563,15 @@ class Hyperwallet {
     // Balances
     //--------------------------------------
 
+    /**
+     * List balances for a user
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     */
     public function listBalancesForUser($userToken, $options = array()) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
@@ -570,6 +583,16 @@ class Hyperwallet {
         });
     }
 
+    /**
+     * List balances for a prepaid card
+     *
+     * @param string $userToken The user token
+     * @param string $prepaidCardToken The prepaid card token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     */
     public function listBalancesForPrepaidCard($userToken, $prepaidCardToken, $options = array()) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');

@@ -2,14 +2,14 @@
 namespace Hyperwallet\Exception;
 
 /**
- * The hyperwallet exception for missing arguments
+ * The Hyperwallet exception for missing arguments
  *
  * @package Hyperwallet
  */
 class HyperwalletArgumentException extends HyperwalletException {
 
     /**
-     * Create a instance of the HyperwalletArgumentException
+     * Creates a instance of the HyperwalletArgumentException
      *
      * @param string $message The error message
      * @param int|null $code The error code

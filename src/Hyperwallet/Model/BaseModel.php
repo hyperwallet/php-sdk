@@ -11,6 +11,8 @@ class BaseModel {
     /**
      * @internal
      *
+     * The model properties
+     *
      * @var array
      */
     private $properties;
@@ -18,17 +20,27 @@ class BaseModel {
     /**
      * @internal
      *
-     * @var array
+     * The modified property key names
+     *
+     * @var string[]
      */
     private $updatedProperties;
 
     /**
      * @internal
      *
-     * @var array
+     * The read only property key names
+     *
+     * @var string[]
      */
     private $readOnlyProperties;
 
+    /**
+     * Creates a instance of BaseModel
+     *
+     * @param string[] $readOnlyProperties The read only key names
+     * @param array $properties The default properties
+     */
     public function __construct(array $readOnlyProperties = array(), array $properties = array()) {
         $this->readOnlyProperties = $readOnlyProperties;
         $this->properties = $properties;
@@ -95,6 +107,8 @@ class BaseModel {
     /**
      * @internal
      *
+     * Get the model properties
+     *
      * @return array
      */
     public function getProperties() {
@@ -104,6 +118,8 @@ class BaseModel {
     /**
      * @internal
      *
+     * Get all non read only model properties
+     *
      * @return array
      */
     public function getPropertiesForCreate() {
@@ -112,6 +128,8 @@ class BaseModel {
 
     /**
      * @internal
+     *
+     * Get all updated model properties that are not read only
      * 
      * @return array
      */

@@ -4,10 +4,10 @@ namespace Hyperwallet\Model;
 /**
  * Represents a V3 Program Account
  *
- * @property string $token
- * @property string $type
- * @property \DateTime $createdOn
- * @property string $email
+ * @property string $token The program account token
+ * @property string $type The program account type
+ * @property \DateTime $createdOn The program account creation date
+ * @property string $email The program account email
  *
  * @package Hyperwallet\Model
  */
@@ -15,6 +15,8 @@ class ProgramAccount extends BaseModel {
 
     /**
      * @internal
+     *
+     * Read only fields
      *
      * @var string[]
      */
@@ -27,11 +29,18 @@ class ProgramAccount extends BaseModel {
     const TYPE_VIRTUAL_INCENTIVES = 'VIRTUAL_INCENTIVES';
     const TYPE_POST_FUNDING = 'POST_FUNDING';
 
+    /**
+     * Creates a instance of ProgramAccount
+     *
+     * @param string[] $properties The default properties
+     */
     public function __construct(array $properties = array()) {
         parent::__construct(self::$READ_ONLY_FIELDS, $properties);
     }
 
     /**
+     * Get the program account token
+     *
      * @return string
      */
     public function getToken() {
@@ -39,6 +48,8 @@ class ProgramAccount extends BaseModel {
     }
 
     /**
+     * Get the program account type
+     *
      * @return string
      */
     public function getType() {
@@ -46,6 +57,8 @@ class ProgramAccount extends BaseModel {
     }
 
     /**
+     * Get the program account creation date
+     *
      * @return \DateTime
      */
     public function getCreatedOn() {
@@ -53,6 +66,8 @@ class ProgramAccount extends BaseModel {
     }
 
     /**
+     * Get the program account email
+     * 
      * @return string
      */
     public function getEmail() {
