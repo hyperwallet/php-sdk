@@ -10,6 +10,7 @@ class BaseModel {
 
     /**
      * @internal
+     * @access private
      *
      * The model properties
      *

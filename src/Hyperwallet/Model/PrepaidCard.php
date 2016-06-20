@@ -4,21 +4,21 @@ namespace Hyperwallet\Model;
 /**
  * Represents a V3 Prepaid Card
  *
- * @property string $token
- * @property string $type
+ * @property string $token The prepaid card token
+ * @property string $type The transfer method type
  *
- * @property string $status
- * @property \DateTime $createdOn
+ * @property string $status The prepaid card status
+ * @property \DateTime $createdOn The prepaid card creation date
  *
- * @property string $transferMethodCountry
- * @property string $transferMethodCurrency
+ * @property string $transferMethodCountry The transfer method country
+ * @property string $transferMethodCurrency The transfer method currency
  *
- * @property string $cardType
+ * @property string $cardType The prepaid card type
  *
- * @property string $cardPackage
- * @property string $cardNumber
- * @property string $cardBrand
- * @property \DateTime $dateOfExpiry
+ * @property string $cardPackage The prepaid card package
+ * @property string $cardNumber The prepaid card number
+ * @property string $cardBrand The prepaid card brand
+ * @property \DateTime $dateOfExpiry The prepaid card expiry date
  *
  * @package Hyperwallet\Model
  */
@@ -52,11 +52,18 @@ class PrepaidCard extends BaseModel {
     const CARD_BRAND_VISA = 'VISA';
     const CARD_BRAND_MASTERCARD = 'MASTERCARD';
 
+    /**
+     * Creates a instance of PrepaidCard
+     *
+     * @param string[] $properties The default properties
+     */
     public function __construct(array $properties = array()) {
         parent::__construct(self::$READ_ONLY_FIELDS, $properties);
     }
 
     /**
+     * Get the prepaid card package
+     *
      * @return string
      */
     public function getCardPackage() {
@@ -64,6 +71,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Set the prepaid card package
+     *
      * @param string $cardPackage
      * @return PrepaidCard
      */
@@ -73,6 +82,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Get the prepaid card token
+     *
      * @return string
      */
     public function getToken() {
@@ -80,6 +91,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Get the prepaid card token
+     *
      * @param string $token
      * @return PrepaidCard
      */
@@ -89,6 +102,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Get the transfer method type
+     *
      * @return string
      */
     public function getType() {
@@ -96,6 +111,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Set the transfer method type
+     *
      * @param string $type
      * @return PrepaidCard
      */
@@ -105,6 +122,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Get the prepaid card status
+     *
      * @return string
      */
     public function getStatus() {
@@ -112,6 +131,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Get the prepaid card creation date
+     *
      * @return \DateTime
      */
     public function getCreatedOn() {
@@ -119,6 +140,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Get the transfer method country
+     *
      * @return string
      */
     public function getTransferMethodCountry() {
@@ -126,6 +149,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Get the transfer method currency
+     *
      * @return string
      */
     public function getTransferMethodCurrency() {
@@ -133,6 +158,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Get the prepaid card type
+     *
      * @return string
      */
     public function getCardType() {
@@ -140,6 +167,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Get the prepaid card number
+     *
      * @return string
      */
     public function getCardNumber() {
@@ -147,6 +176,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Get the prepaid card brand
+     *
      * @return string
      */
     public function getCardBrand() {
@@ -154,6 +185,8 @@ class PrepaidCard extends BaseModel {
     }
 
     /**
+     * Get the prepaid card expiry date
+     * 
      * @return \DateTime
      */
     public function getDateOfExpiry() {

@@ -4,7 +4,7 @@ namespace Hyperwallet\Exception;
 /**
  * The Hyperwallet exception for missing arguments
  *
- * @package Hyperwallet
+ * @package Hyperwallet\Exception
  */
 class HyperwalletArgumentException extends HyperwalletException {
 

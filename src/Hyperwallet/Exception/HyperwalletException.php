@@ -4,7 +4,7 @@ namespace Hyperwallet\Exception;
 /**
  * The base exception for Hyperwallet SDK errors
  *
- * @package Hyperwallet
+ * @package Hyperwallet\Exception
  */
 class HyperwalletException extends \Exception {
 

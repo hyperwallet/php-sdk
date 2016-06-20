@@ -5,7 +5,7 @@ use Hyperwallet\Response\ErrorResponse;
 /**
  * The Hyperwallet exception for api errors
  *
- * @package Hyperwallet
+ * @package Hyperwallet\Exception
  */
 class HyperwalletApiException extends HyperwalletException {
 

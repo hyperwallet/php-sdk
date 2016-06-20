@@ -4,46 +4,46 @@ namespace Hyperwallet\Model;
 /**
  * Represents a V3 User
  *
- * @property string $token
- * @property string $status
+ * @property string $token The user token
+ * @property string $status The user status
  *
- * @property \DateTime $createdOn
+ * @property \DateTime $createdOn The user creation date
  *
- * @property string $clientUserId
- * @property string $profileType
+ * @property string $clientUserId The client user id
+ * @property string $profileType The profile type
  *
- * @property string $businessType
- * @property string $businessName
- * @property string $businessRegistrationId
- * @property string $businessRegistrationStateProvince
- * @property string $businessRegistrationCountry
- * @property string $businessContactRole
+ * @property string $businessType The business type
+ * @property string $businessName The business name
+ * @property string $businessRegistrationId The business registration id
+ * @property string $businessRegistrationStateProvince The business registration state or province
+ * @property string $businessRegistrationCountry The business registration country
+ * @property string $businessContactRole The business contact role
  *
- * @property string $firstName
- * @property string $middleName
- * @property string $lastName
- * @property \DateTime $dateOfBirth
- * @property string $countryOfBirth
- * @property string $countryOfNationality
- * @property string $gender
- * @property string $phoneNumber
- * @property string $mobileNumber
- * @property string $email
+ * @property string $firstName The first name
+ * @property string $middleName The middle name
+ * @property string $lastName The last name
+ * @property \DateTime $dateOfBirth The date of birth
+ * @property string $countryOfBirth The country of birth
+ * @property string $countryOfNationality The country of nationality
+ * @property string $gender The gender
+ * @property string $phoneNumber The phone number
+ * @property string $mobileNumber The mobile number
+ * @property string $email The email
  *
- * @property string $governmentId
- * @property string $passportId
- * @property string $driversLicenseId
- * @property string $employerId
+ * @property string $governmentId The goverment id
+ * @property string $passportId The passport id
+ * @property string $driversLicenseId The drivers license id
+ * @property string $employerId The employer id
  *
- * @property string $addressLine1
- * @property string $addressLine2
- * @property string $city
- * @property string $stateProvince
- * @property string $country
- * @property string $postalCode
+ * @property string $addressLine1 The address line 1
+ * @property string $addressLine2 The address line 2
+ * @property string $city The city
+ * @property string $stateProvince The state or province
+ * @property string $country The country
+ * @property string $postalCode The postal code
  *
- * @property string $language
- * @property string $programToken
+ * @property string $language The user language
+ * @property string $programToken The users program token
  *
  * @package Hyperwallet\Model
  */
@@ -77,11 +77,18 @@ class User extends BaseModel implements IProgramAware {
     const GENDER_MALE = 'MALE';
     const GENDER_FEMALE = 'FEMALE';
 
+    /**
+     * Creates a instance of User
+     *
+     * @param string[] $properties The default properties
+     */
     public function __construct(array $properties = array()) {
         parent::__construct(self::$READ_ONLY_FIELDS, $properties);
     }
 
     /**
+     * Get the user token
+     *
      * @return string
      */
     public function getToken() {
@@ -89,6 +96,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the user token
+     *
      * @param string $token
      * @return User
      */
@@ -98,6 +107,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the user status
+     *
      * @return string
      */
     public function getStatus() {
@@ -105,6 +116,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the user creation time
+     *
      * @return \DateTime
      */
     public function getCreatedOn() {
@@ -112,6 +125,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the client user id
+     *
      * @return string
      */
     public function getClientUserId() {
@@ -119,6 +134,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the client user id
+     *
      * @param string $clientUserId
      * @return User
      */
@@ -128,6 +145,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the profile type
+     *
      * @return string
      */
     public function getProfileType() {
@@ -135,6 +154,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the profile type
+     *
      * @param string $profileType
      * @return User
      */
@@ -144,6 +165,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the business type
+     *
      * @return string
      */
     public function getBusinessType() {
@@ -151,6 +174,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the business type
+     *
      * @param string $businessType
      * @return User
      */
@@ -160,6 +185,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the business name
+     *
      * @return string
      */
     public function getBusinessName() {
@@ -167,6 +194,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the business name
+     *
      * @param string $businessName
      * @return User
      */
@@ -176,6 +205,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the business registration id
+     *
      * @return string
      */
     public function getBusinessRegistrationId() {
@@ -183,6 +214,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the business registration id
+     *
      * @param string $businessRegistrationId
      * @return User
      */
@@ -192,6 +225,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the business registration state or province
+     *
      * @return string
      */
     public function getBusinessRegistrationStateProvince() {
@@ -199,6 +234,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the business registartion state or province
+     *
      * @param string $businessRegistrationStateProvince
      * @return User
      */
@@ -208,6 +245,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the business registartion country
+     *
      * @return string
      */
     public function getBusinessRegistrationCountry() {
@@ -215,6 +254,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the business registration country
+     *
      * @param string $businessRegistrationCountry
      * @return User
      */
@@ -224,6 +265,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the business contact role
+     *
      * @return string
      */
     public function getBusinessContactRole() {
@@ -231,6 +274,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the business contact role
+     *
      * @param string $businessContactRole
      * @return User
      */
@@ -240,6 +285,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the first name
+     *
      * @return string
      */
     public function getFirstName() {
@@ -247,6 +294,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the first name
+     *
      * @param string $firstName
      * @return User
      */
@@ -256,6 +305,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the middle name
+     *
      * @return string
      */
     public function getMiddleName() {
@@ -263,6 +314,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the middle name
+     *
      * @param string $middleName
      * @return User
      */
@@ -272,6 +325,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the last name
+     *
      * @return string
      */
     public function getLastName() {
@@ -279,6 +334,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the last name
+     *
      * @param string $lastName
      * @return User
      */
@@ -288,6 +345,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the date of birth
+     *
      * @return \DateTime
      */
     public function getDateOfBirth() {
@@ -295,6 +354,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the date of birth
+     *
      * @param \DateTime $dateOfBirth
      * @return User
      */
@@ -304,6 +365,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the country of birth
+     *
      * @return string
      */
     public function getCountryOfBirth() {
@@ -311,6 +374,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the country of birth
+     *
      * @param string $countryOfBirth
      * @return User
      */
@@ -320,6 +385,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the country of nationality
+     *
      * @return string
      */
     public function getCountryOfNationality() {
@@ -327,6 +394,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the country of nationality
+     *
      * @param string $countryOfNationality
      * @return User
      */
@@ -336,6 +405,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the gender
+     *
      * @return string
      */
     public function getGender() {
@@ -343,6 +414,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the gender
+     *
      * @param string $gender
      * @return User
      */
@@ -352,6 +425,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the phone number
+     *
      * @return string
      */
     public function getPhoneNumber() {
@@ -359,6 +434,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the phone number
+     *
      * @param string $phoneNumber
      * @return User
      */
@@ -368,6 +445,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the mobile number
+     *
      * @return string
      */
     public function getMobileNumber() {
@@ -375,6 +454,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the mobile number
+     *
      * @param string $mobileNumber
      * @return User
      */
@@ -384,6 +465,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the email
+     *
      * @return string
      */
     public function getEmail() {
@@ -391,6 +474,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the email
+     *
      * @param string $email
      * @return User
      */
@@ -400,6 +485,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the government id
+     *
      * @return string
      */
     public function getGovernmentId() {
@@ -407,6 +494,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the government id
+     *
      * @param string $governmentId
      * @return User
      */
@@ -416,6 +505,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the passport id
+     *
      * @return string
      */
     public function getPassportId() {
@@ -423,6 +514,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the passport id
+     *
      * @param string $passportId
      * @return User
      */
@@ -432,6 +525,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the drivers license id
+     *
      * @return string
      */
     public function getDriversLicenseId() {
@@ -439,6 +534,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the drivers license id
+     *
      * @param string $driversLicenseId
      * @return User
      */
@@ -448,6 +545,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the employer id
+     *
      * @return string
      */
     public function getEmployerId() {
@@ -455,6 +554,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the employer id
+     *
      * @param string $employerId
      * @return User
      */
@@ -464,6 +565,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the address line 1
+     *
      * @return string
      */
     public function getAddressLine1() {
@@ -471,6 +574,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the address line 1
+     *
      * @param string $addressLine1
      * @return User
      */
@@ -480,6 +585,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the address line 2
+     *
      * @return string
      */
     public function getAddressLine2() {
@@ -487,6 +594,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the address line 2
+     *
      * @param string $addressLine2
      * @return User
      */
@@ -496,6 +605,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the city
+     *
      * @return string
      */
     public function getCity() {
@@ -503,6 +614,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the city
+     *
      * @param string $city
      * @return User
      */
@@ -512,6 +625,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the state or province
+     *
      * @return string
      */
     public function getStateProvince() {
@@ -519,6 +634,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the state or province
+     *
      * @param string $stateProvince
      * @return User
      */
@@ -528,6 +645,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the country
+     *
      * @return string
      */
     public function getCountry() {
@@ -535,6 +654,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the country
+     *
      * @param string $country
      * @return User
      */
@@ -544,6 +665,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the postal code
+     *
      * @return string
      */
     public function getPostalCode() {
@@ -551,6 +674,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the postal code
+     *
      * @param string $postalCode
      * @return User
      */
@@ -560,6 +685,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the user language
+     *
      * @return string
      */
     public function getLanguage() {
@@ -567,6 +694,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the user language
+     *
      * @param string $language
      * @return User
      */
@@ -576,6 +705,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Get the users program token
+     *
      * @return string
      */
     public function getProgramToken() {
@@ -583,6 +714,8 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * Set the users program token
+     * 
      * @param string $programToken
      * @return User
      */
