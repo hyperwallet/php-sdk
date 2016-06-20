@@ -19,6 +19,7 @@ pids
 
 # Docs
 docs/
+/sami.phar
 
 # Build folder
 build/
