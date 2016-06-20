@@ -9,14 +9,10 @@ cache:
   - $HOME/.composer/cache
 install:
 - composer install --prefer-source
-before_script:
-- if [ $TRAVIS_PHP_VERSION = '7.0' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then sudo apt-get -qq update > /dev/null; fi
-- if [ $TRAVIS_PHP_VERSION = '7.0' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then sudo apt-get -qq install graphviz > /dev/null; fi
 script:
 - ./vendor/bin/phpunit -v
 after_success:
-- if [ $TRAVIS_PHP_VERSION = '7.0' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST
-  = 'false' ]; then sh ./scripts/travisPublishDocs.sh; fi
+- if [ $TRAVIS_PHP_VERSION = '7.0' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then sh ./scripts/travisPublishDocs.sh; fi
 - if [ $TRAVIS_PHP_VERSION = '7.0' ]; then sh ./scripts/publishCodeCoverage.sh; fi
 env:
   global:
