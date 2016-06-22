@@ -40,7 +40,7 @@ To write an app using the SDK
   $user = new \Hyperwallet\Model\User();
   $user
     ->setClientUserId('test-client-id-1')
-    ->setProfileType(\Hyperwallet\Model\User::$PROFILE_TYPE_INDIVIDUAL)
+    ->setProfileType(\Hyperwallet\Model\User::PROFILE_TYPE_INDIVIDUAL)
     ->setFirstName('Daffyd')
     ->setLastName('y Goliath')
     ->setEmail('testmail-1@hyperwallet.com')

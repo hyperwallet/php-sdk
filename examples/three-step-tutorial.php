@@ -33,7 +33,7 @@ $user = new \Hyperwallet\Model\User();
 $user
     ->setProgramToken($programToken)
     ->setClientUserId(uniqid())
-    ->setProfileType(\Hyperwallet\Model\User::$PROFILE_TYPE_INDIVIDUAL)
+    ->setProfileType(\Hyperwallet\Model\User::PROFILE_TYPE_INDIVIDUAL)
     ->setFirstName('Daffyd')
     ->setLastName('y Goliath')
     ->setEmail('testmail-' . uniqid() . '@hyperwallet.com')
@@ -62,7 +62,7 @@ $bankAccount = new \Hyperwallet\Model\BankAccount();
 $bankAccount
     ->setTransferMethodCountry('US')
     ->setTransferMethodCurrency('USD')
-    ->setType(\Hyperwallet\Model\BankAccount::$TYPE_BANK_ACCOUNT)
+    ->setType(\Hyperwallet\Model\BankAccount::TYPE_BANK_ACCOUNT)
     ->setBranchId('121122676')
     ->setBankAccountPurpose('CHECKING')
     ->setBankAccountId(rand());
