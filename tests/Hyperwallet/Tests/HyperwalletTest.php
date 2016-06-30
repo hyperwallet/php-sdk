@@ -3,6 +3,7 @@ namespace Hyperwallet\Tests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Uri;
+use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletArgumentException;
 use Hyperwallet\Hyperwallet;
 use Hyperwallet\Model\BankAccount;
@@ -41,6 +42,22 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     public function testConstructor_changedServer() {
         $client = new Hyperwallet('test-username', 'test-password', null, 'https://test.test');
         $this->validateGuzzleClientSettings($client, 'https://test.test', 'test-username', 'test-password');
+    }
+
+    //--------------------------------------
+    // TLS verification
+    //--------------------------------------
+
+    public function testLisUser_noTLSIssues() {
+        $client = new Hyperwallet('test-username', 'test-password');
+        try {
+            $client->listUsers();
+            $this->fail('Expect HyperwalletApiException');
+        } catch (HyperwalletApiException $e) {
+            $this->assertNotNull($e->getPrevious());
+            $this->assertNotNull($e->getPrevious()->getResponse());
+            $this->assertEquals(401, $e->getPrevious()->getResponse()->getStatusCode());
+        }
     }
 
     //--------------------------------------
