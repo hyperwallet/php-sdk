@@ -20,7 +20,7 @@ class ApiClient {
      *
      * @var string
      */
-    private static $VERSION = '0.1.0';
+    const VERSION = '0.1.0';
 
     /**
      * The Guzzle http client
@@ -43,7 +43,7 @@ class ApiClient {
             'base_uri' => $server,
             'auth' => array($username, $password),
             'headers' => array(
-                'User-Agent' => 'Hyperwallet PHP SDK v' . self::$VERSION,
+                'User-Agent' => 'Hyperwallet PHP SDK v' . self::VERSION,
                 'Accept' => 'application/json'
             )
         ), $clientOptions));

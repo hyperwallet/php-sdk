@@ -613,7 +613,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertArrayHasKeyAndValue('Content-Type', 'application/json', $request->getHeaders());
             $this->assertArrayHasKeyAndValue('Content-Length', $request->getBody()->getSize(), $request->getHeaders());
         }
-        $this->assertArrayHasKeyAndValue('User-Agent', 'Hyperwallet PHP SDK v0.0.1', $request->getHeaders());
+        $this->assertArrayHasKeyAndValue('User-Agent', 'Hyperwallet PHP SDK v' . ApiClient::VERSION, $request->getHeaders());
         $this->assertArrayHasKeyAndValue('Host', 'test.server', $request->getHeaders());
         $this->assertArrayHasKeyAndValue('Authorization', 'Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk', $request->getHeaders());
 
