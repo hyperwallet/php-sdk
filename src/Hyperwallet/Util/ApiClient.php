@@ -20,7 +20,7 @@ class ApiClient {
      *
      * @var string
      */
-    private static $VERSION = '0.0.1';
+    private static $VERSION = '0.1.0';
 
     /**
      * The Guzzle http client
