@@ -11,6 +11,7 @@ use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\Program;
 use Hyperwallet\Model\ProgramAccount;
+use Hyperwallet\Model\Receipt;
 use Hyperwallet\Model\TransferMethodConfiguration;
 use Hyperwallet\Model\User;
 use Hyperwallet\Response\ListResponse;
@@ -773,6 +774,89 @@ class Hyperwallet {
         ), $options));
         return new ListResponse($body, function ($entity) {
             return new TransferMethodConfiguration($entity);
+        });
+    }
+
+    //--------------------------------------
+    // Receipts
+    //--------------------------------------
+
+    /**
+     * List all program account receipts
+     *
+     * @param string $programToken The program token
+     * @param string $accountToken The program account token
+     * @param array $options The query parameters
+     * @return ListResponse of HyperwalletReceipt
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listReceiptsForProgramAccount($programToken, $accountToken, $options = array()) {
+        if (empty($programToken)) {
+            throw new HyperwalletArgumentException('programToken is required!');
+        }
+        if (empty($accountToken)) {
+            throw new HyperwalletArgumentException('accountToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/programs/{program-token}/accounts/{account-token}/receipts', array(
+            'program-token' => $programToken,
+            'account-token' => $accountToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new Receipt($entry);
+        });
+    }
+
+    /**
+     * List all user receipts
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters
+     * @return ListResponse of HyperwalletReceipt
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listReceiptsForUser($userToken, $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/receipts', array(
+            'user-token' => $userToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new Receipt($entry);
+        });
+    }
+
+    /**
+     * List all prepaid card receipts
+     *
+     * @param string $userToken The user token
+     * @param string $prepaidCardToken The prepaid card token
+     * @param array $options The query parameters
+     * @return ListResponse of HyperwalletReceipt
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listReceiptsForPrepaidCard($userToken, $prepaidCardToken, $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($prepaidCardToken)) {
+            throw new HyperwalletArgumentException('prepaidCardToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/prepaid-cards/{prepaid-card-token}/receipts', array(
+            'user-token' => $userToken,
+            'prepaid-card-token' => $prepaidCardToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new Receipt($entry);
         });
     }
 
