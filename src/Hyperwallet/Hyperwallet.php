@@ -792,7 +792,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function listProgramAccountReceipts($programToken, $accountToken, $options = array()) {
+    public function listReceiptsForProgramAccount($programToken, $accountToken, $options = array()) {
         if (empty($programToken)) {
             throw new HyperwalletArgumentException('programToken is required!');
         }
@@ -819,7 +819,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function listUserReceipts($userToken, $options = array()) {
+    public function listReceiptsForUser($userToken, $options = array()) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -843,7 +843,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function listPrepaidCardReceipts($userToken, $prepaidCardToken, $options = array()) {
+    public function listReceiptsForPrepaidCard($userToken, $prepaidCardToken, $options = array()) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
