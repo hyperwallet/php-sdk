@@ -611,6 +611,33 @@ class Hyperwallet {
         });
     }
 
+    /**
+     * List balances for a program account
+     *
+     * @param string $programToken The program token
+     * @param string $accountToken The account token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     */
+    public function listBalancesForAccount($programToken, $accountToken, $options = array()) {
+        if (empty($programToken)) {
+            throw new HyperwalletArgumentException('programToken is required!');
+        }
+        if (empty($accountToken)) {
+            throw new HyperwalletArgumentException('accountToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/programs/{program-token}/accounts/{account-token}/balances', array(
+            'program-token' => $programToken,
+            'account-token' => $accountToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new Balance($entry);
+        });
+    }
+
     //--------------------------------------
     // Payments
     //--------------------------------------
