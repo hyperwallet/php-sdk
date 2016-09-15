@@ -14,6 +14,7 @@ use Hyperwallet\Model\ProgramAccount;
 use Hyperwallet\Model\Receipt;
 use Hyperwallet\Model\TransferMethodConfiguration;
 use Hyperwallet\Model\User;
+use Hyperwallet\Model\UserStatusTransition;
 use Hyperwallet\Response\ListResponse;
 use Hyperwallet\Util\ApiClient;
 
@@ -48,7 +49,7 @@ class Hyperwallet {
      *
      * @throws HyperwalletArgumentException
      */
-    public function __construct($username, $password, $programToken = null, $server = 'https://sandbox.hyperwallet.com') {
+    public function __construct($username, $password, $programToken = null, $server = 'https://api.sandbox.hyperwallet.com') {
         if (empty($username) || empty($password)) {
             throw new HyperwalletArgumentException('You need to specify your API username and password!');
         }
@@ -121,6 +122,154 @@ class Hyperwallet {
         $body = $this->client->doGet('/rest/v3/users', array(), $options);
         return new ListResponse($body, function($entry) {
             return new User($entry);
+        });
+    }
+
+    /**
+     * Pre activate a user
+     *
+     * @param string $userToken The user token
+     * @return UserStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function preActivateUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_PRE_ACTIVATED);
+
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * Activate a user
+     *
+     * @param string $userToken The user token
+     * @return UserStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function activateUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_ACTIVATED);
+
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * Lock a user
+     *
+     * @param string $userToken The user token
+     * @return UserStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function lockUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_LOCKED);
+
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * Freeze a user
+     *
+     * @param string $userToken The user token
+     * @return UserStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function freezeUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_FROZEN);
+
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * De activate a user
+     *
+     * @param string $userToken The user token
+     * @return UserStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function deActivateUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * Create a user status transition
+     *
+     * @param string $userToken The user token
+     * @param UserStatusTransition $transition The status transition
+     * @return UserStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createUserStatusTransition($userToken, UserStatusTransition $transition) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/status-transitions', array(
+            'user-token' => $userToken
+        ), $transition, array());
+        return new UserStatusTransition($body);
+    }
+
+    /**
+     * Get a user status transition
+     *
+     * @param string $userToken The user token
+     * @param string $statusTransitionToken The status transition token
+     * @return UserStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     */
+    public function getUserStatusTransition($userToken, $statusTransitionToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new UserStatusTransition($body);
+    }
+
+    /**
+     * List all user status transitions
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listUserStatusTransitions($userToken, array $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/status-transitions', array(
+            'user-token' => $userToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new UserStatusTransition($entry);
         });
     }
 

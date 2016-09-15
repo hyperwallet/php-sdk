@@ -12,6 +12,7 @@ use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\User;
+use Hyperwallet\Model\UserStatusTransition;
 use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
@@ -36,7 +37,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
     public function testConstructor_defaultServer() {
         $client = new Hyperwallet('test-username', 'test-password');
-        $this->validateGuzzleClientSettings($client, 'https://sandbox.hyperwallet.com', 'test-username', 'test-password');
+        $this->validateGuzzleClientSettings($client, 'https://api.sandbox.hyperwallet.com', 'test-username', 'test-password');
     }
 
     public function testConstructor_changedServer() {
@@ -216,6 +217,172 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users', array(), array('test' => 'value'));
+    }
+
+    /**
+     * @dataProvider userStatusTransitionProvider
+     *
+     * @param string $methodName The status transition method name
+     */
+    public function testUserStatusTransitionMethods_noUserToken($methodName) {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $transitionMethod = $this->findMethodByName($client, $methodName);
+
+        // Run test
+        try {
+            $transitionMethod->invoke($client, '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    /**
+     * @dataProvider userStatusTransitionProvider
+     *
+     * @param string $methodName The status transition method name
+     * @param string $transition The status transition to perform
+     */
+    public function testUserStatusTransitionMethods_allParameters($methodName, $transition) {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $transitionMethod = $this->findMethodByName($client, $methodName);
+
+        $statusTransition = new UserStatusTransition();
+        $statusTransition->setTransition($transition);
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $newStatusTransition = $transitionMethod->invoke($client, 'test-user-token');
+        $this->assertNotNull($newStatusTransition);
+        $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array());
+    }
+
+    public function testCreateUserStatusTransition_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $statusTransition = new UserStatusTransition();
+
+        try {
+            $client->createUserStatusTransition('', $statusTransition);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateUserStatusTransition_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $statusTransition = new UserStatusTransition(array('transition' => 'test'));
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $newStatusTransition = $client->createUserStatusTransition('test-user-token', $statusTransition);
+        $this->assertNotNull($newStatusTransition);
+        $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array());
+    }
+
+    public function testGetUserStatusTransition_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getUserStatusTransition('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetUserStatusTransition_noStatusTransitionToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getUserStatusTransition('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('statusTransitionToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetUserStatusTransition_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/status-transitions/{status-transition-token}', array('user-token' => 'test-user-token', 'status-transition-token' => 'test-status-transition-token'), array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $statusTransition = $client->getUserStatusTransition('test-user-token', 'test-status-transition-token');
+        $this->assertNotNull($statusTransition);
+        $this->assertEquals(array('success' => 'true'), $statusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/status-transitions/{status-transition-token}', array('user-token' => 'test-user-token', 'status-transition-token' => 'test-status-transition-token'), array());
+    }
+
+    public function testListUserStatusTransitions_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listUserStatusTransitions('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListUserStatusTransitions_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array())->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $statusTransitionList = $client->listUserStatusTransitions('test-user-token');
+        $this->assertNotNull($statusTransitionList);
+        $this->assertCount(0, $statusTransitionList);
+        $this->assertEquals(1, $statusTransitionList->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array());
+    }
+
+    public function testListUserStatusTransitions_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('count' => 1, 'data' => array(array('success' => 'true'))));
+
+        // Run test
+        $statusTransitionList = $client->listUserStatusTransitions('test-user-token', array('test' => 'value'));
+        $this->assertNotNull($statusTransitionList);
+        $this->assertCount(1, $statusTransitionList);
+        $this->assertEquals(1, $statusTransitionList->getCount());
+
+        $this->assertEquals(array('success' => 'true'), $statusTransitionList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array('test' => 'value'));
     }
 
     //--------------------------------------
@@ -1685,6 +1852,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             'deactivatePrepaidCard' => array('deactivatePrepaidCard', PrepaidCardStatusTransition::TRANSITION_DE_ACTIVATED),
             'lockPrepaidCard' => array('lockPrepaidCard', PrepaidCardStatusTransition::TRANSITION_LOCKED),
             'unlockPrepaidCard' => array('unlockPrepaidCard', PrepaidCardStatusTransition::TRANSITION_UNLOCKED)
+        );
+    }
+
+    public function userStatusTransitionProvider() {
+        return array(
+            'preActivateUser' => array('preActivateUser', UserStatusTransition::TRANSITION_PRE_ACTIVATED),
+            'activateUser' => array('activateUser', UserStatusTransition::TRANSITION_ACTIVATED),
+            'lockUser' => array('lockUser', UserStatusTransition::TRANSITION_LOCKED),
+            'freezeUser' => array('freezeUser', UserStatusTransition::TRANSITION_FROZEN),
+            'deActivateUser' => array('deActivateUser', UserStatusTransition::TRANSITION_DE_ACTIVATED)
         );
     }
 
