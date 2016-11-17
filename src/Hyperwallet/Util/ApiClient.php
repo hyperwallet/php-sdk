@@ -56,17 +56,18 @@ class ApiClient {
      * @param array $uriParams The url template parameters
      * @param BaseModel $data The data to submit
      * @param array $query Query parameters
+     * @param array $headers Additional headers
      * @return array
      *
      * @throws HyperwalletApiException
      */
-    public function doPost($partialUrl, array $uriParams, BaseModel $data, array $query) {
+    public function doPost($partialUrl, array $uriParams, BaseModel $data = null, array $query = array(), array $headers = array()) {
         return $this->doRequest('POST', $partialUrl, $uriParams, array(
             'query' => $query,
-            'body' => \GuzzleHttp\json_encode($data->getPropertiesForCreate(), JSON_FORCE_OBJECT),
-            'headers' => array(
+            'body' => $data ? \GuzzleHttp\json_encode($data->getPropertiesForCreate(), JSON_FORCE_OBJECT) : '{}',
+            'headers' => array_merge($headers, array(
                 'Content-Type' => 'application/json'
-            )
+            ))
         ));
     }
 
