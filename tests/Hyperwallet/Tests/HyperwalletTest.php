@@ -11,6 +11,7 @@ use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
+use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\User;
 use Hyperwallet\Util\ApiClient;
 
@@ -921,6 +922,126 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/bank-accounts/{bank-account-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-account-token' => 'test-bank-account-token'), array('test' => 'value'));
+    }
+
+    //--------------------------------------
+    // Transfer Methods
+    //--------------------------------------
+
+    public function testCreateTransferMethod_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->createTransferMethod('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateTransferMethod_noJsonCacheToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->createTransferMethod('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('jsonCacheToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateTransferMethod_noPayload() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), null, array(), array(
+            'Json-Cache-Token' => 'test-json-cache-token'
+        ))->thenReturn(array('success' => 'true', 'type' => TransferMethod::TYPE_BANK_ACCOUNT));
+
+        // Run test
+        $newTransferMethod = $client->createTransferMethod('test-user-token', 'test-json-cache-token');
+        $this->assertNotNull($newTransferMethod);
+        $this->assertEquals(array('success' => 'true', 'type' => BankAccount::TYPE_BANK_ACCOUNT), $newTransferMethod->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), null, array(), array(
+            'Json-Cache-Token' => 'test-json-cache-token'
+        ));
+    }
+
+    public function testCreateTransferMethod_payload_result_bank_account() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        $transferMethod = new TransferMethod();
+        $transferMethod->setFirstName('test-first-name');
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), $transferMethod, array(), array(
+            'Json-Cache-Token' => 'test-json-cache-token'
+        ))->thenReturn(array('success' => 'true', 'type' => TransferMethod::TYPE_BANK_ACCOUNT));
+
+        // Run test
+        $newTransferMethod = $client->createTransferMethod('test-user-token', 'test-json-cache-token', $transferMethod);
+        $this->assertNotNull($newTransferMethod);
+        $this->assertInstanceOf(BankAccount::class, $newTransferMethod);
+        $this->assertEquals(array('success' => 'true', 'type' => BankAccount::TYPE_BANK_ACCOUNT), $newTransferMethod->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), $transferMethod, array(), array(
+            'Json-Cache-Token' => 'test-json-cache-token'
+        ));
+    }
+
+    public function testCreateTransferMethod_payload_result_wire_account() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        $transferMethod = new TransferMethod();
+        $transferMethod->setFirstName('test-first-name');
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), $transferMethod, array(), array(
+            'Json-Cache-Token' => 'test-json-cache-token'
+        ))->thenReturn(array('success' => 'true', 'type' => TransferMethod::TYPE_WIRE_ACCOUNT));
+
+        // Run test
+        $newTransferMethod = $client->createTransferMethod('test-user-token', 'test-json-cache-token', $transferMethod);
+        $this->assertNotNull($newTransferMethod);
+        $this->assertInstanceOf(BankAccount::class, $newTransferMethod);
+        $this->assertEquals(array('success' => 'true', 'type' => BankAccount::TYPE_WIRE_ACCOUNT), $newTransferMethod->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), $transferMethod, array(), array(
+            'Json-Cache-Token' => 'test-json-cache-token'
+        ));
+    }
+
+    public function testCreateTransferMethod_payload_result_prepaid_card() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        $transferMethod = new TransferMethod();
+        $transferMethod->setFirstName('test-first-name');
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), $transferMethod, array(), array(
+            'Json-Cache-Token' => 'test-json-cache-token'
+        ))->thenReturn(array('success' => 'true', 'type' => TransferMethod::TYPE_PREPAID_CARD));
+
+        // Run test
+        $newTransferMethod = $client->createTransferMethod('test-user-token', 'test-json-cache-token', $transferMethod);
+        $this->assertNotNull($newTransferMethod);
+        $this->assertInstanceOf(PrepaidCard::class, $newTransferMethod);
+        $this->assertEquals(array('success' => 'true', 'type' => PrepaidCard::TYPE_PREPAID_CARD), $newTransferMethod->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), $transferMethod, array(), array(
+            'Json-Cache-Token' => 'test-json-cache-token'
+        ));
     }
 
     //--------------------------------------
