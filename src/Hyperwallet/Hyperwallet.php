@@ -12,6 +12,7 @@ use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\Program;
 use Hyperwallet\Model\ProgramAccount;
 use Hyperwallet\Model\Receipt;
+use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\TransferMethodConfiguration;
 use Hyperwallet\Model\User;
 use Hyperwallet\Response\ListResponse;
@@ -558,6 +559,37 @@ class Hyperwallet {
         return new ListResponse($body, function($entry) {
             return new BankAccountStatusTransition($entry);
         });
+    }
+
+    //--------------------------------------
+    // Transfer Methods
+    //--------------------------------------
+
+    /**
+     * Create a transfer method
+     *
+     * @param string $userToken The user token
+     * @param string $jsonCacheToken The json cache token supplied by the widget
+     * @param TransferMethod $transferMethod The transfer method data (to override certain fields)
+     * @return BankAccount|PrepaidCard
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createTransferMethod($userToken, $jsonCacheToken, TransferMethod $transferMethod = null) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($jsonCacheToken)) {
+            throw new HyperwalletArgumentException('jsonCacheToken is required!');
+        }
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => $userToken), $transferMethod, array(), array(
+            'Json-Cache-Token' => $jsonCacheToken
+        ));
+        if ($body['type'] === PrepaidCard::TYPE_PREPAID_CARD) {
+            return new PrepaidCard($body);
+        }
+        return new BankAccount($body);
     }
 
     //--------------------------------------
