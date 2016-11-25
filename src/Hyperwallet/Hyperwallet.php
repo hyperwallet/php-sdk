@@ -15,6 +15,7 @@ use Hyperwallet\Model\Receipt;
 use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\TransferMethodConfiguration;
 use Hyperwallet\Model\User;
+use Hyperwallet\Model\WebhookNotification;
 use Hyperwallet\Response\ListResponse;
 use Hyperwallet\Util\ApiClient;
 
@@ -916,6 +917,42 @@ class Hyperwallet {
         ), $options);
         return new ListResponse($body, function($entry) {
             return new Receipt($entry);
+        });
+    }
+
+    //--------------------------------------
+    // Webhook Notifications
+    //--------------------------------------
+
+    /**
+     * Get a webhook notification
+     *
+     * @param string $webhookNotificationToken The webhook notification token
+     * @return WebhookNotification
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getWebhookNotification($webhookNotificationToken) {
+        if (empty($webhookNotificationToken)) {
+            throw new HyperwalletArgumentException('webhookNotificationToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/webhook-notifications/{webhook-notification-token}', array('webhook-notification-token' => $webhookNotificationToken), array());
+        return new WebhookNotification($body);
+    }
+
+    /**
+     * List all webhook notifications
+     *
+     * @param array $options
+     * @return ListResponse
+     *
+     * @throws HyperwalletApiException
+     */
+    public function listWebhookNotifications($options = array()) {
+        $body = $this->client->doGet('/rest/v3/webhook-notifications', array(), $options);
+        return new ListResponse($body, function($entry) {
+            return new WebhookNotification($entry);
         });
     }
 

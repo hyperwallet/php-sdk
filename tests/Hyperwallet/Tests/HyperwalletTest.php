@@ -49,7 +49,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     // TLS verification
     //--------------------------------------
 
-    public function testLisUser_noTLSIssues() {
+    public function testListUser_noTLSIssues() {
         $client = new Hyperwallet('test-username', 'test-password');
         try {
             $client->listUsers();
@@ -1752,6 +1752,74 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/prepaid-cards/{prepaid-card-token}/receipts', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('test' => 'value'));
+    }
+
+    //--------------------------------------
+    // Webhook Notifications
+    //--------------------------------------
+
+    public function testGetWebhookNotification_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->getWebhookNotification('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('webhookNotificationToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetWebhookNotification_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/webhook-notifications/{webhook-notification-token}', array('webhook-notification-token' => 'test-webhook-notification-token'), array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $webhookNotification = $client->getWebhookNotification('test-webhook-notification-token');
+        $this->assertNotNull($webhookNotification);
+        $this->assertEquals(array('success' => 'true'), $webhookNotification->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/webhook-notifications/{webhook-notification-token}', array('webhook-notification-token' => 'test-webhook-notification-token'), array());
+    }
+
+    public function testListWebhookNotifications_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/webhook-notifications', array(), array())->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $webhookNotificationList = $client->listWebhookNotifications();
+        $this->assertNotNull($webhookNotificationList);
+        $this->assertCount(0, $webhookNotificationList);
+        $this->assertEquals(1, $webhookNotificationList->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/webhook-notifications', array(), array());
+    }
+
+    public function testListWebhookNotifications_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/webhook-notifications', array(), array('test' => 'value'))->thenReturn(array('count' => 1, 'data' => array(array('success' => 'true'))));
+
+        // Run test
+        $webhookNotificationList = $client->listWebhookNotifications(array('test' => 'value'));
+        $this->assertNotNull($webhookNotificationList);
+        $this->assertCount(1, $webhookNotificationList);
+        $this->assertEquals(1, $webhookNotificationList->getCount());
+
+        $this->assertEquals(array('success' => 'true'), $webhookNotificationList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/webhook-notifications', array(), array('test' => 'value'));
     }
     
     //--------------------------------------
