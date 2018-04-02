@@ -4,6 +4,7 @@ Changelog
 0.2.0 (in progress)
 -------------------
 
+- Added bank card endpoint
 - Added payment status transition endpoint
 - Added get bank account status transition endpoint
 - Added list program account receipt endpoint
