@@ -10,6 +10,8 @@ use Hyperwallet\Model\BankCardStatusTransition;
 use Hyperwallet\Model\IProgramAware;
 use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PaymentStatusTransition;
+use Hyperwallet\Model\PaperCheck;
+use Hyperwallet\Model\PaperCheckStatusTransition;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\Program;
@@ -129,6 +131,197 @@ class Hyperwallet {
         });
     }
 
+    //--------------------------------------
+    // Paper Checks
+    //--------------------------------------
+    
+    /**
+     * Create a paper check
+     *
+     * @param string $userToken The user token
+     * @param PaperCheck $paperCheck The paper check data
+     * @return PaperCheck
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createPaperCheck($userToken, PaperCheck $paperCheck) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/paper-checks', array('user-token' => $userToken), $paperCheck, array());
+        return new PaperCheck($body);
+    }
+    
+    /**
+     * Get a paper check
+     *
+     * @param string $userToken The user token
+     * @param string $paperCheckToken The paper check token
+     * @return PaperCheck
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getPaperCheck($userToken, $paperCheckToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paperCheckToken)) {
+            throw new HyperwalletArgumentException('paperCheckToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array(
+            'user-token' => $userToken,
+            'paper-check-token' => $paperCheckToken
+        ), array());
+        return new PaperCheck($body);
+    }
+    
+    /**
+     * Update a paper check
+     *
+     * @param string $userToken The user token
+     * @param PaperCheck $paperCheck The paper check data
+     * @return PaperCheck
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function updatePaperCheck($userToken, PaperCheck $paperCheck) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (!$paperCheck->getToken()) {
+            throw new HyperwalletArgumentException('token is required!');
+        }
+        $body = $this->client->doPut('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array(
+            'user-token' => $userToken,
+            'paper-check-token' => $paperCheck->getToken()
+        ), $paperCheck, array());
+        return new PaperCheck($body);
+    }
+    
+    /**
+     * List all paper checks
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters to send
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listPaperChecks($userToken, $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paper-checks', array('user-token' => $userToken), $options);
+        return new ListResponse($body, function($entry) {
+            return new PaperCheck($entry);
+        });
+    }
+    
+    /**
+     * Deactivate a paper check
+     *
+     * @param string $userToken The user token
+     * @param string $paperCheckToken The paper check token
+     * @return PaperCheckStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function deactivatePaperCheck($userToken, $paperCheckToken) {
+        $transition = new PaperCheckStatusTransition();
+        $transition->setTransition(PaperCheckStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        return $this->createPaperCheckStatusTransition($userToken, $paperCheckToken, $transition);
+    } 
+    
+    /**
+     * Create a paper check status transition
+     *
+     * @param string $userToken The user token
+     * @param string $paperCheckToken The paper check token
+     * @param PaperCheckStatusTransition $transition The status transition
+     * @return PaperCheckStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createPaperCheckStatusTransition($userToken, $paperCheckToken, PaperCheckStatusTransition $transition) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paperCheckToken)) {
+            throw new HyperwalletArgumentException('paperCheckToken is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'paper-check-token' => $paperCheckToken
+        ), $transition, array());
+        return new PaperCheckStatusTransition($body);
+    }
+    
+    /**
+     * Get a paper check status transition
+     *
+     * @param string $userToken The user token
+     * @param string $paperCheckToken The paper check token
+     * @param string $statusTransitionToken The status transition token
+     * @return PaperCheckStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getPaperCheckStatusTransition($userToken, $paperCheckToken, $statusTransitionToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paperCheckToken)) {
+            throw new HyperwalletArgumentException('paperCheckToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'paper-check-token' => $paperCheckToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new PaperCheckStatusTransition($body);
+    }
+
+    /**
+     * List all paper check status transitions
+     *
+     * @param string $userToken The user token
+     * @param string $paperCheckToken The paper check token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listPaperCheckStatusTransitions($userToken, $paperCheckToken, array $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paperCheckToken)) {
+            throw new HyperwalletArgumentException('paperCheckToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'paper-check-token' => $paperCheckToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new PaperCheckStatusTransition($entry);
+        });
+    }
+    
     //--------------------------------------
     // Prepaid Cards
     //--------------------------------------

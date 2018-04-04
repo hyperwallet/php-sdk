@@ -10,6 +10,8 @@ use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
+use Hyperwallet\Model\PaperCheck;
+use Hyperwallet\Model\PaperCheckStatusTransition;
 use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PaymentStatusTransition;
 use Hyperwallet\Model\PrepaidCard;
@@ -222,6 +224,376 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users', array(), array('test' => 'value'));
     }
 
+    //--------------------------------------
+    // Paper Checks
+    //--------------------------------------
+    
+    public function testCreatePaperCheck_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $paperCheck = new PaperCheck();
+
+        try {
+            $client->createPaperCheck('', $paperCheck);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreatePaperCheck_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $paperCheck = new PaperCheck();
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), $paperCheck, array())->thenReturn(array('postalCode' => 'ABCD'));
+
+        // Run test
+        $newPaperCheck = $client->createPaperCheck('test-user-token', $paperCheck);
+        $this->assertNotNull($newPaperCheck);
+        $this->assertEquals(array('postalCode' => 'ABCD'), $newPaperCheck->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), $paperCheck, array());
+    }
+    
+    public function testGetPaperCheck_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->getPaperCheck('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetPaperCheck_noPaperCheckToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->getPaperCheck('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('paperCheckToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetPaperCheck_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array())->thenReturn(array('postalCode' => 'ABCD'));
+
+        // Run test
+        $paperCheck = $client->getPaperCheck('test-user-token', 'test-paper-check-token');
+        $this->assertNotNull($paperCheck);
+        $this->assertEquals(array('postalCode' => 'ABCD'), $paperCheck->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array());
+    }
+    
+    public function testUpdatePaperCheck_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $paperCheck = new PaperCheck();
+
+        try {
+            $client->updatePaperCheck('', $paperCheck);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testUpdatePaperCheck_noToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $paperCheck = new PaperCheck();
+
+        try {
+            $client->updatePaperCheck('test-user-token', $paperCheck);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('token is required!', $e->getMessage());
+        }
+    }
+
+    public function testUpdatePaperCheck_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $paperCheck = new PaperCheck(array('token' => 'test-paper-check-token'));
+
+        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), $paperCheck, array())->thenReturn(array('postalCode' => 'ABCD'));
+
+        // Run test
+        $newPaperCheck = $client->updatePaperCheck('test-user-token', $paperCheck);
+        $this->assertNotNull($newPaperCheck);
+        $this->assertEquals(array('postalCode' => 'ABCD'), $newPaperCheck->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), $paperCheck, array());
+    }
+    
+    public function testListPaperChecks_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+
+        try {
+            $client->listPaperChecks('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+    
+    public function testListPaperChecks_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array())->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $paperCheckList = $client->listPaperChecks('test-user-token');
+        $this->assertNotNull($paperCheckList);
+        $this->assertCount(0, $paperCheckList);
+        $this->assertEquals(1, $paperCheckList->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array());
+    }
+
+    public function testListPaperChecks_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('count' => 1, 'data' => array(array('postalCode' => 'ABCD'))));
+
+        // Run test
+        $paperCheckList = $client->listPaperChecks('test-user-token', array('test' => 'value'));
+        $this->assertNotNull($paperCheckList);
+        $this->assertCount(1, $paperCheckList);
+        $this->assertEquals(1, $paperCheckList->getCount());
+
+        $this->assertEquals(array('postalCode' => 'ABCD'), $paperCheckList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array('test' => 'value'));
+    }
+    
+    public function testDeactivatePaperCheck_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+
+        // Run test
+        try {
+            $client->deactivatePaperCheck('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testDeactivatePaperCheck_noPaperCheckToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+
+        // Run test
+        try {
+            $client->deactivatePaperCheck('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('paperCheckToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testDeactivatePaperCheck_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        $statusTransition = new PaperCheckStatusTransition();
+        $statusTransition->setTransition(PaperCheckStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), $statusTransition, array())->thenReturn(array('postalCode' => 'ABCD'));
+
+        // Run test
+        $newStatusTransition = $client->deactivatePaperCheck('test-user-token', 'test-paper-check-token');
+        $this->assertNotNull($newStatusTransition);
+        $this->assertEquals(array('postalCode' => 'ABCD'), $newStatusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), $statusTransition, array());
+    }
+    
+    public function testCreatePaperCheckStatusTransition_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $statusTransition = new PaperCheckStatusTransition();
+
+        try {
+            $client->createPaperCheckStatusTransition('', '', $statusTransition);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreatePaperCheckStatusTransition_noPaperCheckToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $statusTransition = new PaperCheckStatusTransition();
+
+        try {
+            $client->createPaperCheckStatusTransition('test-user-token', '', $statusTransition);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('paperCheckToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreatePaperCheckStatusTransition_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $statusTransition = new PaperCheckStatusTransition(array('transition' => 'test'));
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), $statusTransition, array())->thenReturn(array('postalCode' => 'ABCD'));
+
+        // Run test
+        $newStatusTransition = $client->createPaperCheckStatusTransition('test-user-token', 'test-paper-check-token', $statusTransition);
+        $this->assertNotNull($newStatusTransition);
+        $this->assertEquals(array('postalCode' => 'ABCD'), $newStatusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), $statusTransition, array());
+    }
+    
+    public function testGetPaperCheckStatusTransition_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getPaperCheckStatusTransition('', '', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetPaperCheckStatusTransition_noPaperCheckToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getPaperCheckStatusTransition('test-user-token', '', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('paperCheckToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetPaperCheckStatusTransition_noStatusTransitionToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getPaperCheckStatusTransition('test-user-token', 'test-paper-check-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('statusTransitionToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetPaperCheckStatusTransition_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions/{status-transition-token}', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token', 'status-transition-token' => 'test-status-transition-token'), array())->thenReturn(array('postalCode' => 'ABCD'));
+
+        // Run test
+        $statusTransition = $client->getPaperCheckstatusTransition('test-user-token', 'test-paper-check-token', 'test-status-transition-token');
+        $this->assertNotNull($statusTransition);
+        $this->assertEquals(array('postalCode' => 'ABCD'), $statusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions/{status-transition-token}', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token', 'status-transition-token' => 'test-status-transition-token'), array());
+    }
+
+    public function testListPaperCheckStatusTransitions_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listPaperCheckStatusTransitions('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListPaperCheckStatusTransitions_noPaperCheckToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listPaperCheckStatusTransitions('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('paperCheckToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListPaperCheckStatusTransitions_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array())->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $statusTransitionList = $client->listPaperCheckStatusTransitions('test-user-token', 'test-paper-check-token');
+        $this->assertNotNull($statusTransitionList);
+        $this->assertCount(0, $statusTransitionList);
+        $this->assertEquals(1, $statusTransitionList->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array());
+    }
+
+    public function testListPaperCheckStatusTransitions_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array('test' => 'value'))->thenReturn(array('count' => 1, 'data' => array(array('postalCode' => 'ABCD'))));
+
+        // Run test
+        $statusTransitionList = $client->listPaperCheckStatusTransitions('test-user-token', 'test-paper-check-token', array('test' => 'value'));
+        $this->assertNotNull($statusTransitionList);
+        $this->assertCount(1, $statusTransitionList);
+        $this->assertEquals(1, $statusTransitionList->getCount());
+
+        $this->assertEquals(array('postalCode' => 'ABCD'), $statusTransitionList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array('test' => 'value'));
+    }
+    
     //--------------------------------------
     // Prepaid Cards
     //--------------------------------------
