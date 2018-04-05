@@ -521,6 +521,17 @@ class PaperCheck extends BaseModel {
         return $this->profileType;
     }
 
+	/**
+     * Set the profile type
+     *
+     * @param string $shippingMethod
+     * @return PaperCheck
+     */
+    public function setProfileType($profileType) {
+        $this->profileType = $profileType;
+        return $this;
+    }
+	
     /**
      * Get the shipping method 
      *
