@@ -20,6 +20,7 @@ use Hyperwallet\Model\Receipt;
 use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\TransferMethodConfiguration;
 use Hyperwallet\Model\User;
+use Hyperwallet\Model\UserStatusTransition;
 use Hyperwallet\Model\WebhookNotification;
 use Hyperwallet\Response\ListResponse;
 use Hyperwallet\Util\ApiClient;
@@ -128,6 +129,54 @@ class Hyperwallet {
         $body = $this->client->doGet('/rest/v3/users', array(), $options);
         return new ListResponse($body, function($entry) {
             return new User($entry);
+        });
+    }
+
+    /**
+     * Get a user status transition
+     *
+     * @param string $userToken The user token
+     * @param string $statusTransitionToken The status transition token
+     * @return UserStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getUserStatusTransition($userToken, $statusTransitionToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new UserStatusTransition($body);
+    }
+
+    /**
+     * List all user status transitions
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listUserStatusTransitions($userToken, array $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/status-transitions', array(
+            'user-token' => $userToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new UserStatusTransition($entry);
         });
     }
 
