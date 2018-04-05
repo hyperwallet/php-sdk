@@ -54,7 +54,7 @@ class PaperCheck extends BaseModel {
      *
      * @var string[]
      */
-    private static $READ_ONLY_FIELDS = array('profileType', 'phoneNumber', 'passportId', 'mobileNumber', 'middleName', 'lastName', 'governmentIdType', 'governmentId', 'gender', 'firstName', 'employerId', 'driversLicenseId', 'dateOfBirth', 'countryOfNationality', 'countryOfBirth', 'businessType', 'businessRegistrationStateProvince', 'businessRegistrationId', 'businessRegistrationCountry', 'businessName', 'businessContactRole', 'createdOn', 'status', 'token');
+    private static $READ_ONLY_FIELDS = array('phoneNumber', 'passportId', 'mobileNumber', 'middleName', 'lastName', 'governmentIdType', 'governmentId', 'gender', 'firstName', 'employerId', 'driversLicenseId', 'dateOfBirth', 'countryOfNationality', 'countryOfBirth', 'businessType', 'businessRegistrationStateProvince', 'businessRegistrationId', 'businessRegistrationCountry', 'businessName', 'businessContactRole', 'createdOn', 'status', 'token');
     
     const TYPE_PAPER_CHECK = 'PAPER_CHECK';
     
@@ -524,7 +524,7 @@ class PaperCheck extends BaseModel {
 	/**
      * Set the profile type
      *
-     * @param string $shippingMethod
+     * @param string $profileType
      * @return PaperCheck
      */
     public function setProfileType($profileType) {

@@ -30,7 +30,7 @@ class BankCard extends BaseModel {
      *
      * @var string[]
      */
-    private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn', 'transferMethodCountry', 'transferMethodCurrency', 'cardType', 'cardNumber', 'cardBrand', 'dateOfExpiry');
+    private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn', 'cardType', 'cardBrand');
 
     const TYPE_BANK_CARD = 'BANK_CARD';
 
@@ -120,6 +120,19 @@ class BankCard extends BaseModel {
         return $this->transferMethodCountry;
     }
 
+
+    /**
+     * Set the bank card country
+     *
+     * @param string $transferMethodCountry
+     * @return BankCard
+     */
+    public function setTransferMethodCountry($transferMethodCountry) {
+        $this->transferMethodCountry = $transferMethodCountry;
+        return $this;
+    }
+
+
     /**
      * Get the bank card currency
      *
@@ -128,6 +141,18 @@ class BankCard extends BaseModel {
     public function getTransferMethodCurrency() {
         return $this->transferMethodCurrency;
     }
+
+    /**
+     * Set the bank card country
+     *
+     * @param string $transferMethodCurrency
+     * @return BankCard
+     */
+    public function setTransferMethodCurrency($transferMethodCurrency) {
+        $this->transferMethodCurrency = $transferMethodCurrency;
+        return $this;
+    }
+
 
     /**
      * Get the bank card brand
@@ -148,6 +173,17 @@ class BankCard extends BaseModel {
     }
 
     /**
+     * Set the bank card number
+     *
+     * @param string $cardNumber
+     * @return BankCard
+     */
+    public function setCardNumber($cardNumber) {
+        $this->cardNumber = $cardNumber;
+        return $this;
+    }
+
+    /**
      * Get the bank card type
      *
      * @return string
@@ -163,6 +199,17 @@ class BankCard extends BaseModel {
      */
     public function getDateOfExpiry() {
         return $this->dateOfExpiry ? new \DateTime($this->dateOfExpiry) : null;
+    }
+
+    /**
+     * Set the bank card expiry date
+     *
+     * @param \DateTime $dateOfExpiry
+     * @return BankCard
+     */
+    public function setDateOfExpiry(\DateTime $dateOfExpiry = null) {
+        $this->dateOfExpiry = $dateOfExpiry == null ? null : $dateOfExpiry->format('Y-m-d');
+        return $this;
     }
 
 }
