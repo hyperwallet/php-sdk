@@ -5,8 +5,13 @@ use Hyperwallet\Exception\HyperwalletArgumentException;
 use Hyperwallet\Model\Balance;
 use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
+use Hyperwallet\Model\BankCard;
+use Hyperwallet\Model\BankCardStatusTransition;
 use Hyperwallet\Model\IProgramAware;
 use Hyperwallet\Model\Payment;
+use Hyperwallet\Model\PaymentStatusTransition;
+use Hyperwallet\Model\PaperCheck;
+use Hyperwallet\Model\PaperCheckStatusTransition;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\Program;
@@ -15,6 +20,7 @@ use Hyperwallet\Model\Receipt;
 use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\TransferMethodConfiguration;
 use Hyperwallet\Model\User;
+use Hyperwallet\Model\UserStatusTransition;
 use Hyperwallet\Model\WebhookNotification;
 use Hyperwallet\Response\ListResponse;
 use Hyperwallet\Util\ApiClient;
@@ -126,6 +132,245 @@ class Hyperwallet {
         });
     }
 
+    /**
+     * Get a user status transition
+     *
+     * @param string $userToken The user token
+     * @param string $statusTransitionToken The status transition token
+     * @return UserStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getUserStatusTransition($userToken, $statusTransitionToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new UserStatusTransition($body);
+    }
+
+    /**
+     * List all user status transitions
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listUserStatusTransitions($userToken, array $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/status-transitions', array(
+            'user-token' => $userToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new UserStatusTransition($entry);
+        });
+    }
+
+    //--------------------------------------
+    // Paper Checks
+    //--------------------------------------
+    
+    /**
+     * Create a paper check
+     *
+     * @param string $userToken The user token
+     * @param PaperCheck $paperCheck The paper check data
+     * @return PaperCheck
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createPaperCheck($userToken, PaperCheck $paperCheck) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/paper-checks', array('user-token' => $userToken), $paperCheck, array());
+        return new PaperCheck($body);
+    }
+    
+    /**
+     * Get a paper check
+     *
+     * @param string $userToken The user token
+     * @param string $paperCheckToken The paper check token
+     * @return PaperCheck
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getPaperCheck($userToken, $paperCheckToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paperCheckToken)) {
+            throw new HyperwalletArgumentException('paperCheckToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array(
+            'user-token' => $userToken,
+            'paper-check-token' => $paperCheckToken
+        ), array());
+        return new PaperCheck($body);
+    }
+    
+    /**
+     * Update a paper check
+     *
+     * @param string $userToken The user token
+     * @param PaperCheck $paperCheck The paper check data
+     * @return PaperCheck
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function updatePaperCheck($userToken, PaperCheck $paperCheck) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (!$paperCheck->getToken()) {
+            throw new HyperwalletArgumentException('token is required!');
+        }
+        $body = $this->client->doPut('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array(
+            'user-token' => $userToken,
+            'paper-check-token' => $paperCheck->getToken()
+        ), $paperCheck, array());
+        return new PaperCheck($body);
+    }
+    
+    /**
+     * List all paper checks
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters to send
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listPaperChecks($userToken, $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paper-checks', array('user-token' => $userToken), $options);
+        return new ListResponse($body, function($entry) {
+            return new PaperCheck($entry);
+        });
+    }
+    
+    /**
+     * Deactivate a paper check
+     *
+     * @param string $userToken The user token
+     * @param string $paperCheckToken The paper check token
+     * @return PaperCheckStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function deactivatePaperCheck($userToken, $paperCheckToken) {
+        $transition = new PaperCheckStatusTransition();
+        $transition->setTransition(PaperCheckStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        return $this->createPaperCheckStatusTransition($userToken, $paperCheckToken, $transition);
+    } 
+    
+    /**
+     * Create a paper check status transition
+     *
+     * @param string $userToken The user token
+     * @param string $paperCheckToken The paper check token
+     * @param PaperCheckStatusTransition $transition The status transition
+     * @return PaperCheckStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createPaperCheckStatusTransition($userToken, $paperCheckToken, PaperCheckStatusTransition $transition) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paperCheckToken)) {
+            throw new HyperwalletArgumentException('paperCheckToken is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'paper-check-token' => $paperCheckToken
+        ), $transition, array());
+        return new PaperCheckStatusTransition($body);
+    }
+    
+    /**
+     * Get a paper check status transition
+     *
+     * @param string $userToken The user token
+     * @param string $paperCheckToken The paper check token
+     * @param string $statusTransitionToken The status transition token
+     * @return PaperCheckStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getPaperCheckStatusTransition($userToken, $paperCheckToken, $statusTransitionToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paperCheckToken)) {
+            throw new HyperwalletArgumentException('paperCheckToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'paper-check-token' => $paperCheckToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new PaperCheckStatusTransition($body);
+    }
+
+    /**
+     * List all paper check status transitions
+     *
+     * @param string $userToken The user token
+     * @param string $paperCheckToken The paper check token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listPaperCheckStatusTransitions($userToken, $paperCheckToken, array $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paperCheckToken)) {
+            throw new HyperwalletArgumentException('paperCheckToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'paper-check-token' => $paperCheckToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new PaperCheckStatusTransition($entry);
+        });
+    }
+    
     //--------------------------------------
     // Prepaid Cards
     //--------------------------------------
@@ -353,6 +598,7 @@ class Hyperwallet {
      * @return PrepaidCardStatusTransition
      *
      * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
      */
     public function getPrepaidCardStatusTransition($userToken, $prepaidCardToken, $statusTransitionToken) {
         if (empty($userToken)) {
@@ -535,6 +781,36 @@ class Hyperwallet {
     }
 
     /**
+     * Get a bank account status transition
+     *
+     * @param string $userToken The user token
+     * @param string $bankAccountToken The bank account token
+     * @param string $statusTransitionToken The status transition token
+     * @return BankAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getBankAccountStatusTransition($userToken, $bankAccountToken, $statusTransitionToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($bankAccountToken)) {
+            throw new HyperwalletArgumentException('bankAccountToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/bank-accounts/{bank-account-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'bank-account-token' => $bankAccountToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new BankAccountStatusTransition($body);
+    }
+
+    /**
      * List all bank account status transitions
      *
      * @param string $userToken The user token
@@ -559,6 +835,196 @@ class Hyperwallet {
         ), $options);
         return new ListResponse($body, function($entry) {
             return new BankAccountStatusTransition($entry);
+        });
+    }
+
+    //--------------------------------------
+    // Bank Cards
+    //--------------------------------------
+
+    /**
+     * Create Bank Card
+     *
+     * @param string $userToken The user token
+     * @param BankCard $bankCard The bank card data
+     * @return BankCard
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createBankCard($userToken, BankCard $bankCard) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/bank-cards', array('user-token' => $userToken), $bankCard, array());
+        return new BankCard($body);
+    }
+
+    /**
+     * Get a bank card
+     *
+     * @param string $userToken The user token
+     * @param string $bankCardToken The bank card token
+     * @return BankCard
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getBankCard($userToken, $bankCardToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($bankCardToken)) {
+            throw new HyperwalletArgumentException('bankCardToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/bank-cards/{bank-card-token}', array(
+            'user-token' => $userToken,
+            'bank-card-token' => $bankCardToken
+        ), array());
+        return new BankCard($body);
+    }
+
+
+    /**
+     * Update a bank card
+     *
+     * @param string $userToken The user token
+     * @param BankCard $bankCard The bank card data
+     * @return BankCard
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function updateBankCard($userToken, BankCard $bankCard) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (!$bankCard->getToken()) {
+            throw new HyperwalletArgumentException('token is required!');
+        }
+        $body = $this->client->doPut('/rest/v3/users/{user-token}/bank-cards/{bank-card-token}', array(
+            'user-token' => $userToken,
+            'bank-card-token' => $bankCard->getToken()
+        ), $bankCard, array());
+        return new BankCard($body);
+    }
+
+    /**
+     * List all bank cards
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters to send
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listBankCards($userToken, $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/bank-cards', array('user-token' => $userToken), $options);
+        return new ListResponse($body, function($entry) {
+            return new BankCard($entry);
+        });
+    }
+
+    /**
+     * @param string $userToken The user token
+     * @param string $bankCardToken The bank card token
+     * @return BankCardStatusTransition
+     *
+     * @throws HyperwalletApiException
+     * @throws HyperwalletArgumentException
+     */
+    public function deactivateBankCard($userToken, $bankCardToken) {
+        $transition = new BankCardStatusTransition();
+        $transition->setTransition(BankCardStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        return $this->createBankCardStatusTransition($userToken, $bankCardToken, $transition);
+    }
+
+    /**
+     * Create a bank card status transition
+     *
+     * @param string $userToken The user token
+     * @param string $bankCardToken The bank card token
+     * @param BankCardStatusTransition $transition The status transition
+     * @return BankCardStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createBankCardStatusTransition($userToken, $bankCardToken, BankCardStatusTransition $transition) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($bankCardToken)) {
+            throw new HyperwalletArgumentException('bankCardToken is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/bank-cards/{bank-card-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'bank-card-token' => $bankCardToken
+        ), $transition, array());
+        return new BankCardStatusTransition($body);
+    }
+
+    /**
+     * Get a bank card status transition
+     *
+     * @param $userToken The user token
+     * @param $bankCardToken The bank card token
+     * @param $statusTransitionToken The status transition token
+     * @return BankCardStatusTransition
+     *
+     * @throws HyperwalletApiException
+     * @throws HyperwalletArgumentException
+     */
+    public function getBankCardStatusTransition($userToken, $bankCardToken, $statusTransitionToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($bankCardToken)) {
+            throw new HyperwalletArgumentException('bankCardToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/bank-cards/{bank-card-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'bank-card-token' => $bankCardToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new BankCardStatusTransition($body);
+    }
+
+    /**
+     * List all bank card status transitions
+     *
+     * @param string $userToken The user token
+     * @param string $bankCardToken The bank card token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listBankCardStatusTransitions($userToken, $bankCardToken, array $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($bankCardToken)) {
+            throw new HyperwalletArgumentException('bankCardToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/bank-cards/{bank-card-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'bank-card-token' => $bankCardToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new BankCardStatusTransition($entry);
         });
     }
 
@@ -718,6 +1184,75 @@ class Hyperwallet {
         $body = $this->client->doGet('/rest/v3/payments', array(), $options);
         return new ListResponse($body, function($entry) {
             return new Payment($entry);
+        });
+    }
+
+    /**
+     * Create a payment status transition
+     *
+     * @param string $paymentToken The payment token
+     * @param PaymentStatusTransition $transition The status transition
+     * @return PaymentStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createPaymentStatusTransition($paymentToken, PaymentStatusTransition $transition) {
+        if (empty($paymentToken)) {
+            throw new HyperwalletArgumentException('paymentToken is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v3/payments/{payment-token}/status-transitions', array(
+            'payment-token' => $paymentToken
+        ), $transition, array());
+        return new PaymentStatusTransition($body);
+    }
+
+    /**
+     * Get a payment status transition
+     *
+     * @param string $paymentToken The payment token
+     * @param string $statusTransitionToken The status transition token
+     * @return PaymentStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getPaymentStatusTransition($paymentToken, $statusTransitionToken) {
+        if (empty($paymentToken)) {
+            throw new HyperwalletArgumentException('paymentToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/payments/{payment-token}/status-transitions/{status-transition-token}', array(
+            'payment-token' => $paymentToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new PaymentStatusTransition($body);
+    }
+
+    /**
+     * List all payment status transitions
+     *
+     * @param string $paymentToken The payment token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listPaymentStatusTransitions($paymentToken, array $options = array()) {
+        if (empty($paymentToken)) {
+            throw new HyperwalletArgumentException('paymentToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/payments/{payment-token}/status-transitions', array(
+            'payment-token' => $paymentToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new PaymentStatusTransition($entry);
         });
     }
 

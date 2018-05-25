@@ -107,7 +107,7 @@ abstract class ModelTestCase extends \PHPUnit_Framework_TestCase {
         if ($this->propertiesToType[$property] == '\DateTime') {
             $val = '2016-04-15T15:00:12';
             $newVal = '2016-05-16T14:10:15';
-            if ($property === 'dateOfBirth') {
+            if ($property === 'dateOfBirth' || $property === 'dateOfExpiry') {
                 $val = '2016-04-15';
                 $newVal = '2016-05-16';
             }
@@ -153,7 +153,7 @@ abstract class ModelTestCase extends \PHPUnit_Framework_TestCase {
         $newValParam = 'Test-ValueUp';
         if ($this->propertiesToType[$property] == '\DateTime') {
             $newVal = '2016-05-16T14:10:15';
-            if ($property === 'dateOfBirth') {
+            if ($property === 'dateOfBirth' || $property === 'dateOfExpiry') {
                 $newVal = '2016-05-16';
             }
             $newValParam = new \DateTime($newVal);
