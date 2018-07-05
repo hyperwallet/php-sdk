@@ -12,6 +12,8 @@ use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PaymentStatusTransition;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
+use Hyperwallet\Model\Transfer;
+use Hyperwallet\Model\TransferStatusTransition;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\Program;
@@ -369,6 +371,87 @@ class Hyperwallet {
         return new ListResponse($body, function($entry) {
             return new PaperCheckStatusTransition($entry);
         });
+    }
+
+    //--------------------------------------
+    // Transfers
+    //--------------------------------------
+
+    /**
+     * Create a transfer
+     *
+     * @param Transfer $transfer The transfer data
+     * @return Transfer
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createTransfer(Transfer $transfer) {
+        if (empty($transfer->getSourceToken())) {
+            throw new HyperwalletArgumentException('sourceToken is required!');
+        }
+        if (empty($transfer->getDestinationToken())) {
+            throw new HyperwalletArgumentException('destinationToken is required!');
+        }
+        if (empty($transfer->getClientTransferId())) {
+            throw new HyperwalletArgumentException('clientTransferId is required!');
+        }
+        $body = $this->client->doPost('/rest/v3/transfers', array(), $transfer, array());
+        return new Transfer($body);
+    }
+
+    /**
+     * Get a transfer
+     *
+     * @param string $transferToken The transfer token
+     * @return Transfer
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getTransfer($transferToken) {
+        if (empty($transferToken)) {
+            throw new HyperwalletArgumentException('transferToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/transfers/{transfer-token}', array('transfer-token' => $transferToken),
+        array());
+        return new Transfer($body);
+    }
+
+    /**
+     * List all transfers
+     *
+     * @param array $options The query parameters to send
+     * @return ListResponse
+     *
+     * @throws HyperwalletApiException
+     */
+    public function listTransfers($options = array()) {
+        $body = $this->client->doGet('/rest/v3/transfers', array(), $options);
+        return new ListResponse($body, function($entry) {
+            return new Transfer($entry);
+        });
+    }
+
+    /**
+     * Create a transfer status transition
+     *
+     * @param string $transferToken The transfer token
+     * @param TransferStatusTransition $transition The status transition
+     * @return TransferStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createTransferStatusTransition($transferToken, TransferStatusTransition $transition) {
+        if (empty($transferToken)) {
+            throw new HyperwalletArgumentException('transferToken is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v3/transfers/{transfer-token}/status-transitions', array(
+            'transfer-token' => $transferToken
+        ), $transition, array());
+        return new TransferStatusTransition($body);
     }
     
     //--------------------------------------

@@ -12,6 +12,8 @@ use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
+use Hyperwallet\Model\Transfer;
+use Hyperwallet\Model\TransferStatusTransition;
 use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PaymentStatusTransition;
 use Hyperwallet\Model\PrepaidCard;
@@ -683,6 +685,166 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array('test' => 'value'));
+    }
+
+    //--------------------------------------
+    // Transfers
+    //--------------------------------------
+
+    public function testCreateTransfer_noSourceToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $transfer = new Transfer();
+
+        try {
+            $client->createTransfer($transfer);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('sourceToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateTransfer_noDestinationToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $transfer = new Transfer();
+        $transfer->setSourceToken('test-source-token');
+
+        try {
+            $client->createTransfer($transfer);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('destinationToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateTransfer_noClientTransferId() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $transfer = new Transfer();
+        $transfer->setSourceToken('test-source-token');
+        $transfer->setDestinationToken('test-destination-token');
+
+        try {
+            $client->createTransfer($transfer);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('clientTransferId is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateTransfer_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $transfer = new Transfer();
+        $transfer->setSourceToken('test-source-token');
+        $transfer->setDestinationToken('test-destination-token');
+        $transfer->setClientTransferId('test-clientTransferId');
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/transfers', array(), $transfer, array())->thenReturn(array('token' => 'test-token'));
+
+        // Run test
+        $newTransfer = $client->createTransfer($transfer);
+        $this->assertNotNull($newTransfer);
+        $this->assertEquals(array('token' => 'test-token'), $newTransfer->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/transfers', array(), $transfer, array());
+    }
+
+    public function testGetTransfer_noTransferToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->getTransfer('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('transferToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetTransfer_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/transfers/{transfer-token}', array('transfer-token' => 'test-transfer-token'), array())->thenReturn(array('token' => 'test-token'));
+
+        // Run test
+        $transfer = $client->getTransfer('test-transfer-token');
+        $this->assertNotNull($transfer);
+        $this->assertEquals(array('token' => 'test-token'), $transfer->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/transfers/{transfer-token}', array('transfer-token' => 'test-transfer-token'), array());
+    }
+
+    public function testListTransfers_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/transfers', array(), array())->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $transferList = $client->listTransfers();
+        $this->assertNotNull($transferList);
+        $this->assertCount(0, $transferList);
+        $this->assertEquals(1, $transferList->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/transfers', array(), array());
+    }
+
+    public function testListTransfers_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/transfers', array(), array('test' => 'value'))->thenReturn(array('count' => 1, 'data' => array(array('token' => 'test-token'))));
+
+        // Run test
+        $transferList = $client->listTransfers(array('test' => 'value'));
+        $this->assertNotNull($transferList);
+        $this->assertCount(1, $transferList);
+        $this->assertEquals(1, $transferList->getCount());
+
+        $this->assertEquals(array('token' => 'test-token'), $transferList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/transfers', array(), array('test' => 'value'));
+    }
+
+    public function testCreateTransferStatusTransition_noTransferToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $statusTransition = new TransferStatusTransition();
+
+        try {
+            $client->createTransferStatusTransition('', $statusTransition);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('transferToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateTransferStatusTransition_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $statusTransition = new TransferStatusTransition(array('transition' => 'test'));
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/status-transitions', array('transfer-token' => 'test-transfer-token'), $statusTransition, array())->thenReturn(array('token' => 'test-token'));
+
+        // Run test
+        $newStatusTransition = $client->createTransferStatusTransition('test-transfer-token', $statusTransition);
+        $this->assertNotNull($newStatusTransition);
+        $this->assertEquals(array('token' => 'test-token'), $newStatusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/status-transitions', array('transfer-token' => 'test-transfer-token'), $statusTransition, array());
     }
     
     //--------------------------------------
