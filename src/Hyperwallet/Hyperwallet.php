@@ -14,6 +14,7 @@ use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
 use Hyperwallet\Model\Transfer;
 use Hyperwallet\Model\TransferStatusTransition;
+use Hyperwallet\Model\PayPalAccount;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\Program;
@@ -452,6 +453,80 @@ class Hyperwallet {
             'transfer-token' => $transferToken
         ), $transition, array());
         return new TransferStatusTransition($body);
+    }
+
+    //--------------------------------------
+    // PayPal Accounts
+    //--------------------------------------
+
+    /**
+     * Create a PayPal account
+     *
+     * @param string $userToken The user token
+     * @param PayPalAccount $payPalAccount The PayPal account data
+     * @return PayPalAccount
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createPayPalAccount($userToken, PayPalAccount $payPalAccount) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($payPalAccount->getTransferMethodCountry())) {
+            throw new HyperwalletArgumentException('transferMethodCountry is required!');
+        }
+        if (empty($payPalAccount->getTransferMethodCurrency())) {
+            throw new HyperwalletArgumentException('transferMethodCurrency is required!');
+        }
+        if (empty($payPalAccount->getEmail())) {
+            throw new HyperwalletArgumentException('email is required!');
+        }
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/paypal-accounts', array('user-token' => $userToken), $payPalAccount, array());
+        return new PayPalAccount($body);
+    }
+
+    /**
+     * Get a PayPal account
+     *
+     * @param string $userToken The user token
+     * @param string $payPalAccountToken The PayPal account token
+     * @return PayPalAccount
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getPayPalAccount($userToken, $payPalAccountToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($payPalAccountToken)) {
+            throw new HyperwalletArgumentException('payPalAccountToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}', array(
+            'user-token' => $userToken,
+            'paypal-account-token' => $payPalAccountToken
+        ), array());
+        return new PayPalAccount($body);
+    }
+
+    /**
+     * List all PayPal accounts
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters to send
+     * @return ListResponse
+     *
+     * @throws HyperwalletApiException
+     */
+    public function listPayPalAccounts($userToken, $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts', array('user-token' => $userToken), $options);
+        return new ListResponse($body, function($entry) {
+            return new PayPalAccount($entry);
+        });
     }
     
     //--------------------------------------

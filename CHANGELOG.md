@@ -4,6 +4,7 @@ Changelog
 0.2.0 (in progress)
 -------------------
 
+- Added PayPal endpoint
 - Added transfer endpoint
 - Added bank card endpoint
 - Added payment status transition endpoint
