@@ -53,16 +53,17 @@ class Hyperwallet {
      * @param string $password The API password
      * @param string|null $programToken The program token that is used for some API calls
      * @param string $server The API server to connect to
+     * @param array $clientOptions Guzzle Client Options
      *
      * @throws HyperwalletArgumentException
      */
-    public function __construct($username, $password, $programToken = null, $server = 'https://sandbox.hyperwallet.com') {
+    public function __construct($username, $password, $programToken = null, $server = 'https://sandbox.hyperwallet.com', $clientOptions=[]) {
         if (empty($username) || empty($password)) {
             throw new HyperwalletArgumentException('You need to specify your API username and password!');
         }
 
         $this->programToken = $programToken;
-        $this->client = new ApiClient($username, $password, $server);
+        $this->client = new ApiClient($username, $password, $server, $clientOptions);
     }
 
     //--------------------------------------
