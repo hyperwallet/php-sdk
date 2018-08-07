@@ -7,6 +7,7 @@ use GuzzleHttp\UriTemplate;
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Response\ErrorResponse;
+use Hyperwallet\Util\HyperwalletEncryption;
 
 /**
  * The internal API client
@@ -30,14 +31,29 @@ class ApiClient {
     private $client;
 
     /**
+     * The Encryption service for http client requests/responses
+     *
+     * @var HyperwalletEncryption
+     */
+    private $encryption;
+
+    /**
+     * Boolean flag that checks if ApiClient is constructed with encryption enabled or not
+     *
+     * @var boolean
+     */
+    private $isEncrypted = false;
+
+    /**
      * Creates a instance of the API client
      *
      * @param string $username The API username
      * @param string $password The API password
      * @param string $server The API server to connect to
      * @param array $clientOptions Guzzle Client Options
+     * @param array $encryptionData Encryption data to initialize ApiClient with encryption enabled
      */
-    public function __construct($username, $password, $server, $clientOptions = array()) {
+    public function __construct($username, $password, $server, $clientOptions = array(), $encryptionData = array()) {
         // Setup http client if not specified
         $this->client = new Client(array_merge_recursive(array(
             'base_uri' => $server,
@@ -47,6 +63,11 @@ class ApiClient {
                 'Accept' => 'application/json'
             )
         ), $clientOptions));
+        if (!empty($encryptionData) && isset($encryptionData['clientPrivateKeySetLocation']) &&
+            isset($encryptionData['hyperwalletKeySetLocation'])) {
+            $this->isEncrypted = true;
+            $this->encryption = new HyperwalletEncryption($encryptionData['clientPrivateKeySetLocation'], $encryptionData['hyperwalletKeySetLocation']);
+        }
     }
 
     /**
@@ -122,11 +143,24 @@ class ApiClient {
     private function doRequest($method, $url, array $urlParams, array $options) {
         try {
             $uri = new UriTemplate();
+            if ($this->isEncrypted) {
+                if (!isset($options['headers'])) {
+                    $options[] = array('headers' => array());
+                }
+                if (!isset($options['headers']['Content-Type'])) {
+                    $options['headers'][] = array('Content-Type' => 'application/jose+json');
+                }
+                $options['headers']['Content-Type'] = 'application/jose+json';
+                if (isset($options['body'])) {
+                    $options['body'] = $this->encryption->encrypt(json_decode($options['body'], true));
+                }
+            }
             $response = $this->client->request($method, $uri->expand($url, $urlParams), $options);
             if ($response->getStatusCode() === 204) {
                 return array();
             }
-            $body = \GuzzleHttp\json_decode($response->getBody(), true);
+            $body = $this->isEncrypted ? $this->encryption->decrypt($response->getBody()) :
+                \GuzzleHttp\json_decode($response->getBody(), true);
             if (isset($body['links'])) {
                 unset($body['links']);
             }

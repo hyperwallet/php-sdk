@@ -21,7 +21,9 @@
   ],
   "require": {
     "php": ">=5.5.9",
-    "guzzlehttp/guzzle": "^6.2"
+    "guzzlehttp/guzzle": "^6.2",
+    "phpseclib/phpseclib": "^2.0.11",
+    "gree/jose": "^2.2.1"
   },
   "autoload": {
     "psr-4": { "Hyperwallet\\": "src/Hyperwallet" }
