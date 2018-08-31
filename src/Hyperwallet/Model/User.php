@@ -17,7 +17,14 @@ namespace Hyperwallet\Model;
  * @property string $businessRegistrationId The business registration id
  * @property string $businessRegistrationStateProvince The business registration state or province
  * @property string $businessRegistrationCountry The business registration country
+ *
  * @property string $businessContactRole The business contact role
+ * @property string $businessContactAddressLine1 The business contact address line 1
+ * @property string $businessContactAddressLine2 The business contact address line 2
+ * @property string $businessContactCity The business contact city
+ * @property string $businessContactStateProvince The business contact state or province
+ * @property string $businessContactCountry The business contact country
+ * @property string $businessContactPostalCode The business contact postal code
  *
  * @property string $firstName The first name
  * @property string $middleName The middle name
@@ -281,6 +288,126 @@ class User extends BaseModel implements IProgramAware {
      */
     public function setBusinessContactRole($businessContactRole) {
         $this->businessContactRole = $businessContactRole;
+        return $this;
+    }
+
+    /**
+     * Get the business contact address line 1
+     *
+     * @return string
+     */
+    public function getBusinessContactAddressLine1() {
+        return $this->businessContactAddressLine1;
+    }
+
+    /**
+     * Set the business contact address line 1
+     *
+     * @param string $businessContactAddressLine1
+     * @return User
+     */
+    public function setBusinessContactAddressLine1($businessContactAddressLine1) {
+        $this->businessContactAddressLine1 = $businessContactAddressLine1;
+        return $this;
+    }
+
+    /**
+     * Get the business contact address line 2
+     *
+     * @return string
+     */
+    public function getBusinessContactAddressLine2() {
+        return $this->businessContactAddressLine2;
+    }
+
+    /**
+     * Set the business contact address line 2
+     *
+     * @param string $businessContactAddressLine2
+     * @return User
+     */
+    public function setBusinessContactAddressLine2($businessContactAddressLine2) {
+        $this->businessContactAddressLine2 = $businessContactAddressLine2;
+        return $this;
+    }
+
+    /**
+     * Get the business contact city
+     *
+     * @return string
+     */
+    public function getBusinessContactCity() {
+        return $this->businessContactCity;
+    }
+
+    /**
+     * Set the business contact city
+     *
+     * @param string $businessContactCity
+     * @return User
+     */
+    public function setBusinessContactCity($businessContactCity) {
+        $this->businessContactCity = $businessContactCity;
+        return $this;
+    }
+
+    /**
+     * Get the business contact state or province
+     *
+     * @return string
+     */
+    public function getBusinessContactStateProvince() {
+        return $this->businessContactStateProvince;
+    }
+
+    /**
+     * Set the business contact state or province
+     *
+     * @param string $businessContactStateProvince
+     * @return User
+     */
+    public function setBusinessContactStateProvince($businessContactStateProvince) {
+        $this->businessContactStateProvince = $businessContactStateProvince;
+        return $this;
+    }
+
+    /**
+     * Get the business contact country
+     *
+     * @return string
+     */
+    public function getBusinessContactCountry() {
+        return $this->businessContactCountry;
+    }
+
+    /**
+     * Set the business contact country
+     *
+     * @param string $businessContactCountry
+     * @return User
+     */
+    public function setBusinessContactCountry($businessContactCountry) {
+        $this->businessContactCountry = $businessContactCountry;
+        return $this;
+    }
+
+    /**
+     * Get the business contact postal code
+     *
+     * @return string
+     */
+    public function getBusinessContactPostalCode() {
+        return $this->businessContactPostalCode;
+    }
+
+    /**
+     * Set the business contact postal code
+     *
+     * @param string $businessContactPostalCode
+     * @return User
+     */
+    public function setBusinessContactPostalCode($businessContactPostalCode) {
+        $this->businessContactPostalCode = $businessContactPostalCode;
         return $this;
     }
 
