@@ -12,6 +12,8 @@ use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PaymentStatusTransition;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
+use Hyperwallet\Model\PaypalAccount;
+use Hyperwallet\Model\PaypalAccountStatusTransition;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\Program;
@@ -184,7 +186,7 @@ class Hyperwallet {
     //--------------------------------------
     // Paper Checks
     //--------------------------------------
-    
+
     /**
      * Create a paper check
      *
@@ -202,7 +204,7 @@ class Hyperwallet {
         $body = $this->client->doPost('/rest/v3/users/{user-token}/paper-checks', array('user-token' => $userToken), $paperCheck, array());
         return new PaperCheck($body);
     }
-    
+
     /**
      * Get a paper check
      *
@@ -226,7 +228,7 @@ class Hyperwallet {
         ), array());
         return new PaperCheck($body);
     }
-    
+
     /**
      * Update a paper check
      *
@@ -250,7 +252,7 @@ class Hyperwallet {
         ), $paperCheck, array());
         return new PaperCheck($body);
     }
-    
+
     /**
      * List all paper checks
      *
@@ -270,7 +272,7 @@ class Hyperwallet {
             return new PaperCheck($entry);
         });
     }
-    
+
     /**
      * Deactivate a paper check
      *
@@ -286,8 +288,8 @@ class Hyperwallet {
         $transition->setTransition(PaperCheckStatusTransition::TRANSITION_DE_ACTIVATED);
 
         return $this->createPaperCheckStatusTransition($userToken, $paperCheckToken, $transition);
-    } 
-    
+    }
+
     /**
      * Create a paper check status transition
      *
@@ -313,7 +315,7 @@ class Hyperwallet {
         ), $transition, array());
         return new PaperCheckStatusTransition($body);
     }
-    
+
     /**
      * Get a paper check status transition
      *
@@ -371,7 +373,7 @@ class Hyperwallet {
             return new PaperCheckStatusTransition($entry);
         });
     }
-    
+
     //--------------------------------------
     // Prepaid Cards
     //--------------------------------------
@@ -734,7 +736,7 @@ class Hyperwallet {
         }
         $body = $this->client->doGet('/rest/v3/users/{user-token}/bank-accounts', array('user-token' => $userToken), $options);
         return new ListResponse($body, function($entry) {
-           return new BankAccount($entry);
+            return new BankAccount($entry);
         });
     }
 
@@ -836,6 +838,197 @@ class Hyperwallet {
         ), $options);
         return new ListResponse($body, function($entry) {
             return new BankAccountStatusTransition($entry);
+        });
+    }
+
+    //--------------------------------------
+    // Paypal Accounts
+    //--------------------------------------
+
+    /**
+     * Create a paypal account
+     *
+     * @param string $userToken The user token
+     * @param PaypalAccount $paypalAccount The paypal account data
+     * @return PaypalAccount
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createPaypalAccount($userToken, PaypalAccount $paypalAccount) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/paypal-accounts', array('user-token' => $userToken), $paypalAccount, array());
+        return new PaypalAccount($body);
+    }
+
+    /**
+     * Get a paypal account
+     *
+     * @param string $userToken The user token
+     * @param string $paypalAccountToken The paypal account token
+     * @return PaypalAccount
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getPaypalAccount($userToken, $paypalAccountToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paypalAccountToken)) {
+            throw new HyperwalletArgumentException('paypalAccountToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}', array(
+            'user-token' => $userToken,
+            'paypal-account-token' => $paypalAccountToken
+        ), array());
+        return new PaypalAccount($body);
+    }
+
+    /**
+     * Update a paypal account
+     *
+     * @param string $userToken The user token
+     * @param PaypalAccount $paypalAccount The paypal account data
+     * @return PaypalAccount
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function updatePaypalAccount($userToken, PaypalAccount $paypalAccount) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (!$paypalAccount->getToken()) {
+            throw new HyperwalletArgumentException('token is required!');
+        }
+        $body = $this->client->doPut('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}', array(
+            'user-token' => $userToken,
+            'paypal-account-token' => $paypalAccount->getToken()
+        ), $paypalAccount, array());
+        return new PaypalAccount($body);
+    }
+
+    /**
+     * List all paypal accounts
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters to send
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listPaypalAccounts($userToken, $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts', array('user-token' => $userToken), $options);
+        return new ListResponse($body, function($entry) {
+            return new PaypalAccount($entry);
+        });
+    }
+
+    /**
+     * Deactivate a paypal account
+     *
+     * @param string $userToken The user token
+     * @param string $paypalAccountToken The paypal account token
+     * @return PaypalAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function deactivatePaypalAccount($userToken, $paypalAccountToken) {
+        $transition = new PaypalAccountStatusTransition();
+        $transition->setTransition(PaypalAccountStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        return $this->createPaypalAccountStatusTransition($userToken, $paypalAccountToken, $transition);
+    }
+
+    /**
+     * Create a paypal account status transition
+     *
+     * @param string $userToken The user token
+     * @param string $paypalAccountToken The paypal account token
+     * @param PaypalAccountStatusTransition $transition The status transition
+     * @return PaypalAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createPaypalAccountStatusTransition($userToken, $paypalAccountToken, PaypalAccountStatusTransition $transition) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paypalAccountToken)) {
+            throw new HyperwalletArgumentException('paypalAccountToken is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'paypal-account-token' => $paypalAccountToken
+        ), $transition, array());
+        return new PaypalAccountStatusTransition($body);
+    }
+
+    /**
+     * Get a paypal account status transition
+     *
+     * @param string $userToken The user token
+     * @param string $paypalAccountToken The paypal account token
+     * @param string $statusTransitionToken The status transition token
+     * @return PaypalAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getPaypalAccountStatusTransition($userToken, $paypalAccountToken, $statusTransitionToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paypalAccountToken)) {
+            throw new HyperwalletArgumentException('paypalAccountToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'paypal-account-token' => $paypalAccountToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new PaypalAccountStatusTransition($body);
+    }
+
+    /**
+     * List all paypal account status transitions
+     *
+     * @param string $userToken The user token
+     * @param string $paypalAccountToken The paypal account token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listPaypalAccountStatusTransitions($userToken, $paypalAccountToken, array $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($paypalAccountToken)) {
+            throw new HyperwalletArgumentException('paypalAccountToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'paypal-account-token' => $paypalAccountToken
+        ), $options);
+        return new ListResponse($body, function($entry) {
+            return new PaypalAccountStatusTransition($entry);
         });
     }
 
