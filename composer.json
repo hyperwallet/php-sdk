@@ -21,17 +21,22 @@
   ],
   "require": {
     "php": ">=5.5.9",
-    "guzzlehttp/guzzle": "^6.2"
+    "guzzlehttp/guzzle": "^6.2.1",
+    "phpseclib/phpseclib": "^2.0.11",
+    "gree/jose": "^2.2.1"
   },
   "autoload": {
-    "psr-4": { "Hyperwallet\\": "src/Hyperwallet" }
+    "psr-4": { "Hyperwallet\\": "src/Hyperwallet", "ComposerScript\\" : "src/ComposerScript" }
   },
   "autoload-dev" : {
-    "psr-4": { "Hyperwallet\\Tests\\" : "tests/Hyperwallet/Tests" }
+    "psr-4": { "Hyperwallet\\Tests\\" : "tests/Hyperwallet/Tests", "ComposerScript\\" : "src/ComposerScript" }
   },
   "require-dev": {
     "phpunit/phpunit": "^4.8",
     "phake/phake": "^2.3",
     "satooshi/php-coveralls": "^1.0"
+  },
+  "scripts": {
+    "post-install-cmd": "ComposerScript\\RsaOaep256AlgorithmInstaller::install"
   }
 }
