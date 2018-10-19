@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/hyperwallet/php-sdk.png?branch=master)](https://travis-ci.org/hyperwallet/php-sdk)
 [![Coverage Status](https://coveralls.io/repos/github/hyperwallet/php-sdk/badge.svg?branch=master)](https://coveralls.io/github/hyperwallet/php-sdk?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/hyperwallet/sdk/version)](https://packagist.org/packages/hyperwallet/sdk)
-[![Dependency Status](https://www.versioneye.com/user/projects/5764801d073540004151857e/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5764801d073540004151857e)
 
 Hyperwallet REST SDK (Beta)
 ===========================
