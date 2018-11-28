@@ -1,9 +1,12 @@
 Changelog
 =========
 
-0.2.0 (in progress)
+0.2.0 (2018-10-19)
 -------------------
 
+- Added PayPal endpoint
+- Added transfer endpoint
+- Added Layer 7 encryption
 - Added bank card endpoint
 - Added payment status transition endpoint
 - Added get bank account status transition endpoint
