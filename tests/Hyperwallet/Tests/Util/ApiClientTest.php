@@ -162,7 +162,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -193,6 +195,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request
@@ -207,7 +213,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -238,6 +246,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request
@@ -369,7 +381,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -401,6 +415,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request
@@ -415,7 +433,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -447,6 +467,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request
@@ -560,7 +584,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -589,6 +615,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request
@@ -603,7 +633,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -632,6 +664,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request
