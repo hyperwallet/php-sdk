@@ -23,6 +23,7 @@ use Hyperwallet\Model\Receipt;
 use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\TransferMethodConfiguration;
 use Hyperwallet\Model\User;
+use Hyperwallet\Model\ClientToken;
 use Hyperwallet\Model\UserStatusTransition;
 use Hyperwallet\Model\WebhookNotification;
 use Hyperwallet\Response\ListResponse;
@@ -182,6 +183,28 @@ class Hyperwallet {
         return new ListResponse($body, function($entry) {
             return new UserStatusTransition($entry);
         });
+    }
+
+    //--------------------------------------
+    // Client Token
+    //--------------------------------------
+
+    /**
+     * Get client token
+     *
+     * @param $userToken The user token
+     * @return ClientToken
+     *
+     * @throws HyperwalletApiException
+     */
+    public function getClientToken($userToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/client-token', array(
+            'user-token' => $userToken,
+        ), null, array());
+        return new ClientToken($body);
     }
 
     //--------------------------------------

@@ -4,6 +4,7 @@ Changelog
 0.2.0 (2018-10-19)
 -------------------
 
+- Added ClientToken endpoint
 - Added PayPal endpoint
 - Added transfer endpoint
 - Added Layer 7 encryption
