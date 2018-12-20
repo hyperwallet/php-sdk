@@ -5,6 +5,7 @@ use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\UriTemplate;
 use Hyperwallet\Exception\HyperwalletApiException;
+use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\HyperwalletEncryption;
@@ -143,13 +144,12 @@ class ApiClient {
     private function doRequest($method, $url, array $urlParams, array $options) {
         try {
             $uri = new UriTemplate();
+            if (!isset($options['headers'])) {
+                $options[] = array('headers' => array());
+            }
+            $options['headers']['Accept'] = 'application/json';
             if ($this->isEncrypted) {
-                if (!isset($options['headers'])) {
-                    $options[] = array('headers' => array());
-                }
-                if (!isset($options['headers']['Content-Type'])) {
-                    $options['headers'][] = array('Content-Type' => 'application/jose+json');
-                }
+                $options['headers']['Accept'] = 'application/jose+json';
                 $options['headers']['Content-Type'] = 'application/jose+json';
                 if (isset($options['body'])) {
                     $options['body'] = $this->encryption->encrypt(json_decode($options['body'], true));
@@ -159,6 +159,7 @@ class ApiClient {
             if ($response->getStatusCode() === 204) {
                 return array();
             }
+            $this->checkResponseHeaderContentType($response);
             $body = $this->isEncrypted ? \GuzzleHttp\json_decode(\GuzzleHttp\json_encode($this->encryption->decrypt($response->getBody())), true) :
                 \GuzzleHttp\json_decode($response->getBody(), true);
             if (isset($body['links'])) {
@@ -177,6 +178,21 @@ class ApiClient {
             $body = \GuzzleHttp\json_decode($e->getResponse()->getBody(), true);
             $errorResponse = new ErrorResponse($e->getResponse()->getStatusCode(), $body);
             throw new HyperwalletApiException($errorResponse, $e);
+        }
+    }
+
+    /**
+     * Checks whether Content-Type header is valid in response
+     *
+     * @param string $response Response to be checked
+     *
+     * @throws HyperwalletException
+     */
+    private function checkResponseHeaderContentType($response) {
+        $contentTypes = $response->getHeader('Content-Type');
+        if (empty($contentTypes) || ((!$this->isEncrypted && $contentTypes[0] != 'application/json') ||
+            ($this->isEncrypted && $contentTypes[0] != 'application/jose+json'))) {
+             throw new HyperwalletException('Invalid Content-Type specified in Response Header');
         }
     }
 
