@@ -30,6 +30,13 @@ class Error {
     private $code;
 
     /**
+     * The related resources
+     *
+     * @var array
+     */
+    private $relatedResources;
+
+    /**
      * Creates a instance of Error
      *
      * @param array $error A single error response map
@@ -40,6 +47,10 @@ class Error {
 
         if (isset($error['fieldName'])) {
             $this->fieldName = $error['fieldName'];
+        }
+
+        if (isset($error['relatedResources'])) {
+            $this->relatedResources = $error['relatedResources'];
         }
     }
 
@@ -70,4 +81,12 @@ class Error {
         return $this->code;
     }
 
+   /**
+     * Get list of related resources
+     *
+     * @return array
+     */
+    public function getRelatedResources() {
+        return $this->relatedResources;
+    }
 }

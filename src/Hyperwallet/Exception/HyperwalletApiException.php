@@ -17,6 +17,13 @@ class HyperwalletApiException extends HyperwalletException {
     private $errorResponse;
 
     /**
+     * Related resources
+     *
+     * @var array
+     */
+    private $relatedResources;
+
+    /**
      * Creates a instance of the HyperwalletArgumentException
      *
      * @param ErrorResponse $errorResponse The error response
@@ -26,6 +33,7 @@ class HyperwalletApiException extends HyperwalletException {
         parent::__construct($errorResponse[0]->getMessage(), null, $previous);
 
         $this->errorResponse = $errorResponse;
+        $this->relatedResources = $errorResponse[0]->getRelatedResources();
     }
 
     /**
@@ -35,6 +43,15 @@ class HyperwalletApiException extends HyperwalletException {
      */
     public function getErrorResponse() {
         return $this->errorResponse;
+    }
+
+    /**
+     * The related resources or null if not available
+     *
+     * @return array
+     */
+    public function getRelatedResources() {
+        return $this->relatedResources;
     }
 
 }
