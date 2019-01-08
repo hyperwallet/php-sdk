@@ -6,12 +6,11 @@ Changelog
 
 - Restricted “Accept” & “Content-Type” headers to support only “application/json” or “application/jose+json”
 - Related resources “relatedResources” in error representation is added
-- Get client token for new authentication format is added
+- Added Authentication token endpoint
 
 0.2.0 (2018-10-19)
 -------------------
 
-- Added ClientToken endpoint
 - Added PayPal endpoint
 - Added transfer endpoint
 - Added Layer 7 encryption
