@@ -4,6 +4,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\UriTemplate;
+use GuzzleHttp\Psr7;
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
@@ -189,9 +190,9 @@ class ApiClient {
      * @throws HyperwalletException
      */
     private function checkResponseHeaderContentType($response) {
-        $contentTypes = $response->getHeader('Content-Type');
-        if (empty($contentTypes) || ((!$this->isEncrypted && $contentTypes[0] != 'application/json') ||
-            ($this->isEncrypted && $contentTypes[0] != 'application/jose+json'))) {
+        $contentTypes = Psr7\parse_header($response->getHeader('Content-Type'));
+        if (empty($contentTypes) || ((!$this->isEncrypted && $contentTypes[0][0] != 'application/json') ||
+            ($this->isEncrypted && $contentTypes[0][0] != 'application/jose+json'))) {
              throw new HyperwalletException('Invalid Content-Type specified in Response Header');
         }
     }
