@@ -5,6 +5,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Uri;
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletArgumentException;
+use Hyperwallet\Exception\HyperwalletException;
+use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Hyperwallet;
 use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
@@ -316,6 +318,38 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array('test' => 'value'));
+    }
+
+    //--------------------------------------
+    // Client Token
+    //--------------------------------------
+
+    public function testGetClientToken_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->getClientToken('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetClientToken_allParameters() {
+        // Setup data
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/client-token', array('user-token' => 'test-user-token'), null, array())->thenReturn(array('value' => 'true'));
+
+        // Run test
+        $clientToken = $client->getClientToken('test-user-token');
+        $this->assertNotNull($clientToken);
+        $this->assertEquals(array('value' => 'true'), $clientToken->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/client-token', array('user-token' => 'test-user-token'), null, array());
     }
 
     //--------------------------------------
@@ -3164,7 +3198,42 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/webhook-notifications', array(), array('test' => 'value'));
     }
-    
+
+    //--------------------------------------
+    // Response with error
+    //--------------------------------------
+
+    public function testCreateBankAccountWithErrorResponse() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $bankAccount = new BankAccount();
+
+        $errorResponse = new ErrorResponse(0, array('errors' => array(array(
+            'message' => 'The information you provided is already registered with this user',
+            'code' => 'DUPLICATE_EXTERNAL_ACCOUNT_CREATION',
+            'relatedResources' => array(
+                'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b'
+        )))));
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/bank-accounts', array('user-token' => 'test-user-token'), $bankAccount, array())->thenThrow(new HyperwalletApiException($errorResponse, new HyperwalletException("Error message")));
+
+        // Run test
+        try {
+            $newBankAccount = $client->createBankAccount('test-user-token', $bankAccount);
+            $this->fail('HyperwalletApiException expected');
+        } catch (HyperwalletApiException $e) {
+            $this->assertEquals('The information you provided is already registered with this user', $e->getMessage());
+            $this->assertEquals('DUPLICATE_EXTERNAL_ACCOUNT_CREATION', $e->getErrorResponse()->getErrors()[0]->getCode());
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
+        }
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/bank-accounts', array('user-token' => 'test-user-token'), $bankAccount, array());
+    }
+
     //--------------------------------------
     // Internal utils
     //--------------------------------------

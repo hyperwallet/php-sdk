@@ -8,6 +8,7 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Hyperwallet\Exception\HyperwalletApiException;
+use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Util\ApiClient;
 
@@ -26,7 +27,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoPost_return_response_with_query() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -47,7 +48,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoPost_return_response_without_query() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -68,7 +69,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoPost_return_response_without_data() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -87,7 +88,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoPost_return_response_with_headers() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -108,7 +109,28 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoPost_return_response_with_path_placeholder() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
+                'test' => 'value',
+                'links' => 'linksValue'
+            )))
+        ));
+        $this->createApiClient($mockHandler);
+
+        $model = new BaseModel(array('Content-Type' => 'application/json'), array('test2' => 'value2'));
+
+        // Execute test
+        $data = $this->apiClient->doPost('/test/{test}', array('test' => 'token'), $model, array());
+        $this->assertArrayHasKey('test', $data);
+        $this->assertArrayNotHasKey('links', $data);
+
+        // Validate api request
+        $this->validateRequest('POST', '/test/token', '', array('test2' => 'value2'), true);
+    }
+
+    public function testDoPost_throw_exception_when_response_has_wrong_content_type_header() {
+        // Setup data
+        $mockHandler = new MockHandler(array(
+            new Response(200, array('Content-Type' => 'wrongContentType'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -118,12 +140,15 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
         $model = new BaseModel(array(), array('test2' => 'value2'));
 
         // Execute test
-        $data = $this->apiClient->doPost('/test/{test}', array('test' => 'token'), $model, array());
-        $this->assertArrayHasKey('test', $data);
-        $this->assertArrayNotHasKey('links', $data);
+        try {
+            $this->apiClient->doPost('/test', array(), $model, array());
+            $this->fail('HyperwalletException expected');
+        } catch (HyperwalletException $e) {
+            $this->assertEquals('Invalid Content-Type specified in Response Header', $e->getMessage());
+        }
 
         // Validate api request
-        $this->validateRequest('POST', '/test/token', '', array('test2' => 'value2'), true);
+        $this->validateRequest('POST', '/test', '', array('test2' => 'value2'), true);
     }
 
     public function testDoPost_throw_exception_connection_issue() {
@@ -162,7 +187,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -193,6 +220,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request
@@ -207,7 +238,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -238,6 +271,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request
@@ -248,7 +285,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoPut_return_response_only_submit_updated_field() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -269,7 +306,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoPut_return_response_with_query() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -291,7 +328,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoPut_return_response_without_query() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -313,7 +350,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoPut_return_response_with_path_placeholder() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -369,7 +406,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -401,6 +440,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request
@@ -415,7 +458,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -447,6 +492,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request
@@ -457,7 +506,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoGet_return_response_with_query() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -476,7 +525,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoGet_return_response_without_query() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -510,7 +559,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     public function testDoGet_return_response_with_path_placeholder() {
         // Setup data
         $mockHandler = new MockHandler(array(
-            new Response(200, array(), \GuzzleHttp\json_encode(array(
+            new Response(200, array('Content-Type' => 'application/json'), \GuzzleHttp\json_encode(array(
                 'test' => 'value',
                 'links' => 'linksValue'
             )))
@@ -560,7 +609,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -589,6 +640,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request
@@ -603,7 +658,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
                     array(
                         'fieldName' => 'testField',
                         'code' => 'MY_CODE',
-                        'message' => 'My test message'
+                        'message' => 'My test message',
+                        'relatedResources' => array(
+                            'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
                     ),
                     array(
                         'code' => 'MY_SECOND_CODE',
@@ -632,6 +689,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
             $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
             $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
         }
 
         // Validate api request

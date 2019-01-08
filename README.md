@@ -7,6 +7,10 @@ Hyperwallet REST SDK (Beta)
 
 A library to manage users, transfer methods and payments through the Hyperwallet API
 
+Prerequisites
+------------
+
+Hyperwallet's PHP server SDK requires at minimum PHP 5.6 and above.
 
 Installation
 ------------

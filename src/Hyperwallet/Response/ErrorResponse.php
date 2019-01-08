@@ -25,6 +25,13 @@ class ErrorResponse implements \Countable, \ArrayAccess {
     private $errors;
 
     /**
+     * The list of related resources
+     *
+     * @var array
+     */
+    private $relatedResources;
+
+    /**
      * Creates a ErrorResponse instance
      *
      * @param int $statusCode The http status code
@@ -33,6 +40,9 @@ class ErrorResponse implements \Countable, \ArrayAccess {
     public function __construct($statusCode, array $errors) {
         $this->statusCode = $statusCode;
         $this->errors = array_map(function ($error) {
+            if (!isset($relatedResources) && isset($error['relatedResources'])) {
+                $this->relatedResources = $error['relatedResources'];
+            }
             return new Error($error);
         }, $errors['errors']);
     }
@@ -55,6 +65,14 @@ class ErrorResponse implements \Countable, \ArrayAccess {
         return $this->errors;
     }
 
+    /**
+     * Get list of related resources
+     *
+     * @return array
+     */
+    public function getRelatedResources() {
+        return $this->relatedResources;
+    }
 
     /**
      * @internal
