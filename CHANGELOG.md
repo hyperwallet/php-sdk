@@ -1,4 +1,4 @@
-Changelog
+ChangeLog
 =========
 
 0.3.1 (2019-01-10)
