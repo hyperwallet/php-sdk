@@ -66,6 +66,27 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
         $this->validateRequest('POST', '/test', 'test=true', array('test2' => 'value2'), true);
     }
 
+    public function testDoPost_return_response_with_query_and_header_content_type_with_charset_substring_ahead() {
+        // Setup data
+        $mockHandler = new MockHandler(array(
+            new Response(200, array('Content-Type' => 'charset=utf-8;application/json'), \GuzzleHttp\json_encode(array(
+                'test' => 'value',
+                'links' => 'linksValue'
+            )))
+        ));
+        $this->createApiClient($mockHandler);
+
+        $model = new BaseModel(array(), array('test2' => 'value2'));
+
+        // Execute test
+        $data = $this->apiClient->doPost('/test', array(), $model, array('test' => 'true'));
+        $this->assertArrayHasKey('test', $data);
+        $this->assertArrayNotHasKey('links', $data);
+
+        // Validate api request
+        $this->validateRequest('POST', '/test', 'test=true', array('test2' => 'value2'), true);
+    }
+
     public function testDoPost_return_response_without_query() {
         // Setup data
         $mockHandler = new MockHandler(array(
