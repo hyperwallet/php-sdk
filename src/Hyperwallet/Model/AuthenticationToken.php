@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Client Token
+ * Represents a V3 Authentication Token
  *
  * @property string $value The client token value
 
@@ -10,7 +10,7 @@ namespace Hyperwallet\Model;
  * @package Hyperwallet\Model
  */
 
-class ClientToken extends BaseModel {
+class AuthenticationToken extends BaseModel {
 
     /**
      * @internal
@@ -22,7 +22,7 @@ class ClientToken extends BaseModel {
     private static $READ_ONLY_FIELDS = array('value');
 
     /**
-     * Creates a instance of ClientToken
+     * Creates a instance of AuthenticationToken
      *
      * @param string[] $properties The default properties
      */

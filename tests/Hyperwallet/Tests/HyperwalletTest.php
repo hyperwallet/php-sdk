@@ -324,32 +324,32 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     // Client Token
     //--------------------------------------
 
-    public function testGetClientToken_noUserToken() {
+    public function testGetAuthenticationToken_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
 
         try {
-            $client->getClientToken('');
+            $client->getAuthenticationToken('');
             $this->fail('HyperwalletArgumentException expected');
         } catch (HyperwalletArgumentException $e) {
             $this->assertEquals('userToken is required!', $e->getMessage());
         }
     }
 
-    public function testGetClientToken_allParameters() {
+    public function testGetAuthenticationToken_allParameters() {
         // Setup data
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/client-token', array('user-token' => 'test-user-token'), null, array())->thenReturn(array('value' => 'true'));
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/authentication-token', array('user-token' => 'test-user-token'), null, array())->thenReturn(array('value' => 'true'));
 
         // Run test
-        $clientToken = $client->getClientToken('test-user-token');
-        $this->assertNotNull($clientToken);
-        $this->assertEquals(array('value' => 'true'), $clientToken->getProperties());
+        $authenticationToken = $client->getAuthenticationToken('test-user-token');
+        $this->assertNotNull($authenticationToken);
+        $this->assertEquals(array('value' => 'true'), $authenticationToken->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/client-token', array('user-token' => 'test-user-token'), null, array());
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/authentication-token', array('user-token' => 'test-user-token'), null, array());
     }
 
     //--------------------------------------

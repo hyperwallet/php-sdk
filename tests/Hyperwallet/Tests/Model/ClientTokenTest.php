@@ -1,10 +1,10 @@
 <?php
 namespace Hyperwallet\Tests\Model;
 
-class ClientTokenTest extends ModelTestCase {
+class AuthenticationTokenTest extends ModelTestCase {
 
     protected function getModelName() {
-        return 'ClientToken';
+        return 'AuthenticationToken';
     }
 
     /**
