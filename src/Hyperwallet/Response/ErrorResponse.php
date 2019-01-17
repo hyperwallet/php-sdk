@@ -12,7 +12,7 @@ class ErrorResponse implements \Countable, \ArrayAccess {
 
     /**
      * The http status code
-     *
+     *s
      * @var int
      */
     private $statusCode;
