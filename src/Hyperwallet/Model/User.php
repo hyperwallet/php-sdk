@@ -44,6 +44,7 @@ namespace Hyperwallet\Model;
  *
  * @property string $language The user language
  * @property string $programToken The users program token
+ * @property string $verificationStatus The status of user verification
  *
  * @package Hyperwallet\Model
  */
@@ -76,6 +77,11 @@ class User extends BaseModel implements IProgramAware {
 
     const GENDER_MALE = 'MALE';
     const GENDER_FEMALE = 'FEMALE';
+
+    const VERIFICATION_STATUS_REQUIRED = 'REQUIRED';
+    const VERIFICATION_STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
+    const VERIFICATION_STATUS_UNDER_REVIEW = 'UNDER_REVIEW';
+    const VERIFICATION_STATUS_VERIFIED = 'VERIFIED';
 
     /**
      * Creates a instance of User
@@ -715,12 +721,32 @@ class User extends BaseModel implements IProgramAware {
 
     /**
      * Set the users program token
-     * 
+     *
      * @param string $programToken
      * @return User
      */
     public function setProgramToken($programToken) {
         $this->programToken = $programToken;
+        return $this;
+    }
+
+    /**
+     * Get the users verification status
+     *
+     * @return string
+     */
+    public function getVerificationStatus() {
+        return $this->verificationStatus;
+    }
+
+    /**
+     * Set the users verification status
+     *
+     * @param string $verificationStatus
+     * @return User
+     */
+    public function setVerificationStatus($verificationStatus) {
+        $this->verificationStatus = $verificationStatus;
         return $this;
     }
 
