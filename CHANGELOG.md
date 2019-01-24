@@ -1,6 +1,8 @@
 ChangeLog
 =========
 
+- FIX:Added missing field "VerificationStatus"
+
 0.3.1 (2019-01-10)
 -------------------
 
