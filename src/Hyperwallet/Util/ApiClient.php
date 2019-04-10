@@ -191,7 +191,7 @@ class ApiClient {
     private function checkResponseHeaderContentType($response) {
         $contentType = implode('', $response->getHeader('Content-Type'));
         $expectedContentType = $this->isEncrypted ? 'application/jose+json' : 'application/json';
-        $invalidContentType = $response->getStatusCode() !== 204 && !empty($contentType) && strpos($contentType, $expectedContentType) === false
+        $invalidContentType = $response->getStatusCode() !== 204 && !empty($contentType) && strpos($contentType, $expectedContentType) === false;
         if ($invalidContentType) {
              throw new HyperwalletException('Invalid Content-Type specified in Response Header');
         }
