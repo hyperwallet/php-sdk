@@ -292,6 +292,21 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
         $this->validateRequest('POST', '/test', '', array('test2' => 'value2'), true);
     }
 
+    public function testDoPost_return_response_204_status() {
+        // Setup data
+        $mockHandler = new MockHandler(array(
+            new Response(204)
+        ));
+        $this->createApiClient($mockHandler);
+
+        // Execute test
+        $data = $this->apiClient->doPost('/test', array(), null, array());
+        $this->assertEquals(array(), $data);
+
+        // Validate api request
+        $this->validateRequest('POST', '/test', '', array(), true);
+    }
+
     public function testDoPost_throw_exception_connection_issue() {
         // Setup data
         $mockHandler = new MockHandler(array(
