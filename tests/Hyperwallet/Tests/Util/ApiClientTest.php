@@ -70,6 +70,30 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
         $this->validateRequest('POST', '/test', 'test=true', array('test2' => 'value2'), true, array(), true);
     }
 
+    public function testDoPost_with_encryption_return_response_204_status() {
+        // Setup data
+        $clientPath = __DIR__ . "/../../../resources/private-jwkset1";
+        $hyperwalletPath = __DIR__ . "/../../../resources/public-jwkset1";
+        $originalMessage = array('test2' => 'value2');
+        $encryption = new HyperwalletEncryption($clientPath, $hyperwalletPath);
+        $encryptedMessage = $encryption->encrypt($originalMessage);
+
+        // Execute test
+        $mockHandler = new MockHandler(array(
+            new Response(204)
+        ));
+        $this->createApiClientWithEncryption($mockHandler);
+
+        $model = new BaseModel(array(), $originalMessage);
+
+        // Execute test
+        $data = $this->apiClient->doPost('/test', array(), null, array());
+        $this->assertEquals(array(), $data);
+
+        // Validate api request
+        $this->validateRequest('POST', '/test', '', array(), true, array(), true);
+    }
+
     public function testDoPost_with_encryption_charset_in_content_type() {
         // Setup data
         $clientPath = __DIR__ . "/../../../resources/private-jwkset1";
@@ -292,6 +316,21 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
         $this->validateRequest('POST', '/test', '', array('test2' => 'value2'), true);
     }
 
+    public function testDoPost_return_response_204_status() {
+        // Setup data
+        $mockHandler = new MockHandler(array(
+            new Response(204)
+        ));
+        $this->createApiClient($mockHandler);
+
+        // Execute test
+        $data = $this->apiClient->doPost('/test', array(), null, array());
+        $this->assertEquals(array(), $data);
+
+        // Validate api request
+        $this->validateRequest('POST', '/test', '', array(), true);
+    }
+
     public function testDoPost_throw_exception_connection_issue() {
         // Setup data
         $mockHandler = new MockHandler(array(
@@ -508,6 +547,23 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
 
         // Validate api request
         $this->validateRequest('PUT', '/test/token', '', array('test2' => 'value2'), true);
+    }
+
+    public function testDoPut_return_response_204_status() {
+        // Setup data
+        $mockHandler = new MockHandler(array(
+            new Response(204)
+        ));
+        $this->createApiClient($mockHandler);
+
+        $model = new BaseModel(array(), array());
+
+        // Execute test
+        $data = $this->apiClient->doPut('/test', array(), $model, array());
+        $this->assertEquals(array(), $data);
+
+        // Validate api request
+        $this->validateRequest('PUT', '/test', '', array(), true);
     }
 
     public function testDoPut_throw_exception_connection_issue() {
