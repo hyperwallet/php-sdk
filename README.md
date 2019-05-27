@@ -59,7 +59,22 @@ To write an app using the SDK
       // Add error handling here
   }
   ```
-
+* Error Handling
+The `HyperwalletException` has an array of errors with `code`, `message` and `fielName` properties to represent a error.  
+  ```php 
+    try {
+      ... 
+    } catch (\Hyperwallet\Exception\HyperwalletException $e) {
+      // var_dump($e->getErrorResponse());
+      // var_dump($e->getErrorResponse()->getErrors());
+      foreach ($e->getErrorResponse()->getErrors() as $error) {
+          echo "\n------\n";
+          echo $error->getFieldName()."\n";
+          echo $error->getCode()."\n";
+          echo $error->getMessage()."\n";
+      }
+    }
+  ```
 
 Development
 -----------
