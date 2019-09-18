@@ -990,7 +990,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-
         \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}', array('user-token' => 'test-user-token', 'paypal-account-token' => 'test-paypal-account-token'), array())->thenReturn(array('token' => 'test-token'));
 
         // Run test
