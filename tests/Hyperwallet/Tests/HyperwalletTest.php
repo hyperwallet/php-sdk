@@ -990,6 +990,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
+
         \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}', array('user-token' => 'test-user-token', 'paypal-account-token' => 'test-paypal-account-token'), array())->thenReturn(array('token' => 'test-token'));
 
         // Run test
@@ -999,6 +1000,47 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}', array('user-token' => 'test-user-token', 'paypal-account-token' => 'test-paypal-account-token'), array());
+    }
+
+    public function testUpdatePayPalAccount_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->updatePayPalAccount('', new PayPalAccount());
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testUpdatePayPalAccount_noPayPalAccountToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->updatePayPalAccount('test-user-token', new PayPalAccount());
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('payPalAccountToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testUpdatePayPalAccount_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $payPalAcc = new PayPalAccount(array('token' => 'test-paypal-account-token'));
+
+        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}', array('user-token' => 'test-user-token', 'paypal-account-token' => 'test-paypal-account-token'), $payPalAcc, array())->thenReturn(array('token' => 'test-token'));
+
+        // Run test
+        $payPalAccount = $client->updatePayPalAccount('test-user-token', $payPalAcc);
+        $this->assertNotNull($payPalAccount);
+        $this->assertEquals(array('token' => 'test-token'), $payPalAccount->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}', array('user-token' => 'test-user-token', 'paypal-account-token' => 'test-paypal-account-token'), $payPalAcc, array());
     }
 
     public function testListPayPalAccounts_noUserToken() {

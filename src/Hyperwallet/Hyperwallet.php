@@ -535,6 +535,30 @@ class Hyperwallet {
     }
 
     /**
+     * Update PayPal account
+     *
+     * @param string $userToken The user token
+     * @param PayPalAccount $payPalAccount Paypal account data
+     * @return PayPalAccount
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function updatePayPalAccount($userToken, PayPalAccount $payPalAccount) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (!$payPalAccount->getToken()) {
+            throw new HyperwalletArgumentException('payPalAccountToken is required!');
+        }
+        $body = $this->client->doPut('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}', array(
+            'user-token' => $userToken,
+            'paypal-account-token' => $payPalAccount->getToken()
+        ), $payPalAccount, array());
+        return new PayPalAccount($body);
+    }
+
+    /**
      * List all PayPal accounts
      *
      * @param string $userToken The user token
