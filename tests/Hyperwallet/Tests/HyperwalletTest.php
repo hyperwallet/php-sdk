@@ -448,7 +448,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             $client->updatePaperCheck('test-user-token', $paperCheck);
             $this->fail('HyperwalletArgumentException expected');
         } catch (HyperwalletArgumentException $e) {
-            $this->assertEquals('token is required!', $e->getMessage());
+            $this->assertEquals('transfer method token is required!', $e->getMessage());
         }
     }
 
@@ -458,7 +458,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $paperCheck = new PaperCheck(array('token' => 'test-paper-check-token'));
 
-        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), $paperCheck, array())->thenReturn(array('postalCode' => 'ABCD'));
+        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-paper-check-token', 'transfer-method-name' => 'paper-checks'), $paperCheck, array())->thenReturn(array('postalCode' => 'ABCD'));
 
         // Run test
         $newPaperCheck = $client->updatePaperCheck('test-user-token', $paperCheck);
@@ -466,7 +466,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('postalCode' => 'ABCD'), $newPaperCheck->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), $paperCheck, array());
+        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-paper-check-token', 'transfer-method-name' => 'paper-checks'), $paperCheck, array());
     }
     
     public function testListPaperChecks_noUserToken() {
@@ -1021,7 +1021,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             $client->updatePayPalAccount('test-user-token', new PayPalAccount());
             $this->fail('HyperwalletArgumentException expected');
         } catch (HyperwalletArgumentException $e) {
-            $this->assertEquals('payPalAccountToken is required!', $e->getMessage());
+            $this->assertEquals('transfer method token is required!', $e->getMessage());
         }
     }
 
@@ -1031,7 +1031,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $payPalAcc = new PayPalAccount(array('token' => 'test-paypal-account-token'));
 
-        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}', array('user-token' => 'test-user-token', 'paypal-account-token' => 'test-paypal-account-token'), $payPalAcc, array())->thenReturn(array('token' => 'test-token'));
+        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-paypal-account-token', 'transfer-method-name' => 'paypal-accounts'), $payPalAcc, array())->thenReturn(array('token' => 'test-token'));
 
         // Run test
         $payPalAccount = $client->updatePayPalAccount('test-user-token', $payPalAcc);
@@ -1039,7 +1039,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('token' => 'test-token'), $payPalAccount->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/paypal-accounts/{paypal-account-token}', array('user-token' => 'test-user-token', 'paypal-account-token' => 'test-paypal-account-token'), $payPalAcc, array());
+        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-paypal-account-token', 'transfer-method-name' => 'paypal-accounts'), $payPalAcc, array());
     }
 
     public function testListPayPalAccounts_noUserToken() {
@@ -1186,7 +1186,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             $client->updatePrepaidCard('test-user-token', $prepaidCard);
             $this->fail('HyperwalletArgumentException expected');
         } catch (HyperwalletArgumentException $e) {
-            $this->assertEquals('token is required!', $e->getMessage());
+            $this->assertEquals('transfer method token is required!', $e->getMessage());
         }
     }
 
@@ -1196,7 +1196,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $prepaidCard = new PrepaidCard(array('token' => 'test-prepaid-card-token'));
 
-        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/prepaid-cards/{prepaid-card-token}', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), $prepaidCard, array())->thenReturn(array('success' => 'true'));
+        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-prepaid-card-token', 'transfer-method-name' => 'prepaid-cards'), $prepaidCard, array())->thenReturn(array('success' => 'true'));
 
         // Run test
         $newPrepaidCard = $client->updatePrepaidCard('test-user-token', $prepaidCard);
@@ -1204,7 +1204,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newPrepaidCard->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/prepaid-cards/{prepaid-card-token}', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), $prepaidCard, array());
+        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-prepaid-card-token', 'transfer-method-name' => 'prepaid-cards'), $prepaidCard, array());
     }
 
     public function testListPrepaidCards_noUserToken() {
@@ -1575,7 +1575,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             $client->updateBankAccount('test-user-token', $bankAccount);
             $this->fail('HyperwalletArgumentException expected');
         } catch (HyperwalletArgumentException $e) {
-            $this->assertEquals('token is required!', $e->getMessage());
+            $this->assertEquals('transfer method token is required!', $e->getMessage());
         }
     }
 
@@ -1585,7 +1585,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $bankAccount = new BankAccount(array('token' => 'test-bank-account-token'));
 
-        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/bank-accounts/{bank-account-token}', array('user-token' => 'test-user-token', 'bank-account-token' => 'test-bank-account-token'), $bankAccount, array())->thenReturn(array('success' => 'true'));
+        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-bank-account-token', 'transfer-method-name' => 'bank-accounts'), $bankAccount, array())->thenReturn(array('success' => 'true'));
 
         // Run test
         $newBankAccount = $client->updateBankAccount('test-user-token', $bankAccount);
@@ -1593,7 +1593,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newBankAccount->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/bank-accounts/{bank-account-token}', array('user-token' => 'test-user-token', 'bank-account-token' => 'test-bank-account-token'), $bankAccount, array());
+        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-bank-account-token', 'transfer-method-name' => 'bank-accounts'), $bankAccount, array());
     }
 
     public function testListBankAccounts_noUserToken() {
@@ -1946,7 +1946,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             $client->updateBankCard('test-user-token', $bankCard);
             $this->fail('HyperwalletArgumentException expected');
         } catch (HyperwalletArgumentException $e) {
-            $this->assertEquals('token is required!', $e->getMessage());
+            $this->assertEquals('transfer method token is required!', $e->getMessage());
         }
     }
 
@@ -1956,7 +1956,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $bankCard = new BankCard(array('token' => 'test-bank-card-token'));
 
-        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/bank-cards/{bank-card-token}', array('user-token' => 'test-user-token', 'bank-card-token' => 'test-bank-card-token'), $bankCard, array())->thenReturn(array('success' => 'true'));
+        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-bank-card-token', 'transfer-method-name' => 'bank-cards'), $bankCard, array())->thenReturn(array('success' => 'true'));
 
         // Run test
         $newBankCard = $client->updateBankCard('test-user-token', $bankCard);
@@ -1964,7 +1964,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newBankCard->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/bank-cards/{bank-card-token}', array('user-token' => 'test-user-token', 'bank-card-token' => 'test-bank-card-token'), $bankCard, array());
+        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-bank-card-token', 'transfer-method-name' => 'bank-cards'), $bankCard, array());
     }
 
     public function testListBankCards_noUserToken() {
