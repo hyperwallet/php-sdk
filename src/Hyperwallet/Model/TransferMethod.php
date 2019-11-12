@@ -25,7 +25,6 @@ namespace Hyperwallet\Model;
  * @property string $branchName The branch name
  * @property string $branchId The branch id
  * @property string $bankAccountId The bank account id
- * @property string $bankAccountRelationship The bank account relationship
  * @property string $bankAccountPurpose The bank account purpose
  *
  * @property string $branchAddressLine1 The branch address line 1
@@ -104,17 +103,6 @@ class TransferMethod extends BaseModel {
 
     const CARD_BRAND_VISA = 'VISA';
     const CARD_BRAND_MASTERCARD = 'MASTERCARD';
-
-    const BANK_ACCOUNT_RELATIONSHIP_SELF = 'SELF';
-    const BANK_ACCOUNT_RELATIONSHIP_JOINT_ACCOUNT = 'JOINT_ACCOUNT';
-    const BANK_ACCOUNT_RELATIONSHIP_SPOUSE = 'SPOUSE';
-    const BANK_ACCOUNT_RELATIONSHIP_RELATIVE = 'RELATIVE';
-    const BANK_ACCOUNT_RELATIONSHIP_BUSINESS_PARTNER = 'BUSINESS_PARTNER';
-    const BANK_ACCOUNT_RELATIONSHIP_UPLINE = 'UPLINE';
-    const BANK_ACCOUNT_RELATIONSHIP_DOWNLINE = 'DOWNLINE';
-    const BANK_ACCOUNT_RELATIONSHIP_OWN_COMPANY = 'OWN_COMPANY';
-    const BANK_ACCOUNT_RELATIONSHIP_BILL_PAYMENT = 'BILL_PAYMENT';
-    const BANK_ACCOUNT_RELATIONSHIP_OTHER = 'OTHER';
 
     const PROFILE_TYPE_INDIVIDUAL = 'INDIVIDUAL';
     const PROFILE_TYPE_BUSINESS = 'BUSINESS';
@@ -379,26 +367,6 @@ class TransferMethod extends BaseModel {
      */
     public function getCreatedOn() {
         return $this->createdOn ? new \DateTime($this->createdOn) : null;
-    }
-
-    /**
-     * Get the bank account relationship
-     *
-     * @return string
-     */
-    public function getBankAccountRelationship() {
-        return $this->bankAccountRelationship;
-    }
-
-    /**
-     * Set the bank account relationship
-     *
-     * @param string $bankAccountRelationship
-     * @return TransferMethod
-     */
-    public function setBankAccountRelationship($bankAccountRelationship) {
-        $this->bankAccountRelationship = $bankAccountRelationship;
-        return $this;
     }
 
     /**

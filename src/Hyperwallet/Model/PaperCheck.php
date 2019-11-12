@@ -12,7 +12,6 @@ namespace Hyperwallet\Model;
  * @property string $transferMethodCurrency The transfer method currency
  * @property string $addressLine1 The address line #1 
  * @property string $addressLine2 The address line #2
- * @property string $bankAccountRelationship The bank account relationship 
  * @property string $businessContactRole The business contact role 
  * @property string $businessName The business name 
  * @property string $businessRegistrationCountry The business registration country 
@@ -62,10 +61,7 @@ class PaperCheck extends BaseModel {
     const STATUS_VERIFIED = 'VERIFIED';
     const STATUS_INVALID = 'INVALID';
     const STATUS_DE_ACTIVATED = 'DE_ACTIVATED';
-    
-    const BANK_ACCOUNT_RELATIONSHIP_SELF = 'SELF';
-    const BANK_ACCOUNT_RELATIONSHIP_OWN_COMPANY = 'OWN_COMPANY';
-    
+
     const BUSINESS_CONTACT_ROLE_DIRECTOR = 'DIRECTOR';
     const BUSINESS_CONTACT_ROLE_OWNER = 'OWNER';
     const BUSINESS_CONTACT_ROLE_OTHER = 'OTHER';
@@ -229,26 +225,6 @@ class PaperCheck extends BaseModel {
      */
     public function setAddressLine2($addressLine2) {
         $this->addressLine2 = $addressLine2;
-        return $this;
-    }
-
-    /**
-     * Get the bank account relationship 
-     *
-     * @return string
-     */
-    public function getBankAccountRelationship() {
-        return $this->bankAccountRelationship;
-    }
-    
-    /**
-     * Set the bank account relationship
-     *
-     * @param string $bankAccountRelationship
-     * @return PaperCheck
-     */
-    public function setBankAccountRelationship($bankAccountRelationship) {
-        $this->bankAccountRelationship = $bankAccountRelationship;
         return $this;
     }
 
