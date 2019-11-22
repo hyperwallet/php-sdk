@@ -17,6 +17,7 @@ namespace Hyperwallet\Model;
  *
  * @property string $cardNumber The bank card number
  * @property string $cardBrand The bank card brand
+ * @property string $cvv The bank card cvv
  * @property \DateTime $dateOfExpiry The bank card expiry date
  *
  * @package Hyperwallet\Model
@@ -180,6 +181,26 @@ class BankCard extends BaseModel {
      */
     public function setCardNumber($cardNumber) {
         $this->cardNumber = $cardNumber;
+        return $this;
+    }
+
+    /**
+     * Get the bank card cvv
+     *
+     * @return string
+     */
+    public function getCvv() {
+        return $this->cvv;
+    }
+
+    /**
+     * Set the bank card cvv
+     *
+     * @param string $cvv
+     * @return BankCard
+     */
+    public function setCvv($cvv) {
+        $this->cvv = $cvv;
         return $this;
     }
 
