@@ -14,6 +14,7 @@ namespace Hyperwallet\Model;
  *
  * @property string $businessType The business type
  * @property string $businessName The business name
+ * @property string $businessOperatingName The business operating name
  * @property string $businessRegistrationId The business registration id
  * @property string $businessRegistrationStateProvince The business registration state or province
  * @property string $businessRegistrationCountry The business registration country
@@ -207,6 +208,28 @@ class User extends BaseModel implements IProgramAware {
      */
     public function setBusinessName($businessName) {
         $this->businessName = $businessName;
+        return $this;
+    }
+
+    /**
+     * Get the business operating name
+     *
+     * @return string
+     */
+    public function getBusinessOperatingName()
+    {
+        return $this->businessOperatingName;
+    }
+
+    /**
+     * Set the business operating name
+     *
+     * @param string $businessOperatingName
+     * @return User
+     */
+    public function setBusinessOperatingName($businessOperatingName)
+    {
+        $this->businessOperatingName = $businessOperatingName;
         return $this;
     }
 
