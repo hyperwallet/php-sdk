@@ -130,7 +130,7 @@ abstract class ModelTestCase extends \PHPUnit_Framework_TestCase {
         $setter = $this->clazz->getMethod($setterName);
 
         $this->assertEquals($valType, $getter->invoke($instance));
-        $this->assertEquals($instance, $setter->invoke($instance, $newValParam));
+        $this->assertEquals($instance, $setter->invoke($instance, $newVal));
         $this->assertEquals($newValParam, $getter->invoke($instance));
 
         $data2 = array();
@@ -173,7 +173,7 @@ abstract class ModelTestCase extends \PHPUnit_Framework_TestCase {
         $setter = $this->clazz->getMethod($setterName);
 
         $this->assertNull($getter->invoke($instance));
-        $this->assertEquals($instance, $setter->invoke($instance, $newValParam));
+        $this->assertEquals($instance, $setter->invoke($instance, $newVal));
         $this->assertEquals($newValParam, $getter->invoke($instance));
 
         $data2 = array();

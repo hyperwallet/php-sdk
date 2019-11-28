@@ -201,11 +201,13 @@ class Payment extends BaseModel implements IProgramAware {
     /**
      * Set the payment release date
      *
-     * @param \DateTime $releaseOn
+     * @param string $releaseOn |null
      * @return Payment
      */
-    public function setReleaseOn(\DateTime $releaseOn = null) {
-        $this->releaseOn = $releaseOn == null ? null : $releaseOn->format('Y-m-d\TH:i:s');
+    public function setReleaseOn($releaseOn = null)
+    {
+        $stringToDate = $releaseOn === null ? null : new \DateTime($releaseOn);
+        $this->releaseOn = $stringToDate == null ? null : $stringToDate->format('Y-m-d\TH:i:s');
         return $this;
     }
 

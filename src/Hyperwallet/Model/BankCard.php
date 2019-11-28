@@ -222,14 +222,27 @@ class BankCard extends BaseModel {
         return $this->dateOfExpiry ? new \DateTime($this->dateOfExpiry) : null;
     }
 
+    /*    /**
+         * Set the bank card expiry date
+         *
+         * @param \DateTime $dateOfExpiry
+         * @return BankCard
+         */
+    /*public function setDateOfExpiry(\DateTime $dateOfExpiry = null) {
+        $this->dateOfExpiry = $dateOfExpiry == null ? null : $dateOfExpiry->format('Y-m-d');
+        return $this;
+    }*/
+
     /**
      * Set the bank card expiry date
      *
-     * @param \DateTime $dateOfExpiry
+     * @param string $dateOfExpiry |null
      * @return BankCard
      */
-    public function setDateOfExpiry(\DateTime $dateOfExpiry = null) {
-        $this->dateOfExpiry = $dateOfExpiry == null ? null : $dateOfExpiry->format('Y-m-d');
+    public function setDateOfExpiry($dateOfExpiry = null)
+    {
+        $stringToDate = $dateOfExpiry === null ? null : new \DateTime($dateOfExpiry);
+        $this->dateOfExpiry = $stringToDate == null ? null : $stringToDate->format('Y-m-d');
         return $this;
     }
 
