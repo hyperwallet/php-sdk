@@ -1258,7 +1258,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testListPayPalAccountStatusTransitions_noBankAccountToken()
+    public function testListPayPalAccountStatusTransitions_noPayPalAccountToken()
     {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
