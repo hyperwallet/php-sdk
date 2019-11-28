@@ -222,17 +222,6 @@ class BankCard extends BaseModel {
         return $this->dateOfExpiry ? new \DateTime($this->dateOfExpiry) : null;
     }
 
-    /*    /**
-         * Set the bank card expiry date
-         *
-         * @param \DateTime $dateOfExpiry
-         * @return BankCard
-         */
-    /*public function setDateOfExpiry(\DateTime $dateOfExpiry = null) {
-        $this->dateOfExpiry = $dateOfExpiry == null ? null : $dateOfExpiry->format('Y-m-d');
-        return $this;
-    }*/
-
     /**
      * Set the bank card expiry date
      *
