@@ -1,6 +1,8 @@
 <?php
 namespace Hyperwallet\Model;
 
+use Hyperwallet\Util\StringToDataConverter;
+
 /**
  * Represents a V3 User
  *
@@ -367,8 +369,7 @@ class User extends BaseModel implements IProgramAware {
      */
     public function setDateOfBirth($dateOfBirth = null)
     {
-        $stringToDate = $dateOfBirth === null ? null : new \DateTime($dateOfBirth);
-        $this->dateOfBirth = $stringToDate == null ? null : $stringToDate->format('Y-m-d');
+        $this->dateOfBirth = StringToDataConverter::convertStringToDate($dateOfBirth, 'Y-m-d');
         return $this;
     }
 

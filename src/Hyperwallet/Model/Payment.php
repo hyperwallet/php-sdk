@@ -1,6 +1,8 @@
 <?php
 namespace Hyperwallet\Model;
 
+use Hyperwallet\Util\StringToDataConverter;
+
 /**
  * Represents a V3 Payment
  *
@@ -206,8 +208,7 @@ class Payment extends BaseModel implements IProgramAware {
      */
     public function setReleaseOn($releaseOn = null)
     {
-        $stringToDate = $releaseOn === null ? null : new \DateTime($releaseOn);
-        $this->releaseOn = $stringToDate == null ? null : $stringToDate->format('Y-m-d\TH:i:s');
+        $this->releaseOn = StringToDataConverter::convertStringToDate($releaseOn, 'Y-m-d\TH:i:s');
         return $this;
     }
 
@@ -242,7 +243,7 @@ class Payment extends BaseModel implements IProgramAware {
 
     /**
      * Set the payment program token
-     * 
+     *
      * @param string $programToken
      * @return Payment
      */

@@ -1,6 +1,8 @@
 <?php
 namespace Hyperwallet\Model;
 
+use Hyperwallet\Util\StringToDataConverter;
+
 /**
  * Represents a V3 Bank Card
  *
@@ -230,8 +232,7 @@ class BankCard extends BaseModel {
      */
     public function setDateOfExpiry($dateOfExpiry = null)
     {
-        $stringToDate = $dateOfExpiry === null ? null : new \DateTime($dateOfExpiry);
-        $this->dateOfExpiry = $stringToDate == null ? null : $stringToDate->format('Y-m-d');
+        $this->dateOfExpiry = StringToDataConverter::convertStringToDate($dateOfExpiry, 'Y-m-d');
         return $this;
     }
 

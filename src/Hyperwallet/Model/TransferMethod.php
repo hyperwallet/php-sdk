@@ -1,6 +1,8 @@
 <?php
 namespace Hyperwallet\Model;
 
+use Hyperwallet\Util\StringToDataConverter;
+
 /**
  * Represents a V3 Transfer Method
  *
@@ -191,7 +193,7 @@ class TransferMethod extends BaseModel {
     public function getDateOfExpiry() {
         return $this->dateOfExpiry ? new \DateTime($this->dateOfExpiry) : null;
     }
-    
+
     /**
      * Get the bank account id
      *
@@ -866,8 +868,7 @@ class TransferMethod extends BaseModel {
      */
     public function setDateOfBirth($dateOfBirth = null)
     {
-        $stringToDate = $dateOfBirth === null ? null : new \DateTime($dateOfBirth);
-        $this->dateOfBirth = $stringToDate == null ? null : $stringToDate->format('Y-m-d');
+        $this->dateOfBirth = StringToDataConverter::convertStringToDate($dateOfBirth, 'Y-m-d');
         return $this;
     }
 
