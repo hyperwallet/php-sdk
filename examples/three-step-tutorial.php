@@ -11,7 +11,7 @@ $password = urldecode(getenv('HYPERWALLET_PASSWORD'));
 $programToken = urldecode(getenv('HYPERWALLET_PROGRAM_TOKEN'));
 
 if (empty($server)) {
-    $server = "https://sandbox.hyperwallet.com";
+    $server = "https://api.sandbox.hyperwallet.com";
 }
 if (empty($username) || empty($password) || empty($programToken)) {
     die("Error: Please make sure that you have set the system environment variables HYPERWALLET_USERNAME, HYPERWALLET_PASSWORD and HYPERWALLET_PROGRAM_TOKEN!\n");

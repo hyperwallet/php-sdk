@@ -47,7 +47,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
     public function testConstructor_defaultServer() {
         $client = new Hyperwallet('test-username', 'test-password');
-        $this->validateGuzzleClientSettings($client, 'https://sandbox.hyperwallet.com', 'test-username', 'test-password');
+        $this->validateGuzzleClientSettings($client, 'https://api.sandbox.hyperwallet.com', 'test-username', 'test-password');
     }
 
     public function testConstructor_changedServer() {
