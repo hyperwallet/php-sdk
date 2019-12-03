@@ -30,6 +30,9 @@ class HyperwalletApiException extends HyperwalletException {
      * @param \Exception|null $previous The original exception
      */
     public function __construct(ErrorResponse $errorResponse, \Exception $previous) {
+        if (is_null($errorResponse)) {
+            throw new HyperwalletException('The $errorResponse does not exist');
+        }
         parent::__construct($errorResponse[0]->getMessage(), null, $previous);
 
         $this->errorResponse = $errorResponse;
