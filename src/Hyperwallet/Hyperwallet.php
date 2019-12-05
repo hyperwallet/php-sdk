@@ -12,6 +12,7 @@ use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PaymentStatusTransition;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
+use Hyperwallet\Model\PayPalAccountStatusTransition;
 use Hyperwallet\Model\Transfer;
 use Hyperwallet\Model\TransferStatusTransition;
 use Hyperwallet\Model\PayPalAccount;
@@ -556,6 +557,111 @@ class Hyperwallet {
         $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts', array('user-token' => $userToken), $options);
         return new ListResponse($body, function($entry) {
             return new PayPalAccount($entry);
+        });
+    }
+
+    /**
+     * Deactivate a PayPal account
+     *
+     * @param string $userToken The user token
+     * @param string $payPalAccountToken The PayPal account token
+     * @return PayPalAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function deactivatePayPalAccount($userToken, $payPalAccountToken)
+    {
+        $transition = new PayPalAccountStatusTransition();
+        $transition->setTransition(PayPalAccountStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        return $this->createPayPalAccountStatusTransition($userToken, $payPalAccountToken, $transition);
+    }
+
+    /**
+     * Create a PayPal account status transition
+     *
+     * @param string $userToken The user token
+     * @param string $payPalAccountToken The PayPal account token
+     * @param PayPalAccountStatusTransition $transition The status transition
+     * @return PayPalAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createPayPalAccountStatusTransition($userToken, $payPalAccountToken, PayPalAccountStatusTransition $transition)
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($payPalAccountToken)) {
+            throw new HyperwalletArgumentException('payPalAccountToken is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'payPal-account-token' => $payPalAccountToken
+        ), $transition, array());
+        return new PayPalAccountStatusTransition($body);
+    }
+
+    /**
+     * Get a PayPal account status transition
+     *
+     * @param string $userToken The user token
+     * @param string $payPalAccountToken The PayPal account token
+     * @param string $statusTransitionToken The status transition token
+     * @return PayPalAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getPayPalAccountStatusTransition($userToken, $payPalAccountToken, $statusTransitionToken)
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($payPalAccountToken)) {
+            throw new HyperwalletArgumentException('payPalAccountToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'payPal-account-token' => $payPalAccountToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new PayPalAccountStatusTransition($body);
+    }
+
+    /**
+     * List all PayPal account status transitions
+     *
+     * @param string $userToken The user token
+     * @param string $payPalAccountToken The payPal account token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listPayPalAccountStatusTransitions($userToken, $payPalAccountToken, array $options = array())
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($payPalAccountToken)) {
+            throw new HyperwalletArgumentException('payPalAccountToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'payPal-account-token' => $payPalAccountToken
+        ), $options);
+        return new ListResponse($body, function ($entry) {
+            return new PayPalAccountStatusTransition($entry);
         });
     }
     
