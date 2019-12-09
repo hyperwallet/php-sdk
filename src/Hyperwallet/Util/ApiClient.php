@@ -176,14 +176,14 @@ class ApiClient {
             throw new HyperwalletApiException($errorResponse, $e);
         } catch (BadResponseException $e) {
             $body = \GuzzleHttp\json_decode($e->getResponse()->getBody(), true);
-            if (is_null($body)) {
-                $body = array('errors' => array(
-                    array(
-                        'message' => 'Failed to get any error message from response',
-                        'code' => 'BAD_REQUEST'
-                    )
-                ));
-            }
+//            if (is_null($body) || !$body->errors || empty($body->errors)) {
+//                $body = array('errors' => array(
+//                    array(
+//                        'message' => 'Failed to get any error message from response',
+//                        'code' => 'BAD_REQUEST'
+//                    )
+//                ));
+//            }
             $errorResponse = new ErrorResponse($e->getResponse()->getStatusCode(), $body);
             throw new HyperwalletApiException($errorResponse, $e);
         }
