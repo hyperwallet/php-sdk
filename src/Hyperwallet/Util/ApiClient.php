@@ -176,7 +176,7 @@ class ApiClient {
             throw new HyperwalletApiException($errorResponse, $e);
         } catch (BadResponseException $e) {
             $body = \GuzzleHttp\json_decode($e->getResponse()->getBody(), true);
-            if (is_null($body) || !$body->errors || empty($body->errors)) {
+            if (is_null($body) || !isset($body['errors']) || empty($body['errors'])) {
                 $body = array('errors' => array(
                     array(
                         'message' => 'Failed to get any error message from response',
