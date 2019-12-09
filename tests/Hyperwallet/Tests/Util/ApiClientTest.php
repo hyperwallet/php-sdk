@@ -897,7 +897,6 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testDoGet_throw_exception_bad_request_with_empty_response() {
-        error_reporting(E_ALL ^ E_NOTICE);
         // Setup data
         $mockHandler = new MockHandler(array(
             new Response(400, array(), \GuzzleHttp\json_encode(array('errors' => array())))
@@ -917,7 +916,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('BAD_REQUEST', $e->getErrorResponse()->getErrors()[0]->getCode());
             $this->assertEquals('Failed to get any error message from response', $e->getErrorResponse()->getErrors()[0]->getMessage());
 
-            $this->assertEquals(array(), $e->getRelatedResources());
+            $this->assertEquals(null, $e->getRelatedResources());
         }
     }
 
