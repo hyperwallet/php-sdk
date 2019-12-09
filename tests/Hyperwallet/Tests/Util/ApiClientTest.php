@@ -896,6 +896,30 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
         $this->validateRequest('GET', '/test', '', array('test2' => 'value2'), false);
     }
 
+    public function testDoGet_throw_exception_bad_request_with_empty_response() {
+        // Setup data
+        $mockHandler = new MockHandler(array(
+            new Response(400, array(), \GuzzleHttp\json_encode(array('errors' => array())))
+        ));
+        $this->createApiClient($mockHandler);
+
+        // Execute test
+        try {
+            $this->apiClient->doGet('/test', array(), array());
+            $this->fail('HyperwalletApiException expected');
+        } catch (HyperwalletApiException $e) {
+            $this->assertEquals('Failed to get any error message from response', $e->getMessage());
+            $this->assertNotNull($e->getErrorResponse());
+
+            $this->assertEquals(400, $e->getErrorResponse()->getStatusCode());
+
+            $this->assertEquals('BAD_REQUEST', $e->getErrorResponse()->getErrors()[0]->getCode());
+            $this->assertEquals('Failed to get any error message from response', $e->getErrorResponse()->getErrors()[0]->getMessage());
+
+            $this->assertEquals(null, $e->getRelatedResources());
+        }
+    }
+
 
     private function validateRequest($method, $path, $query, array $body, $hasContentType, array $headers = array(), $isEncrypted = false) {
         // Validate api request
