@@ -1,7 +1,18 @@
 ChangeLog
 =========
 
-1.3.0
+1.4.0
+-------------------
+- Fix TypeError thrown when response status is 204 No content
+- Add updatePayPalAccount()
+- Add CVV field to the sdk
+- Remove Relationship field from Server SDK
+- Add Business Operating Name Field to User
+- Fix incorrect Server address
+- Add PayPal account status transitions
+- Fix null pointer exception on getMessage
+
+1.3.0 (2019-01-25)
 -------------------
 - Added field "VerificationStatus" to User
 - Client-token endpoint renamed to authentication-token
