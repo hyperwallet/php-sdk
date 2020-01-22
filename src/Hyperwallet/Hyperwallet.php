@@ -12,6 +12,7 @@ use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PaymentStatusTransition;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
+use Hyperwallet\Model\PayPalAccountStatusTransition;
 use Hyperwallet\Model\Transfer;
 use Hyperwallet\Model\TransferStatusTransition;
 use Hyperwallet\Model\PayPalAccount;
@@ -62,7 +63,7 @@ class Hyperwallet {
      *
      * @throws HyperwalletArgumentException
      */
-    public function __construct($username, $password, $programToken = null, $server = 'https://sandbox.hyperwallet.com', $encryptionData = array(), $clientOptions = array()) {
+    public function __construct($username, $password, $programToken = null, $server = 'https://api.sandbox.hyperwallet.com', $encryptionData = array(), $clientOptions = array()) {
         if (empty($username) || empty($password)) {
             throw new HyperwalletArgumentException('You need to specify your API username and password!');
         }
@@ -265,16 +266,7 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function updatePaperCheck($userToken, PaperCheck $paperCheck) {
-        if (empty($userToken)) {
-            throw new HyperwalletArgumentException('userToken is required!');
-        }
-        if (!$paperCheck->getToken()) {
-            throw new HyperwalletArgumentException('token is required!');
-        }
-        $body = $this->client->doPut('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array(
-            'user-token' => $userToken,
-            'paper-check-token' => $paperCheck->getToken()
-        ), $paperCheck, array());
+        $body = $this->updateTransferMethod($userToken, $paperCheck, 'paper-checks');
         return new PaperCheck($body);
     }
     
@@ -536,6 +528,21 @@ class Hyperwallet {
     }
 
     /**
+     * Update PayPal account
+     *
+     * @param string $userToken The user token
+     * @param PayPalAccount $payPalAccount Paypal account data
+     * @return PayPalAccount
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function updatePayPalAccount($userToken, PayPalAccount $payPalAccount) {
+        $body = $this->updateTransferMethod($userToken, $payPalAccount, 'paypal-accounts');
+        return new PayPalAccount($body);
+    }
+
+    /**
      * List all PayPal accounts
      *
      * @param string $userToken The user token
@@ -551,6 +558,111 @@ class Hyperwallet {
         $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts', array('user-token' => $userToken), $options);
         return new ListResponse($body, function($entry) {
             return new PayPalAccount($entry);
+        });
+    }
+
+    /**
+     * Deactivate a PayPal account
+     *
+     * @param string $userToken The user token
+     * @param string $payPalAccountToken The PayPal account token
+     * @return PayPalAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function deactivatePayPalAccount($userToken, $payPalAccountToken)
+    {
+        $transition = new PayPalAccountStatusTransition();
+        $transition->setTransition(PayPalAccountStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        return $this->createPayPalAccountStatusTransition($userToken, $payPalAccountToken, $transition);
+    }
+
+    /**
+     * Create a PayPal account status transition
+     *
+     * @param string $userToken The user token
+     * @param string $payPalAccountToken The PayPal account token
+     * @param PayPalAccountStatusTransition $transition The status transition
+     * @return PayPalAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createPayPalAccountStatusTransition($userToken, $payPalAccountToken, PayPalAccountStatusTransition $transition)
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($payPalAccountToken)) {
+            throw new HyperwalletArgumentException('payPalAccountToken is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'payPal-account-token' => $payPalAccountToken
+        ), $transition, array());
+        return new PayPalAccountStatusTransition($body);
+    }
+
+    /**
+     * Get a PayPal account status transition
+     *
+     * @param string $userToken The user token
+     * @param string $payPalAccountToken The PayPal account token
+     * @param string $statusTransitionToken The status transition token
+     * @return PayPalAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getPayPalAccountStatusTransition($userToken, $payPalAccountToken, $statusTransitionToken)
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($payPalAccountToken)) {
+            throw new HyperwalletArgumentException('payPalAccountToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'payPal-account-token' => $payPalAccountToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new PayPalAccountStatusTransition($body);
+    }
+
+    /**
+     * List all PayPal account status transitions
+     *
+     * @param string $userToken The user token
+     * @param string $payPalAccountToken The payPal account token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listPayPalAccountStatusTransitions($userToken, $payPalAccountToken, array $options = array())
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($payPalAccountToken)) {
+            throw new HyperwalletArgumentException('payPalAccountToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'payPal-account-token' => $payPalAccountToken
+        ), $options);
+        return new ListResponse($body, function ($entry) {
+            return new PayPalAccountStatusTransition($entry);
         });
     }
     
@@ -611,16 +723,7 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function updatePrepaidCard($userToken, PrepaidCard $prepaidCard) {
-        if (empty($userToken)) {
-            throw new HyperwalletArgumentException('userToken is required!');
-        }
-        if (!$prepaidCard->getToken()) {
-            throw new HyperwalletArgumentException('token is required!');
-        }
-        $body = $this->client->doPut('/rest/v3/users/{user-token}/prepaid-cards/{prepaid-card-token}', array(
-            'user-token' => $userToken,
-            'prepaid-card-token' => $prepaidCard->getToken()
-        ), $prepaidCard, array());
+        $body = $this->updateTransferMethod($userToken, $prepaidCard, 'prepaid-cards');
         return new PrepaidCard($body);
     }
 
@@ -887,16 +990,7 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function updateBankAccount($userToken, BankAccount $bankAccount) {
-        if (empty($userToken)) {
-            throw new HyperwalletArgumentException('userToken is required!');
-        }
-        if (!$bankAccount->getToken()) {
-            throw new HyperwalletArgumentException('token is required!');
-        }
-        $body = $this->client->doPut('/rest/v3/users/{user-token}/bank-accounts/{bank-account-token}', array(
-            'user-token' => $userToken,
-            'bank-account-token' => $bankAccount->getToken()
-        ), $bankAccount, array());
+        $body = $this->updateTransferMethod($userToken, $bankAccount, 'bank-accounts');
         return new BankAccount($body);
     }
 
@@ -1079,16 +1173,7 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function updateBankCard($userToken, BankCard $bankCard) {
-        if (empty($userToken)) {
-            throw new HyperwalletArgumentException('userToken is required!');
-        }
-        if (!$bankCard->getToken()) {
-            throw new HyperwalletArgumentException('token is required!');
-        }
-        $body = $this->client->doPut('/rest/v3/users/{user-token}/bank-cards/{bank-card-token}', array(
-            'user-token' => $userToken,
-            'bank-card-token' => $bankCard->getToken()
-        ), $bankCard, array());
+        $body = $this->updateTransferMethod($userToken, $bankCard, 'bank-cards');
         return new BankCard($body);
     }
 
@@ -1691,6 +1776,32 @@ class Hyperwallet {
             return;
         }
         $model->setProgramToken($this->programToken);
+    }
+
+    /**
+     * Update Transfer method
+     *
+     * @param string $userToken The user token
+     * @param object $transferMethod Transfer method data
+     * @param string $transferMethodName Transfer method name to be used in url
+     * @return object Updated transfer method object
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    private function updateTransferMethod($userToken, $transferMethod, $transferMethodName) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (!$transferMethod->getToken()) {
+            throw new HyperwalletArgumentException('transfer method token is required!');
+        }
+
+        return $this->client->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array(
+                    'user-token' => $userToken,
+                    'transfer-method-token' => $transferMethod->getToken(),
+                    'transfer-method-name' => $transferMethodName,
+                ), $transferMethod, array());
     }
 
 }

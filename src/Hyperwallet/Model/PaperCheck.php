@@ -12,10 +12,10 @@ namespace Hyperwallet\Model;
  * @property string $transferMethodCurrency The transfer method currency
  * @property string $addressLine1 The address line #1 
  * @property string $addressLine2 The address line #2
- * @property string $bankAccountRelationship The bank account relationship 
- * @property string $businessContactRole The business contact role 
- * @property string $businessName The business name 
- * @property string $businessRegistrationCountry The business registration country 
+ * @property string $businessContactRole The business contact role
+ * @property string $businessName The business name
+ * @property string $businessOperatingName The business operating name
+ * @property string $businessRegistrationCountry The business registration country
  * @property string $businessRegistrationId The business registration id 
  * @property string $businessRegistrationStateProvince The business registration state province 
  * @property string $businessType The business type 
@@ -39,8 +39,7 @@ namespace Hyperwallet\Model;
  * @property string $postalCode The postal code 
  * @property string $profileType The profile type 
  * @property string $shippingMethod The shipping method 
- * @property string $stateProvince The state province 
- 
+ * @property string $stateProvince The state province
  *
  * @package Hyperwallet\Model
  */
@@ -54,18 +53,15 @@ class PaperCheck extends BaseModel {
      *
      * @var string[]
      */
-    private static $READ_ONLY_FIELDS = array('phoneNumber', 'passportId', 'mobileNumber', 'middleName', 'lastName', 'governmentIdType', 'governmentId', 'gender', 'firstName', 'employerId', 'driversLicenseId', 'dateOfBirth', 'countryOfNationality', 'countryOfBirth', 'businessType', 'businessRegistrationStateProvince', 'businessRegistrationId', 'businessRegistrationCountry', 'businessName', 'businessContactRole', 'createdOn', 'status', 'token');
-    
+    private static $READ_ONLY_FIELDS = array('phoneNumber', 'passportId', 'mobileNumber', 'middleName', 'lastName', 'governmentIdType', 'governmentId', 'gender', 'firstName', 'employerId', 'driversLicenseId', 'dateOfBirth', 'countryOfNationality', 'countryOfBirth', 'businessType', 'businessRegistrationStateProvince', 'businessRegistrationId', 'businessRegistrationCountry', 'businessName', 'businessOperatingName', 'businessContactRole', 'createdOn', 'status', 'token');
+
     const TYPE_PAPER_CHECK = 'PAPER_CHECK';
     
     const STATUS_ACTIVATED = 'ACTIVATED';
     const STATUS_VERIFIED = 'VERIFIED';
     const STATUS_INVALID = 'INVALID';
     const STATUS_DE_ACTIVATED = 'DE_ACTIVATED';
-    
-    const BANK_ACCOUNT_RELATIONSHIP_SELF = 'SELF';
-    const BANK_ACCOUNT_RELATIONSHIP_OWN_COMPANY = 'OWN_COMPANY';
-    
+
     const BUSINESS_CONTACT_ROLE_DIRECTOR = 'DIRECTOR';
     const BUSINESS_CONTACT_ROLE_OWNER = 'OWNER';
     const BUSINESS_CONTACT_ROLE_OTHER = 'OTHER';
@@ -233,26 +229,6 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the bank account relationship 
-     *
-     * @return string
-     */
-    public function getBankAccountRelationship() {
-        return $this->bankAccountRelationship;
-    }
-    
-    /**
-     * Set the bank account relationship
-     *
-     * @param string $bankAccountRelationship
-     * @return PaperCheck
-     */
-    public function setBankAccountRelationship($bankAccountRelationship) {
-        $this->bankAccountRelationship = $bankAccountRelationship;
-        return $this;
-    }
-
-    /**
      * Get the business contact role 
      *
      * @return string
@@ -268,6 +244,16 @@ class PaperCheck extends BaseModel {
      */
     public function getBusinessName() {
         return $this->businessName;
+    }
+
+    /**
+     * Get the business operating name
+     *
+     * @return string
+     */
+    public function getBusinessOperatingName()
+    {
+        return $this->businessOperatingName;
     }
 
     /**
