@@ -64,6 +64,9 @@ namespace Hyperwallet\Model;
  * @property string $country The country
  * @property string $postalCode The postal code
  *
+ * @property string $taxId The registration number
+ * @property string $taxReasonId The tax registration reason code
+ *
  * @package Hyperwallet\Model
  */
 class BankAccount extends BaseModel {
@@ -1012,6 +1015,46 @@ class BankAccount extends BaseModel {
      */
     public function setPostalCode($postalCode) {
         $this->postalCode = $postalCode;
+        return $this;
+    }
+
+    /**
+     * Get the registration number
+     *
+     * @return string
+     */
+    public function getTaxId() {
+        return $this->taxId;
+    }
+
+    /**
+     * Set the registration number
+     *
+     * @param string $taxId
+     * @return BankAccount
+     */
+    public function setTaxId(string $taxId) {
+        $this->taxId = $taxId;
+        return $this;
+    }
+
+    /**
+     * Get the tax registration reason code
+     *
+     * @return string
+     */
+    public function getTaxReasonId() {
+        return $this->taxReasonId;
+    }
+
+    /**
+     * Set the tax registration reason code
+     *
+     * @param string $taxReasonId
+     * @return BankAccount
+     */
+    public function setTaxReasonId(string $taxReasonId) {
+        $this->taxReasonId = $taxReasonId;
         return $this;
     }
 
