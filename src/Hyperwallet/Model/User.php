@@ -369,6 +369,7 @@ class User extends BaseModel implements IProgramAware {
         $this->businessContactCity = $businessContactCity;
         return $this;
     }
+
     /**
      * Get the business contact's state, province or region
      *
