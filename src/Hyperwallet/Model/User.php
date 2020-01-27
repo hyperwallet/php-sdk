@@ -19,6 +19,12 @@ namespace Hyperwallet\Model;
  * @property string $businessRegistrationStateProvince The business registration state or province
  * @property string $businessRegistrationCountry The business registration country
  * @property string $businessContactRole The business contact role
+ * @property string $businessContactAddressLine1 The business contact's street address
+ * @property string $businessContactAddressLine2 The business contact's address, second line
+ * @property string $businessContactCity The business contact's city
+ * @property string $businessContactStateProvince The business contact's state, province or region
+ * @property string $businessContactCountry The business contact's country
+ * @property string $businessContactPostalCode The business contact's postal code
  *
  * @property string $firstName The first name
  * @property string $middleName The middle name
@@ -310,6 +316,116 @@ class User extends BaseModel implements IProgramAware {
      */
     public function setBusinessContactRole($businessContactRole) {
         $this->businessContactRole = $businessContactRole;
+        return $this;
+    }
+
+    /**
+     * Set the business contact's street address
+     *
+     * @param string businessContactAddressLine1
+     * @return User
+     */
+    public function setbusinessContactAddressLine1($businessContactAddressLine1) {
+        $this->businessContactAddressLine1 = $businessContactAddressLine1;
+        return $this;
+    }
+
+    /**
+     * Get the business contact's address, second line
+     *
+     * @return string
+     */
+    public function getbusinessContactAddressLine2() {
+        return $this->businessContactAddressLine2;
+    }
+
+    /**
+     * Set the business contact's address, second line
+     *
+     * @param string businessContactAddressLine2
+     * @return User
+     */
+    public function setbusinessContactAddressLine2($businessContactAddressLine2) {
+        $this->businessContactAddressLine2 = $businessContactAddressLine2;
+        return $this;
+    }
+
+    /**
+     * Get the business contact's city
+     *
+     * @return string
+     */
+    public function getbusinessContactCity() {
+        return $this->businessContactCity;
+    }
+
+    /**
+     * Set the business contact's city
+     *
+     * @param string businessContactCity
+     * @return User
+     */
+    public function setbusinessContactCity($businessContactCity) {
+        $this->businessContactCity = $businessContactCity;
+        return $this;
+    }
+    /**
+     * Get the business contact's state, province or region
+     *
+     * @return string
+     */
+    public function getbusinessContactStateProvince() {
+        return $this->businessContactStateProvince;
+    }
+
+    /**
+     * Set the business contact's state, province or region
+     *
+     * @param string businessContactStateProvince
+     * @return User
+     */
+    public function setbusinessContactStateProvince($businessContactStateProvince) {
+        $this->businessContactStateProvince = $businessContactStateProvince;
+        return $this;
+    }
+
+    /**
+     * Get the business contact's country
+     *
+     * @return string
+     */
+    public function getbusinessContactCountry() {
+        return $this->businessContactCountry;
+    }
+
+    /**
+     * Set the business contact's country
+     *
+     * @param string businessContactCountry
+     * @return User
+     */
+    public function setbusinessContactCountry($businessContactCountry) {
+        $this->businessContactCountry = $businessContactCountry;
+        return $this;
+    }
+
+    /**
+     * Get the business contact's postal code
+     *
+     * @return string
+     */
+    public function getbusinessContactPostalCode() {
+        return $this->businessContactPostalCode;
+    }
+
+    /**
+     * Set the business contact's postal code
+     *
+     * @param string businessContactPostalCode
+     * @return User
+     */
+    public function setbusinessContactPostalCode($businessContactPostalCode) {
+        $this->businessContactPostalCode = $businessContactPostalCode;
         return $this;
     }
 
