@@ -18,7 +18,6 @@ pids
 /phpunit.xml
 
 # Docs
-docs/
 /sami.phar
 
 # Build folder
