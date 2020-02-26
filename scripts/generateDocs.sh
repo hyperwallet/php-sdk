@@ -4,7 +4,7 @@ if [ ! -f ./sami.phar ]; then
     curl -O http://get.sensiolabs.org/sami.phar
 fi
 
-php ./sami.phar update ../sami.cfg.php
+php ./sami.phar update ./sami.cfg.php
 
 echo "<!DOCTYPE HTML>
 <html lang=\"en-US\">
@@ -20,4 +20,4 @@ echo "<!DOCTYPE HTML>
         If you are not redirected automatically, follow the <a href=\"./master\">link to SDK documentation</a>
     </body>
 </html>
-" > ../docs/index.html
+" > ./docs/index.html
