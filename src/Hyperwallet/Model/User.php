@@ -83,6 +83,7 @@ class User extends BaseModel implements IProgramAware {
     const VERIFICATION_STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
     const VERIFICATION_STATUS_UNDER_REVIEW = 'UNDER_REVIEW';
     const VERIFICATION_STATUS_VERIFIED = 'VERIFIED';
+    const VERIFICATION_STATUS_FAILED = 'FAILED';
 
     /**
      * Creates a instance of User
