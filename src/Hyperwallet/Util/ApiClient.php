@@ -205,4 +205,17 @@ class ApiClient {
         }
     }
 
+    /**
+     * Do a PUT call to the Hyperwallet API server
+     *
+     * @param string $partialUrl The url template
+     * @param array $uriParams The url template parameters
+     * @param array $options The request options
+     * @return array
+     *
+     * @throws HyperwalletApiException
+     */
+    public function putMultipartData($partialUrl, array $uriParams, array $options) {
+        return $this->doRequest('PUT', $partialUrl, $uriParams, $options);
+    }
 }

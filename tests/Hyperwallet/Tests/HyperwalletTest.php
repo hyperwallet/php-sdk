@@ -3536,6 +3536,56 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     }
 
     //--------------------------------------
+    // Document upload for users
+    //--------------------------------------
+    public function testuploadDocumentsForUser_withoutUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->uploadDocumentsForUser('', null);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testuploadDocumentsForUser() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $userToken = "user-tokenn";
+
+        $options = array(
+            'multipart' => [
+                [
+                    'name'     => 'data',
+                    'contents' => '{"documents":[{"type":"DRIVERS_LICENSE","country":"AL","category":"IDENTIFICATION"}]}'
+                ],
+                [
+                    'name'     => 'drivers_license_front',
+                    'contents' => fopen('/Users/ramahalingam/Desktop/L1.png', "r")
+                ],
+                [
+                    'name'     => 'drivers_license_back',
+                    'contents' => fopen('/Users/ramahalingam/Desktop/L2.png', 'r')
+                ]
+            ]
+        );
+
+        \Phake::when($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options)->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $newUser = $client->uploadDocumentsForUser($userToken, $options);
+        $this->assertNotNull($newUser);
+        $this->assertNull($newUser->getProgramToken());
+        $this->assertEquals(array('success' => 'true'), $newUser->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options);
+    }
+
+    //--------------------------------------
     // Data provider
     //--------------------------------------
 
