@@ -23,3 +23,6 @@ docs/
 
 # Build folder
 build/
+
+# Integration test
+/tests/Hyperwallet/Tests/HyperwalletITTest.php
