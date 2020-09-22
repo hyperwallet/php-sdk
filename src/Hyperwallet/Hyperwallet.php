@@ -213,7 +213,7 @@ class Hyperwallet {
     //--------------------------------------
     // Paper Checks
     //--------------------------------------
-    
+
     /**
      * Create a paper check
      *
@@ -231,7 +231,7 @@ class Hyperwallet {
         $body = $this->client->doPost('/rest/v3/users/{user-token}/paper-checks', array('user-token' => $userToken), $paperCheck, array());
         return new PaperCheck($body);
     }
-    
+
     /**
      * Get a paper check
      *
@@ -255,7 +255,7 @@ class Hyperwallet {
         ), array());
         return new PaperCheck($body);
     }
-    
+
     /**
      * Update a paper check
      *
@@ -270,7 +270,7 @@ class Hyperwallet {
         $body = $this->updateTransferMethod($userToken, $paperCheck, 'paper-checks');
         return new PaperCheck($body);
     }
-    
+
     /**
      * List all paper checks
      *
@@ -290,7 +290,7 @@ class Hyperwallet {
             return new PaperCheck($entry);
         });
     }
-    
+
     /**
      * Deactivate a paper check
      *
@@ -301,13 +301,14 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function deactivatePaperCheck($userToken, $paperCheckToken) {
+    public function deactivatePaperCheck($userToken, $paperCheckToken)
+    {
         $transition = new PaperCheckStatusTransition();
         $transition->setTransition(PaperCheckStatusTransition::TRANSITION_DE_ACTIVATED);
 
         return $this->createPaperCheckStatusTransition($userToken, $paperCheckToken, $transition);
-    } 
-    
+    }
+
     /**
      * Create a paper check status transition
      *
@@ -333,7 +334,7 @@ class Hyperwallet {
         ), $transition, array());
         return new PaperCheckStatusTransition($body);
     }
-    
+
     /**
      * Get a paper check status transition
      *
@@ -666,7 +667,7 @@ class Hyperwallet {
             return new PayPalAccountStatusTransition($entry);
         });
     }
-    
+
     //--------------------------------------
     // Prepaid Cards
     //--------------------------------------
@@ -1812,8 +1813,8 @@ class Hyperwallet {
     /**
      * Create a Venmo account
      *
-     * @param string $userToken The user token
-     * @param VenmoAccount $venmoAccount The Venmo account data
+     * @param string $userToken user token
+     * @param VenmoAccount $venmoAccount Venmo account data
      * @return VenmoAccount
      *
      * @throws HyperwalletArgumentException
@@ -1840,8 +1841,8 @@ class Hyperwallet {
     /**
      * Get a Venmo account
      *
-     * @param string $userToken The user token
-     * @param string $venmoAccountToken The Venmo account token
+     * @param string $userToken user token
+     * @param string $venmoAccountToken Venmo account token
      * @return VenmoAccount
      *
      * @throws HyperwalletArgumentException
@@ -1865,7 +1866,7 @@ class Hyperwallet {
     /**
      * Update Venmo account
      *
-     * @param string $userToken The user token
+     * @param string $userToken user token
      * @param VenmoAccount $venmoAccount Venmo account data
      * @return VenmoAccount
      *
@@ -1881,7 +1882,7 @@ class Hyperwallet {
     /**
      * List all Venmo accounts
      *
-     * @param string $userToken The user token
+     * @param string $userToken user token
      * @param array $options The query parameters to send
      * @return ListResponse
      *
@@ -1901,8 +1902,8 @@ class Hyperwallet {
     /**
      * Deactivate a Venmo account
      *
-     * @param string $userToken The user token
-     * @param string $venmoAccountToken The Venmo account token
+     * @param string $userToken user token
+     * @param string $venmoAccountToken Venmo account token
      * @return VenmoAccountStatusTransition
      *
      * @throws HyperwalletArgumentException
@@ -1919,9 +1920,9 @@ class Hyperwallet {
     /**
      * Create a Venmo account status transition
      *
-     * @param string $userToken The user token
-     * @param string $venmoAccountToken The Venmo account token
-     * @param VenmoAccountStatusTransition $transition The status transition
+     * @param string $userToken user token
+     * @param string $venmoAccountToken Venmo account token
+     * @param VenmoAccountStatusTransition $transition status transition
      * @return VenmoAccountStatusTransition
      *
      * @throws HyperwalletArgumentException
@@ -1946,9 +1947,9 @@ class Hyperwallet {
     /**
      * Get a Venmo account status transition
      *
-     * @param string $userToken The user token
-     * @param string $venmoAccountToken The Venmo account token
-     * @param string $statusTransitionToken The status transition token
+     * @param string $userToken user token
+     * @param string $venmoAccountToken Venmo account token
+     * @param string $statusTransitionToken status transition token
      * @return VenmoAccountStatusTransition
      *
      * @throws HyperwalletArgumentException
@@ -1977,9 +1978,9 @@ class Hyperwallet {
     /**
      * List all Venmo account status transitions
      *
-     * @param string $userToken The user token
-     * @param string $venmoAccountToken The Venmo account token
-     * @param array $options The query parameters
+     * @param string $userToken user token
+     * @param string $venmoAccountToken Venmo account token
+     * @param array $options query parameters
      * @return ListResponse
      *
      * @throws HyperwalletArgumentException
