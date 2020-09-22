@@ -15,6 +15,7 @@ use Hyperwallet\Model\BankCardStatusTransition;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
 use Hyperwallet\Model\Transfer;
+use Hyperwallet\Model\TransferRefund;
 use Hyperwallet\Model\TransferStatusTransition;
 use Hyperwallet\Model\PayPalAccount;
 use Hyperwallet\Model\PayPalAccountStatusTransition;
@@ -852,6 +853,31 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/transfers', array(), array('test' => 'value'));
     }
+
+
+
+    public function testCreateTransferRefund_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $transferRefund = new TransferRefund();
+        $transferRefund->setToken('test-token');
+        $transferRefund->setClientRefundId('test-client-refund-id');
+        $transferRefund->setNotes('test-notes');
+        $transferRefund->setMemo('test-memo');
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/refunds', array(), $transferRefund, array())->thenReturn(array('token' => 'test-token'));
+
+        // Run test
+        $newTransferRefund = $client->createTransferRefund($transferRefund);
+        $this->assertNotNull($newTransferRefund);
+        $this->assertEquals(array('token' => 'test-token'), $newTransferRefund->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/refunds', array(), $transferRefund, array());
+    }
+
+
 
     public function testCreateTransferStatusTransition_noTransferToken() {
         // Setup

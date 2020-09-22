@@ -14,6 +14,7 @@ use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
 use Hyperwallet\Model\PayPalAccountStatusTransition;
 use Hyperwallet\Model\Transfer;
+use Hyperwallet\Model\TransferRefund;
 use Hyperwallet\Model\TransferStatusTransition;
 use Hyperwallet\Model\PayPalAccount;
 use Hyperwallet\Model\PrepaidCard;
@@ -415,6 +416,27 @@ class Hyperwallet {
         }
         $body = $this->client->doPost('/rest/v3/transfers', array(), $transfer, array());
         return new Transfer($body);
+    }
+
+    /**
+     * Create a transfer refund
+     *
+     * @param Transfer $transfer The transfer data
+     * @return Transfer
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createTransferRefund(TransferRefund $transferRefund) {
+        if (empty($transferRefund->getToken())) {
+            throw new HyperwalletArgumentException('transferToken is required!');
+        }
+        if (empty($transferRefund->getClientRefundId())) {
+            throw new HyperwalletArgumentException('clientRefundId is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v3/transfers/{transfer-token}/refunds', array(), $transferRefund, array());
+        return new TransferRefund($body);
     }
 
     /**
