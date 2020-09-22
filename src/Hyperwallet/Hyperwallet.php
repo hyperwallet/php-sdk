@@ -1818,11 +1818,11 @@ class Hyperwallet {
      *  ],
      *  [
      *  'name'     => 'drivers_license_front',
-     *  'contents' => fopen('<path>/L1.png', "r")
+     *  'contents' => fopen('<path>/File1.png', "r")
      *  ],
      *  [
      *  'name'     => 'drivers_license_back',
-     *  'contents' => fopen('<path>>/L2.png', 'r')
+     *  'contents' => fopen('<path>>/File2.png', 'r')
      *  ]
      *  ]
      *  ));

@@ -3554,7 +3554,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
-        $userToken = "user-tokenn";
+        $userToken = "user-token";
 
         $options = array(
             'multipart' => [
@@ -3564,11 +3564,11 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
                 ],
                 [
                     'name'     => 'drivers_license_front',
-                    'contents' => fopen('/Users/ramahalingam/Desktop/L1.png', "r")
+                    'contents' => fopen(__DIR__ . "/../../resources/license-front.png", "r")
                 ],
                 [
                     'name'     => 'drivers_license_back',
-                    'contents' => fopen('/Users/ramahalingam/Desktop/L2.png', 'r')
+                    'contents' => fopen(__DIR__ . "/../../resources/license-back.png", 'r')
                 ]
             ]
         );
