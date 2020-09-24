@@ -358,7 +358,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     //--------------------------------------
     // Paper Checks
     //--------------------------------------
-    
+
     public function testCreatePaperCheck_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -388,7 +388,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), $paperCheck, array());
     }
-    
+
     public function testGetPaperCheck_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -428,7 +428,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array());
     }
-    
+
     public function testUpdatePaperCheck_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -471,7 +471,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-paper-check-token', 'transfer-method-name' => 'paper-checks'), $paperCheck, array());
     }
-    
+
     public function testListPaperChecks_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
@@ -483,7 +483,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('userToken is required!', $e->getMessage());
         }
     }
-    
+
     public function testListPaperChecks_noParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
@@ -519,7 +519,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array('test' => 'value'));
     }
-    
+
     public function testDeactivatePaperCheck_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
@@ -564,7 +564,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), $statusTransition, array());
     }
-    
+
     public function testCreatePaperCheckStatusTransition_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -607,7 +607,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), $statusTransition, array());
     }
-    
+
     public function testGetPaperCheckStatusTransition_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -1311,7 +1311,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array('user-token' => 'test-user-token', 'payPal-account-token' => 'test-payPal-account-token'), array('test' => 'value'));
     }
-    
+
     //--------------------------------------
     // Prepaid Cards
     //--------------------------------------
@@ -2615,7 +2615,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/balances', array('user-token' => 'test-user-token'), array('test' => 'value'));
     }
-    
+
     public function testListBalancesForPrepaidCard_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -3556,8 +3556,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     // Venmo Accounts
     //--------------------------------------
 
-    public function testCreateVenmoAccount_noUserToken()
-    {
+    public function testCreateVenmoAccount_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
         $venmoAccount = new VenmoAccount();
@@ -3570,8 +3569,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testCreateVenmoAccount_noTransferMethodCountry()
-    {
+    public function testCreateVenmoAccount_noTransferMethodCountry() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
         $venmoAccount = new VenmoAccount();
@@ -3584,8 +3582,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testCreateVenmoAccount_noTransferMethodCurrency()
-    {
+    public function testCreateVenmoAccount_noTransferMethodCurrency() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
         $venmoAccount = new VenmoAccount();
@@ -3599,8 +3596,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testCreateVenmoAccount_noAccountId()
-    {
+    public function testCreateVenmoAccount_noAccountId() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
         $venmoAccount = new VenmoAccount();
@@ -3615,8 +3611,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testCreateVenmoAccount_allParameters()
-    {
+    public function testCreateVenmoAccount_allParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
@@ -3636,8 +3631,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), $venmoAccount, array());
     }
 
-    public function testGetVenmoAccount_noUserToken()
-    {
+    public function testGetVenmoAccount_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
 
@@ -3649,8 +3643,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testGetVenmoAccount_noVenmoAccountToken()
-    {
+    public function testGetVenmoAccount_noVenmoAccountToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
 
@@ -3662,8 +3655,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testGetVenmoAccount_allParameters()
-    {
+    public function testGetVenmoAccount_allParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
@@ -3679,8 +3671,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array());
     }
 
-    public function testUpdateVenmoAccount_noVenmoAccountToken()
-    {
+    public function testUpdateVenmoAccount_noVenmoAccountToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
 
@@ -3692,8 +3683,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testUpdateVenmoAccount_allParameters()
-    {
+    public function testUpdateVenmoAccount_allParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
@@ -3710,8 +3700,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-venmo-account-token', 'transfer-method-name' => 'venmo-accounts'), $venmoAcc, array());
     }
 
-    public function testListVenmoAccounts_noUserToken()
-    {
+    public function testListVenmoAccounts_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
 
@@ -3723,8 +3712,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testListVenmoAccounts_noParameters()
-    {
+    public function testListVenmoAccounts_noParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
@@ -3741,8 +3729,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), array());
     }
 
-    public function testListVenmoAccounts_withParameters()
-    {
+    public function testListVenmoAccounts_withParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
@@ -3761,8 +3748,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), array('test' => 'value'));
     }
 
-    public function testDeactivateVenmoAccount_noUserToken()
-    {
+    public function testDeactivateVenmoAccount_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
 
@@ -3775,8 +3761,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testDeactivateVenmoAccount_noVenmoAccountToken()
-    {
+    public function testDeactivateVenmoAccount_noVenmoAccountToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
 
@@ -3789,8 +3774,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testDeactivateVenmoAccount_allParameters()
-    {
+    public function testDeactivateVenmoAccount_allParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
@@ -3809,8 +3793,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), $statusTransition, array());
     }
 
-    public function testCreateVenmoAccountStatusTransition_noVenmoAccountToken()
-    {
+    public function testCreateVenmoAccountStatusTransition_noVenmoAccountToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
         $statusTransition = new VenmoAccountStatusTransition();
@@ -3823,8 +3806,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testCreateVenmoAccountStatusTransition_allParameters()
-    {
+    public function testCreateVenmoAccountStatusTransition_allParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
@@ -3841,8 +3823,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), $statusTransition, array());
     }
 
-    public function testGetVenmoAccountStatusTransition_noUserToken()
-    {
+    public function testGetVenmoAccountStatusTransition_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
 
@@ -3855,8 +3836,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testGetVenmoAccountStatusTransition_noVenmoAccountToken()
-    {
+    public function testGetVenmoAccountStatusTransition_noVenmoAccountToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
 
@@ -3869,8 +3849,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testGetVenmoAccountStatusTransition_noStatusTransitionToken()
-    {
+    public function testGetVenmoAccountStatusTransition_noStatusTransitionToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
 
@@ -3883,8 +3862,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testGetVenmoAccountStatusTransition_allParameters()
-    {
+    public function testGetVenmoAccountStatusTransition_allParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
@@ -3900,8 +3878,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions/{status-transition-token}', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token', 'status-transition-token' => 'test-status-transition-token'), array());
     }
 
-    public function testListVenmoAccountStatusTransitions_noUserToken()
-    {
+    public function testListVenmoAccountStatusTransitions_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
 
@@ -3914,8 +3891,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testListVenmoAccountStatusTransitions_noVenmoAccountToken()
-    {
+    public function testListVenmoAccountStatusTransitions_noVenmoAccountToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
 
@@ -3928,8 +3904,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testListVenmoAccountStatusTransitions_noParameters()
-    {
+    public function testListVenmoAccountStatusTransitions_noParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
@@ -3946,8 +3921,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array());
     }
 
-    public function testListVenmoAccountStatusTransitions_withParameters()
-    {
+    public function testListVenmoAccountStatusTransitions_withParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);

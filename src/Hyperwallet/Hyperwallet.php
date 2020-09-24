@@ -301,8 +301,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function deactivatePaperCheck($userToken, $paperCheckToken)
-    {
+    public function deactivatePaperCheck($userToken, $paperCheckToken) {
         $transition = new PaperCheckStatusTransition();
         $transition->setTransition(PaperCheckStatusTransition::TRANSITION_DE_ACTIVATED);
 
@@ -1820,8 +1819,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function createVenmoAccount($userToken, VenmoAccount $venmoAccount)
-    {
+    public function createVenmoAccount($userToken, VenmoAccount $venmoAccount) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -1848,8 +1846,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function getVenmoAccount($userToken, $venmoAccountToken)
-    {
+    public function getVenmoAccount($userToken, $venmoAccountToken) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -1873,8 +1870,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function updateVenmoAccount($userToken, VenmoAccount $venmoAccount)
-    {
+    public function updateVenmoAccount($userToken, VenmoAccount $venmoAccount) {
         $body = $this->updateTransferMethod($userToken, $venmoAccount, 'venmo-accounts');
         return new VenmoAccount($body);
     }
@@ -1888,8 +1884,7 @@ class Hyperwallet {
      *
      * @throws HyperwalletApiException
      */
-    public function listVenmoAccounts($userToken, $options = array())
-    {
+    public function listVenmoAccounts($userToken, $options = array()) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -1909,8 +1904,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function deactivateVenmoAccount($userToken, $venmoAccountToken)
-    {
+    public function deactivateVenmoAccount($userToken, $venmoAccountToken) {
         $transition = new VenmoAccountStatusTransition();
         $transition->setTransition(VenmoAccountStatusTransition::TRANSITION_DE_ACTIVATED);
 
@@ -1928,8 +1922,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function createVenmoAccountStatusTransition($userToken, $venmoAccountToken, VenmoAccountStatusTransition $transition)
-    {
+    public function createVenmoAccountStatusTransition($userToken, $venmoAccountToken, VenmoAccountStatusTransition $transition) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -1955,8 +1948,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function getVenmoAccountStatusTransition($userToken, $venmoAccountToken, $statusTransitionToken)
-    {
+    public function getVenmoAccountStatusTransition($userToken, $venmoAccountToken, $statusTransitionToken) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -1986,8 +1978,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function listVenmoAccountStatusTransitions($userToken, $venmoAccountToken, array $options = array())
-    {
+    public function listVenmoAccountStatusTransitions($userToken, $venmoAccountToken, array $options = array()) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
