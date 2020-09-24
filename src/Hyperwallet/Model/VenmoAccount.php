@@ -16,8 +16,7 @@ namespace Hyperwallet\Model;
  *
  * @package Hyperwallet\Model
  */
-class VenmoAccount extends BaseModel
-{
+class VenmoAccount extends BaseModel {
     /**
      * @internal
      *
@@ -32,8 +31,7 @@ class VenmoAccount extends BaseModel
      *
      * @param string[] $properties The default properties
      */
-    public function __construct(array $properties = array())
-    {
+    public function __construct(array $properties = array()) {
         parent::__construct(self::$READ_ONLY_FIELDS, $properties);
     }
 
@@ -42,8 +40,7 @@ class VenmoAccount extends BaseModel
      *
      * @return string
      */
-    public function getToken()
-    {
+    public function getToken() {
         return $this->token;
     }
 
@@ -53,8 +50,7 @@ class VenmoAccount extends BaseModel
      * @param string $token
      * @return VenmoAccount
      */
-    public function setToken($token)
-    {
+    public function setToken($token) {
         $this->token = $token;
         return $this;
     }
@@ -64,8 +60,7 @@ class VenmoAccount extends BaseModel
      *
      * @return string
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->status;
     }
 
@@ -74,8 +69,7 @@ class VenmoAccount extends BaseModel
      *
      * @return \DateTime
      */
-    public function getCreatedOn()
-    {
+    public function getCreatedOn() {
         return $this->createdOn ? new \DateTime($this->createdOn) : null;
     }
 
@@ -84,8 +78,7 @@ class VenmoAccount extends BaseModel
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -95,8 +88,7 @@ class VenmoAccount extends BaseModel
      * @param string $type
      * @return VenmoAccount
      */
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
         return $this;
     }
@@ -106,8 +98,7 @@ class VenmoAccount extends BaseModel
      *
      * @return string
      */
-    public function getTransferMethodCountry()
-    {
+    public function getTransferMethodCountry() {
         return $this->transferMethodCountry;
     }
 
@@ -117,8 +108,7 @@ class VenmoAccount extends BaseModel
      * @param string $transferMethodCountry
      * @return VenmoAccount
      */
-    public function setTransferMethodCountry($transferMethodCountry)
-    {
+    public function setTransferMethodCountry($transferMethodCountry) {
         $this->transferMethodCountry = $transferMethodCountry;
         return $this;
     }
@@ -128,8 +118,7 @@ class VenmoAccount extends BaseModel
      *
      * @return string
      */
-    public function getTransferMethodCurrency()
-    {
+    public function getTransferMethodCurrency() {
         return $this->transferMethodCurrency;
     }
 
@@ -139,8 +128,7 @@ class VenmoAccount extends BaseModel
      * @param string $transferMethodCurrency
      * @return VenmoAccount
      */
-    public function setTransferMethodCurrency($transferMethodCurrency)
-    {
+    public function setTransferMethodCurrency($transferMethodCurrency) {
         $this->transferMethodCurrency = $transferMethodCurrency;
         return $this;
     }
@@ -150,8 +138,7 @@ class VenmoAccount extends BaseModel
      *
      * @return string
      */
-    public function getIsDefaultTransferMethod()
-    {
+    public function getIsDefaultTransferMethod() {
         return $this->isDefaultTransferMethod;
     }
 
@@ -161,8 +148,7 @@ class VenmoAccount extends BaseModel
      * @param string $isDefaultTransferMethod
      * @return VenmoAccount
      */
-    public function setIsDefaultTransferMethod($isDefaultTransferMethod)
-    {
+    public function setIsDefaultTransferMethod($isDefaultTransferMethod) {
         $this->isDefaultTransferMethod = $isDefaultTransferMethod;
         return $this;
     }
@@ -172,8 +158,7 @@ class VenmoAccount extends BaseModel
      *
      * @return string
      */
-    public function getAccountId()
-    {
+    public function getAccountId() {
         return $this->accountId;
     }
 
@@ -183,8 +168,7 @@ class VenmoAccount extends BaseModel
      * @param string $accountId
      * @return VenmoAccount
      */
-    public function setAccountId($accountId)
-    {
+    public function setAccountId($accountId) {
         $this->accountId = $accountId;
         return $this;
     }

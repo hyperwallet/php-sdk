@@ -8,8 +8,7 @@ namespace Hyperwallet\Model;
  *
  * @package Hyperwallet\Model
  */
-class VenmoAccountStatusTransition extends StatusTransition
-{
+class VenmoAccountStatusTransition extends StatusTransition {
     const TRANSITION_DE_ACTIVATED = 'DE_ACTIVATED';
 
     /**
@@ -17,8 +16,7 @@ class VenmoAccountStatusTransition extends StatusTransition
      *
      * @param string[] $properties The default properties
      */
-    public function __construct(array $properties = array())
-    {
+    public function __construct(array $properties = array()) {
         parent::__construct($properties);
     }
 
