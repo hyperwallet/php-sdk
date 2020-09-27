@@ -4296,7 +4296,7 @@ Hyperwallet client = new Hyperwallet("test-username", "test-password");
             array());
         }
 
-/*
+
     public function testListTransferRefunds_noParameters(){
 
         $userName = "test-username";
@@ -4309,16 +4309,16 @@ Hyperwallet client = new Hyperwallet("test-username", "test-password");
 
         \Phake::when($apiClientMock)->doGet('/rest/v3/transfers/{transfer-token}/refunds',
             array('transfer-token' => $transferToken),
-            array())->thenReturn(array('refundToken' => $refundToken, array('sourceCurrency'=>$sourceCurrency)));
+            array())->thenReturn(array('count' => 1, 'data' => array(array('refundToken' => $refundToken, array('sourceCurrency' => $sourceCurrency)))));
+
         // Run test
         $transferRefundList = $client->listTransferRefunds($transferToken);
-        $this->assertEquals(array('sourceCurrency' => $sourceCurrency), $transferRefundList[0]->getProperties());
+        //print_r($transferRefundList);
+        $this->assertEquals(array('sourceCurrency' => $sourceCurrency), $transferRefundList[0]->getProperties()[0]);
+        //'refundToken' => $refundToken)
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/transfers/{transfer-token}/refunds',
             array('transfer-token' => $transferToken),
             array());
         }
-
-*/
-
 }

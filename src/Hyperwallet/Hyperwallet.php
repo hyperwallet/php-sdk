@@ -524,12 +524,11 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function listTransferRefunds($transferToken, $options = array()) {
+    public function listTransferRefunds($transferToken, array $options = array() ) {
         if (empty($transferToken)) {
             throw new HyperwalletArgumentException('transferToken is required!');
         }
-
-        $body = $this->client->doGet('/rest/v3/transfers/{transfer-token}/refunds/', array('transfer-token' => $transferToken), $options);
+        $body = $this->client->doGet('/rest/v3/transfers/{transfer-token}/refunds', array('transfer-token' => $transferToken), $options);
         return new ListResponse($body, function($entry) {
             return new TransferRefund($entry);
         });
