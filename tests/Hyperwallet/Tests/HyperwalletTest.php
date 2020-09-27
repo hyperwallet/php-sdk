@@ -6,7 +6,6 @@ use GuzzleHttp\Psr7\Uri;
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletArgumentException;
 use Hyperwallet\Exception\HyperwalletException;
-use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Hyperwallet;
 use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
@@ -25,6 +24,9 @@ use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\User;
+use Hyperwallet\Model\VenmoAccount;
+use Hyperwallet\Model\VenmoAccountStatusTransition;
+use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
@@ -854,28 +856,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doGet('/rest/v3/transfers', array(), array('test' => 'value'));
     }
 
-
-
-    public function testCreateTransferRefund_allParameters() {
-        // Setup
-        $client = new Hyperwallet('test-username', 'test-password');
-        $apiClientMock = $this->createAndInjectApiClientMock($client);
-        $transferRefund = new TransferRefund();
-        $transferRefund->setToken('test-token');
-        $transferRefund->setClientRefundId('test-client-refund-id');
-        $transferRefund->setNotes('test-notes');
-        $transferRefund->setMemo('test-memo');
-
-        \Phake::when($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/refunds', array(), $transferRefund, array())->thenReturn(array('token' => 'test-token'));
-
-        // Run test
-        $newTransferRefund = $client->createTransferRefund($transferRefund);
-        $this->assertNotNull($newTransferRefund);
-        $this->assertEquals(array('token' => 'test-token'), $newTransferRefund->getProperties());
-
-        // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/refunds', array(), $transferRefund, array());
-    }
 
 
 
@@ -3575,4 +3555,770 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             'unlockPrepaidCard' => array('unlockPrepaidCard', PrepaidCardStatusTransition::TRANSITION_UNLOCKED)
         );
     }
+
+    //--------------------------------------
+    // Venmo Accounts
+    //--------------------------------------
+
+    public function testCreateVenmoAccount_noUserToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $venmoAccount = new VenmoAccount();
+
+        try {
+            $client->createVenmoAccount('', $venmoAccount);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateVenmoAccount_noTransferMethodCountry()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $venmoAccount = new VenmoAccount();
+
+        try {
+            $client->createVenmoAccount('test-user-token', $venmoAccount);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('transferMethodCountry is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateVenmoAccount_noTransferMethodCurrency()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $venmoAccount = new VenmoAccount();
+        $venmoAccount->setTransferMethodCountry('test-transferMethodCountry');
+
+        try {
+            $client->createVenmoAccount('test-user-token', $venmoAccount);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('transferMethodCurrency is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateVenmoAccount_noAccountId()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $venmoAccount = new VenmoAccount();
+        $venmoAccount->setTransferMethodCountry('test-transferMethodCountry');
+        $venmoAccount->setTransferMethodCurrency('test-transferMethodCurrency');
+
+        try {
+            $client->createVenmoAccount('test-user-token', $venmoAccount);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Venmo account is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateVenmoAccount_allParameters()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $venmoAccount = new VenmoAccount();
+        $venmoAccount->setTransferMethodCountry('test-transferMethodCountry');
+        $venmoAccount->setTransferMethodCurrency('test-transferMethodCurrency');
+        $venmoAccount->setAccountId('account-id');
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), $venmoAccount, array())->thenReturn(array('token' => 'test-token'));
+
+        // Run test
+        $newVenmoAccount = $client->createVenmoAccount('test-user-token', $venmoAccount);
+        $this->assertNotNull($newVenmoAccount);
+        $this->assertEquals(array('token' => 'test-token'), $newVenmoAccount->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), $venmoAccount, array());
+    }
+
+    public function testGetVenmoAccount_noUserToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->getVenmoAccount('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetVenmoAccount_noVenmoAccountToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->getVenmoAccount('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('venmoAccountToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetVenmoAccount_allParameters()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array())->thenReturn(array('token' => 'test-token'));
+
+        // Run test
+        $venmoAccount = $client->getVenmoAccount('test-user-token', 'test-venmo-account-token');
+        $this->assertNotNull($venmoAccount);
+        $this->assertEquals(array('token' => 'test-token'), $venmoAccount->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array());
+    }
+
+    public function testUpdateVenmoAccount_noVenmoAccountToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->updateVenmoAccount('test-user-token', new VenmoAccount());
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('transfer method token is required!', $e->getMessage());
+        }
+    }
+
+    public function testUpdateVenmoAccount_allParameters()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $venmoAcc = new VenmoAccount(array('token' => 'test-venmo-account-token'));
+
+        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-venmo-account-token', 'transfer-method-name' => 'venmo-accounts'), $venmoAcc, array())->thenReturn(array('token' => 'test-token'));
+
+        // Run test
+        $venmoAccount = $client->updateVenmoAccount('test-user-token', $venmoAcc);
+        $this->assertNotNull($venmoAccount);
+        $this->assertEquals(array('token' => 'test-token'), $venmoAccount->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array('user-token' => 'test-user-token', 'transfer-method-token' => 'test-venmo-account-token', 'transfer-method-name' => 'venmo-accounts'), $venmoAcc, array());
+    }
+
+    public function testListVenmoAccounts_noUserToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+
+        try {
+            $client->listVenmoAccounts('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListVenmoAccounts_noParameters()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), array())->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $venmoAccountsList = $client->listVenmoAccounts('test-user-token');
+        $this->assertNotNull($venmoAccountsList);
+        $this->assertCount(0, $venmoAccountsList);
+        $this->assertEquals(1, $venmoAccountsList->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), array());
+    }
+
+    public function testListVenmoAccounts_withParameters()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('count' => 1, 'data' => array(array('token' => 'test-token'))));
+
+        // Run test
+        $venmoAccountsList = $client->listVenmoAccounts('test-user-token', array('test' => 'value'));
+        $this->assertNotNull($venmoAccountsList);
+        $this->assertCount(1, $venmoAccountsList);
+        $this->assertEquals(1, $venmoAccountsList->getCount());
+
+        $this->assertEquals(array('token' => 'test-token'), $venmoAccountsList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), array('test' => 'value'));
+    }
+
+    public function testDeactivateVenmoAccount_noUserToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+
+        // Run test
+        try {
+            $client->deactivateVenmoAccount('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testDeactivateVenmoAccount_noVenmoAccountToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+
+        // Run test
+        try {
+            $client->deactivateVenmoAccount('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('venmoAccountToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testDeactivateVenmoAccount_allParameters()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        $statusTransition = new VenmoAccountStatusTransition();
+        $statusTransition->setTransition(VenmoAccountStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), $statusTransition, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $newStatusTransition = $client->deactivateVenmoAccount('test-user-token', 'test-venmo-account-token');
+        $this->assertNotNull($newStatusTransition);
+        $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), $statusTransition, array());
+    }
+
+    public function testCreateVenmoAccountStatusTransition_noVenmoAccountToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $statusTransition = new VenmoAccountStatusTransition();
+
+        try {
+            $client->createVenmoAccountStatusTransition('test-user-token', '', $statusTransition);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('venmoAccountToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateVenmoAccountStatusTransition_allParameters()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $statusTransition = new VenmoAccountStatusTransition(array('transition' => 'test'));
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), $statusTransition, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $newStatusTransition = $client->createVenmoAccountStatusTransition('test-user-token', 'test-venmo-account-token', $statusTransition);
+        $this->assertNotNull($newStatusTransition);
+        $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), $statusTransition, array());
+    }
+
+    public function testGetVenmoAccountStatusTransition_noUserToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getVenmoAccountStatusTransition('', '', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetVenmoAccountStatusTransition_noVenmoAccountToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getVenmoAccountStatusTransition('test-user-token', '', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('venmoAccountToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetVenmoAccountStatusTransition_noStatusTransitionToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getVenmoAccountStatusTransition('test-user-token', 'test-venmo-account-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('statusTransitionToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetVenmoAccountStatusTransition_allParameters()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions/{status-transition-token}', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token', 'status-transition-token' => 'test-status-transition-token'), array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $statusTransition = $client->getVenmoAccountStatusTransition('test-user-token', 'test-venmo-account-token', 'test-status-transition-token');
+        $this->assertNotNull($statusTransition);
+        $this->assertEquals(array('success' => 'true'), $statusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions/{status-transition-token}', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token', 'status-transition-token' => 'test-status-transition-token'), array());
+    }
+
+    public function testListVenmoAccountStatusTransitions_noUserToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listVenmoAccountStatusTransitions('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListVenmoAccountStatusTransitions_noVenmoAccountToken()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listVenmoAccountStatusTransitions('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('venmoAccountToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListVenmoAccountStatusTransitions_noParameters()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array())->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $statusTransitionList = $client->listVenmoAccountStatusTransitions('test-user-token', 'test-venmo-account-token');
+        $this->assertNotNull($statusTransitionList);
+        $this->assertCount(0, $statusTransitionList);
+        $this->assertEquals(1, $statusTransitionList->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array());
+    }
+
+    public function testListVenmoAccountStatusTransitions_withParameters()
+    {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array('test' => 'value'))->thenReturn(array('count' => 1, 'data' => array(array('success' => 'true'))));
+
+        // Run test
+        $statusTransitionList = $client->listVenmoAccountStatusTransitions('test-user-token', 'test-venmo-account-token', array('test' => 'value'));
+        $this->assertNotNull($statusTransitionList);
+        $this->assertCount(1, $statusTransitionList);
+        $this->assertEquals(1, $statusTransitionList->getCount());
+
+        $this->assertEquals(array('success' => 'true'), $statusTransitionList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array('test' => 'value'));
+    }
+
+
+    /*
+        @Test -DONE
+        public void testCreateTransferRefund_successful() throws Exception {
+        String clientRefundId = "clientRefundId";
+            double sourceAmount = 20.0;
+            String notes = "notes";
+            String memo = "memo";
+
+            HyperwalletTransferRefund transferRefund = new HyperwalletTransferRefund();
+            transferRefund.setClientRefundId(clientRefundId);
+            transferRefund.setSourceAmount(sourceAmount);
+            transferRefund.setNotes(notes);
+            transferRefund.setMemo(memo);
+
+            HyperwalletTransferRefund transferRefundResponse = new HyperwalletTransferRefund();
+
+            Hyperwallet client = new Hyperwallet("test-username", "test-password");
+            HyperwalletApiClient mockApiClient = createAndInjectHyperwalletApiClientMock(client);
+
+            Mockito.when(mockApiClient.post(Mockito.anyString(), Mockito.anyObject(), Mockito.any(Class.class))).thenReturn(transferRefundResponse);
+
+            String transferToken = "transferToken";
+            HyperwalletTransferRefund resp = client.createTransferRefund(transferToken, transferRefund);
+            assertThat(resp, is(equalTo(transferRefundResponse)));
+
+            ArgumentCaptor<HyperwalletTransferRefund> argument = ArgumentCaptor.forClass(HyperwalletTransferRefund.class);
+            Mockito.verify(mockApiClient).post(Mockito.eq("https://api.sandbox.hyperwallet.com/rest/v4/transfers/" + transferToken + "/refunds"),
+                argument.capture(), Mockito.eq(transferRefund.getClass()));
+
+            HyperwalletTransferRefund apiTransfer = argument.getValue();
+            assertThat(apiTransfer, is(notNullValue()));
+            assertThat(apiTransfer.getClientRefundId(), is(equalTo(clientRefundId)));
+            assertThat(apiTransfer.getSourceAmount(), is(equalTo(sourceAmount)));
+            assertThat(apiTransfer.getNotes(), is(equalTo(notes)));
+            assertThat(apiTransfer.getMemo(), is(equalTo(memo)));
+            assertThat(apiTransfer.getCreatedOn(), is(nullValue()));
+            assertThat(apiTransfer.getStatus(), is(nullValue()));
+        }
+
+        @Test-Done
+        public void testGetTransferRefund_noTransferToken() {
+    Hyperwallet client = new Hyperwallet("test-username", "test-password");
+            try {
+                client.getTransferRefund(null, "transferRefundToken");
+                fail("Expect HyperwalletException");
+            } catch (HyperwalletException e) {
+        HyperwalletException expectedException = new HyperwalletException("Transfer token is required");
+                checkHyperwalletException(e, expectedException);
+            }
+        }
+
+        @Test-Done
+        public void testGetTransferRefund_noTransferRefundToken() {
+    Hyperwallet client = new Hyperwallet("test-username", "test-password");
+            try {
+                client.getTransferRefund("transferToken", null);
+                fail("Expect HyperwalletException");
+            } catch (HyperwalletException e) {
+        HyperwalletException expectedException = new HyperwalletException("Transfer Refund token is required");
+                checkHyperwalletException(e, expectedException);
+            }
+        }
+
+        @Test-Done
+        public void testGetTransferRefund_successful() throws Exception {
+        HyperwalletTransferRefund transferRefund = new HyperwalletTransferRefund();
+
+            Hyperwallet client = new Hyperwallet("test-username", "test-password");
+            HyperwalletApiClient mockApiClient = createAndInjectHyperwalletApiClientMock(client);
+
+            Mockito.when(mockApiClient.get(Mockito.anyString(), Mockito.any(Class.class))).thenReturn(transferRefund);
+
+            HyperwalletTransferRefund resp = client.getTransferRefund("transferToken", "transferRefundToken");
+            assertThat(resp, is(equalTo(transferRefund)));
+
+            Mockito.verify(mockApiClient).get("https://api.sandbox.hyperwallet.com/rest/v4/transfers/transferToken/refunds/transferRefundToken",
+                transferRefund.getClass());
+        }
+
+        @Test-WIP
+        public void testListTransferRefunds_noParameters() throws Exception {
+        HyperwalletList<HyperwalletTransferRefund> response = new HyperwalletList<>();
+
+            Hyperwallet client = new Hyperwallet("test-username", "test-password");
+            HyperwalletApiClient mockApiClient = createAndInjectHyperwalletApiClientMock(client);
+
+            Mockito.when(mockApiClient.get(Mockito.anyString(), Mockito.any(TypeReference.class))).thenReturn(response);
+
+            String transferToken = "transferToken";
+            HyperwalletList<HyperwalletTransferRefund> resp = client.listTransferRefunds(transferToken, null);
+            assertThat(resp, is(equalTo(response)));
+
+            Mockito.verify(mockApiClient).get(Mockito.eq("https://api.sandbox.hyperwallet.com/rest/v4/transfers/" + transferToken + "/refunds"),
+                Mockito.any(TypeReference.class));
+        }
+
+        @Test
+        public void testListTransferRefunds_withAllParameters() throws Exception {
+        HyperwalletList<HyperwalletTransferRefund> response = new HyperwalletList<>();
+
+            Hyperwallet client = new Hyperwallet("test-username", "test-password");
+            HyperwalletApiClient mockApiClient = createAndInjectHyperwalletApiClientMock(client);
+
+            HyperwalletTransferRefundListOptions options = new HyperwalletTransferRefundListOptions();
+            options
+            .clientRefundId("clientRefundId")
+            .sourceToken("sourceToken")
+            .status("COMPLETED")
+            .sortBy("sortByField")
+            .limit(10)
+            .createdAfter(convertStringToDate("2016-06-29T17:58:26Z"))
+            .createdBefore(convertStringToDate("2016-06-29T17:58:26Z"));
+
+            Mockito.when(mockApiClient.get(Mockito.anyString(), Mockito.any(TypeReference.class))).thenReturn(response);
+
+            String transferToken = "transferToken";
+            HyperwalletList<HyperwalletTransferRefund> resp = client.listTransferRefunds(transferToken, options);
+            assertThat(resp, is(equalTo(response)));
+
+            Mockito.verify(mockApiClient).get(Mockito.eq("https://api.sandbox.hyperwallet.com/rest/v4/transfers/" + transferToken
+                    + "/refunds?createdAfter=2016-06-29T17:58:26Z&createdBefore=2016-06-29T17:58:26Z&sortBy=sortByField&limit=10"
+                    + "&clientRefundId=clientRefundId&sourceToken=sourceToken&status=COMPLETED"), Mockito.any(TypeReference.class));
+        }
+
+        @Test
+        public void testListTransferRefunds_withSomeParameters() throws Exception {
+        HyperwalletList<HyperwalletTransferRefund> response = new HyperwalletList<>();
+
+            Hyperwallet client = new Hyperwallet("test-username", "test-password");
+            HyperwalletApiClient mockApiClient = createAndInjectHyperwalletApiClientMock(client);
+
+            HyperwalletTransferRefundListOptions options = new HyperwalletTransferRefundListOptions();
+            options
+            .sourceToken("test-source-token")
+            .sortBy("test-sort-by")
+            .createdBefore(convertStringToDate("2016-06-29T17:58:26Z"));
+
+            Mockito.when(mockApiClient.get(Mockito.anyString(), Mockito.any(TypeReference.class))).thenReturn(response);
+
+            String transferToken = "transferToken";
+            HyperwalletList<HyperwalletTransferRefund> resp = client.listTransferRefunds(transferToken, options);
+            assertThat(resp, is(equalTo(response)));
+
+            Mockito.verify(mockApiClient).get(Mockito.eq("https://api.sandbox.hyperwallet.com/rest/v4/transfers/" + transferToken + "/refunds"
+                    + "?createdBefore=2016-06-29T17:58:26Z&sortBy=test-sort-by&sourceToken=test-source-token"),
+                Mockito.any(TypeReference.class));
+        }
+
+        @Test
+        public void testListTransferRefunds_noTransferToken() {
+    Hyperwallet client = new Hyperwallet("test-username", "test-password");
+            try {
+                client.listTransferRefunds(null, new HyperwalletTransferRefundListOptions());
+                fail("Expect HyperwalletException");
+            } catch (HyperwalletException e) {
+        HyperwalletException expectedException = new HyperwalletException("Transfer token is required");
+                checkHyperwalletException(e, expectedException);
+            }
+        }
+
+
+
+
+
+        public function testGetTransferRefund_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $transferRefund = new TransferRefund();
+        $transferRefund->setToken('test-token');
+        $transferRefund->setClientRefundId('test-client-refund-id');
+        $transferRefund->setNotes('test-notes');
+        $transferRefund->setMemo('test-memo');
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/transfers/{transfer-token}/refunds/{refund-token}', array(), $transferRefund, array())->thenReturn(array('token' => 'test-token'));
+
+        // Run test
+        $newTransferRefund = $client->createTransferRefund($transferRefund);
+        $this->assertNotNull($newTransferRefund);
+        $this->assertEquals(array('token' => 'test-token'), $newTransferRefund->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/transfers/{transfer-token}/refunds/{refund-token}', array(), $transferRefund, array());
+    }
+
+
+
+
+    */
+
+
+
+
+/*
+
+@Test
+    public void testCreateTransferRefund_noTransferRefund() {
+        Hyperwallet client = new Hyperwallet("test-username", "test-password");
+        try {
+            client.createTransferRefund("transferToken", null);
+            fail("Expect HyperwalletException");
+        } catch (HyperwalletException e) {
+    HyperwalletException expectedException = new HyperwalletException("Transfer Refund is required");
+            checkHyperwalletException(e, expectedException);
+        }
+    }
+
+    @Test
+    public void testCreateTransferRefund_noTransferToken() {
+Hyperwallet client = new Hyperwallet("test-username", "test-password");
+        try {
+            client.createTransferRefund(null, new HyperwalletTransferRefund());
+            fail("Expect HyperwalletException");
+        } catch (HyperwalletException e) {
+    HyperwalletException expectedException = new HyperwalletException("Transfer token is required");
+            checkHyperwalletException(e, expectedException);
+        }
+    }
+
+    @Test
+    public void testCreateTransferRefund_noClientRefundId() {
+Hyperwallet client = new Hyperwallet("test-username", "test-password");
+        try {
+            client.createTransferRefund("transferToken", new HyperwalletTransferRefund());
+            fail("Expect HyperwalletException");
+        } catch (HyperwalletException e) {
+    HyperwalletException expectedException = new HyperwalletException("ClientRefundId is required");
+            checkHyperwalletException(e, expectedException);
+        }
+    }
+
+*/
+    public function testCreateTransferRefund_successful() {
+    // Setup
+        $userName = "test-username";
+        $password = "test-password";
+        $clientRefundId = 6712348070812;
+        $sourceAmount = 20.0;
+        $notes = "notes";
+        $memo = "memo";
+
+        $transferRefund = new TransferRefund();
+        $transferRefund->setClientRefundId($clientRefundId);
+        $transferRefund->setSourceAmount($sourceAmount);
+        $transferRefund->setNotes($notes);
+        $transferRefund->setMemo($memo);
+        $transferToken = "transferToken";
+        $client = new Hyperwallet($userName, $password);
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $transferRefundResponse = new TransferRefund();
+
+        \Phake::when($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/refunds',
+            array('transfer-token' => $transferToken), $transferRefund, array())->thenReturn(array('token' => 'test-token'));
+
+        // Run test
+        $newTransferRefund = $client->createTransferRefund($transferToken, $transferRefund);
+        $this->assertNotNull($newTransferRefund);
+        $this->assertEquals(array('token' => 'test-token'), $newTransferRefund->getProperties());
+        $this->assertEquals($transferRefund->getClientRefundId(), $clientRefundId);
+        $this->assertEquals($transferRefund->getSourceAmount(),$sourceAmount);
+        $this->assertEquals($transferRefund->getNotes(),$notes);
+        $this->assertEquals($transferRefund->getMemo(), $memo);
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/refunds',
+            array('transfer-token' => $transferToken), $transferRefund, array());
+    }
+
+
+    public function testGetTransferRefund_noTransferToken() {
+        $userName = "test-username";
+        $password = "test-password";
+            $client = new Hyperwallet($userName, $password);
+
+            try {
+                $client->getTransferRefund(null, "transferRefundToken");
+                $this->fail('HyperwalletArgumentException expected');
+            } catch (HyperwalletArgumentException $e) {
+                $this->assertEquals('Transfer Token is required!', $e->getMessage());
+            }
+
+        }
+
+    public function testGetTransferRefund_noTransferRefundToken() {
+        $userName = "test-username";
+        $password = "test-password";
+        $transferToken = "trf-85182390-0d3d-41a2-a749-cb9e9927b3af";
+        $client = new Hyperwallet($userName, $password);
+        try {
+            $client->getTransferRefund($transferToken, null);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Refund Token is required!', $e->getMessage());
+        }
+
+    }
+
+    public function testGetTransferRefund_successful(){
+        $userName = "test-username";
+        $password = "test-password";
+        $client = new Hyperwallet($userName, $password);
+        $transferToken = "trf-85182390-0d3d-41a2-a749-cb9e9927b3af";
+        $refundToken = "trd-3be1107e-54dc-415c-a252-c41d0adcb10a";
+
+       // $transferRefund = new TransferRefund();
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        \Phake::when($apiClientMock)->doGet('/rest/v3/transfers/{transfer-token}/refunds/{refund-token}',
+            array('transfer-token' => $transferToken, 'refund-token' => $refundToken),
+            array())->thenReturn(array('token' => $refundToken));
+
+        // Run test
+        try {
+            $transferRefund = $client->getTransferRefund($transferToken, $refundToken);
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('You need to specify transfer token and refund Token!', $e->getMessage());
+        }
+        $this->assertNotNull($transferRefund);
+        $this->assertEquals(array('token' => $refundToken), $transferRefund->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/transfers/{transfer-token}/refunds/{refund-token}',
+            array('transfer-token' => $transferToken, 'refund-token' => $refundToken),
+            array());
+        }
+
+/*
+    public function testListTransferRefunds_noParameters(){
+
+        $userName = "test-username";
+        $password = "test-password";
+        $sourceCurrency = "CAD";
+        $transferToken = "trf-85182390-0d3d-41a2-a749-cb9e9927b3af";
+        $refundToken = "trd-3be1107e-54dc-415c-a252-c41d0adcb10a";
+        $client = new Hyperwallet($userName, $password);
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/transfers/{transfer-token}/refunds',
+            array('transfer-token' => $transferToken),
+            array())->thenReturn(array('refundToken' => $refundToken, array('sourceCurrency'=>$sourceCurrency)));
+        // Run test
+        $transferRefundList = $client->listTransferRefunds($transferToken);
+        $this->assertEquals(array('sourceCurrency' => $sourceCurrency), $transferRefundList[0]->getProperties());
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/transfers/{transfer-token}/refunds',
+            array('transfer-token' => $transferToken),
+            array());
+        }
+
+*/
+
 }

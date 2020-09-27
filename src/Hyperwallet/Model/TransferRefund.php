@@ -4,7 +4,7 @@ namespace Hyperwallet\Model;
 /**
  * Represents a V3 Transfer
  *
- * @property string $token The transfer token
+ * @property string $token The transfer refund token
  * @property string $status The transfer status
  * @property string $clientRefundId The client transfer id
  * @property string $sourceToken The source token
@@ -21,6 +21,7 @@ namespace Hyperwallet\Model;
  *
  * @package Hyperwallet\Model
  */
+
 
 class TransferRefund extends BaseModel {
 

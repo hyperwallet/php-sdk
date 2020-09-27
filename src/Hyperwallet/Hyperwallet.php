@@ -2,20 +2,21 @@
 namespace Hyperwallet;
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletArgumentException;
+use Hyperwallet\Model\AuthenticationToken;
 use Hyperwallet\Model\Balance;
 use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
 use Hyperwallet\Model\IProgramAware;
-use Hyperwallet\Model\Payment;
-use Hyperwallet\Model\PaymentStatusTransition;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
 use Hyperwallet\Model\PayPalAccountStatusTransition;
 use Hyperwallet\Model\Transfer;
 use Hyperwallet\Model\TransferRefund;
 use Hyperwallet\Model\TransferStatusTransition;
+use Hyperwallet\Model\Payment;
+use Hyperwallet\Model\PaymentStatusTransition;
 use Hyperwallet\Model\PayPalAccount;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
@@ -25,8 +26,9 @@ use Hyperwallet\Model\Receipt;
 use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\TransferMethodConfiguration;
 use Hyperwallet\Model\User;
-use Hyperwallet\Model\AuthenticationToken;
 use Hyperwallet\Model\UserStatusTransition;
+use Hyperwallet\Model\VenmoAccount;
+use Hyperwallet\Model\VenmoAccountStatusTransition;
 use Hyperwallet\Model\WebhookNotification;
 use Hyperwallet\Response\ListResponse;
 use Hyperwallet\Util\ApiClient;
@@ -212,7 +214,7 @@ class Hyperwallet {
     //--------------------------------------
     // Paper Checks
     //--------------------------------------
-    
+
     /**
      * Create a paper check
      *
@@ -227,10 +229,11 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        $body = $this->client->doPost('/rest/v3/users/{user-token}/paper-checks', array('user-token' => $userToken), $paperCheck, array());
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/paper-checks',
+            array('user-token' => $userToken), $paperCheck, array());
         return new PaperCheck($body);
     }
-    
+
     /**
      * Get a paper check
      *
@@ -254,7 +257,7 @@ class Hyperwallet {
         ), array());
         return new PaperCheck($body);
     }
-    
+
     /**
      * Update a paper check
      *
@@ -269,7 +272,7 @@ class Hyperwallet {
         $body = $this->updateTransferMethod($userToken, $paperCheck, 'paper-checks');
         return new PaperCheck($body);
     }
-    
+
     /**
      * List all paper checks
      *
@@ -289,7 +292,7 @@ class Hyperwallet {
             return new PaperCheck($entry);
         });
     }
-    
+
     /**
      * Deactivate a paper check
      *
@@ -300,13 +303,14 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function deactivatePaperCheck($userToken, $paperCheckToken) {
+    public function deactivatePaperCheck($userToken, $paperCheckToken)
+    {
         $transition = new PaperCheckStatusTransition();
         $transition->setTransition(PaperCheckStatusTransition::TRANSITION_DE_ACTIVATED);
 
         return $this->createPaperCheckStatusTransition($userToken, $paperCheckToken, $transition);
-    } 
-    
+    }
+
     /**
      * Create a paper check status transition
      *
@@ -332,7 +336,7 @@ class Hyperwallet {
         ), $transition, array());
         return new PaperCheckStatusTransition($body);
     }
-    
+
     /**
      * Get a paper check status transition
      *
@@ -427,15 +431,41 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function createTransferRefund(TransferRefund $transferRefund) {
-        if (empty($transferRefund->getToken())) {
+
+    /*
+     *     public HyperwalletTransferRefund createTransferRefund(String transferToken, HyperwalletTransferRefund transferRefund) {
+        if (transferRefund == null) {
+            throw new HyperwalletException("Transfer Refund is required");
+        }
+        if (StringUtils.isEmpty(transferToken)) {
+            throw new HyperwalletException("Transfer token is required");
+        }
+        if (StringUtils.isEmpty(transferRefund.getClientRefundId())) {
+            throw new HyperwalletException("ClientRefundId is required");
+        }
+
+        transferRefund = copy(transferRefund);
+        transferRefund.clearStatus();
+        transferRefund.clearCreatedOn();
+        return apiClient.post(url + "/transfers/" + transferToken + "/refunds", transferRefund, HyperwalletTransferRefund.class);
+    }
+     *
+     *
+     */
+
+
+    public function createTransferRefund($transferToken, TransferRefund $transferRefund) {
+        if (empty($transferRefund)) {
+            throw new HyperwalletArgumentException('transferRefund is required!');
+        }
+        if (empty($transferToken)) {
             throw new HyperwalletArgumentException('transferToken is required!');
         }
         if (empty($transferRefund->getClientRefundId())) {
             throw new HyperwalletArgumentException('clientRefundId is required!');
         }
-
-        $body = $this->client->doPost('/rest/v3/transfers/{transfer-token}/refunds', array(), $transferRefund, array());
+        $body = $this->client->doPost('/rest/v3/transfers/{transfer-token}/refunds',
+            array('transfer-token' => $transferToken),$transferRefund, array());
         return new TransferRefund($body);
     }
 
@@ -457,6 +487,20 @@ class Hyperwallet {
         return new Transfer($body);
     }
 
+    public function getTransferRefund($transferToken,$refundToken) {
+        if (empty($transferToken)) {
+            throw new HyperwalletArgumentException('Transfer Token is required!');
+        }
+        if (empty($refundToken)) {
+            throw new HyperwalletArgumentException('Refund Token is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/transfers/{transfer-token}/refunds/{refund-token}', array(
+                'transfer-token' => $transferToken,
+                'refund-token'=>$refundToken),
+            array());
+        return new TransferRefund($body);
+    }
+
     /**
      * List all transfers
      *
@@ -471,6 +515,27 @@ class Hyperwallet {
             return new Transfer($entry);
         });
     }
+
+    /**
+     * List all transfers
+     *
+     * @param array $options The query parameters to send
+     * @return ListResponse
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listTransferRefunds($transferToken, $options = array()) {
+        if (empty($transferToken)) {
+            throw new HyperwalletArgumentException('transferToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/transfers/{transfer-token}/refunds/', array('transfer-token' => $transferToken), $options);
+        return new ListResponse($body, function($entry) {
+            return new TransferRefund($entry);
+        });
+    }
+
+
 
     /**
      * Create a transfer status transition
@@ -686,7 +751,7 @@ class Hyperwallet {
             return new PayPalAccountStatusTransition($entry);
         });
     }
-    
+
     //--------------------------------------
     // Prepaid Cards
     //--------------------------------------
@@ -1823,6 +1888,204 @@ class Hyperwallet {
                     'transfer-method-token' => $transferMethod->getToken(),
                     'transfer-method-name' => $transferMethodName,
                 ), $transferMethod, array());
+    }
+
+    //--------------------------------------
+    // Venmo Accounts
+    //--------------------------------------
+
+    /**
+     * Create a Venmo account
+     *
+     * @param string $userToken user token
+     * @param VenmoAccount $venmoAccount Venmo account data
+     * @return VenmoAccount
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createVenmoAccount($userToken, VenmoAccount $venmoAccount)
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($venmoAccount->getTransferMethodCountry())) {
+            throw new HyperwalletArgumentException('transferMethodCountry is required!');
+        }
+        if (empty($venmoAccount->getTransferMethodCurrency())) {
+            throw new HyperwalletArgumentException('transferMethodCurrency is required!');
+        }
+        if (empty($venmoAccount->getAccountId())) {
+            throw new HyperwalletArgumentException('Venmo account is required!');
+        }
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/venmo-accounts', array('user-token' => $userToken), $venmoAccount, array());
+        return new VenmoAccount($body);
+    }
+
+    /**
+     * Get a Venmo account
+     *
+     * @param string $userToken user token
+     * @param string $venmoAccountToken Venmo account token
+     * @return VenmoAccount
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getVenmoAccount($userToken, $venmoAccountToken)
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($venmoAccountToken)) {
+            throw new HyperwalletArgumentException('venmoAccountToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}', array(
+            'user-token' => $userToken,
+            'venmo-account-token' => $venmoAccountToken
+        ), array());
+        return new VenmoAccount($body);
+    }
+
+    /**
+     * Update Venmo account
+     *
+     * @param string $userToken user token
+     * @param VenmoAccount $venmoAccount Venmo account data
+     * @return VenmoAccount
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function updateVenmoAccount($userToken, VenmoAccount $venmoAccount)
+    {
+        $body = $this->updateTransferMethod($userToken, $venmoAccount, 'venmo-accounts');
+        return new VenmoAccount($body);
+    }
+
+    /**
+     * List all Venmo accounts
+     *
+     * @param string $userToken user token
+     * @param array $options The query parameters to send
+     * @return ListResponse
+     *
+     * @throws HyperwalletApiException
+     */
+    public function listVenmoAccounts($userToken, $options = array())
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/venmo-accounts', array('user-token' => $userToken), $options);
+        return new ListResponse($body, function ($entry) {
+            return new VenmoAccount($entry);
+        });
+    }
+
+    /**
+     * Deactivate a Venmo account
+     *
+     * @param string $userToken user token
+     * @param string $venmoAccountToken Venmo account token
+     * @return VenmoAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function deactivateVenmoAccount($userToken, $venmoAccountToken)
+    {
+        $transition = new VenmoAccountStatusTransition();
+        $transition->setTransition(VenmoAccountStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        return $this->createVenmoAccountStatusTransition($userToken, $venmoAccountToken, $transition);
+    }
+
+    /**
+     * Create a Venmo account status transition
+     *
+     * @param string $userToken user token
+     * @param string $venmoAccountToken Venmo account token
+     * @param VenmoAccountStatusTransition $transition status transition
+     * @return VenmoAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createVenmoAccountStatusTransition($userToken, $venmoAccountToken, VenmoAccountStatusTransition $transition)
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($venmoAccountToken)) {
+            throw new HyperwalletArgumentException('venmoAccountToken is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'venmo-account-token' => $venmoAccountToken
+        ), $transition, array());
+        return new VenmoAccountStatusTransition($body);
+    }
+
+    /**
+     * Get a Venmo account status transition
+     *
+     * @param string $userToken user token
+     * @param string $venmoAccountToken Venmo account token
+     * @param string $statusTransitionToken status transition token
+     * @return VenmoAccountStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getVenmoAccountStatusTransition($userToken, $venmoAccountToken, $statusTransitionToken)
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($venmoAccountToken)) {
+            throw new HyperwalletArgumentException('venmoAccountToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'venmo-account-token' => $venmoAccountToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new VenmoAccountStatusTransition($body);
+    }
+
+    /**
+     * List all Venmo account status transitions
+     *
+     * @param string $userToken user token
+     * @param string $venmoAccountToken Venmo account token
+     * @param array $options query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listVenmoAccountStatusTransitions($userToken, $venmoAccountToken, array $options = array())
+    {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($venmoAccountToken)) {
+            throw new HyperwalletArgumentException('venmoAccountToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'venmo-account-token' => $venmoAccountToken
+        ), $options);
+        return new ListResponse($body, function ($entry) {
+            return new VenmoAccountStatusTransition($entry);
+        });
     }
 
 }
