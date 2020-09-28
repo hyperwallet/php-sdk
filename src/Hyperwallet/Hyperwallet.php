@@ -422,39 +422,7 @@ class Hyperwallet {
         return new Transfer($body);
     }
 
-    /**
-     * Create a transfer refund
-     *
-     * @param Transfer $transfer The transfer data
-     * @return Transfer
-     *
-     * @throws HyperwalletArgumentException
-     * @throws HyperwalletApiException
-     */
-
-    /*
-     *     public HyperwalletTransferRefund createTransferRefund(String transferToken, HyperwalletTransferRefund transferRefund) {
-        if (transferRefund == null) {
-            throw new HyperwalletException("Transfer Refund is required");
-        }
-        if (StringUtils.isEmpty(transferToken)) {
-            throw new HyperwalletException("Transfer token is required");
-        }
-        if (StringUtils.isEmpty(transferRefund.getClientRefundId())) {
-            throw new HyperwalletException("ClientRefundId is required");
-        }
-
-        transferRefund = copy(transferRefund);
-        transferRefund.clearStatus();
-        transferRefund.clearCreatedOn();
-        return apiClient.post(url + "/transfers/" + transferToken + "/refunds", transferRefund, HyperwalletTransferRefund.class);
-    }
-     *
-     *
-     */
-
-
-    public function createTransferRefund($transferToken, TransferRefund $transferRefund) {
+    public function createTransferRefund($transferToken, TransferRefund $transferRefund = null) {
         if (empty($transferRefund)) {
             throw new HyperwalletArgumentException('transferRefund is required!');
         }
@@ -489,10 +457,10 @@ class Hyperwallet {
 
     public function getTransferRefund($transferToken,$refundToken) {
         if (empty($transferToken)) {
-            throw new HyperwalletArgumentException('Transfer Token is required!');
+            throw new HyperwalletArgumentException('transferToken is required!');
         }
         if (empty($refundToken)) {
-            throw new HyperwalletArgumentException('Refund Token is required!');
+            throw new HyperwalletArgumentException('refundToken is required!');
         }
         $body = $this->client->doGet('/rest/v3/transfers/{transfer-token}/refunds/{refund-token}', array(
                 'transfer-token' => $transferToken,
