@@ -4255,7 +4255,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         // Setup
         $userName = "test-username";
         $password = "test-password";
-        $clientRefundId = 6712348070812;
+        $clientRefundId = 6712348070813;
         $sourceAmount = 20.0;
         $notes = "notes";
         $memo = "memo";
@@ -4413,7 +4413,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
 
     //Following are the methods for integration testing.
 
-    public function testgetUserSample()
+    public function testGetUserSample()
     {
         $username = "selrestuser@1861681";
         $password = "Password1!";
@@ -4424,7 +4424,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
             $user = $hyperwallet->getUser($userToken);
-            var_dump('User created', $user);
+            var_dump('User details', $user);
             echo "Got the user successfully";
         } catch (\Hyperwallet\Exception\HyperwalletException $e) {
             echo $e->getMessage();
@@ -4470,15 +4470,20 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+
     public function testCreateTransfer(){
         $username = "selrestuser@1861681";
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
         $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
+
+        //Following variable has to be updated before running the test
+        $clientTransferId = "6712348070817";
+
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
             $response = $hyperwallet->createTransfer( (new \Hyperwallet\Model\Transfer())
-                ->setClientTransferId("6712348070812")
+                ->setClientTransferId($clientTransferId)
                 ->setDestinationAmount("5")
                 ->setDestinationCurrency("USD")
                 ->setNotes("Partial-Balance Transfer")
@@ -4494,61 +4499,64 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function transferRefund(){
-        /*
-         * make payment to an account
-         * Create transfer from that account to another account
-         * Create transfer status transition
-         * get transfer
-         * create partial refund
-         * get
-         */
+    public function testTransferRefundIT(){
         $username = "selrestuser@1861681";
         $password = "Password1!";
         $paymentAmount = "50.00";
         $destinationAmount = "5.00";
         $destinationCurrency = "USD";
-        $clientPaymentId = "DyClk0VG";
-        $clientTransferId = "6712348070812";
-        $clientRefundId = "32432432456";
         $userToken = "usr-f49967a9-9b7f-4cfc-9fc7-037d736711ba";
         $destinationToken = "act-d468a8e7-19f5-4dac-9fcd-5bd0d9a80c09";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
         $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
 
+        //Following variables have to be updated before running the test
+        $clientPaymentId = "DyClk0VG3543";
+        $clientTransferId = "6712348070816";
+        $clientRefundId = "32432432457";
+
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
 
-        $payment = $hyperwallet->createPayment((new \Hyperwallet\Model\Payment())
-            ->setAmount($paymentAmount)
-            ->setClientPaymentId("$clientPaymentId")
-            ->setCurrency("USD")
-            ->setDestinationToken($userToken)
-            ->setProgramToken($programToken)
-            ->setPurpose("OTHER")
-        );
+        try {
+            $payment = $hyperwallet->createPayment((new \Hyperwallet\Model\Payment())
+                ->setAmount($paymentAmount)
+                ->setClientPaymentId("$clientPaymentId")
+                ->setCurrency("USD")
+                ->setDestinationToken($userToken)
+                ->setProgramToken($programToken)
+                ->setPurpose("OTHER")
+            );
+            var_dump('Payment created', $payment);
 
-        $transfer = $hyperwallet->createTransfer((new \Hyperwallet\Model\Transfer())
-            ->setClientTransferId($clientTransferId)
-            ->setDestinationAmount($destinationAmount)
-            ->setDestinationCurrency($destinationCurrency)
-            ->setNotes("Partial-Balance Transfer")
-            ->setMemo("TransferClientId56387")
-            ->setSourceToken($userToken)
-            ->setDestinationToken($destinationToken)
-        );
+            $transfer = $hyperwallet->createTransfer((new \Hyperwallet\Model\Transfer())
+                ->setClientTransferId($clientTransferId)
+                ->setDestinationAmount($destinationAmount)
+                ->setDestinationCurrency($destinationCurrency)
+                ->setNotes("Partial-Balance Transfer")
+                ->setMemo("TransferClientId56387")
+                ->setSourceToken($userToken)
+                ->setDestinationToken($destinationToken)
+            );
+            var_dump('Transfer created', $transfer);
 
-        $transferToken = $transfer->getToken();
 
-        $response = $hyperwallet->createTransferStatusTransition($transferToken, (new \Hyperwallet\Model\TransferStatusTransition())
-                    ->setTransition("SCHEDULED")
-                    ->setNotes("Test notes")
-        );
+            $transferToken = $transfer->getToken();
+            echo "++++++++++++++Before createTransferStatusTransition++++++++++++++++++++++++++";
 
-        $response = $hyperwallet->createTransferRefund($transferToken, (new \Hyperwallet\Model\TransferRefund())
-            ->setClientRefundId($clientRefundId)
-            ->setNotes("Test notes")
-            ->setMemo("Test Memo")
+            $transferstatusTransition = $hyperwallet->createTransferStatusTransition($transferToken, (new \Hyperwallet\Model\TransferStatusTransition())
+                ->setTransition("SCHEDULED")
+                ->setNotes("Test notes")
+            );
+            var_dump('Transfer status transtion created', $transferstatusTransition);
+            $transferRefund = $hyperwallet->createTransferRefund($transferToken, (new \Hyperwallet\Model\TransferRefund())
+                ->setClientRefundId($clientRefundId)
+                ->setNotes("Test notes")
+                ->setMemo("Test Memo")
+            );
+            var_dump('Transfer refund created', $transferRefund);
+        } catch (\Hyperwallet\Exception\HyperwalletException $e) {
+            echo $e->getMessage();
+            die("\n");
         }
-
-
+    }
 }
