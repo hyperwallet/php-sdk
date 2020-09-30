@@ -31,6 +31,7 @@ use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase
 {
+    private $includeIntegrationTest = false; //change this value to true if integration tests have to be run
 
     public function testConstructor_throwErrorIfUsernameIsEmpty()
     {
@@ -4250,7 +4251,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
 
     }
 
-
+//******
     public function testCreateTransferRefund_successful(){
         // Setup
         $userName = "test-username";
@@ -4260,11 +4261,19 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         $notes = "notes";
         $memo = "memo";
 
+        $foreignExchange1 = array('sourceAmount'=>'200.00','sourceCurrency'=>'USD','destinationCurrency'=>'CAD',
+            'destinationAmount'=>'100.00','rate'=>'2.3');
+
+
+        $foreignExchanges = array($foreignExchange1);
+
         $transferRefund = new TransferRefund();
         $transferRefund->setClientRefundId($clientRefundId);
         $transferRefund->setSourceAmount($sourceAmount);
         $transferRefund->setNotes($notes);
         $transferRefund->setMemo($memo);
+        $transferRefund->setForeignExchanges($foreignExchanges);
+
         $transferToken = "transferToken";
         $client = new Hyperwallet($userName, $password);
         $apiClientMock = $this->createAndInjectApiClientMock($client);
@@ -4280,6 +4289,15 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($transferRefund->getSourceAmount(), $sourceAmount);
         $this->assertEquals($transferRefund->getNotes(), $notes);
         $this->assertEquals($transferRefund->getMemo(), $memo);
+
+        $foreignExchange1= $transferRefund->getForeignExchanges()[0];
+        $this->assertEquals($foreignExchange1['sourceAmount'], "200.00");
+        $this->assertEquals($foreignExchange1['sourceCurrency'], "USD");
+        $this->assertEquals($foreignExchange1['destinationAmount'], "100.00");
+        $this->assertEquals($foreignExchange1['destinationCurrency'], "CAD");
+        $this->assertEquals($foreignExchange1['rate'], "2.3");
+
+
 
         // Validate mock
         \Phake::verify($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/refunds',
@@ -4411,7 +4429,9 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    //Following are the methods for integration testing.
+    /*Following are the methods for integration testing. Please change $includeIntegrationTest to True if you want
+    *the following test cases
+    */
 
     public function testGetUserSample()
     {
@@ -4423,6 +4443,9 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         $userToken = "usr-f49967a9-9b7f-4cfc-9fc7-037d736711ba";
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
+            if(!$this->includeIntegrationTest) {
+                $this->markTestSkipped('This test is skipped.');
+            }
             $user = $hyperwallet->getUser($userToken);
             var_dump('User details', $user);
             echo "Got the user successfully";
@@ -4443,6 +4466,9 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
 
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
+            if(!$this->includeIntegrationTest) {
+                $this->markTestSkipped('This test is skipped.');
+            }
             $transferRefund = $hyperwallet->getTransferRefund($transferToken,$refundToken);
             var_dump('Transfer Refund received', $transferRefund);
             echo "Got the transfer refund successfully";
@@ -4461,6 +4487,9 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
+            if(!$this->includeIntegrationTest) {
+                $this->markTestSkipped('This test is skipped.');
+            }
             $transferRefundList = $hyperwallet->listTransferRefunds($transferToken);
             var_dump('Transfer Refund list received', $transferRefundList);
             echo "Listed transfer refund successfully";
@@ -4482,6 +4511,9 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
 
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
+            if(!$this->includeIntegrationTest) {
+                $this->markTestSkipped('This test is skipped.');
+            }
             $response = $hyperwallet->createTransfer( (new \Hyperwallet\Model\Transfer())
                 ->setClientTransferId($clientTransferId)
                 ->setDestinationAmount("5")
@@ -4504,24 +4536,28 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         $password = "Password1!";
         $paymentAmount = "50.00";
         $destinationAmount = "5.00";
-        $destinationCurrency = "USD";
+        $destinationCurrency = "CAD";
         $userToken = "usr-f49967a9-9b7f-4cfc-9fc7-037d736711ba";
         $destinationToken = "act-d468a8e7-19f5-4dac-9fcd-5bd0d9a80c09";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
         $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
 
         //Following variables have to be updated before running the test
-        $clientPaymentId = "DyClk0VG3543";
-        $clientTransferId = "6712348070816";
-        $clientRefundId = "32432432457";
+        $clientPaymentId = "DyClk0VG3558";
+        $clientTransferId = "6712348070831";
+        $clientRefundId = "32432432472";
 
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
 
         try {
+            if(!$this->includeIntegrationTest) {
+                $this->markTestSkipped('This test is skipped.');
+            }
+
             $payment = $hyperwallet->createPayment((new \Hyperwallet\Model\Payment())
                 ->setAmount($paymentAmount)
                 ->setClientPaymentId("$clientPaymentId")
-                ->setCurrency("USD")
+                ->setCurrency("CAD")
                 ->setDestinationToken($userToken)
                 ->setProgramToken($programToken)
                 ->setPurpose("OTHER")
@@ -4541,8 +4577,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
 
 
             $transferToken = $transfer->getToken();
-            echo "++++++++++++++Before createTransferStatusTransition++++++++++++++++++++++++++";
-
             $transferstatusTransition = $hyperwallet->createTransferStatusTransition($transferToken, (new \Hyperwallet\Model\TransferStatusTransition())
                 ->setTransition("SCHEDULED")
                 ->setNotes("Test notes")
@@ -4559,4 +4593,5 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
             die("\n");
         }
     }
+
 }

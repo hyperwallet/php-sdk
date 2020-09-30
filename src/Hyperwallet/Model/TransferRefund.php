@@ -15,6 +15,7 @@ namespace Hyperwallet\Model;
  * @property string $destinationAmount The destination amount
  * @property string $destinationFeeAmount The destination fee amount
  * @property string $destinationCurrency The destination currency
+ * @property array $foreignExchanges The foreign exchanges
  * @property \DateTime $createdOn The transfer creation date
  * @property string $notes The notes
  * @property string $memo The memo
@@ -32,7 +33,7 @@ class TransferRefund extends BaseModel {
      *
      * @var string[]
      */
-    private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn');
+    private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn','foreignExchanges');
 
     const STATUS_QUOTED = 'PENDING';
     const STATUS_COMPLETED = 'COMPLETED';
@@ -232,6 +233,7 @@ class TransferRefund extends BaseModel {
         return $this->destinationCurrency;
     }
 
+
     /**
      * Set transfer destinationCurrency
      *
@@ -280,6 +282,26 @@ class TransferRefund extends BaseModel {
      */
     public function setMemo($memo) {
         $this->memo = $memo;
+        return $this;
+    }
+
+    /**
+     * Get transfer memo
+     *
+     * @return string
+     */
+    public function getForeignExchanges() {
+        return $this->foreignExchanges;
+    }
+
+    /**
+     * Set transfer memo
+     *
+     * @param string $memo
+     * @return TransferRefund
+     */
+    public function setForeignExchanges($foreignExchanges) {
+        $this->foreignExchanges = $foreignExchanges;
         return $this;
     }
 
