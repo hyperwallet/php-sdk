@@ -4439,7 +4439,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
         $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-        //$user = new \Hyperwallet\Model\User();
         $userToken = "usr-f49967a9-9b7f-4cfc-9fc7-037d736711ba";
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
@@ -4507,7 +4506,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
 
         //Following variable has to be updated before running the test
-        $clientTransferId = "6712348070817";
+        $clientTransferId = "6712348070818";
 
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
@@ -4543,9 +4542,9 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase
         $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
 
         //Following variables have to be updated before running the test
-        $clientPaymentId = "DyClk0VG3558";
-        $clientTransferId = "6712348070831";
-        $clientRefundId = "32432432472";
+        $clientPaymentId = "DyClk0VG3559";
+        $clientTransferId = "6712348070832";
+        $clientRefundId = "32432432473";
 
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
 

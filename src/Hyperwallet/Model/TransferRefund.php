@@ -33,7 +33,7 @@ class TransferRefund extends BaseModel {
      *
      * @var string[]
      */
-    private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn','foreignExchanges');
+    private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn');
 
     const STATUS_QUOTED = 'PENDING';
     const STATUS_COMPLETED = 'COMPLETED';
