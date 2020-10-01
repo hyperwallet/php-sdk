@@ -423,7 +423,7 @@ class Hyperwallet {
         return new Transfer($body);
     }
 
-    public function createTransferRefund($transferToken, TransferRefund $transferRefund = null) {
+    public function createTransferRefund($transferToken, $transferRefund) {
         if (empty($transferRefund)) {
             throw new HyperwalletArgumentException('transferRefund is required!');
         }
