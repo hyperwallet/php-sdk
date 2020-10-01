@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Program
+ * Represents a v4 Program
  *
  * @property string $token The program token
  * @property \DateTime $createdOn The program creation date
@@ -60,7 +60,7 @@ class Program extends BaseModel {
 
     /**
      * Get the parent program token
-     * 
+     *
      * @return string
      */
     public function getParentToken() {

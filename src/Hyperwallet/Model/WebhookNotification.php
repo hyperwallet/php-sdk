@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Webhook Notification
+ * Represents a v4 Webhook Notification
  *
  * @property string $token The webhook notification token
  * @property string $type The webhook notification type

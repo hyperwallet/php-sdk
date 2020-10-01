@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Paper Check Status Transition
+ * Represents a v4 Paper Check Status Transition
  *
  * @package Hyperwallet\Model
  */

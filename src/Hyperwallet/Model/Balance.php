@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Balance
+ * Represents a v4 Balance
  *
  * @property string $currency The currency
  * @property string $amount The amount
@@ -13,7 +13,7 @@ class Balance extends BaseModel {
 
     /**
      * @internal
-     * 
+     *
      * Read only fields
      *
      * @var string[]

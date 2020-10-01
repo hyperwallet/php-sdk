@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Transfer
+ * Represents a v4 Transfer
  *
  * @property string $token The transfer token
  * @property string $status The transfer status

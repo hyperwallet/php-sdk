@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 PayPal Account
+ * Represents a v4 PayPal Account
  *
  * @property string $token The PayPal account token
  * @property string $status The PayPal account status

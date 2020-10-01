@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Bank Account Status Transition
+ * Represents a v4 Bank Account Status Transition
  *
  * @package Hyperwallet\Model
  */

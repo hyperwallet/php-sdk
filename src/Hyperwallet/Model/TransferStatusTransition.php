@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Transfer Status Transition
+ * Represents a v4 Transfer Status Transition
  *
  * @package Hyperwallet\Model
  */

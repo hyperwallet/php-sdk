@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Authentication Token
+ * Represents a v4 Authentication Token
  *
  * @property string $value The client token value
 

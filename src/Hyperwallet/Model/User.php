@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 User
+ * Represents a v4 User
  *
  * @property string $token The user token
  * @property string $status The user status
