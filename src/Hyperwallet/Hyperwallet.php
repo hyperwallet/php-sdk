@@ -1,5 +1,7 @@
 <?php
+
 namespace Hyperwallet;
+
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletArgumentException;
 use Hyperwallet\Model\AuthenticationToken;
@@ -136,7 +138,7 @@ class Hyperwallet {
      */
     public function listUsers($options = array()) {
         $body = $this->client->doGet('/rest/v3/users', array(), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new User($entry);
         });
     }
@@ -184,7 +186,7 @@ class Hyperwallet {
         $body = $this->client->doGet('/rest/v3/users/{user-token}/status-transitions', array(
             'user-token' => $userToken
         ), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new UserStatusTransition($entry);
         });
     }
@@ -288,7 +290,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('userToken is required!');
         }
         $body = $this->client->doGet('/rest/v3/users/{user-token}/paper-checks', array('user-token' => $userToken), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new PaperCheck($entry);
         });
     }
@@ -303,8 +305,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function deactivatePaperCheck($userToken, $paperCheckToken)
-    {
+    public function deactivatePaperCheck($userToken, $paperCheckToken) {
         $transition = new PaperCheckStatusTransition();
         $transition->setTransition(PaperCheckStatusTransition::TRANSITION_DE_ACTIVATED);
 
@@ -390,7 +391,7 @@ class Hyperwallet {
             'user-token' => $userToken,
             'paper-check-token' => $paperCheckToken
         ), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new PaperCheckStatusTransition($entry);
         });
     }
@@ -433,7 +434,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('clientRefundId is required!');
         }
         $body = $this->client->doPost('/rest/v3/transfers/{transfer-token}/refunds',
-            array('transfer-token' => $transferToken),$transferRefund, array());
+            array('transfer-token' => $transferToken), $transferRefund, array());
         return new TransferRefund($body);
     }
 
@@ -451,11 +452,11 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('transferToken is required!');
         }
         $body = $this->client->doGet('/rest/v3/transfers/{transfer-token}', array('transfer-token' => $transferToken),
-        array());
+            array());
         return new Transfer($body);
     }
 
-    public function getTransferRefund($transferToken,$refundToken) {
+    public function getTransferRefund($transferToken, $refundToken) {
         if (empty($transferToken)) {
             throw new HyperwalletArgumentException('transferToken is required!');
         }
@@ -463,8 +464,8 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('refundToken is required!');
         }
         $body = $this->client->doGet('/rest/v3/transfers/{transfer-token}/refunds/{refund-token}', array(
-                'transfer-token' => $transferToken,
-                'refund-token'=>$refundToken),
+            'transfer-token' => $transferToken,
+            'refund-token' => $refundToken),
             array());
         return new TransferRefund($body);
     }
@@ -479,7 +480,7 @@ class Hyperwallet {
      */
     public function listTransfers($options = array()) {
         $body = $this->client->doGet('/rest/v3/transfers', array(), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new Transfer($entry);
         });
     }
@@ -492,17 +493,15 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function listTransferRefunds($transferToken, array $options = array() ) {
+    public function listTransferRefunds($transferToken, array $options = array()) {
         if (empty($transferToken)) {
             throw new HyperwalletArgumentException('transferToken is required!');
         }
         $body = $this->client->doGet('/rest/v3/transfers/{transfer-token}/refunds', array('transfer-token' => $transferToken), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new TransferRefund($entry);
         });
     }
-
-
 
     /**
      * Create a transfer status transition
@@ -609,7 +608,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('userToken is required!');
         }
         $body = $this->client->doGet('/rest/v3/users/{user-token}/paypal-accounts', array('user-token' => $userToken), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new PayPalAccount($entry);
         });
     }
@@ -624,8 +623,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function deactivatePayPalAccount($userToken, $payPalAccountToken)
-    {
+    public function deactivatePayPalAccount($userToken, $payPalAccountToken) {
         $transition = new PayPalAccountStatusTransition();
         $transition->setTransition(PayPalAccountStatusTransition::TRANSITION_DE_ACTIVATED);
 
@@ -643,8 +641,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function createPayPalAccountStatusTransition($userToken, $payPalAccountToken, PayPalAccountStatusTransition $transition)
-    {
+    public function createPayPalAccountStatusTransition($userToken, $payPalAccountToken, PayPalAccountStatusTransition $transition) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -670,8 +667,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function getPayPalAccountStatusTransition($userToken, $payPalAccountToken, $statusTransitionToken)
-    {
+    public function getPayPalAccountStatusTransition($userToken, $payPalAccountToken, $statusTransitionToken) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -701,8 +697,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function listPayPalAccountStatusTransitions($userToken, $payPalAccountToken, array $options = array())
-    {
+    public function listPayPalAccountStatusTransitions($userToken, $payPalAccountToken, array $options = array()) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -795,7 +790,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('userToken is required!');
         }
         $body = $this->client->doGet('/rest/v3/users/{user-token}/prepaid-cards', array('user-token' => $userToken), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new PrepaidCard($entry);
         });
     }
@@ -981,7 +976,7 @@ class Hyperwallet {
             'user-token' => $userToken,
             'prepaid-card-token' => $prepaidCardToken
         ), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new PrepaidCardStatusTransition($entry);
         });
     }
@@ -1062,8 +1057,8 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('userToken is required!');
         }
         $body = $this->client->doGet('/rest/v3/users/{user-token}/bank-accounts', array('user-token' => $userToken), $options);
-        return new ListResponse($body, function($entry) {
-           return new BankAccount($entry);
+        return new ListResponse($body, function ($entry) {
+            return new BankAccount($entry);
         });
     }
 
@@ -1163,7 +1158,7 @@ class Hyperwallet {
             'user-token' => $userToken,
             'bank-account-token' => $bankAccountToken
         ), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new BankAccountStatusTransition($entry);
         });
     }
@@ -1245,7 +1240,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('userToken is required!');
         }
         $body = $this->client->doGet('/rest/v3/users/{user-token}/bank-cards', array('user-token' => $userToken), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new BankCard($entry);
         });
     }
@@ -1344,7 +1339,7 @@ class Hyperwallet {
             'user-token' => $userToken,
             'bank-card-token' => $bankCardToken
         ), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new BankCardStatusTransition($entry);
         });
     }
@@ -1399,7 +1394,7 @@ class Hyperwallet {
         }
 
         $body = $this->client->doGet('/rest/v3/users/{user-token}/balances', array('user-token' => $userToken), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new Balance($entry);
         });
     }
@@ -1426,7 +1421,7 @@ class Hyperwallet {
             'user-token' => $userToken,
             'prepaid-card-token' => $prepaidCardToken
         ), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new Balance($entry);
         });
     }
@@ -1453,7 +1448,7 @@ class Hyperwallet {
             'program-token' => $programToken,
             'account-token' => $accountToken
         ), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new Balance($entry);
         });
     }
@@ -1503,7 +1498,7 @@ class Hyperwallet {
      */
     public function listPayments($options = array()) {
         $body = $this->client->doGet('/rest/v3/payments', array(), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new Payment($entry);
         });
     }
@@ -1572,7 +1567,7 @@ class Hyperwallet {
         $body = $this->client->doGet('/rest/v3/payments/{payment-token}/status-transitions', array(
             'payment-token' => $paymentToken
         ), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new PaymentStatusTransition($entry);
         });
     }
@@ -1720,7 +1715,7 @@ class Hyperwallet {
             'program-token' => $programToken,
             'account-token' => $accountToken
         ), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new Receipt($entry);
         });
     }
@@ -1743,7 +1738,7 @@ class Hyperwallet {
         $body = $this->client->doGet('/rest/v3/users/{user-token}/receipts', array(
             'user-token' => $userToken
         ), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new Receipt($entry);
         });
     }
@@ -1771,7 +1766,7 @@ class Hyperwallet {
             'user-token' => $userToken,
             'prepaid-card-token' => $prepaidCardToken
         ), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new Receipt($entry);
         });
     }
@@ -1807,7 +1802,7 @@ class Hyperwallet {
      */
     public function listWebhookNotifications($options = array()) {
         $body = $this->client->doGet('/rest/v3/webhook-notifications', array(), $options);
-        return new ListResponse($body, function($entry) {
+        return new ListResponse($body, function ($entry) {
             return new WebhookNotification($entry);
         });
     }
@@ -1851,10 +1846,10 @@ class Hyperwallet {
         }
 
         return $this->client->doPut('/rest/v3/users/{user-token}/{transfer-method-name}/{transfer-method-token}', array(
-                    'user-token' => $userToken,
-                    'transfer-method-token' => $transferMethod->getToken(),
-                    'transfer-method-name' => $transferMethodName,
-                ), $transferMethod, array());
+            'user-token' => $userToken,
+            'transfer-method-token' => $transferMethod->getToken(),
+            'transfer-method-name' => $transferMethodName,
+        ), $transferMethod, array());
     }
 
     //--------------------------------------
@@ -1871,8 +1866,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function createVenmoAccount($userToken, VenmoAccount $venmoAccount)
-    {
+    public function createVenmoAccount($userToken, VenmoAccount $venmoAccount) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -1899,8 +1893,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function getVenmoAccount($userToken, $venmoAccountToken)
-    {
+    public function getVenmoAccount($userToken, $venmoAccountToken) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -1924,8 +1917,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function updateVenmoAccount($userToken, VenmoAccount $venmoAccount)
-    {
+    public function updateVenmoAccount($userToken, VenmoAccount $venmoAccount) {
         $body = $this->updateTransferMethod($userToken, $venmoAccount, 'venmo-accounts');
         return new VenmoAccount($body);
     }
@@ -1939,8 +1931,7 @@ class Hyperwallet {
      *
      * @throws HyperwalletApiException
      */
-    public function listVenmoAccounts($userToken, $options = array())
-    {
+    public function listVenmoAccounts($userToken, $options = array()) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -1960,8 +1951,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function deactivateVenmoAccount($userToken, $venmoAccountToken)
-    {
+    public function deactivateVenmoAccount($userToken, $venmoAccountToken) {
         $transition = new VenmoAccountStatusTransition();
         $transition->setTransition(VenmoAccountStatusTransition::TRANSITION_DE_ACTIVATED);
 
@@ -1979,8 +1969,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function createVenmoAccountStatusTransition($userToken, $venmoAccountToken, VenmoAccountStatusTransition $transition)
-    {
+    public function createVenmoAccountStatusTransition($userToken, $venmoAccountToken, VenmoAccountStatusTransition $transition) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -2006,8 +1995,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function getVenmoAccountStatusTransition($userToken, $venmoAccountToken, $statusTransitionToken)
-    {
+    public function getVenmoAccountStatusTransition($userToken, $venmoAccountToken, $statusTransitionToken) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -2037,8 +2025,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function listVenmoAccountStatusTransitions($userToken, $venmoAccountToken, array $options = array())
-    {
+    public function listVenmoAccountStatusTransitions($userToken, $venmoAccountToken, array $options = array()) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
