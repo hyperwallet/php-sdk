@@ -1825,16 +1825,30 @@ class Hyperwallet {
                 ), $transferMethod, array());
     }
 
-    public function updateUserStatusTransition($userToken, $userStatusTransition){
+    public function requestUserVerification($userToken){
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_REQUESTED);
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * Create a bank card status transition
+     *
+     * @param string $userToken The user token
+     * @param UserStatusTransition $transition The status transition
+     * @return UserStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+
+    private function createUserStatusTransition($userToken,  UserStatusTransition $transition) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        if (!$userStatusTransition->getTransition()) {
-            throw new HyperwalletArgumentException('verification status is required!');
-        }
-
-        return $this->client->doPut('/rest/v3/users/{user-token}', array(
-            'user-token' => $userToken), $userStatusTransition, array());
+        $body = $this->client->doPost('/rest/v3/users/{user-token}',
+            array('user-token' => $userToken), $transition, array());
+        var_dump('body', $body);
+        return new UserStatusTransition($body);
     }
-
 }

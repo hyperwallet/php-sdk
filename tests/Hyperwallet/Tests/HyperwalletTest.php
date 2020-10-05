@@ -3578,7 +3578,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    public function testUpdateUserStatusTransition_allParameters() {
+    public function testRequestUserVerification_allParameters() {
 
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -3588,15 +3588,13 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), $userStatusTransition, array())->thenReturn(array('verificationStatus'=> 'REQUIRED'));
         // Run test
         try {
-            $newStatusTransition = $client->updateUserStatusTransition('test-user-token', $userStatusTransition);
+            $newStatusTransition = $client->requestUserVerification('test-user-token');
         } catch (HyperwalletArgumentException $e) {
             $this->assertEquals('userToken is required!', $e->getMessage());
         }
-        echo (")))))))))))))))))");
         $this->assertNotNull($newStatusTransition);
-        print_r ($newStatusTransition->getProperties());
+        var_dump('New status transition', $newStatusTransition);
         $this->assertEquals(array('verificationStatus'=> 'REQUIRED'), $newStatusTransition->getProperties());
-
         // Validate mock
         \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), $userStatusTransition, array());
     }
