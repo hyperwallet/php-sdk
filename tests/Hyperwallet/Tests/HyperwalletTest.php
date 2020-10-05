@@ -30,6 +30,8 @@ use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
+    private $includeIntegrationTest = true; //change this value to true if integration tests have to be run
+
     public function testConstructor_throwErrorIfUsernameIsEmpty() {
         try {
             new Hyperwallet('', 'test-password');
@@ -3598,4 +3600,30 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), $userStatusTransition, array());
     }
+
+    //IT test cases
+
+
+    public function testRequestUserVerificationIT() {
+        $username = "selrestuser@1861681";
+        $password = "Password1!";
+        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
+        $userToken = "usr-a1a77c00-e2af-41c4-b0c8-f85097964ae1";
+        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
+
+        $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
+        try {
+            if (!$this->includeIntegrationTest) {
+                $this->markTestSkipped('This test is skipped.');
+            }
+            $verificationRequest = $hyperwallet->requestUserVerification($userToken);
+            var_dump('Request verification', $verificationRequest);
+            echo "User verification requested successfully";
+        } catch (\Hyperwallet\Exception\HyperwalletException $e) {
+            echo $e->getMessage();
+            die("\n");
+        }
+    }
+
+
 }
