@@ -4158,7 +4158,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     *the following test cases
     */
 
-    public function testGetUserSample() {
+    public function testGetUserSampleIT() {
         $username = "selrestuser@1861681";
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
@@ -4178,7 +4178,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testGetTransferRefund() {
+    public function testGetTransferRefundIT() {
         $username = "selrestuser@1861681";
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
@@ -4200,7 +4200,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testListTransferRefund() {
+    public function testListTransferRefundIT() {
         $username = "selrestuser@1861681";
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
@@ -4220,7 +4220,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testCreateTransfer() {
+    public function testCreateTransferIT() {
         $username = "selrestuser@1861681";
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
