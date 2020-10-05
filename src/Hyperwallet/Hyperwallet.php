@@ -1846,7 +1846,7 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        $body = $this->client->doPost('/rest/v3/users/{user-token}',
+        $body = $this->client->doPut('/rest/v3/users/{user-token}',
             array('user-token' => $userToken), $transition, array());
         var_dump('body', $body);
         return new UserStatusTransition($body);
