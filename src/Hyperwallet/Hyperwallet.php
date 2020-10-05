@@ -1825,4 +1825,16 @@ class Hyperwallet {
                 ), $transferMethod, array());
     }
 
+    public function updateUserStatusTransition($userToken, $userStatusTransition){
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (!$userStatusTransition->getTransition()) {
+            throw new HyperwalletArgumentException('verification status is required!');
+        }
+
+        return $this->client->doPut('/rest/v3/users/{user-token}', array(
+            'user-token' => $userToken), $userStatusTransition, array());
+    }
+
 }

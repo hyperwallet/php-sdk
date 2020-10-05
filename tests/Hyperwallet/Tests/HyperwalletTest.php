@@ -25,6 +25,7 @@ use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\User;
+use Hyperwallet\Model\userStatusTransition;
 use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
@@ -3574,5 +3575,29 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             'lockPrepaidCard' => array('lockPrepaidCard', PrepaidCardStatusTransition::TRANSITION_LOCKED),
             'unlockPrepaidCard' => array('unlockPrepaidCard', PrepaidCardStatusTransition::TRANSITION_UNLOCKED)
         );
+    }
+
+
+    public function testUpdateUserStatusTransition_allParameters() {
+
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $userStatusTransition = new UserStatusTransition();
+        $userStatusTransition->setTransition(UserStatusTransition::TRANSITION_REQUESTED);
+        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), $userStatusTransition, array())->thenReturn(array('verificationStatus'=> 'REQUIRED'));
+        // Run test
+        try {
+            $newStatusTransition = $client->updateUserStatusTransition('test-user-token', $userStatusTransition);
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+        echo (")))))))))))))))))");
+        $this->assertNotNull($newStatusTransition);
+        print_r ($newStatusTransition->getProperties());
+        $this->assertEquals(array('verificationStatus'=> 'REQUIRED'), $newStatusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), $userStatusTransition, array());
     }
 }
