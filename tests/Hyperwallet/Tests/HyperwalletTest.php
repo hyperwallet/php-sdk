@@ -3952,8 +3952,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         } catch (HyperwalletArgumentException $e) {
             $this->assertEquals('clientRefundId is required!', $e->getMessage());
         }
-
-
     }
 
     public function testCreateTransferRefund_noTransferRefund() {
@@ -3973,7 +3971,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
 
     public function testCreateTransferRefund_noTransferToken() {
-
+        // Setup
         $userName = "test-username";
         $password = "test-password";
         $clientRefundId = "6712348070812";
@@ -3997,7 +3995,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-//******
     public function testCreateTransferRefund_successful() {
         // Setup
         $userName = "test-username";
@@ -4032,7 +4029,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($transferRefund->getSourceAmount(), $sourceAmount);
         $this->assertEquals($transferRefund->getNotes(), $notes);
         $this->assertEquals($transferRefund->getMemo(), $memo);
-
         $foreignExchange1 = $transferRefund->getForeignExchanges()[0];
         $this->assertEquals($foreignExchange1['sourceAmount'], "200.00");
         $this->assertEquals($foreignExchange1['sourceCurrency'], "USD");
@@ -4040,12 +4036,10 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($foreignExchange1['destinationCurrency'], "CAD");
         $this->assertEquals($foreignExchange1['rate'], "2.3");
 
-
         // Validate mock
         \Phake::verify($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/refunds',
             array('transfer-token' => $transferToken), $transferRefund, array());
     }
-
 
     public function testGetTransferRefund_noTransferToken() {
         $userName = "test-username";
@@ -4100,7 +4094,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             $uriParams, $queryParams);
     }
 
-
     public function testListTransferRefunds_noParameters() {
 
         $userName = "test-username";
@@ -4123,7 +4116,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doGet('/rest/v3/transfers/{transfer-token}/refunds',
             $uriParams, $queryParams);
     }
-
 
     public function testListTransferRefunds_withAllParameters() {
 
@@ -4228,7 +4220,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-
     public function testCreateTransfer() {
         $username = "selrestuser@1861681";
         $password = "Password1!";
@@ -4303,8 +4294,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
                 ->setDestinationToken($destinationToken)
             );
             var_dump('Transfer created', $transfer);
-
-
             $transferToken = $transfer->getToken();
             $transferstatusTransition = $hyperwallet->createTransferStatusTransition($transferToken, (new \Hyperwallet\Model\TransferStatusTransition())
                 ->setTransition("SCHEDULED")
