@@ -2,6 +2,7 @@
 namespace Hyperwallet;
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletArgumentException;
+use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\Balance;
 use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
@@ -1825,11 +1826,40 @@ class Hyperwallet {
                 ), $transferMethod, array());
     }
 
-    public function requestUserVerification($userToken){
-        $transition = new UserStatusTransition();
-        $transition->setTransition(UserStatusTransition::TRANSITION_REQUESTED);
-        return $this->createUserStatusTransition($userToken, $transition);
+    /**
+     * Create a bank card status transition
+     *
+     * @param string $userToken The user token
+     * @param UserStatusTransition $transition The status transition
+     * @return UserStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+
+    public function updateVerificationStatus($userToken,$verificationStatus){
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($verificationStatus)) {
+            throw new HyperwalletArgumentException('verification status is required!');
+        }
+        if($verificationStatus != User::VERIFICATION_STATUS_REQUESTED){
+            throw new HyperwalletArgumentException("Expected verification status is REQUESTED!");
+        }
+        $user = $this->getUser($userToken);
+        $fromValidationStatus = $user->getVerificationStatus();
+        $expectedFromValues = array(User::VERIFICATION_STATUS_REQUIRED,User::VERIFICATION_STATUS_NOT_REQUIRED);
+        var_dump('status array',$expectedFromValues);
+        if(!in_array($fromValidationStatus,$expectedFromValues)){
+            throw new HyperwalletException("The from verification status is expected to be 'Required' or 'Not required'");
+        }
+        $user = new User(array('verificationStatus'=> User::VERIFICATION_STATUS_REQUESTED));
+        $responseUser = $this->client->doPut('/rest/v3/users/{user-token}', array('user-token' => $userToken), $user, array());
+        var_dump('Update User', $responseUser);
+        return $responseUser;
     }
+
 
     /**
      * Create a bank card status transition
@@ -1842,13 +1872,19 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
 
-    private function createUserStatusTransition($userToken,  UserStatusTransition $transition) {
+    public function createUserStatusTransition($userToken,  UserStatusTransition $transition) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        $body = $this->client->doPut('/rest/v3/users/{user-token}',
-            array('user-token' => $userToken), $transition, array());
-        var_dump('body', $body);
+        if (empty($transition)) {
+            throw new HyperwalletArgumentException('userStatusTransition is required!');
+        }
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/status-transitions', array(
+            'user-token' => $userToken), $transition, array());
+        var_dump('User transition', $body);
         return new UserStatusTransition($body);
     }
+
+
+
 }
