@@ -1850,13 +1850,11 @@ class Hyperwallet {
         $user = $this->getUser($userToken);
         $fromValidationStatus = $user->getVerificationStatus();
         $expectedFromValues = array(User::VERIFICATION_STATUS_REQUIRED,User::VERIFICATION_STATUS_NOT_REQUIRED);
-        var_dump('status array',$expectedFromValues);
         if(!in_array($fromValidationStatus,$expectedFromValues)){
             throw new HyperwalletException("The from verification status is expected to be 'Required' or 'Not required'");
         }
         $user = new User(array('verificationStatus'=> User::VERIFICATION_STATUS_REQUESTED));
         $responseUser = $this->client->doPut('/rest/v3/users/{user-token}', array('user-token' => $userToken), $user, array());
-        var_dump('Update User', $responseUser);
         return $responseUser;
     }
 
@@ -1881,10 +1879,6 @@ class Hyperwallet {
         }
         $body = $this->client->doPost('/rest/v3/users/{user-token}/status-transitions', array(
             'user-token' => $userToken), $transition, array());
-        var_dump('User transition', $body);
         return new UserStatusTransition($body);
     }
-
-
-
 }

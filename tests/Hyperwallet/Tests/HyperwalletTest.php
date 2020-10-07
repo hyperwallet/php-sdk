@@ -3627,23 +3627,19 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
         $userToken = "usr-a1a77c00-e2af-41c4-b0c8-f85097964ae1";
         $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-        $userStatusTransition = new UserStatusTransition();
-        $userStatusTransition->setTransition(UserStatusTransition::TRANSITION_REQUESTED);
+        $user = new User();
+       // $user->setTransition(User::VERIFICATION_STATUS_REQUESTED);
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
             if (!$this->includeIntegrationTest) {
                 $this->markTestSkipped('This test is skipped.');
             }
-            $verificationRequest = $hyperwallet->requestUserVerification($userToken,$userStatusTransition);
-            //var_dump('Request verification', $verificationRequest);
-            echo("-------VERIFICATION STATUS--------------".$verificationRequest->getProperties()['verificationStatus']."+++++");
+            $verificationRequest = $hyperwallet->updateVerificationStatus($userToken,User::VERIFICATION_STATUS_REQUESTED);
             $this->assertEquals("REQUIRED",$verificationRequest->getProperties()['verificationStatus']);
-//            echo "User verification requested successfully";
         } catch (\Hyperwallet\Exception\HyperwalletException $e) {
             echo $e->getMessage();
         }
     }
-*/
 
     public function testRequestUserVerificationWithInvalidVerificationStatusIT() {
         $username = "selrestuser@1861681";
@@ -3657,12 +3653,11 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
                 $this->markTestSkipped('This test is skipped.');
             }
             $verificationResponse = $hyperwallet->updateVerificationStatus($userToken,"INVALID_VERIFICATION_STATUS");
-            var_dump('Request verification', $verificationResponse);
         } catch (\Hyperwallet\Exception\HyperwalletArgumentException $e) {
             $this->assertEquals("Expected verification status is REQUESTED!",$e->getMessage());
         }
     }
-/*
+
     public function testRequestUserVerificationWithInvalidFromVerificationStatusIT() {
         $username = "selrestuser@1861681";
         $password = "Password1!";
@@ -3695,7 +3690,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             }
             $verificationResponse = $hyperwallet->updateVerificationStatus($userToken,"REQUESTED");
             var_dump('Request verification', $verificationResponse);
-            //echo(")))))))))))))))))))".$verificationResponse->getProperties()['verificationStatus']);
             $this->assertEquals(User::VERIFICATION_STATUS_REQUIRED,$verificationResponse['verificationStatus']);
         } catch (\Hyperwallet\Exception\HyperwalletArgumentException $e) {
             $this->assertEquals("Expected verification status is REQUESTED!",$e->getMessage());
@@ -3709,13 +3703,13 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $username = "selrestuser@1861681";
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-        $userToken = "usr-67990809-3fd9-409c-85f0-795723a9f01c";
+        $userToken = "usr-a1a77c00-e2af-41c4-b0c8-f85097964ae1";
         $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         $statusTransition = new UserStatusTransition(array('transition'=>'LOCKED'));
         // Run test
         $newStatusTransition = $hyperwallet->createUserStatusTransition($userToken, $statusTransition);
         $this->assertNotNull($newStatusTransition);
-        $this->assertEquals(array('transition'=>'LOCKED'), $newStatusTransition->getProperties());
+        $this->assertEquals('LOCKED', $newStatusTransition->getProperties()['transition']);
     }
 }
