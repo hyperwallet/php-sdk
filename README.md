@@ -88,6 +88,7 @@ $ ./vendor/bin/phpunit -v
 
 
 Reference
+Test
 ---------
 
 [REST API Reference](https://sandbox.hyperwallet.com/developer-portal/#/docs)
