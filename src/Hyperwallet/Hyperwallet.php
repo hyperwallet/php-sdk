@@ -1822,20 +1822,10 @@ class Hyperwallet {
         if (empty($verificationStatus)) {
             throw new HyperwalletArgumentException('verificationStatus is required!');
         }
-        if($verificationStatus != User::VERIFICATION_STATUS_REQUESTED){
-            throw new HyperwalletArgumentException("Expected verification status is REQUESTED!");
-        }
-        $user = $this->getUser($userToken);
-        $fromValidationStatus = $user->getVerificationStatus();
-        $expectedFromValues = array(User::VERIFICATION_STATUS_REQUIRED,User::VERIFICATION_STATUS_NOT_REQUIRED);
-        if(!in_array($fromValidationStatus,$expectedFromValues)){
-            throw new HyperwalletException("The from verification status is expected to be 'Required' or 'Not required'");
-        }
-        $user = new User(array('verificationStatus'=> User::VERIFICATION_STATUS_REQUESTED));
+        $user = new User(array('verificationStatus'=> $verificationStatus));
         $responseUser = $this->client->doPut('/rest/v3/users/{user-token}', array('user-token' => $userToken), $user, array());
         return new User($responseUser);
     }
-
 
     /**
      * Create an User status transition
@@ -1850,13 +1840,74 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        if (empty($transition)) {
+        if (empty($transition->getTransition())) {
             throw new HyperwalletArgumentException('userStatusTransition is required!');
         }
         $body = $this->client->doPost('/rest/v3/users/{user-token}/status-transitions', array(
             'user-token' => $userToken), $transition, array());
         return new UserStatusTransition($body);
     }
+
+    /**
+     * Activate an User
+     *
+     * @param string $userToken The user token
+     * @return UserStatusTransition
+     */
+    public function activateUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_ACTIVATED);
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * De-activate a User
+     *
+     * @param string $userToken The user token
+     * @return UserStatusTransition
+     */
+    public function deactivateUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_DE_ACTIVATED);
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * Lock a User account
+     *
+     * @param userToken User token
+     * @return The status transition
+     */
+    public function lockUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_LOCKED);
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * Freeze a User account
+     *
+     * @param userToken User token
+     * @return The status transition
+     */
+    public function freezeUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_FROZEN);
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * Pre-activate a User account
+     *
+     * @param userToken User token
+     * @return The status transition
+     */
+    public function preactivateUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_PRE_ACTIVATED);
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
 
     /**
      * Upload documents for user endpoint
