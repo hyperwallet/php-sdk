@@ -30,7 +30,7 @@ use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
-    private $includeIntegrationTest = true; //change this value to true if integration tests have to be run
+    private $includeIntegrationTest = false; //change this value to true if integration tests have to be run
 
     public function testConstructor_throwErrorIfUsernameIsEmpty() {
         try {
@@ -3593,6 +3593,20 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), $user, array());
     }
 
+    public function testUpdateVerificationStatus_withNonRequestedStatus() {
+
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $user = new user(array('verificationStatus'=> User::VERIFICATION_STATUS_EXPIRED));
+
+        // Run test
+        try {
+            $responseUser = $client->updateVerificationStatus('test-user-token', User::VERIFICATION_STATUS_EXPIRED);
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals("Expected verification status is REQUESTED!", $e->getMessage());
+        }
+ }
 
     //IT test cases--Please uncomment the following lines
 
@@ -3601,7 +3615,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
         $userToken = "usr-a1a77c00-e2af-41c4-b0c8-f85097964ae1";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
+        $server = "https://localhost:8181";
         $user = new User();
        // $user->setTransition(User::VERIFICATION_STATUS_REQUESTED);
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
@@ -3621,7 +3635,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
         $userToken = "usr-a1a77c00-e2af-41c4-b0c8-f85097964ae1";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
+        $server = "https://localhost:8181";
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
             if (!$this->includeIntegrationTest) {
@@ -3639,7 +3653,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
         $userToken = "usr-a1a77c00-e2af-41c4-b0c8-f85097964ae1";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
+        $server = "https://localhost:8181";
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
             if (!$this->includeIntegrationTest) {
@@ -3657,7 +3671,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
         $userToken = "usr-eddd1fe1-0bf9-442c-9c1d-61cf4ca0ee31";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
+        $server = "https://localhost:8181";
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         try {
             if (!$this->includeIntegrationTest) {
@@ -3677,7 +3691,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
         $userToken = "usr-a1a77c00-e2af-41c4-b0c8-f85097964ae1";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
+        $server = "https://localhost:8181";
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         $statusTransition = new UserStatusTransition(array('transition'=>'LOCKED'));
         // Run test
