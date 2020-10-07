@@ -46,6 +46,7 @@ namespace Hyperwallet\Model;
  * @property string $language The user language
  * @property string $programToken The users program token
  * @property string $verificationStatus The status of user verification
+ * @property array $documents The array of documents returned for document upload
  *
  * @package Hyperwallet\Model
  */
@@ -58,7 +59,7 @@ class User extends BaseModel implements IProgramAware {
      *
      * @var string[]
      */
-    private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn');
+    private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn', 'documents');
 
     const STATUS_PRE_ACTIVATED = 'PRE_ACTIVATED';
     const STATUS_ACTIVATED = 'ACTIVATED';
@@ -771,6 +772,10 @@ class User extends BaseModel implements IProgramAware {
     public function setVerificationStatus($verificationStatus) {
         $this->verificationStatus = $verificationStatus;
         return $this;
+    }
+
+    public function getDocuments() {
+        return $this->documents;
     }
 
 }

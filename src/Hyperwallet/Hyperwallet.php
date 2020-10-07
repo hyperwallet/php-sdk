@@ -1852,6 +1852,44 @@ class Hyperwallet {
         ), $transferMethod, array());
     }
 
+    /**
+     * Upload documents for user endpoint
+     *
+     * @param string $userToken The user token
+     * @param array $options The multipart object with the required documents and json data to get uploaded
+     *
+     * Sample multipart array to refer. Don't set the content-type explicitly
+     * array(
+     *'multipart' => [
+     *  [
+     *   'name'     => 'data',
+     *  'contents' => '{"documents":[{"type":"DRIVERS_LICENSE","country":"US","category":"IDENTIFICATION"}]}'
+     *  ],
+     *  [
+     *  'name'     => 'drivers_license_front',
+     *  'contents' => fopen('<path>/File1.png', "r")
+     *  ],
+     *  [
+     *  'name'     => 'drivers_license_back',
+     *  'contents' => fopen('<path>>/File2.png', 'r')
+     *  ]
+     *  ]
+     *  ));
+     *
+     * @return User user object with updated VerificationStatus and document details
+     *
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function uploadDocumentsForUser($userToken, $options) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options);
+        return new User($body);
+    }
+
     //--------------------------------------
     // Venmo Accounts
     //--------------------------------------

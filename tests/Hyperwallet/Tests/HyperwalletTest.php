@@ -31,7 +31,6 @@ use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
-    private $includeIntegrationTest = false; //change this value to true if integration tests have to be run
 
     public function testConstructor_throwErrorIfUsernameIsEmpty() {
         try {
@@ -857,7 +856,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v3/transfers', array(), array('test' => 'value'));
     }
-
 
     public function testCreateTransferStatusTransition_noTransferToken() {
         // Setup
@@ -3543,6 +3541,56 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     }
 
     //--------------------------------------
+    // Document upload for users
+    //--------------------------------------
+    public function testuploadDocumentsForUser_withoutUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->uploadDocumentsForUser('', null);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testuploadDocumentsForUser() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $userToken = "user-token";
+
+        $options = array(
+            'multipart' => [
+                [
+                    'name'     => 'data',
+                    'contents' => '{"documents":[{"type":"DRIVERS_LICENSE","country":"AL","category":"IDENTIFICATION"}]}'
+                ],
+                [
+                    'name'     => 'drivers_license_front',
+                    'contents' => fopen(__DIR__ . "/../../resources/license-front.png", "r")
+                ],
+                [
+                    'name'     => 'drivers_license_back',
+                    'contents' => fopen(__DIR__ . "/../../resources/license-back.png", 'r')
+                ]
+            ]
+        );
+
+        \Phake::when($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options)->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $newUser = $client->uploadDocumentsForUser($userToken, $options);
+        $this->assertNotNull($newUser);
+        $this->assertNull($newUser->getProgramToken());
+        $this->assertEquals(array('success' => 'true'), $newUser->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options);
+    }
+
+    //--------------------------------------
     // Venmo Accounts
     //--------------------------------------
 
@@ -4071,8 +4119,8 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $userName = "test-username";
         $password = "test-password";
         $client = new Hyperwallet($userName, $password);
-        $transferToken = "trf-85182390-0d3d-41a2-a749-cb9e9927b3af";
-        $refundToken = "trd-3be1107e-54dc-415c-a252-c41d0adcb10a";
+        $transferToken = "test-transfer-token";
+        $refundToken = "test-refund-token";
         $uriParams = array('transfer-token' => $transferToken, 'refund-token' => $refundToken);
         $queryParams = array();
 
@@ -4099,8 +4147,8 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $userName = "test-username";
         $password = "test-password";
         $sourceCurrency = "CAD";
-        $transferToken = "trf-85182390-0d3d-41a2-a749-cb9e9927b3af";
-        $refundToken = "trd-3be1107e-54dc-415c-a252-c41d0adcb10a";
+        $transferToken = "test-tranfer-token";
+        $refundToken = "test-refund-token";
         $uriParams = array('transfer-token' => $transferToken);
         $queryParams = array();
         $client = new Hyperwallet($userName, $password);
@@ -4122,8 +4170,8 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $userName = "test-username";
         $password = "test-password";
         $sourceCurrency = "CAD";
-        $transferToken = "trf-85182390-0d3d-41a2-a749-cb9e9927b3af";
-        $refundToken = "trd-3be1107e-54dc-415c-a252-c41d0adcb10a";
+        $transferToken = "test-transfer-token";
+        $refundToken = "test-refund-token";
         $uriParams = array('transfer-token' => $transferToken);
         $queryParams = array('clientRefundId' => "clientRefundId", 'sourceToken' => "sourceToken",
             'status' => "COMPLETED", 'sortBy' => "sortByField", 'limit' => "10",
@@ -4151,164 +4199,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             $this->fail('HyperwalletArgumentException expected');
         } catch (HyperwalletArgumentException $e) {
             $this->assertEquals('transferToken is required!', $e->getMessage());
-        }
-    }
-
-    /*Following are the methods for integration testing. Please change $includeIntegrationTest to True if you want
-    *the following test cases
-    */
-
-    public function testGetUserSampleIT() {
-        $username = "selrestuser@1861681";
-        $password = "Password1!";
-        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-        $userToken = "usr-f49967a9-9b7f-4cfc-9fc7-037d736711ba";
-        $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-        try {
-            if (!$this->includeIntegrationTest) {
-                $this->markTestSkipped('This test is skipped.');
-            }
-            $user = $hyperwallet->getUser($userToken);
-            var_dump('User details', $user);
-            echo "Got the user successfully";
-        } catch (\Hyperwallet\Exception\HyperwalletException $e) {
-            echo $e->getMessage();
-            die("\n");
-        }
-    }
-
-    public function testGetTransferRefundIT() {
-        $username = "selrestuser@1861681";
-        $password = "Password1!";
-        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-        $transferToken = "trf-7d3ad14a-4030-4fb1-b87c-50eac1a1ce5f";
-        $refundToken = "trd-1559e365-8cb3-4700-b58d-e922d578237c";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-
-        $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-        try {
-            if (!$this->includeIntegrationTest) {
-                $this->markTestSkipped('This test is skipped.');
-            }
-            $transferRefund = $hyperwallet->getTransferRefund($transferToken, $refundToken);
-            var_dump('Transfer Refund received', $transferRefund);
-            echo "Got the transfer refund successfully";
-        } catch (\Hyperwallet\Exception\HyperwalletException $e) {
-            echo $e->getMessage();
-            die("\n");
-        }
-    }
-
-    public function testListTransferRefundIT() {
-        $username = "selrestuser@1861681";
-        $password = "Password1!";
-        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-        $transferToken = "trf-7d3ad14a-4030-4fb1-b87c-50eac1a1ce5f";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-        $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-        try {
-            if (!$this->includeIntegrationTest) {
-                $this->markTestSkipped('This test is skipped.');
-            }
-            $transferRefundList = $hyperwallet->listTransferRefunds($transferToken);
-            var_dump('Transfer Refund list received', $transferRefundList);
-            echo "Listed transfer refund successfully";
-        } catch (\Hyperwallet\Exception\HyperwalletException $e) {
-            echo $e->getMessage();
-            die("\n");
-        }
-    }
-
-    public function testCreateTransferIT() {
-        $username = "selrestuser@1861681";
-        $password = "Password1!";
-        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-
-        //Following variable has to be updated before running the test
-        $clientTransferId = "6712348070818";
-
-        $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-        try {
-            if (!$this->includeIntegrationTest) {
-                $this->markTestSkipped('This test is skipped.');
-            }
-            $response = $hyperwallet->createTransfer((new \Hyperwallet\Model\Transfer())
-                ->setClientTransferId($clientTransferId)
-                ->setDestinationAmount("5")
-                ->setDestinationCurrency("USD")
-                ->setNotes("Partial-Balance Transfer")
-                ->setMemo("IT memo")
-                ->setSourceToken("usr-f49967a9-9b7f-4cfc-9fc7-037d736711ba")
-                ->setDestinationToken("act-d468a8e7-19f5-4dac-9fcd-5bd0d9a80c09")
-            );
-            var_dump('Transfer created', $response);
-            echo "Transfer created successfully";
-        } catch (\Hyperwallet\Exception\HyperwalletException $e) {
-            echo $e->getMessage();
-            die("\n");
-        }
-    }
-
-    public function testTransferRefundIT() {
-        $username = "selrestuser@1861681";
-        $password = "Password1!";
-        $paymentAmount = "50.00";
-        $destinationAmount = "5.00";
-        $destinationCurrency = "CAD";
-        $userToken = "usr-f49967a9-9b7f-4cfc-9fc7-037d736711ba";
-        $destinationToken = "act-d468a8e7-19f5-4dac-9fcd-5bd0d9a80c09";
-        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-
-        //Following variables have to be updated before running the test
-        $clientPaymentId = "DyClk0VG3559";
-        $clientTransferId = "6712348070832";
-        $clientRefundId = "32432432473";
-
-        $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-
-        try {
-            if (!$this->includeIntegrationTest) {
-                $this->markTestSkipped('This test is skipped.');
-            }
-
-            $payment = $hyperwallet->createPayment((new \Hyperwallet\Model\Payment())
-                ->setAmount($paymentAmount)
-                ->setClientPaymentId("$clientPaymentId")
-                ->setCurrency("CAD")
-                ->setDestinationToken($userToken)
-                ->setProgramToken($programToken)
-                ->setPurpose("OTHER")
-            );
-            var_dump('Payment created', $payment);
-
-            $transfer = $hyperwallet->createTransfer((new \Hyperwallet\Model\Transfer())
-                ->setClientTransferId($clientTransferId)
-                ->setDestinationAmount($destinationAmount)
-                ->setDestinationCurrency($destinationCurrency)
-                ->setNotes("Partial-Balance Transfer")
-                ->setMemo("TransferClientId56387")
-                ->setSourceToken($userToken)
-                ->setDestinationToken($destinationToken)
-            );
-            var_dump('Transfer created', $transfer);
-            $transferToken = $transfer->getToken();
-            $transferstatusTransition = $hyperwallet->createTransferStatusTransition($transferToken, (new \Hyperwallet\Model\TransferStatusTransition())
-                ->setTransition("SCHEDULED")
-                ->setNotes("Test notes")
-            );
-            var_dump('Transfer status transtion created', $transferstatusTransition);
-            $transferRefund = $hyperwallet->createTransferRefund($transferToken, (new \Hyperwallet\Model\TransferRefund())
-                ->setClientRefundId($clientRefundId)
-                ->setNotes("Test notes")
-                ->setMemo("Test Memo")
-            );
-            var_dump('Transfer refund created', $transferRefund);
-        } catch (\Hyperwallet\Exception\HyperwalletException $e) {
-            echo $e->getMessage();
-            die("\n");
         }
     }
 }

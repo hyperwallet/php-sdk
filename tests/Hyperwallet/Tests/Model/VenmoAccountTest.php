@@ -4,10 +4,8 @@
 namespace Hyperwallet\Tests\Model;
 
 
-class VenmoAccountTest extends ModelTestCase
-{
-    protected function getModelName()
-    {
+class VenmoAccountTest extends ModelTestCase {
+    protected function getModelName() {
         return 'VenmoAccount';
     }
 
@@ -16,8 +14,7 @@ class VenmoAccountTest extends ModelTestCase
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property)
-    {
+    public function testGettersForIgnoredProperties($property) {
         $this->performGettersForIgnoredPropertiesTest($property);
     }
 
@@ -26,8 +23,7 @@ class VenmoAccountTest extends ModelTestCase
      *
      * @param string $property The property to look for
      */
-    public function testGettersAndSettersForNotIgnoredProperties($property)
-    {
+    public function testGettersAndSettersForNotIgnoredProperties($property) {
         $this->performGettersAndSettersForNotIgnoredPropertiesTest($property);
     }
 
@@ -36,8 +32,7 @@ class VenmoAccountTest extends ModelTestCase
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsSet($property)
-    {
+    public function testGetterReturnValueIsSet($property) {
         $this->performGetterReturnValueIsSetTest($property);
     }
 
@@ -46,8 +41,7 @@ class VenmoAccountTest extends ModelTestCase
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property)
-    {
+    public function testGetterReturnValueIsNotSet($property) {
         $this->performGetterReturnValueIsNotSetTest($property);
     }
 
@@ -56,8 +50,7 @@ class VenmoAccountTest extends ModelTestCase
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($property)
-    {
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($property) {
         $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($property);
     }
 
@@ -66,8 +59,7 @@ class VenmoAccountTest extends ModelTestCase
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSet($property)
-    {
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSet($property) {
         $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSetTest($property);
     }
 
@@ -76,18 +68,15 @@ class VenmoAccountTest extends ModelTestCase
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterNullField($property)
-    {
+    public function testGetterAndSetterNullField($property) {
         $this->performGetterAndSetterNullFieldTest($property);
     }
 
-    public function testTokenSetterTestWithValue()
-    {
+    public function testTokenSetterTestWithValue() {
         $this->performTokenSetterTestWithValue();
     }
 
-    public function testTokenSetterTestWithoutValue()
-    {
+    public function testTokenSetterTestWithoutValue() {
         $this->performTokenSetterTestWithoutValue();
     }
 }
