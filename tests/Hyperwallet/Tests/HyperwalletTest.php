@@ -30,7 +30,7 @@ use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
-    private $includeIntegrationTest = false; //change this value to true if integration tests have to be run
+    private $includeIntegrationTest = true; //change this value to true if integration tests have to be run
 
     public function testConstructor_throwErrorIfUsernameIsEmpty() {
         try {
@@ -3583,12 +3583,12 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Run test
         try {
-            $response = $client->updateVerificationStatus('test-user-token', User::VERIFICATION_STATUS_REQUESTED);
+            $responseUser = $client->updateVerificationStatus('test-user-token', User::VERIFICATION_STATUS_REQUESTED);
         } catch (HyperwalletArgumentException $e) {
             $this->assertEquals('userToken is required!', $e->getMessage());
         }
-        $this->assertNotNull($response);
-        $this->assertEquals('REQUIRED', $response['verificationStatus']);
+        $this->assertNotNull($responseUser);
+        $this->assertEquals('REQUIRED', $responseUser->getVerificationStatus());
         // Validate mock
         \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), $user, array());
     }
@@ -3609,14 +3609,14 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             if (!$this->includeIntegrationTest) {
                 $this->markTestSkipped('This test is skipped.');
             }
-            $verificationRequest = $hyperwallet->updateVerificationStatus($userToken,User::VERIFICATION_STATUS_REQUESTED);
-            $this->assertEquals("REQUIRED",$verificationRequest->getProperties()['verificationStatus']);
+            $verificationResponse = $hyperwallet->updateVerificationStatus($userToken,User::VERIFICATION_STATUS_REQUESTED);
+            $this->assertEquals("REQUIRED",$verificationResponse->getVerificationStatus());
         } catch (\Hyperwallet\Exception\HyperwalletException $e) {
             echo $e->getMessage();
         }
     }
 
-    public function testRequestUserVerificationWithInvalidVerificationStatusIT() {
+    public function testRequestUserVerificationWithInvalidToVerificationStatusIT() {
         $username = "selrestuser@1861681";
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
@@ -3628,6 +3628,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
                 $this->markTestSkipped('This test is skipped.');
             }
             $verificationResponse = $hyperwallet->updateVerificationStatus($userToken,"INVALID_VERIFICATION_STATUS");
+            var_dump('Verification Response WithInvalidToVerificationStatus', $verificationResponse);
         } catch (\Hyperwallet\Exception\HyperwalletArgumentException $e) {
             $this->assertEquals("Expected verification status is REQUESTED!",$e->getMessage());
         }
@@ -3645,7 +3646,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
                 $this->markTestSkipped('This test is skipped.');
             }
             $verificationResponse = $hyperwallet->updateVerificationStatus($userToken,"REQUESTED");
-            var_dump('Request verification', $verificationResponse);
         } catch (\Hyperwallet\Exception\HyperwalletArgumentException $e) {
             $this->assertEquals("The from verification status is expected to be 'Required' or 'Not required'",$e->getMessage());
         }
@@ -3665,7 +3665,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             }
             $verificationResponse = $hyperwallet->updateVerificationStatus($userToken,"REQUESTED");
             var_dump('Request verification', $verificationResponse);
-            $this->assertEquals(User::VERIFICATION_STATUS_REQUIRED,$verificationResponse['verificationStatus']);
+            $this->assertEquals(User::VERIFICATION_STATUS_REQUIRED,$verificationResponse->getVerificationStatus());
         } catch (\Hyperwallet\Exception\HyperwalletArgumentException $e) {
             $this->assertEquals("Expected verification status is REQUESTED!",$e->getMessage());
         }
@@ -3673,8 +3673,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
 
     public function testCreateUserStatusTransition_successfulIT() {
-        // Setup
-        $client = new Hyperwallet('test-username', 'test-password');
         $username = "selrestuser@1861681";
         $password = "Password1!";
         $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
@@ -3688,7 +3686,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
         $newStatusTransition = $hyperwallet->createUserStatusTransition($userToken, $statusTransition);
         $this->assertNotNull($newStatusTransition);
-        $this->assertEquals('LOCKED', $newStatusTransition->getProperties()['transition']);
+        $this->assertEquals('LOCKED', $newStatusTransition->getTransition());
     }
-
 }

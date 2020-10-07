@@ -1815,8 +1815,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-
-    public function updateVerificationStatus($userToken,$verificationStatus){
+    public function updateVerificationStatus($userToken, $verificationStatus){
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -1834,7 +1833,7 @@ class Hyperwallet {
         }
         $user = new User(array('verificationStatus'=> User::VERIFICATION_STATUS_REQUESTED));
         $responseUser = $this->client->doPut('/rest/v3/users/{user-token}', array('user-token' => $userToken), $user, array());
-        return $responseUser;
+        return new User($responseUser);
     }
 
 
@@ -1848,8 +1847,7 @@ class Hyperwallet {
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-
-    public function createUserStatusTransition($userToken,  UserStatusTransition $transition) {
+    public function createUserStatusTransition($userToken, UserStatusTransition $transition) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
