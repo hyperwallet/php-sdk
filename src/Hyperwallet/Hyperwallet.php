@@ -15,7 +15,6 @@ use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
 use Hyperwallet\Model\PayPalAccountStatusTransition;
 use Hyperwallet\Model\Transfer;
-use Hyperwallet\Model\TransferRefund;
 use Hyperwallet\Model\TransferStatusTransition;
 use Hyperwallet\Model\PayPalAccount;
 use Hyperwallet\Model\PrepaidCard;
