@@ -1820,7 +1820,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('userToken is required!');
         }
         if (empty($verificationStatus)) {
-            throw new HyperwalletArgumentException('verification status is required!');
+            throw new HyperwalletArgumentException('verificationStatus is required!');
         }
         if($verificationStatus != User::VERIFICATION_STATUS_REQUESTED){
             throw new HyperwalletArgumentException("Expected verification status is REQUESTED!");

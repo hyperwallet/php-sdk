@@ -3594,19 +3594,26 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testUpdateVerificationStatus_withNonRequestedStatus() {
-
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
-        $apiClientMock = $this->createAndInjectApiClientMock($client);
-        $user = new user(array('verificationStatus'=> User::VERIFICATION_STATUS_EXPIRED));
-
         // Run test
         try {
             $responseUser = $client->updateVerificationStatus('test-user-token', User::VERIFICATION_STATUS_EXPIRED);
         } catch (HyperwalletArgumentException $e) {
             $this->assertEquals("Expected verification status is REQUESTED!", $e->getMessage());
         }
- }
+    }
+
+    public function testUpdateVerificationStatus_withNullVerificationStatus() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        // Run test
+        try {
+            $responseUser = $client->updateVerificationStatus('test-user-token', null);
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals("verificationStatus is required!", $e->getMessage());
+        }
+    }
 
     //IT test cases--Please uncomment the following lines
 
