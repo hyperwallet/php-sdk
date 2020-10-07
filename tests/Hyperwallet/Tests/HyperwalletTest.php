@@ -30,7 +30,7 @@ use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
-    private $includeIntegrationTest = true; //change this value to true if integration tests have to be run
+    private $includeIntegrationTest = false; //change this value to true if integration tests have to be run
 
     public function testConstructor_throwErrorIfUsernameIsEmpty() {
         try {
@@ -3619,8 +3619,8 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    //IT test cases
-/*
+    //IT test cases--Please uncomment the following lines
+
     public function testRequestUserVerificationWithAndWithoutRoleIT() {
         $username = "selrestuser@1861681";
         $password = "Password1!";
@@ -3696,7 +3696,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-*/
+
     public function testCreateUserStatusTransition_successfulIT() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -3708,8 +3708,12 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
         $statusTransition = new UserStatusTransition(array('transition'=>'LOCKED'));
         // Run test
+        if (!$this->includeIntegrationTest) {
+            $this->markTestSkipped('This test is skipped.');
+        }
         $newStatusTransition = $hyperwallet->createUserStatusTransition($userToken, $statusTransition);
         $this->assertNotNull($newStatusTransition);
         $this->assertEquals('LOCKED', $newStatusTransition->getProperties()['transition']);
     }
+
 }

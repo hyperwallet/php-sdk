@@ -57,7 +57,6 @@ class ApiClient {
     public function __construct($username, $password, $server, $clientOptions = array(), $encryptionData = array()) {
         // Setup http client if not specified
         $this->client = new Client(array_merge_recursive(array(
-            'verify' => false,
             'base_uri' => $server,
             'auth' => array($username, $password),
             'headers' => array(
