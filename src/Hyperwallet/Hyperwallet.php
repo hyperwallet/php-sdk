@@ -420,27 +420,6 @@ class Hyperwallet {
     }
 
     /**
-     * Create a transfer refund
-     *
-     * @param Transfer $transfer The transfer data
-     * @return Transfer
-     *
-     * @throws HyperwalletArgumentException
-     * @throws HyperwalletApiException
-     */
-    public function createTransferRefund(TransferRefund $transferRefund) {
-        if (empty($transferRefund->getToken())) {
-            throw new HyperwalletArgumentException('transferToken is required!');
-        }
-        if (empty($transferRefund->getClientRefundId())) {
-            throw new HyperwalletArgumentException('clientRefundId is required!');
-        }
-
-        $body = $this->client->doPost('/rest/v3/transfers/{transfer-token}/refunds', array(), $transferRefund, array());
-        return new TransferRefund($body);
-    }
-
-    /**
      * Get a transfer
      *
      * @param string $transferToken The transfer token
