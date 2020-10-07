@@ -4,7 +4,7 @@ namespace Hyperwallet\Model;
 /**
  * Represents a V3 Transfer
  *
- * @property string $token The transfer token
+ * @property string $token The transfer refund token
  * @property string $status The transfer status
  * @property string $clientRefundId The client transfer id
  * @property string $sourceToken The source token
@@ -15,12 +15,14 @@ namespace Hyperwallet\Model;
  * @property string $destinationAmount The destination amount
  * @property string $destinationFeeAmount The destination fee amount
  * @property string $destinationCurrency The destination currency
+ * @property array $foreignExchanges The foreign exchanges
  * @property \DateTime $createdOn The transfer creation date
  * @property string $notes The notes
  * @property string $memo The memo
  *
  * @package Hyperwallet\Model
  */
+
 
 class TransferRefund extends BaseModel {
 
@@ -231,6 +233,7 @@ class TransferRefund extends BaseModel {
         return $this->destinationCurrency;
     }
 
+
     /**
      * Set transfer destinationCurrency
      *
@@ -279,6 +282,26 @@ class TransferRefund extends BaseModel {
      */
     public function setMemo($memo) {
         $this->memo = $memo;
+        return $this;
+    }
+
+    /**
+     * Get transfer memo
+     *
+     * @return string
+     */
+    public function getForeignExchanges() {
+        return $this->foreignExchanges;
+    }
+
+    /**
+     * Set transfer memo
+     *
+     * @param string $memo
+     * @return TransferRefund
+     */
+    public function setForeignExchanges($foreignExchanges) {
+        $this->foreignExchanges = $foreignExchanges;
         return $this;
     }
 
