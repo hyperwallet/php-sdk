@@ -2,6 +2,7 @@ language: php
 php:
 - '5.6'
 - '7.0'
+- '7.3'
 - hhvm-3.18
 cache:
   directories:
@@ -11,8 +12,8 @@ install:
 script:
 - ./vendor/bin/phpunit -v
 after_success:
-- if [ $TRAVIS_PHP_VERSION = '7.0' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then sh ./scripts/travisPublishDocs.sh; fi
-- if [ $TRAVIS_PHP_VERSION = '7.0' ]; then sh ./scripts/publishCodeCoverage.sh; fi
+- if [ $TRAVIS_PHP_VERSION = '7.3' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then sh ./scripts/travisPublishDocs.sh; fi
+- if [ $TRAVIS_PHP_VERSION = '7.3' ]; then sh ./scripts/publishCodeCoverage.sh; fi
 env:
   global:
-    secure: ckn7neTUU/eArfK77cFQ7CpE976RNUlENacYF/lf0RmI+wgxmnOflATD6QhgD+hvnQ/knaAYRI5U+VuzQ0OU+BrgfhHXFYujw9d/OCHpY/4N07nMs4ZOv0eJkP/ja96RIlcsn+XNOzM+va+mVuMYxJFOKXoXqHdIgfA8DT9KqtwD6WrY2VcgwPj1pVSv6PR/LaIuSWnimib6knUGfhT+0bbfSVuwe3Iia7e/G1NsIYh1xcX7lsh/qwpvDFueftYbH3Syi05ace5qf1ehFFCgv4v9QN+R1iVFX1NekCwRdbXXqdpTUWA/uP6lZTVSscZy8VlHTXlhYxMERKm7LvVRjLz4PBU00xR0H9QvwMSUMPlag4TK9D1omEx0QhsOIk5mmiR8oW6FUwVAhO1IvG1zOU6S/s2p/O1KERT8M1d3k9lk0JlfmKpaOdx6kTJfOCYAOeiqvmZLK4m8co9qsNEnWx/Q2UlX6l86vf3GwAffSzCqc128W0uCzVhbCuk2KZUob/3sY3+j23l+N+BpsOgY3YX/BWXMj5MB6rTdnLVFIPYAlF1v3hsbnZCcLRhhPh7Li5lcRKIbDkGIR96QrPnJJ10rBEp98pRfbQ3xt0Iu84aCBw4/nltcdfw6eS4ODvhqB86FJayajcCjI5wG4g6YlQ8OW0m1sMuHulvWHKDJWQY=
+    secure: Jb3a0RxARfGJ5imt0zB0nouzK7b+FVcn/aYQNj0/L1OT26uDErK2Bsk7RI5kpETlz1z03/YsqlItRCU0XAN40UWjowopXSzb8LeyOqXXOPPFjm5rf5IL8br1L3axiwUg2S2Jq9IGdNcxoxKf/00qbyOWlJvuQ62LJCsGZvcHFI9U6JJ4VawZzB7/CcHAZFXkfsVfA7YQ73ueLccSy5a34MhaC81dl2fV0ad6ueEFJf486FK/39xxdutJCXOovnmhutri73yGZ2ShrmT86WlWvbILyOlsIKdzpMUOcaTStz2BJrwDdvlQs/iECY5xgiv4+nSkYmKYdlRqEkRbEC7eKt7eai66xmTSiUju8goaVtSEkpOm4Hjy21ehigdksjjNPaZcRZwqwKl9P45CX4b3OKQH2qdWQqv54WA8mkWxTdaY2yIOQr8s/sZH9SFliqydUUrxL6BrMEF0o2KShWTc7aFqUvCiEgbHe3s7t7Iv3aJDmn8F4E+nIOG2V7+MeAR07V3u7MkY316oRomVCDZWRPw33NE/bxkufr+C7XPjfSpmMSeZF74PYTJlovaVFahFw0C/5Cq1tVKS7ledJKw3haL6QTY44lqSUq+oOrTuNJHV94aRLGxduRkVrTfEPztp+QiPlWUPDal1Vnx6+6NpDx37qlXpfeUkSgiacYUkeeQ=

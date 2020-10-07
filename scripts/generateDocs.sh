@@ -4,6 +4,9 @@ if [ ! -f ./sami.phar ]; then
     curl -O http://get.sensiolabs.org/sami.phar
 fi
 
+mkdir ./docs
+touch ./index.html
+
 php ./sami.phar update ./sami.cfg.php
 
 echo "<!DOCTYPE HTML>
