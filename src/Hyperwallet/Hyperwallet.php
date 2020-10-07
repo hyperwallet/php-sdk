@@ -1806,7 +1806,7 @@ class Hyperwallet {
     }
 
     /**
-     * Create a bank card status transition
+     * Update user verification status
      *
      * @param string $userToken The user token
      * @param UserStatusTransition $transition The status transition
@@ -1838,7 +1838,7 @@ class Hyperwallet {
 
 
     /**
-     * Create a bank card status transition
+     * Create an User status transition
      *
      * @param string $userToken The user token
      * @param UserStatusTransition $transition The status transition
