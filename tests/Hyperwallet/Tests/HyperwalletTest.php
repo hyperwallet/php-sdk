@@ -25,7 +25,7 @@ use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\User;
-use Hyperwallet\Model\userStatusTransition;
+use Hyperwallet\Model\UserStatusTransition;
 use Hyperwallet\Model\VenmoAccount;
 use Hyperwallet\Model\VenmoAccountStatusTransition;
 use Hyperwallet\Response\ErrorResponse;
@@ -300,7 +300,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             $statusTransition, array());
     }
 
-
     public function testDeactivateUser() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -338,6 +337,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
+
     public function testFreezeUser() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -356,6 +356,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
+
     public function testPreactivateUser() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -374,7 +375,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
-
 
     public function testGetUserStatusTransition_noStatusTransitionToken() {
         // Setup
