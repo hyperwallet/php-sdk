@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Bank Account
+ * Represents a V4 Bank Account
  *
  * @property string $token The bank account token
  * @property string $type The transfer method type

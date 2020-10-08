@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Prepaid Card
+ * Represents a V4 Prepaid Card
  *
  * @property string $token The prepaid card token
  * @property string $type The transfer method type
@@ -186,7 +186,7 @@ class PrepaidCard extends BaseModel {
 
     /**
      * Get the prepaid card expiry date
-     * 
+     *
      * @return \DateTime
      */
     public function getDateOfExpiry() {

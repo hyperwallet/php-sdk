@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Payment
+ * Represents a V4 Payment
  *
  * @property string $token The payment token
  * @property \DateTime $createdOn The payment creation date
@@ -240,7 +240,7 @@ class Payment extends BaseModel implements IProgramAware {
 
     /**
      * Set the payment program token
-     * 
+     *
      * @param string $programToken
      * @return Payment
      */

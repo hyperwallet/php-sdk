@@ -3,7 +3,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 PayPal Account Status Transition
+ * Represents a V4 PayPal Account Status Transition
  *
  * @package Hyperwallet\Model
  */
