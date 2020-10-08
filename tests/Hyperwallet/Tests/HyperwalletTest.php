@@ -4209,42 +4209,75 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Setup
         $userName = "test-username";
         $password = "test-password";
-        $clientRefundId = 6712348070813;
-        $sourceAmount = 20.0;
+        $clientRefundId = "test-client-refund-id";
+        $sourceToken="test-source-token";
+        $sourceAmount = 2000.00;
+        $sourceFeeAmount= 2.00;
+        $sourceCurrency='USD';
+        $destinationToken='test-destination-token';
+        $destinationAmount=1000.00;
+        $destinationFeeAmount=2.00;
+        $destinationCurrency='USD';
         $notes = "notes";
         $memo = "memo";
-
         $foreignExchange1 = array('sourceAmount' => '200.00', 'sourceCurrency' => 'USD', 'destinationCurrency' => 'CAD',
             'destinationAmount' => '100.00', 'rate' => '2.3');
+        $expectedArray = array('token' => 'test-token',
+            'clientRefundId' => "test-client-refund-id",
+            'sourceToken'=>"test-source-token",
+            'sourceAmount' => 2000.00,
+            'sourceFeeAmount'=> 2.00,
+            'sourceCurrency'=>'USD',
+            'destinationToken'=>'test-destination-token',
+            'destinationAmount'=>1000.00,
+            'destinationFeeAmount'=>2.00,
+            'destinationCurrency'=>'USD',
+            'notes' => "notes",
+            'memo' => "memo",
+            'foreignExchanges' =>array($foreignExchange1));
         $foreignExchanges = array($foreignExchange1);
         $transferRefund = new TransferRefund();
         $transferRefund->setClientRefundId($clientRefundId);
+        $transferRefund->setSourceToken($sourceToken);
         $transferRefund->setSourceAmount($sourceAmount);
+        $transferRefund->setSourceFeeAmount($sourceFeeAmount);
+        $transferRefund->setSourceCurrency($sourceCurrency);
+        $transferRefund->setDestinationToken($destinationToken);
+        $transferRefund->setSourceAmount($destinationAmount);
+        $transferRefund->setDestinationAmount($destinationFeeAmount);
+        $transferRefund->setDestinationCurrency($destinationCurrency);
         $transferRefund->setNotes($notes);
         $transferRefund->setMemo($memo);
         $transferRefund->setForeignExchanges($foreignExchanges);
-
         $transferToken = "transferToken";
         $client = new Hyperwallet($userName, $password);
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
         \Phake::when($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/refunds',
-            array('transfer-token' => $transferToken), $transferRefund, array())->thenReturn(array('token' => 'test-token'));
+            array('transfer-token' => $transferToken), $transferRefund, array())->thenReturn($expectedArray);
 
         // Run test
         $newTransferRefund = $client->createTransferRefund($transferToken, $transferRefund);
         $this->assertNotNull($newTransferRefund);
-        $this->assertEquals(array('token' => 'test-token'), $newTransferRefund->getProperties());
-        $this->assertEquals($transferRefund->getClientRefundId(), $clientRefundId);
-        $this->assertEquals($transferRefund->getSourceAmount(), $sourceAmount);
-        $this->assertEquals($transferRefund->getNotes(), $notes);
-        $this->assertEquals($transferRefund->getMemo(), $memo);
-        $foreignExchange1 = $transferRefund->getForeignExchanges()[0];
-        $this->assertEquals($foreignExchange1['sourceAmount'], "200.00");
-        $this->assertEquals($foreignExchange1['sourceCurrency'], "USD");
-        $this->assertEquals($foreignExchange1['destinationAmount'], "100.00");
-        $this->assertEquals($foreignExchange1['destinationCurrency'], "CAD");
-        $this->assertEquals($foreignExchange1['rate'], "2.3");
+        $this->assertEquals($expectedArray, $newTransferRefund->getProperties());
+        $this->assertEquals($clientRefundId,$newTransferRefund->getClientRefundId());
+        $this->assertEquals($sourceToken,$newTransferRefund->getSourceToken());
+        $this->assertEquals($sourceAmount,$newTransferRefund->getSourceAmount());
+        $this->assertEquals($sourceAmount,$newTransferRefund->getSourceAmount());
+        $this->assertEquals($sourceCurrency,$newTransferRefund->getSourceCurrency());
+        $this->assertEquals($destinationToken,$newTransferRefund->getDestinationToken());
+        $this->assertEquals($destinationAmount,$newTransferRefund->getDestinationAmount());
+        $this->assertEquals($destinationFeeAmount,$newTransferRefund->getDestinationFeeAmount());
+        $this->assertEquals($destinationCurrency,$newTransferRefund->getDestinationCurrency());
+        $this->assertEquals($notes,$newTransferRefund->getNotes());
+        $this->assertEquals($memo,$newTransferRefund->getMemo() );
+        $foreignExchanges = $newTransferRefund->getForeignExchanges();
+        $foreignExchange1 = $foreignExchanges[0];
+        $this->assertEquals("200.00",$foreignExchange1['sourceAmount']);
+        $this->assertEquals("USD",$foreignExchange1['sourceCurrency'] );
+        $this->assertEquals("100.00",$foreignExchange1['destinationAmount'] );
+        $this->assertEquals("CAD",$foreignExchange1['destinationCurrency']);
+        $this->assertEquals("2.3", $foreignExchange1['rate']);
 
         // Validate mock
         \Phake::verify($apiClientMock)->doPost('/rest/v3/transfers/{transfer-token}/refunds',
@@ -4267,7 +4300,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
     public function testGetTransferRefund_noTransferRefundToken() {
         $userName = "test-username";
         $password = "test-password";
-        $transferToken = "trf-85182390-0d3d-41a2-a749-cb9e9927b3af";
+        $transferToken = "test-transfer-token";
         $client = new Hyperwallet($userName, $password);
         try {
             $client->getTransferRefund($transferToken, null);
