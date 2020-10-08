@@ -130,7 +130,7 @@ class ListResponse implements \Countable, \ArrayAccess {
 
     /**
      * @internal
-     * 
+     *
      * Offset to unset
      * @link http://php.net/manual/en/arrayaccess.offsetunset.php
      * @param mixed $offset <p>

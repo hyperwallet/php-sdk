@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Prepaid Card Status Transition
+ * Represents a V4 Prepaid Card Status Transition
  *
  * @package Hyperwallet\Model
  */

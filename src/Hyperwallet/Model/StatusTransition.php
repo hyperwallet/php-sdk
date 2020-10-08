@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Status Transition
+ * Represents a V4 Status Transition
  *
  * @property string $token The status transition token
  * @property \DateTime $createdOn The status transition creation date
@@ -113,7 +113,7 @@ abstract class StatusTransition extends BaseModel {
 
     /**
      * Set the status transition notes
-     * 
+     *
      * @param string $notes
      * @return StatusTransition
      */

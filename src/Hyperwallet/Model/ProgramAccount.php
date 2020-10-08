@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Program Account
+ * Represents a V4 Program Account
  *
  * @property string $token The program account token
  * @property string $type The program account type
@@ -67,7 +67,7 @@ class ProgramAccount extends BaseModel {
 
     /**
      * Get the program account email
-     * 
+     *
      * @return string
      */
     public function getEmail() {
