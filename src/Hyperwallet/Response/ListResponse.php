@@ -23,7 +23,7 @@ class ListResponse implements \Countable , \ArrayAccess{
     private $hasNextPage;
 
     /**
-     * Has Next Page objects
+     * Has Previous Page objects
      *
      * @var boolean
      */
