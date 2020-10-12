@@ -46,7 +46,11 @@ namespace Hyperwallet\Model;
  * @property string $language The user language
  * @property string $programToken The users program token
  * @property string $verificationStatus The status of user verification
+ * @property string $businessStakeholderVerificationStatus The status of Business Stakeholder verification
+ * @property string $letterOfAuthorizationStatus The status of Letter of Authorization verification
+ * @property string $governmentIdType The status of Letter of Authorization verification
  * @property array $documents The array of documents returned for document upload
+ * @property array $links The array of HATEOS links
  *
  * @package Hyperwallet\Model
  */
@@ -59,7 +63,8 @@ class User extends BaseModel implements IProgramAware {
      *
      * @var string[]
      */
-    private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn', 'documents');
+
+    private static $READ_ONLY_FIELDS = array('token', 'createdOn', 'documents');
 
     const STATUS_PRE_ACTIVATED = 'PRE_ACTIVATED';
     const STATUS_ACTIVATED = 'ACTIVATED';
@@ -69,6 +74,7 @@ class User extends BaseModel implements IProgramAware {
 
     const PROFILE_TYPE_INDIVIDUAL = 'INDIVIDUAL';
     const PROFILE_TYPE_BUSINESS = 'BUSINESS';
+    const PROFILE_TYPE_UNKNOWN = 'UNKNOWN';
 
     const BUSINESS_TYPE_CORPORATION = 'CORPORATION';
     const BUSINESS_TYPE_PARTNERSHIP = 'PARTNERSHIP';
@@ -80,10 +86,28 @@ class User extends BaseModel implements IProgramAware {
     const GENDER_MALE = 'MALE';
     const GENDER_FEMALE = 'FEMALE';
 
-    const VERIFICATION_STATUS_REQUIRED = 'REQUIRED';
     const VERIFICATION_STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
+    const VERIFICATION_STATUS_REQUIRED = 'REQUIRED';
+    const VERIFICATION_STATUS_FAILED = 'FAILED';
     const VERIFICATION_STATUS_UNDER_REVIEW = 'UNDER_REVIEW';
     const VERIFICATION_STATUS_VERIFIED = 'VERIFIED';
+
+    const BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
+    const BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_REQUIRED = 'REQUIRED';
+    const BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_FAILED = 'FAILED';
+    const BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_UNDER_REVIEW = 'UNDER_REVIEW';
+    const BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED = 'VERIFIED';
+    const BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_READY_FOR_REVIEW = 'READY_FOR_REVIEW';
+
+    const LETTER_OF_AUTHORIZATION_STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
+    const LETTER_OF_AUTHORIZATION_STATUS_REQUIRED = 'REQUIRED';
+    const LETTER_OF_AUTHORIZATION_STATUS_FAILED = 'FAILED';
+    const LETTER_OF_AUTHORIZATION_STATUS_UNDER_REVIEW = 'UNDER_REVIEW';
+    const LETTER_OF_AUTHORIZATION_STATUS_VERIFIED = 'VERIFIED';
+    const LETTER_OF_AUTHORIZATION_STATUS_READY_FOR_REVIEW = 'READY_FOR_REVIEW';
+
+    const GOVERNMENT_ID_TYPE_PASSPORT = 'PASSPORT';
+    const GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD = 'NATIONAL_ID_CARD';
 
     /**
      * Creates a instance of User
@@ -122,6 +146,18 @@ class User extends BaseModel implements IProgramAware {
     public function getStatus() {
         return $this->status;
     }
+
+    /**
+     * set the User status
+     *
+     * @param string $status
+     * @return User
+     */
+    public function setStatus($status) {
+        $this->$status = $status;
+        return $this;
+    }
+
 
     /**
      * Get the user creation time
@@ -778,4 +814,84 @@ class User extends BaseModel implements IProgramAware {
         return $this->documents;
     }
 
+    /**
+     * Get the users Letter of Authorization status
+     *
+     * @return string
+     */
+    public function getLetterOfAuthorizationStatus() {
+        return $this->letterOfAuthorizationStatus;
+    }
+
+    /**
+     * Set the users Letter of Authorization status
+     *
+     * @param string $letterOfAuthorizationStatus
+     * @return User
+     */
+    public function setLetterOfAuthorizationStatus($letterOfAuthorizationStatus) {
+        $this->$letterOfAuthorizationStatus = $letterOfAuthorizationStatus;
+        return $this;
+    }
+
+    /**
+     * get the users government Id Type
+     *
+     * @return string
+     */
+    public function getGovernmentIdType() {
+        return $this->governmentIdType;
+    }
+
+    /**
+     * Set the users government Id Type
+     *
+     * @param string $governmentIdType
+     * @return User
+     */
+    public function setGovernmentIdType($governmentIdType) {
+        $this->$governmentIdType = $governmentIdType;
+        return $this;
+    }
+
+    /**
+     * get the HATEOS links
+     *
+     * @return array
+     */
+    public function getLinks() {
+        return $this->links;
+    }
+
+    /**
+     * set the HATEOS links
+     *
+     * @param array $links
+     * @return User
+     */
+    public function setLinks($links) {
+        echo('======links======'.$links."++++++");
+        $this->$links = $links;
+        return $this;
+    }
+
+    /**
+     * get Business Stakeholder verification status
+     *
+     * @return string
+     */
+    public function getBusinessStakeholderVerificationStatus() {
+        return $this->businessStakeholderVerificationStatus;
+    }
+
+    /**
+     * set Business Stakeholder verification status
+     *
+     * @param string $businessStakeholderVerificationStatus
+     * @return User
+     */
+    public function setBusinessStakeholderVerificationStatus($businessStakeholderVerificationStatus) {
+        $this->$businessStakeholderVerificationStatus = $businessStakeholderVerificationStatus;
+        return $this;
+    }
 }

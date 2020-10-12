@@ -84,9 +84,27 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
-        $user = new User();
 
-        \Phake::when($apiClientMock)->doPost('/rest/v4/users', array(), $user, array())->thenReturn(array('success' => 'true'));
+        $user = new User();
+        $user->setStatus(User::STATUS_ACTIVATED);
+        $user->setVerificationStatus(User::VERIFICATION_STATUS_VERIFIED);
+        $user->setBusinessStakeholderVerificationStatus(User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED);
+        $user->setLetterOfAuthorizationStatus(User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED);
+        $user->setGovernmentIdType(User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD);
+        $user->setFirstName("test-first-name");
+        $user->setBusinessOperatingName("test-business-operating-name");
+        $link1 = "test-link1";
+        $link2 = "test-link2";
+       /* $links = array(
+            key  => value,
+            key2 => value2,
+            key3 => value3
+        );*/
+        //$user->setLinks($links);
+
+        $expectedResponse = $user;
+
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users', array(), $user, array())->thenReturn($expectedResponse);
 
         // Run test
         $this->assertNull($user->getProgramToken());
@@ -94,7 +112,22 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $newUser = $client->createUser($user);
         $this->assertNotNull($newUser);
         $this->assertNull($user->getProgramToken());
+        var_dump('user-==============--------',$expectedResponse);
         $this->assertEquals(array('success' => 'true'), $newUser->getProperties());
+        /*
+
+        assertThat(apiClientUser.getVerificationStatus(), is(equalTo(VerificationStatus.VERIFIED)));
+        assertThat(apiClientUser.getLetterOfAuthorizationStatus(), is(equalTo(LetterOfAuthorizationStatus.VERIFIED)));
+        assertThat(apiClientUser.getBusinessStakeholderVerificationStatus(), is(equalTo(BusinessStakeholderVerificationStatus.VERIFIED)));
+        assertThat(apiClientUser.getGovernmentIdType(), is(equalTo(GovernmentIdType.NATIONAL_ID_CARD)));
+
+        assertThat(apiClientUser.getVerificationStatus(), is(equalTo(VerificationStatus.VERIFIED)));
+        assertThat(apiClientUser.getLetterOfAuthorizationStatus(), is(equalTo(LetterOfAuthorizationStatus.VERIFIED)));
+        assertThat(apiClientUser.getBusinessStakeholderVerificationStatus(), is(equalTo(BusinessStakeholderVerificationStatus.VERIFIED)));
+        assertThat(apiClientUser.getGovernmentIdType(), is(equalTo(GovernmentIdType.NATIONAL_ID_CARD)));
+
+        assertThat(apiClientUser.getLinks(), is(nullValue()));
+        */
 
         // Validate mock
         \Phake::verify($apiClientMock)->doPost('/rest/v4/users', array(), $user, array());
