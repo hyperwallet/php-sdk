@@ -6,9 +6,11 @@ namespace Hyperwallet\Model;
  *
  * @property string $token The user token
  * @property string $status The user status
+ * @property string $verificationStatus The status of user verification
+ * @property string $businessStakeholderVerificationStatus The status of Business Stakeholder verification
+ * @property string $letterOfAuthorizationStatus The status of Letter of Authorization verification
  *
  * @property \DateTime $createdOn The user creation date
- *
  * @property string $clientUserId The client user id
  * @property string $profileType The profile type
  *
@@ -16,8 +18,8 @@ namespace Hyperwallet\Model;
  * @property string $businessName The business name
  * @property string $businessOperatingName The business operating name
  * @property string $businessRegistrationId The business registration id
- * @property string $businessRegistrationStateProvince The business registration state or province
  * @property string $businessRegistrationCountry The business registration country
+ * @property string $businessRegistrationStateProvince The business registration state or province
  * @property string $businessContactRole The business contact role
  *
  * @property string $firstName The first name
@@ -32,6 +34,7 @@ namespace Hyperwallet\Model;
  * @property string $email The email
  *
  * @property string $governmentId The goverment id
+ * @property string $governmentIdType The status of Letter of Authorization verification
  * @property string $passportId The passport id
  * @property string $driversLicenseId The drivers license id
  * @property string $employerId The employer id
@@ -40,16 +43,13 @@ namespace Hyperwallet\Model;
  * @property string $addressLine2 The address line 2
  * @property string $city The city
  * @property string $stateProvince The state or province
- * @property string $country The country
  * @property string $postalCode The postal code
+ * @property string $country The country
  *
  * @property string $language The user language
  * @property string $programToken The users program token
- * @property string $verificationStatus The status of user verification
- * @property string $businessStakeholderVerificationStatus The status of Business Stakeholder verification
- * @property string $letterOfAuthorizationStatus The status of Letter of Authorization verification
+ * @property string $timeZone The users program token
  * @property array $documents The array of documents returned for document upload
- * @property string $governmentIdType The status of Letter of Authorization verification
  * @property array $links The array of HATEOS links
  *
  * @package Hyperwallet\Model
@@ -872,6 +872,26 @@ class User extends BaseModel implements IProgramAware {
      */
     public function setGovernmentIdType($governmentIdType) {
         $this->governmentIdType = $governmentIdType;
+        return $this;
+    }
+
+    /**
+     * get the user's time zone
+     *
+     * @return string
+     */
+    public function getTimeZone() {
+        return $this->timeZone;
+    }
+
+    /**
+     * set the user's time zone
+     *
+     * @param string $timeZone
+     * @return User
+     */
+    public function setTimeZone($timeZone) {
+        $this->timeZone = $timeZone;
         return $this;
     }
 
