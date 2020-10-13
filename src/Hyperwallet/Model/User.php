@@ -45,10 +45,11 @@ namespace Hyperwallet\Model;
  *
  * @property string $language The user language
  * @property string $programToken The users program token
+ * @property string $verificationStatus The status of user verification
  * @property string $businessStakeholderVerificationStatus The status of Business Stakeholder verification
  * @property string $letterOfAuthorizationStatus The status of Letter of Authorization verification
- * @property string $governmentIdType The status of Letter of Authorization verification
  * @property array $documents The array of documents returned for document upload
+ * @property string $governmentIdType The status of Letter of Authorization verification
  * @property array $links The array of HATEOS links
  *
  * @package Hyperwallet\Model
@@ -114,7 +115,6 @@ class User extends BaseModel implements IProgramAware {
      * @param string[] $properties The default properties
      */
     public function __construct(array $properties = array()) {
-        echo("++++++++++++Inside User constructor++++++++++++");
         parent::__construct(self::$READ_ONLY_FIELDS, $properties);
     }
 
@@ -816,6 +816,26 @@ class User extends BaseModel implements IProgramAware {
     }
 
     /**
+     * get Business Stakeholder verification status
+     *
+     * @return string
+     */
+    public function getBusinessStakeholderVerificationStatus() {
+        return $this->businessStakeholderVerificationStatus;
+    }
+
+    /**
+     * set Business Stakeholder verification status
+     *
+     * @param string $businessStakeholderVerificationStatus
+     * @return User
+     */
+    public function setBusinessStakeholderVerificationStatus($businessStakeholderVerificationStatus) {
+        $this->businessStakeholderVerificationStatus = $businessStakeholderVerificationStatus;
+        return $this;
+    }
+
+    /**
      * Get the users Letter of Authorization status
      *
      * @return string
@@ -831,7 +851,7 @@ class User extends BaseModel implements IProgramAware {
      * @return User
      */
     public function setLetterOfAuthorizationStatus($letterOfAuthorizationStatus) {
-        $this->$letterOfAuthorizationStatus = $letterOfAuthorizationStatus;
+        $this->letterOfAuthorizationStatus = $letterOfAuthorizationStatus;
         return $this;
     }
 
@@ -851,7 +871,7 @@ class User extends BaseModel implements IProgramAware {
      * @return User
      */
     public function setGovernmentIdType($governmentIdType) {
-        $this->$governmentIdType = $governmentIdType;
+        $this->governmentIdType = $governmentIdType;
         return $this;
     }
 
@@ -871,27 +891,7 @@ class User extends BaseModel implements IProgramAware {
      * @return User
      */
     public function setLinks($links) {
-        $this->$links = $links;
-        return $this;
-    }
-
-    /**
-     * get Business Stakeholder verification status
-     *
-     * @return string
-     */
-    public function getBusinessStakeholderVerificationStatus() {
-        return $this->businessStakeholderVerificationStatus;
-    }
-
-    /**
-     * set Business Stakeholder verification status
-     *
-     * @param string $businessStakeholderVerificationStatus
-     * @return User
-     */
-    public function setBusinessStakeholderVerificationStatus($businessStakeholderVerificationStatus) {
-        $this->$businessStakeholderVerificationStatus = $businessStakeholderVerificationStatus;
+        $this->links = $links;
         return $this;
     }
 }

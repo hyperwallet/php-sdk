@@ -49,7 +49,6 @@ class UserTest extends ModelTestCase {
      * @param string $property The property to look for
      */
     public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($property) {
-        echo("((((((((((((((INSIDE the FUNCTION)))))))))))))))))))))))))");
         $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($property);
     }
 
