@@ -31,7 +31,6 @@ use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
-
     public function testConstructor_throwErrorIfUsernameIsEmpty() {
         try {
             new Hyperwallet('', 'test-password');
@@ -131,13 +130,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $user->setGovernmentIdType(User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD);
         $user->setFirstName("test-first-name");
         $user->setBusinessOperatingName("test-business-operating-name");
-        $link1 = "test-link1";
-        $link2 = "test-link2";
-        $links = array(
-            $link1,
-            $link2
-        );
-        $user->setLinks($links);
 
         $expectedResponse = array('success' => 'true','verificationStatus'=>User::VERIFICATION_STATUS_VERIFIED,
             'businessStakeholderVerificationStatus'=>User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED,

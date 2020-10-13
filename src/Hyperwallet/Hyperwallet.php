@@ -91,7 +91,6 @@ class Hyperwallet {
     public function createUser(User $user) {
         $this->addProgramToken($user);
         $body = $this->client->doPost('/rest/v4/users', array(), $user, array());
-        var_dump('------body-----',$body);
         return new User($body);
     }
 
