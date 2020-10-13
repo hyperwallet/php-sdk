@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+1.5.1
+-------------------
+- Added fields processingTime to BankCards, expiresOn to Payments
+
 1.5.0
 -------------------
 - Added Multipart Upload document 
