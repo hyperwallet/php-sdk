@@ -10,7 +10,7 @@ use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
-use Hyperwallet\Model\BusinessUser;
+use Hyperwallet\Model\BusinessStakeholder;
 use Hyperwallet\Model\IProgramAware;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
@@ -2081,7 +2081,7 @@ class Hyperwallet {
         });
     }
     /**
-     * Upload documents for user endpoint
+     * Upload documents for Business Stakeholder endpoint
      *
      * @param string $userToken The user token
      * @param array $options The multipart object with the required documents and json data to get uploaded
@@ -2104,13 +2104,13 @@ class Hyperwallet {
      *  ]
      *  ));
      *
-     * @return Business user object with updated VerificationStatus and document details
+     * @return BusinessStakeholder object with updated VerificationStatus and document details
      *
      *
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function uploadDocumentsForBusinessUser($userToken, $businessToken, $options) {
+    public function uploadDocumentsForBusinessStakeholder($userToken, $businessToken, $options) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -2118,58 +2118,58 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('businessToken is required!');
         }
         $body = $this->client->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => $userToken,'business-stakeholders' => $businessToken), $options);
-        return new BusinessUser($body);
+        return new BusinessStakeholder($body);
     }
 
     //--------------------------------------
-    // Business Users
+    // Business Stakeholders
     //--------------------------------------
 
     /**
-     * Create a Business user
+     * Create a Business Stakeholder
      *
-     * @param Business User $businessUser The user data
-     * @return Business User
+     * @param Business Stakeholder $BusinessStakeholder The Business Stakeholder data
+     * @return BusinessStakeholder
      *
      * @throws HyperwalletApiException
      */
-    public function createBusinessUser($userToken,$businessUser) {
+    public function createBusinessStakeholder($userToken,$BusinessStakeholder) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        $body = $this->client->doPost('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => $userToken), $businessUser, array());
-        return new BusinessUser($body);
+        $body = $this->client->doPost('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => $userToken), $BusinessStakeholder, array());
+        return new BusinessStakeholder($body);
     }
 
     /**
-     * Update a Business user
+     * Update a Business Stakeholder
      *
-     * @param BusinessUser $Businessuser The Business user
-     * @return BusinessUser
+     * @param Business Stakeholder $BusinessStakeholder The Business Stakeholder
+     * @return BusinessStakeholder
      *
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function updateBusinessUser($userToken, $businessToken, $businessUser) {
+    public function updateBusinessStakeholder($userToken, $businessToken, $BusinessStakeholder) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
         if (empty($businessToken)) {
             throw new HyperwalletArgumentException('businessToken is required!');
         }
-        $body = $this->client->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => $userToken,'business-stakeholders' => $businessToken), $businessUser, array());
-        return new BusinessUser($body);
+        $body = $this->client->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => $userToken,'business-stakeholders' => $businessToken), $BusinessStakeholder, array());
+        return new BusinessStakeholder($body);
     }
 
     /**
-     * List all Businessusers
+     * List all Business Stakeholders
      *
      * @param array $options
      * @return ListResponse
      *
      * @throws HyperwalletApiException
      */
-    public function listBusinessUsers($userToken , $options) {
+    public function listBusinessStakeholders($userToken , $options) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -2177,7 +2177,7 @@ class Hyperwallet {
             'user-token' => $userToken
         ), $options);
         return new ListResponse($body, function ($entry) {
-            return new BusinessUser($entry);
+            return new BusinessStakeholder($entry);
         });
     }
 }

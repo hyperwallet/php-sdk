@@ -1,10 +1,12 @@
 <?php
 namespace Hyperwallet\Tests\Model;
 
-class BusinessUserTest extends ModelTestCase {
+use Hyperwallet\Model\BusinessStakeholder;
+
+class BusinessStakeholderTest extends ModelTestCase {
 
     protected function getModelName() {
-        return 'BusinessUser';
+        return 'BusinessStakeholder';
     }
 
     /**

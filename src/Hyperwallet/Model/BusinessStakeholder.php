@@ -2,9 +2,9 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V4 Business User
+ * Represents a V4 BusinessStakeholder
  *
- * @property string $token The Business user token
+ * @property string $token The BusinessStakeholder token
  * @property boolen $isBusinessContact The business contact
  * @property boolen $isDirector The Director
  * @property boolen $isUltimateBeneficialOwner The UltimateBeneficial Owner
@@ -39,8 +39,7 @@ namespace Hyperwallet\Model;
  * @package Hyperwallet\Model
  */
 
-class BusinessUser extends BaseModel {
-
+class BusinessStakeholder extends BaseModel {
     /**
      * @internal
      *
@@ -49,7 +48,6 @@ class BusinessUser extends BaseModel {
      * @var string[]
      */
     private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn', 'documents');
-
 
     const STATUS_ACTIVATED = 'ACTIVATED';
     const STATUS_DE_ACTIVATED = 'DE_ACTIVATED';
@@ -69,7 +67,7 @@ class BusinessUser extends BaseModel {
     const GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD = 'NATIONAL_ID_CARD';
 
     /**
-     * Creates a instance of Business User
+     * Creates a instance of BusinessStakeholder
      *
      * @param string[] $properties The default properties
      */
@@ -78,7 +76,7 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Get the Business user token
+     * Get the BusinessStakeholder token
      *
      * @return string
      */
@@ -87,10 +85,10 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Set the Business user token
+     * Set the BusinessStakeholder token
      *
      * @param string $token
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setToken($token) {
         $this->token = $token;
@@ -98,7 +96,7 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Get the Business Contact
+     * Get the BusinessStakeholder Contact
      *
      * @return Boolean
      */
@@ -106,11 +104,11 @@ class BusinessUser extends BaseModel {
         return $this->isBusinessContact;
     }
     /**
-     * Set the Business Contact
+     * Set the BusinessStakeholder Contact
      *
      * @param Boolean $isBusinessContact
 
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setIsBusinessContact($isBusinessContact) {
         $this->isBusinessContact = $isBusinessContact;
@@ -118,7 +116,7 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Get the Business Director
+     * Get the BusinessStakeholder Director
      *
      * @return Boolean
      */
@@ -127,11 +125,11 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Set the Business Director
+     * Set the BusinessStakeholder Director
      *
      * @param Boolean $isDirector
 
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setIsDirector($isDirector) {
         $this->isDirector = $isDirector;
@@ -139,7 +137,7 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Get the Business Ultimate Beneficial Owner
+     * Get the BusinessStakeholder Ultimate Beneficial Owner
      *
      * @return Boolean
      */
@@ -148,11 +146,11 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Set the Business Ultimate Beneficial Owner
+     * Set the BusinessStakeholder Ultimate Beneficial Owner
      *
      * @param Boolean $isUltimateBeneficialOwner
 
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setIsUltimateBeneficialOwner($isUltimateBeneficialOwner) {
         $this->isUltimateBeneficialOwner = $isUltimateBeneficialOwner;
@@ -160,7 +158,7 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Get the Business Senior Managing Official
+     * Get the BusinessStakeholder Senior Managing Official
      *
      * @return Boolean
      */
@@ -169,11 +167,11 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Set the Business Senior Managing Official
+     * Set the BusinessStakeholder Senior Managing Official
      *
      * @param Boolean $isSeniorManagingOfficial
 
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setIsSeniorManagingOfficial($isSeniorManagingOfficial) {
         $this->isSeniorManagingOfficial = $isSeniorManagingOfficial;
@@ -181,7 +179,7 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Get the Business users verification status
+     * Get the BusinessStakeholder verification status
      *
      * @return string
      */
@@ -190,10 +188,10 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Set the Business users verification status
+     * Set the BusinessStakeholder verification status
      *
      * @param string $verificationStatus
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setVerificationStatus($verificationStatus) {
         $this->verificationStatus = $verificationStatus;
@@ -201,7 +199,7 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Get the Business user status
+     * Get the BusinessStakeholder status
      *
      * @return string
      */
@@ -210,7 +208,7 @@ class BusinessUser extends BaseModel {
     }
 
     /**
-     * Get the Business user creation time
+     * Get the BusinessStakeholder creation time
      *
      * @return \DateTime
      */
@@ -232,7 +230,7 @@ class BusinessUser extends BaseModel {
      * Set the profile type
      *
      * @param string $profileType
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setProfileType($profileType) {
         $this->profileType = $profileType;
@@ -261,7 +259,7 @@ class BusinessUser extends BaseModel {
      * Set the first name
      *
      * @param string $firstName
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setFirstName($firstName) {
         $this->firstName = $firstName;
@@ -281,7 +279,7 @@ class BusinessUser extends BaseModel {
      * Set the middle name
      *
      * @param string $middleName
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setMiddleName($middleName) {
         $this->middleName = $middleName;
@@ -301,7 +299,7 @@ class BusinessUser extends BaseModel {
      * Set the last name
      *
      * @param string $lastName
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setLastName($lastName) {
         $this->lastName = $lastName;
@@ -321,7 +319,7 @@ class BusinessUser extends BaseModel {
      * Set the date of birth
      *
      * @param \DateTime|null $dateOfBirth
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setDateOfBirth(\DateTime $dateOfBirth = null) {
         $this->dateOfBirth = $dateOfBirth == null ? null : $dateOfBirth->format('Y-m-d');
@@ -341,7 +339,7 @@ class BusinessUser extends BaseModel {
      * Set the country of birth
      *
      * @param string $countryOfBirth
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setCountryOfBirth($countryOfBirth) {
         $this->countryOfBirth = $countryOfBirth;
@@ -361,7 +359,7 @@ class BusinessUser extends BaseModel {
      * Set the country of nationality
      *
      * @param string $countryOfNationality
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setCountryOfNationality($countryOfNationality) {
         $this->countryOfNationality = $countryOfNationality;
@@ -381,7 +379,7 @@ class BusinessUser extends BaseModel {
      * Set the gender
      *
      * @param string $gender
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setGender($gender) {
         $this->gender = $gender;
@@ -401,7 +399,7 @@ class BusinessUser extends BaseModel {
      * Set the phone number
      *
      * @param string $phoneNumber
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setPhoneNumber($phoneNumber) {
         $this->phoneNumber = $phoneNumber;
@@ -421,7 +419,7 @@ class BusinessUser extends BaseModel {
      * Set the mobile number
      *
      * @param string $mobileNumber
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setMobileNumber($mobileNumber) {
         $this->mobileNumber = $mobileNumber;
@@ -441,7 +439,7 @@ class BusinessUser extends BaseModel {
      * Set the email
      *
      * @param string $email
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setEmail($email) {
         $this->email = $email;
@@ -461,7 +459,7 @@ class BusinessUser extends BaseModel {
      * Set the government id
      *
      * @param string $governmentId
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setGovernmentId($governmentId) {
         $this->governmentId = $governmentId;
@@ -481,7 +479,7 @@ class BusinessUser extends BaseModel {
      * Set the business governmentIdType
      *
      * @param string $businessType
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setGovernmentIdType($governmentIdType) {
         $this->governmentIdType = $governmentIdType;
@@ -501,7 +499,7 @@ class BusinessUser extends BaseModel {
      * Set the drivers license id
      *
      * @param string $driversLicenseId
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setDriversLicenseId($driversLicenseId) {
         $this->driversLicenseId = $driversLicenseId;
@@ -521,7 +519,7 @@ class BusinessUser extends BaseModel {
      * Set the address line 1
      *
      * @param string $addressLine1
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setAddressLine1($addressLine1) {
         $this->addressLine1 = $addressLine1;
@@ -541,7 +539,7 @@ class BusinessUser extends BaseModel {
      * Set the address line 2
      *
      * @param string $addressLine2
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setAddressLine2($addressLine2) {
         $this->addressLine2 = $addressLine2;
@@ -561,7 +559,7 @@ class BusinessUser extends BaseModel {
      * Set the city
      *
      * @param string $city
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setCity($city) {
         $this->city = $city;
@@ -581,7 +579,7 @@ class BusinessUser extends BaseModel {
      * Set the state or province
      *
      * @param string $stateProvince
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setStateProvince($stateProvince) {
         $this->stateProvince = $stateProvince;
@@ -601,7 +599,7 @@ class BusinessUser extends BaseModel {
      * Set the country
      *
      * @param string $country
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setCountry($country) {
         $this->country = $country;
@@ -621,7 +619,7 @@ class BusinessUser extends BaseModel {
      * Set the postal code
      *
      * @param string $postalCode
-     * @return Business User
+     * @return BusinessStakeholder
      */
     public function setPostalCode($postalCode) {
         $this->postalCode = $postalCode;
