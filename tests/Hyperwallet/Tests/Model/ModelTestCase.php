@@ -62,6 +62,7 @@ abstract class ModelTestCase extends \PHPUnit_Framework_TestCase {
      * @param string $property The property to look for
      */
     protected function performGetterReturnValueIsSetTest($property) {
+        echo("====$property====".$property);
         $val = 'Test-Value';
         $expectVal = 'Test-Value';
         if ($this->propertiesToType[$property] == '\DateTime') {
@@ -100,6 +101,7 @@ abstract class ModelTestCase extends \PHPUnit_Framework_TestCase {
      * @param string $property The property to look for
      */
     protected function performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($property) {
+        var_dump('-------+++-------'.$property);
         $val = 'Test-Value';
         $valType = 'Test-Value';
         $newVal = 'Test-ValueUp';
