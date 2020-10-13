@@ -10,6 +10,7 @@ use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
+use Hyperwallet\Model\BusinessUser;
 use Hyperwallet\Model\IProgramAware;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
@@ -2079,5 +2080,104 @@ class Hyperwallet {
             return new VenmoAccountStatusTransition($entry);
         });
     }
+    /**
+     * Upload documents for user endpoint
+     *
+     * @param string $userToken The user token
+     * @param array $options The multipart object with the required documents and json data to get uploaded
+     *
+     * Sample multipart array to refer. Don't set the content-type explicitly
+     * array(
+     *'multipart' => [
+     *  [
+     *   'name'     => 'data',
+     *  'contents' => '{"documents":[{"type":"DRIVERS_LICENSE","country":"US","category":"IDENTIFICATION"}]}'
+     *  ],
+     *  [
+     *  'name'     => 'drivers_license_front',
+     *  'contents' => fopen('<path>/File1.png', "r")
+     *  ],
+     *  [
+     *  'name'     => 'drivers_license_back',
+     *  'contents' => fopen('<path>>/File2.png', 'r')
+     *  ]
+     *  ]
+     *  ));
+     *
+     * @return Business user object with updated VerificationStatus and document details
+     *
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function uploadDocumentsForBusinessUser($userToken, $businessToken, $options) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($businessToken)) {
+            throw new HyperwalletArgumentException('businessToken is required!');
+        }
+        $body = $this->client->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => $userToken,'business-stakeholders' => $businessToken), $options);
+        return new BusinessUser($body);
+    }
 
+    //--------------------------------------
+    // Business Users
+    //--------------------------------------
+
+    /**
+     * Create a Business user
+     *
+     * @param Business User $businessUser The user data
+     * @return Business User
+     *
+     * @throws HyperwalletApiException
+     */
+    public function createBusinessUser($userToken,$businessUser) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doPost('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => $userToken), $businessUser, array());
+        return new BusinessUser($body);
+    }
+
+    /**
+     * Update a Business user
+     *
+     * @param BusinessUser $Businessuser The Business user
+     * @return BusinessUser
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function updateBusinessUser($userToken, $businessToken, $businessUser) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($businessToken)) {
+            throw new HyperwalletArgumentException('businessToken is required!');
+        }
+        $body = $this->client->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => $userToken,'business-stakeholders' => $businessToken), $businessUser, array());
+        return new BusinessUser($body);
+    }
+
+    /**
+     * List all Businessusers
+     *
+     * @param array $options
+     * @return ListResponse
+     *
+     * @throws HyperwalletApiException
+     */
+    public function listBusinessUsers($userToken , $options) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v4/users/{user-token}/business-stakeholders',array(
+            'user-token' => $userToken
+        ), $options);
+        return new ListResponse($body, function ($entry) {
+            return new BusinessUser($entry);
+        });
+    }
 }

@@ -29,6 +29,7 @@ use Hyperwallet\Model\VenmoAccount;
 use Hyperwallet\Model\VenmoAccountStatusTransition;
 use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\ApiClient;
+use Hyperwallet\Model\BusinessUser;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
@@ -4200,5 +4201,185 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         } catch (HyperwalletArgumentException $e) {
             $this->assertEquals('transferToken is required!', $e->getMessage());
         }
+    }
+
+    //--------------------------------------
+    // Document upload for Business users
+    //--------------------------------------
+
+    public function testCreateBusinessUser_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $businessUser = new BusinessUser();
+
+        try {
+            $client->createBusinessUser('', $businessUser);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateBusinessUser_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $businessUser = new BusinessUser();
+
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), $businessUser, array())->thenReturn(array('postalCode' => 'ABCD'));
+
+        // Run test
+        $newbusinessUser = $client->createBusinessUser('test-user-token', $businessUser);
+        $this->assertNotNull($newbusinessUser);
+        $this->assertEquals(array('postalCode' => 'ABCD'), $newbusinessUser->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), $businessUser, array());
+    }
+
+    public function testUpdateBusinessUser_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $businessUser = new BusinessUser();
+
+        try {
+            $client->updateBusinessUser('','', $businessUser);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testUpdateBusinessUser_noBusinessToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $businessUser = new BusinessUser();
+
+        try {
+            $client->updateBusinessUser('test-user-token','', $businessUser);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('businessToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testUpdateBusinessUser_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $businessUser = new BusinessUser(array('token' => 'test-paper-check-token'));
+
+        \Phake::when($apiClientMock)->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => 'test-user-token', 'business-stakeholders' => 'test-business-token'), $businessUser, array())->thenReturn(array('postalCode' => 'ABCD'));
+
+        // Run test
+        $newBusinessUser = $client->updateBusinessUser('test-user-token','test-business-token', $businessUser);
+        $this->assertNotNull($newBusinessUser);
+        $this->assertEquals(array('postalCode' => 'ABCD'), $newBusinessUser->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => 'test-user-token','business-stakeholders' => 'test-business-token'), $businessUser, array());
+    }
+
+    public function testListBusinessUser_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+
+        try {
+            $client->listBusinessUsers('',array());
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListBusinessUser_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array())->thenReturn(array('data' => array()));
+
+        // Run test
+        $businessUserList = $client->listBusinessUsers('test-user-token',array());
+        $this->assertNotNull($businessUserList);
+        $this->assertCount(0, $businessUserList);
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array());
+    }
+
+    public function testListBusinessUser_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('data' => array(array('postalCode' => 'ABCD'))));
+
+        // Run test
+        $businessUserList = $client->listBusinessUsers('test-user-token', array('test' => 'value'));
+        $this->assertNotNull($businessUserList);
+        $this->assertCount(1, $businessUserList);
+
+        $this->assertEquals(array('postalCode' => 'ABCD'), $businessUserList[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array('test' => 'value'));
+    }
+
+    public function testuploadDocumentsForBusinessUser_withoutUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->uploadDocumentsForBusinessUser('','test', null);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+    public function testuploadDocumentsForBusinessUser_withoutBusinessToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->uploadDocumentsForBusinessUser('test','', null);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('businessToken is required!', $e->getMessage());
+        }
+    }
+    public function testuploadDocumentsForBusinessUser() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $userToken = "user-token";
+        $businessToken="business-token";
+        $options = array(
+            'multipart' => [
+                [
+                    'name'     => 'data',
+                    'contents' => '{"documents":[{"type":"DRIVERS_LICENSE","country":"AL","category":"IDENTIFICATION"}]}'
+                ],
+                [
+                    'name'     => 'drivers_license_front',
+                    'contents' => fopen(__DIR__ . "/../../resources/license-front.png", "r")
+                ],
+                [
+                    'name'     => 'drivers_license_back',
+                    'contents' => fopen(__DIR__ . "/../../resources/license-back.png", 'r')
+                ]
+            ]
+        );
+
+        \Phake::when($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => $userToken,'business-stakeholders' => $businessToken), $options)->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $newUser = $client->uploadDocumentsForBusinessUser($userToken,$businessToken, $options);
+        $this->assertNotNull($newUser);
+        $this->assertEquals(array('success' => 'true'), $newUser->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => $userToken,'business-stakeholders' => $businessToken), $options);
+
     }
 }
