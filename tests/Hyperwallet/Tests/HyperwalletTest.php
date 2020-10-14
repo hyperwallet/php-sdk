@@ -125,8 +125,23 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $user = new User(array('programToken' => 'test-program-token2'));
+        $user->setVerificationStatus(User::VERIFICATION_STATUS_VERIFIED);
+        $user->setBusinessStakeholderVerificationStatus(User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED);
+        $user->setLetterOfAuthorizationStatus(User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED);
+        $user->setGovernmentIdType(User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD);
+        $user->setFirstName("test-first-name");
+        $user->setBusinessOperatingName("test-business-operating-name");
+        $user->setTimeZone("test-time-zone");
 
-        \Phake::when($apiClientMock)->doPost('/rest/v4/users', array(), $user, array())->thenReturn(array('success' => 'true'));
+        $expectedResponse = array('success' => 'true','verificationStatus'=>User::VERIFICATION_STATUS_VERIFIED,
+            'businessStakeholderVerificationStatus'=>User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED,
+            'letterOfAuthorizationStatus'=>User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED,
+            'governmentIdType'=>User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD,
+            'firstName'=>"test-first-name",
+            'businessOperatingName'=>"test-business-operating-name",
+            'timeZone'=>'test-time-zone');
+
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users', array(), $user, array())->thenReturn($expectedResponse);
 
         // Run test
         $this->assertEquals('test-program-token2', $user->getProgramToken());
@@ -134,7 +149,13 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $newUser = $client->createUser($user);
         $this->assertNotNull($newUser);
         $this->assertEquals('test-program-token2', $user->getProgramToken());
-        $this->assertEquals(array('success' => 'true'), $newUser->getProperties());
+        $this->assertEquals(array('success' => 'true','verificationStatus'=>User::VERIFICATION_STATUS_VERIFIED,
+            'businessStakeholderVerificationStatus'=>User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED,
+            'letterOfAuthorizationStatus'=>User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED,
+            'governmentIdType'=>User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD,
+            'firstName'=>"test-first-name",
+            'businessOperatingName'=>"test-business-operating-name",
+            'timeZone'=>'test-time-zone'), $newUser->getProperties());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doPost('/rest/v4/users', array(), $user, array());
