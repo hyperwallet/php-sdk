@@ -6,14 +6,28 @@ namespace Hyperwallet\Response;
  *
  * @package Hyperwallet\Response
  */
-class ListResponse implements \Countable, \ArrayAccess {
+class ListResponse implements \Countable , \ArrayAccess{
 
     /**
      * Total number of matching objects
      *
      * @var int
      */
-    private $count;
+    private $limit;
+
+    /**
+     * Has Next Page objects
+     *
+     * @var boolean
+     */
+    private $hasNextPage;
+
+    /**
+     * Has Previous Page objects
+     *
+     * @var boolean
+     */
+    private $hasPreviousPage;
 
     /**
      * Array of Model's
@@ -23,6 +37,13 @@ class ListResponse implements \Countable, \ArrayAccess {
     private $data;
 
     /**
+     * Array of Model's
+     *
+     * @var array
+     */
+    private $links;
+
+    /**
      * Creates a api list response instance
      *
      * @param array $body The api response body
@@ -30,26 +51,28 @@ class ListResponse implements \Countable, \ArrayAccess {
      */
     public function __construct(array $body, $convertEntry) {
         if (count($body) == 0) {
-            $this->count = 0;
+            $this->hasNextPage = false;
+            $this->hasPreviousPage = false;
+            $this->limit = 0 ;
             $this->data = array();
         } else {
-            $this->count = $body['count'];
+            $this->hasNextPage = $body['hasNextPage'];
+            $this->hasPreviousPage = $body['hasPreviousPage'];
+            $this->limit = $body['limit'];
+            $this->links = $body['links'];
             $this->data = array_map(function ($item) use ($convertEntry) {
-                if (isset($item['links'])) {
-                    unset($item['links']);
-                }
                 return $convertEntry($item);
             }, $body['data']);
         }
     }
 
     /**
-     * Get the total number of matching objects
+     * Get the array of Model's
      *
-     * @return int
+     * @return array
      */
-    public function getCount() {
-        return $this->count;
+    public function getLinks() {
+        return $this->links;
     }
 
     /**
@@ -59,6 +82,33 @@ class ListResponse implements \Countable, \ArrayAccess {
      */
     public function getData() {
         return $this->data;
+    }
+
+    /**
+     * Get the Total number of Model's
+     *
+     * @var int
+     */
+    public function getLimit() {
+        return $this->limit;
+    }
+
+    /**
+     * Get Has Next Page of Model's
+     *
+     * @var boolean
+     */
+    public function getHasNextPage() {
+        return $this->hasNextPage;
+    }
+
+    /**
+     * Get Has Previous Page of Model's
+     *
+     * @var boolean
+     */
+    public function getHasPreviousPage() {
+        return $this->hasPreviousPage;
     }
 
 
@@ -76,7 +126,6 @@ class ListResponse implements \Countable, \ArrayAccess {
     public function count() {
         return count($this->data);
     }
-
     /**
      * @internal
      *
