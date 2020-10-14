@@ -155,6 +155,18 @@ class TransferRefund extends BaseModel {
         return $this->sourceFeeAmount;
     }
 
+
+    /**
+     * Set transfer sourceFeeAmount
+     *
+     * @param string $sourceFeeAmount
+     * @return TransferRefund
+     */
+    public function setSourceFeeAmount($sourceFeeAmount) {
+        $this->sourceFeeAmount = $sourceFeeAmount;
+        return $this;
+    }
+
     /**
      * Get transfer sourceCurrency
      *

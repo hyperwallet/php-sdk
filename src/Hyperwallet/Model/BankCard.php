@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V4 Bank Card
+ * Represents a V3 Bank Card
  *
  * @property string $token The bank card token
  * @property string $type The transfer method type
@@ -19,6 +19,7 @@ namespace Hyperwallet\Model;
  * @property string $cardBrand The bank card brand
  * @property string $cvv The bank card cvv
  * @property \DateTime $dateOfExpiry The bank card expiry date
+ * @property string $processingTime The processing time
  *
  * @package Hyperwallet\Model
  */
@@ -230,6 +231,26 @@ class BankCard extends BaseModel {
      */
     public function setDateOfExpiry(\DateTime $dateOfExpiry = null) {
         $this->dateOfExpiry = $dateOfExpiry == null ? null : $dateOfExpiry->format('Y-m-d');
+        return $this;
+    }
+
+    /**
+     * Get the bank card processing time
+     *
+     * @return string
+     */
+    public function getProcessingTime() {
+        return $this->processingTime;
+    }
+
+    /**
+     * Set the bank card processing time
+     *
+     * @param string $processingTime
+     * @return BankCard
+     */
+    public function setProcessingTime($processingTime) {
+        $this->processingTime = $processingTime;
         return $this;
     }
 

@@ -1,6 +1,17 @@
 ChangeLog
 =========
 
+1.5.1
+-------------------
+- Added fields processingTime to BankCards, expiresOn to Payments
+
+1.5.0
+-------------------
+- Added Multipart Upload document 
+- Added Transfer refunds
+- Added Venmo accounts
+- Added User Status Transitions
+
 1.4.0
 -------------------
 - Fix TypeError thrown when response status is 204 No content
