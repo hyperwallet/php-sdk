@@ -207,13 +207,34 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $user = new User(array('token' => 'test-user-token'));
+        $user->setFirstName("test-first-name");
 
-        \Phake::when($apiClientMock)->doPut('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), $user, array())->thenReturn(array('success' => 'true'));
+        $user->setVerificationStatus(User::VERIFICATION_STATUS_VERIFIED);
+        $user->setBusinessStakeholderVerificationStatus(User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED);
+        $user->setLetterOfAuthorizationStatus(User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED);
+        $user->setGovernmentIdType(User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD);
+
+        $expectedResponse = array('success' => 'true','verificationStatus'=>User::VERIFICATION_STATUS_VERIFIED,
+            'businessStakeholderVerificationStatus'=>User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED,
+            'letterOfAuthorizationStatus'=>User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED,
+            'governmentIdType'=>User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD,
+            'firstName'=>"test-first-name",
+            'businessOperatingName'=>"test-business-operating-name",
+            'timeZone'=>'test-time-zone');
+
+        \Phake::when($apiClientMock)->doPut('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), $user, array())->thenReturn($expectedResponse);
 
         // Run test
         $newUser = $client->updateUser($user);
         $this->assertNotNull($newUser);
-        $this->assertEquals(array('success' => 'true'), $newUser->getProperties());
+        $this->assertEquals(array('success' => 'true','verificationStatus'=>User::VERIFICATION_STATUS_VERIFIED,
+            'businessStakeholderVerificationStatus'=>User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED,
+            'letterOfAuthorizationStatus'=>User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED,
+            'governmentIdType'=>User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD,
+            'firstName'=>"test-first-name",
+            'businessOperatingName'=>"test-business-operating-name",
+            'timeZone'=>'test-time-zone'), $newUser->getProperties());
+
 
         // Validate mock
         \Phake::verify($apiClientMock)->doPut('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), $user, array());
