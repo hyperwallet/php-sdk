@@ -4269,7 +4269,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $businessStakeholder = new BusinessStakeholder(array('token' => 'test-paper-check-token'));
 
-        \Phake::when($apiClientMock)->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => 'test-user-token', 'business-stakeholders' => 'test-business-token'), $businessStakeholder, array())->thenReturn(array('postalCode' => 'ABCD'));
+        \Phake::when($apiClientMock)->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token'), $businessStakeholder, array())->thenReturn(array('postalCode' => 'ABCD'));
 
         // Run test
         $newBusinessStakeholder = $client->updateBusinessStakeholder('test-user-token','test-business-token', $businessStakeholder);
@@ -4277,7 +4277,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('postalCode' => 'ABCD'), $newBusinessStakeholder->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => 'test-user-token','business-stakeholders' => 'test-business-token'), $businessStakeholder, array());
+        \Phake::verify($apiClientMock)->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => 'test-user-token','business-token' => 'test-business-token'), $businessStakeholder, array());
     }
 
     public function testListBusinessStakeholder_noUserToken() {
@@ -4371,7 +4371,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             ]
         );
 
-        \Phake::when($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => $userToken,'business-stakeholders' => $businessToken), $options)->thenReturn(array('success' => 'true'));
+        \Phake::when($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $options)->thenReturn(array('success' => 'true'));
 
         // Run test
         $newUser = $client->uploadDocumentsForBusinessStakeholder($userToken,$businessToken, $options);
@@ -4379,7 +4379,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newUser->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => $userToken,'business-stakeholders' => $businessToken), $options);
+        \Phake::verify($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $options);
 
     }
 }

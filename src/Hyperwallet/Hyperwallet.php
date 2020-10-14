@@ -2117,7 +2117,7 @@ class Hyperwallet {
         if (empty($businessToken)) {
             throw new HyperwalletArgumentException('businessToken is required!');
         }
-        $body = $this->client->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => $userToken,'business-stakeholders' => $businessToken), $options);
+        $body = $this->client->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $options);
         return new BusinessStakeholder($body);
     }
 
@@ -2157,7 +2157,7 @@ class Hyperwallet {
         if (empty($businessToken)) {
             throw new HyperwalletArgumentException('businessToken is required!');
         }
-        $body = $this->client->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-stakeholders}', array('user-token' => $userToken,'business-stakeholders' => $businessToken), $businessStakeholder, array());
+        $body = $this->client->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $businessStakeholder, array());
         return new BusinessStakeholder($body);
     }
 
