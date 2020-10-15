@@ -2180,4 +2180,25 @@ class Hyperwallet {
         });
     }
 
+    /**
+     * List all Transfer Methods
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters
+     * @return ListResponse of HyperwalletTransferMethod
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listTransferMethods($userToken, $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v4/users/{user-token}/transfer-methods', array(
+            'user-token' => $userToken
+        ), $options);
+        return new ListResponse($body, function ($entry) {
+            return new TransferMethod($entry);
+        });
+    }
 }
