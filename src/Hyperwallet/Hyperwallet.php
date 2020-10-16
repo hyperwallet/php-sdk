@@ -125,6 +125,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('token is required!');
         }
         $body = $this->client->doPut('/rest/v4/users/{user-token}', array('user-token' => $user->getToken()), $user, array());
+        var_dump("======body=====",$body);
         return new User($body);
     }
 

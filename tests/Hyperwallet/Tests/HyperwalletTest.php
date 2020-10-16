@@ -32,6 +32,7 @@ use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
+    private $includeIntegrationTest = false; //change this value to true if integration tests have to be run
     public function testConstructor_throwErrorIfUsernameIsEmpty() {
         try {
             new Hyperwallet('', 'test-password');
@@ -4243,4 +4244,28 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('transferToken is required!', $e->getMessage());
         }
     }
+
+    //IT testing
+
+    public function testUpdateUsers_successfulIT() {
+        $newStatusTransition = "";
+        $username = "selrestuser@1861681";
+        $password = "Password1!";
+        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
+        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
+        $hyperwallet = new Hyperwallet($username, $password, $programToken, $server);
+        $user1 = new User(array(
+            'token' => "usr-f49967a9-9b7f-4cfc-9fc7-037d736711ba",
+            "firstName"=> "RajThreeFirstName",
+            "driversLicenseId"=>"123467",
+            "email"=> "rrathinasabapath1@paypal.com"));
+        $updatedUser = $hyperwallet->updateUser($user1);
+        var_dump('--------users------',$updatedUser);
+        echo("+++++++++++".$updatedUser->getLinks()[0]['hrefs']."***********");
+        var_dump('--------Links------',$updatedUser->getLinks()[0]);
+        var_dump('--------documents------',$updatedUser->getDocuments());
+        $this->assertNotNull($updatedUser);
+        $this->assertEquals('NOT_REQUIRED', $updatedUser->getVerificationStatus());
+    }
+    
 }
