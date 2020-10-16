@@ -7,6 +7,11 @@ namespace Hyperwallet\Model;
  * @package Hyperwallet\Model
  */
 class UserStatusTransition extends StatusTransition {
+    const TRANSITION_FROZEN = 'FROZEN';
+    const TRANSITION_ACTIVATED = 'ACTIVATED';
+    const TRANSITION_LOCKED = 'LOCKED';
+    const TRANSITION_DE_ACTIVATED = 'DE_ACTIVATED';
+    const TRANSITION_PRE_ACTIVATED = 'PRE-ACTIVATED';
 
     /**
      * Creates a instance of UserStatusTransition

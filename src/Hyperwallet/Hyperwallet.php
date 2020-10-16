@@ -4,6 +4,7 @@ namespace Hyperwallet;
 
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletArgumentException;
+use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\AuthenticationToken;
 use Hyperwallet\Model\Balance;
 use Hyperwallet\Model\BankAccount;
@@ -1853,6 +1854,109 @@ class Hyperwallet {
         ), $transferMethod, array());
     }
 
+    /*
+     * Update user verification status
+     *
+     * @param string $userToken The user token
+     * @param UserStatusTransition $transition The status transition
+     * @return UserStatusTransition
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function updateVerificationStatus($userToken, $verificationStatus){
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($verificationStatus)) {
+            throw new HyperwalletArgumentException('verificationStatus is required!');
+        }
+        $user = new User(array('verificationStatus'=> $verificationStatus));
+        $responseUser = $this->client->doPut('/rest/v3/users/{user-token}', array('user-token' => $userToken), $user, array());
+        return new User($responseUser);
+    }
+
+    /**
+     * Create an User status transition
+     *
+     * @param string $userToken The user token
+     * @param UserStatusTransition $transition The status transition
+     * @return UserStatusTransition
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+    */
+    public function createUserStatusTransition($userToken, UserStatusTransition $transition) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($transition->getTransition())) {
+            throw new HyperwalletArgumentException('userStatusTransition is required!');
+        }
+        $body = $this->client->doPost('/rest/v3/users/{user-token}/status-transitions', array(
+            'user-token' => $userToken), $transition, array());
+        return new UserStatusTransition($body);
+    }
+
+    /**
+     * Activate an User
+     *
+     * @param string $userToken The user token
+     * @return UserStatusTransition
+     */
+    public function activateUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_ACTIVATED);
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * De-activate a User
+     *
+     * @param string $userToken The user token
+     * @return UserStatusTransition
+     */
+    public function deactivateUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_DE_ACTIVATED);
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * Lock a User account
+     *
+     * @param userToken User token
+     * @return The status transition
+     */
+    public function lockUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_LOCKED);
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * Freeze a User account
+     *
+     * @param userToken User token
+     * @return The status transition
+     */
+    public function freezeUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_FROZEN);
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+    /**
+     * Pre-activate a User account
+     *
+     * @param userToken User token
+     * @return The status transition
+     */
+    public function preactivateUser($userToken) {
+        $transition = new UserStatusTransition();
+        $transition->setTransition(UserStatusTransition::TRANSITION_PRE_ACTIVATED);
+        return $this->createUserStatusTransition($userToken, $transition);
+    }
+
+
     /**
      * Upload documents for user endpoint
      *
@@ -1879,10 +1983,8 @@ class Hyperwallet {
      *
      * @return User user object with updated VerificationStatus and document details
      *
-     *
-     * @throws HyperwalletArgumentException
-     * @throws HyperwalletApiException
      */
+
     public function uploadDocumentsForUser($userToken, $options) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
@@ -1953,8 +2055,6 @@ class Hyperwallet {
      * @param VenmoAccount $venmoAccount Venmo account data
      * @return VenmoAccount
      *
-     * @throws HyperwalletArgumentException
-     * @throws HyperwalletApiException
      */
     public function updateVenmoAccount($userToken, VenmoAccount $venmoAccount) {
         $body = $this->updateTransferMethod($userToken, $venmoAccount, 'venmo-accounts');
