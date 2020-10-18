@@ -287,7 +287,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Run test
         try {
-            $client->createUserStatusTransition('',$statusTransition);
+            $client->getUserStatusTransition('',$statusTransition);
             $this->fail('HyperwalletArgumentException expected');
         } catch (HyperwalletArgumentException $e) {
             $this->assertEquals('userToken is required!', $e->getMessage());
@@ -314,7 +314,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_ACTIVATED);
 
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array())->thenReturn(array('success' => 'true'));
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array())->thenReturn(array('success' => 'true'));
 
         // Run test
         $newStatusTransition = $client->createUserStatusTransition('test-user-token', $statusTransition);
@@ -322,7 +322,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array());
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array());
     }
 
     public function testActivateUser() {
@@ -331,7 +331,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_ACTIVATED);
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array())->thenReturn(array('success' => 'true'));
         // Run test
         $newStatusTransition = $client->activateUser('test-user-token');
@@ -339,7 +339,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
 
@@ -350,7 +350,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_DE_ACTIVATED);
 
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array())->thenReturn(array('success' => 'true'));
         // Run test
         $newStatusTransition = $client->deactivateUser('test-user-token');
@@ -358,7 +358,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
 
@@ -369,7 +369,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_LOCKED);
 
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array())->thenReturn(array('success' => 'true'));
         // Run test
         $newStatusTransition = $client->lockUser('test-user-token');
@@ -377,7 +377,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
 
@@ -388,7 +388,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_FROZEN);
 
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array())->thenReturn(array('success' => 'true'));
         // Run test
         $newStatusTransition = $client->freezeUser('test-user-token');
@@ -396,7 +396,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
 
@@ -407,7 +407,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_PRE_ACTIVATED);
 
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array())->thenReturn(array('success' => 'true'));
         // Run test
         $newStatusTransition = $client->preactivateUser('test-user-token');
@@ -415,7 +415,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
 
@@ -3718,8 +3718,8 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $user = new user(array('verificationStatus'=> User::VERIFICATION_STATUS_REQUESTED));
-        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), $user, array())->thenReturn(array("status"=> User::STATUS_PRE_ACTIVATED, 'verificationStatus'=> User::VERIFICATION_STATUS_REQUIRED));
-        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), array())->thenReturn(array("status"=> User::STATUS_PRE_ACTIVATED, 'verificationStatus'=> User::VERIFICATION_STATUS_REQUIRED));
+        \Phake::when($apiClientMock)->doPut('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), $user, array())->thenReturn(array("status"=> User::STATUS_PRE_ACTIVATED, 'verificationStatus'=> User::VERIFICATION_STATUS_REQUIRED));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), array())->thenReturn(array("status"=> User::STATUS_PRE_ACTIVATED, 'verificationStatus'=> User::VERIFICATION_STATUS_REQUIRED));
 
         // Run test
         try {
@@ -3730,7 +3730,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertNotNull($responseUser);
         $this->assertEquals('REQUIRED', $responseUser->getVerificationStatus());
         // Validate mock
-        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), $user, array());
+        \Phake::verify($apiClientMock)->doPut('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), $user, array());
     }
 
 
@@ -4619,20 +4619,4 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $options);
 
     }
-
-    public function testCreateUserStatusTransition_successfulIT() {
-        $username = "selrestuser@1861681";
-        $password = "Password1!";
-        $programToken = "prg-82499161-57d3-4160-8209-85db18d62c02";
-        $userToken = "usr-46c1aba8-a60d-4520-9d99-4321a60f830f";
-        $server = "https://localhost:8181";
-        $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-        $statusTransition = new UserStatusTransition(array('transition'=>'LOCKED'));
-        // Run test
-        $newStatusTransition = $hyperwallet->createUserStatusTransition($userToken, $statusTransition);
-        $this->assertNotNull($newStatusTransition);
-        $this->assertEquals('LOCKED', $newStatusTransition->getTransition());
-    }
-
-
 }
