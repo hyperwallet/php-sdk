@@ -1871,7 +1871,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('verificationStatus is required!');
         }
         $user = new User(array('verificationStatus'=> $verificationStatus));
-        $responseUser = $this->client->doPut('/rest/v3/users/{user-token}', array('user-token' => $userToken), $user, array());
+        $responseUser = $this->client->doPut('/rest/v4/users/{user-token}', array('user-token' => $userToken), $user, array());
         return new User($responseUser);
     }
 
@@ -1891,7 +1891,7 @@ class Hyperwallet {
         if (empty($transition->getTransition())) {
             throw new HyperwalletArgumentException('userStatusTransition is required!');
         }
-        $body = $this->client->doPost('/rest/v3/users/{user-token}/status-transitions', array(
+        $body = $this->client->doPost('/rest/v4/users/{user-token}/status-transitions', array(
             'user-token' => $userToken), $transition, array());
         return new UserStatusTransition($body);
     }

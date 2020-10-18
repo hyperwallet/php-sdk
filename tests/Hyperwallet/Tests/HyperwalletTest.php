@@ -4619,4 +4619,20 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $options);
 
     }
+
+    public function testCreateUserStatusTransition_successfulIT() {
+        $username = "selrestuser@1861681";
+        $password = "Password1!";
+        $programToken = "prg-82499161-57d3-4160-8209-85db18d62c02";
+        $userToken = "usr-46c1aba8-a60d-4520-9d99-4321a60f830f";
+        $server = "https://localhost:8181";
+        $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
+        $statusTransition = new UserStatusTransition(array('transition'=>'LOCKED'));
+        // Run test
+        $newStatusTransition = $hyperwallet->createUserStatusTransition($userToken, $statusTransition);
+        $this->assertNotNull($newStatusTransition);
+        $this->assertEquals('LOCKED', $newStatusTransition->getTransition());
+    }
+
+
 }
