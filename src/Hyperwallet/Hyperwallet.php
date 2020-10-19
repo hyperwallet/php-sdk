@@ -10,6 +10,7 @@ use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
+use Hyperwallet\Model\BusinessStakeholder;
 use Hyperwallet\Model\IProgramAware;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
@@ -2306,5 +2307,104 @@ class Hyperwallet {
             return new VenmoAccountStatusTransition($entry);
         });
     }
+    /**
+     * Upload documents for Business Stakeholder endpoint
+     *
+     * @param string $userToken The user token
+     * @param array $options The multipart object with the required documents and json data to get uploaded
+     *
+     * Sample multipart array to refer. Don't set the content-type explicitly
+     * array(
+     *'multipart' => [
+     *  [
+     *   'name'     => 'data',
+     *  'contents' => '{"documents":[{"type":"DRIVERS_LICENSE","country":"US","category":"IDENTIFICATION"}]}'
+     *  ],
+     *  [
+     *  'name'     => 'drivers_license_front',
+     *  'contents' => fopen('<path>/File1.png', "r")
+     *  ],
+     *  [
+     *  'name'     => 'drivers_license_back',
+     *  'contents' => fopen('<path>>/File2.png', 'r')
+     *  ]
+     *  ]
+     *  ));
+     *
+     * @return BusinessStakeholder object with updated VerificationStatus and document details
+     *
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function uploadDocumentsForBusinessStakeholder($userToken, $businessToken, $options) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($businessToken)) {
+            throw new HyperwalletArgumentException('businessToken is required!');
+        }
+        $body = $this->client->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $options);
+        return new BusinessStakeholder($body);
+    }
 
+    //--------------------------------------
+    // Business Stakeholders
+    //--------------------------------------
+
+    /**
+     * Create a Business Stakeholder
+     *
+     * @param Business Stakeholder $BusinessStakeholder The Business Stakeholder data
+     * @return BusinessStakeholder
+     *
+     * @throws HyperwalletApiException
+     */
+    public function createBusinessStakeholder($userToken,$businessStakeholder) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doPost('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => $userToken), $businessStakeholder, array());
+        return new BusinessStakeholder($body);
+    }
+
+    /**
+     * Update a Business Stakeholder
+     *
+     * @param Business Stakeholder $BusinessStakeholder The Business Stakeholder
+     * @return BusinessStakeholder
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function updateBusinessStakeholder($userToken, $businessToken, $businessStakeholder) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($businessToken)) {
+            throw new HyperwalletArgumentException('businessToken is required!');
+        }
+        $body = $this->client->doPut('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $businessStakeholder, array());
+        return new BusinessStakeholder($body);
+    }
+
+    /**
+     * List all Business Stakeholders
+     *
+     * @param array $options
+     * @return ListResponse
+     *
+     * @throws HyperwalletApiException
+     */
+    public function listBusinessStakeholders($userToken , $options) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        $body = $this->client->doGet('/rest/v4/users/{user-token}/business-stakeholders',array(
+            'user-token' => $userToken
+        ), $options);
+        return new ListResponse($body, function ($entry) {
+            return new BusinessStakeholder($entry);
+        });
+    }
 }
