@@ -12,6 +12,7 @@ use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
+use Hyperwallet\Model\BusinessStakeholder;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
 use Hyperwallet\Model\Payment;
@@ -30,7 +31,6 @@ use Hyperwallet\Model\VenmoAccount;
 use Hyperwallet\Model\VenmoAccountStatusTransition;
 use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\ApiClient;
-use Hyperwallet\Model\BusinessStakeholder;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
@@ -243,10 +243,10 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users', array(), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users', array(), array('status' => User::STATUS_ACTIVATED))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $userList = $client->listUsers(array('test' => 'value'));
+        $userList = $client->listUsers(array('status' => User::STATUS_ACTIVATED));
         $this->assertNotNull($userList);
         $this->assertCount(1, $userList);
         $this->assertEquals(1, $userList->getLimit());
@@ -254,7 +254,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $userList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users', array(), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users', array(), array('status' => User::STATUS_ACTIVATED));
     }
 
     public function testListUser_withInvalidFilter() {
