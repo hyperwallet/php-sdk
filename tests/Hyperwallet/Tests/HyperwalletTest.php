@@ -4597,4 +4597,24 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $options);
 
     }
+
+    // IT tests
+
+    public function testListTransfers_withParametersIT() {
+        // Setup
+        $username = "selrestuser@1861681";
+        $password = "Password1!";
+        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
+        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
+        $client = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
+
+        // Run test
+        $options = array('status'=>'EXPIRED');
+        $transferList = $client->listTransfers($options);
+        var_dump("transfer List",$transferList);
+        $this->assertNotNull($transferList);
+        $this->assertCount(17, $transferList);
+        $this->assertEquals(100, $transferList->getLimit());
+
+   }
 }

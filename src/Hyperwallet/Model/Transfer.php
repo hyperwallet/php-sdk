@@ -34,7 +34,7 @@ class Transfer extends BaseModel {
      *
      * @var string[]
      */
-    private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn', 'sourceFeeAmount', 'destinationFeeAmount', 'foreignExchanges', 'expiresOn');
+        private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn', 'sourceFeeAmount', 'destinationFeeAmount', 'foreignExchanges', 'expiresOn');
 
     const STATUS_QUOTED = 'QUOTED';
     const STATUS_SCHEDULED = 'SCHEDULED';
