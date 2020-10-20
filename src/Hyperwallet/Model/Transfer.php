@@ -46,6 +46,10 @@ class Transfer extends BaseModel {
     const STATUS_FAILED = 'FAILED';
     const STATUS_EXPIRED = 'EXPIRED';
 
+    public static function FILTERS_ARRAY() {
+        return array('clientTransferId','sourceToken','destinationToken');
+    }
+
     /**
      * Creates a instance of Transfer
      *

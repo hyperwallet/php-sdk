@@ -66,6 +66,10 @@ class BusinessStakeholder extends BaseModel {
     const GOVERNMENT_ID_TYPE_PASSPORT = 'PASSPORT';
     const GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD = 'NATIONAL_ID_CARD';
 
+    public static function FILTERS_ARRAY() {
+        return array('status','isBusinessContact','isDirector','isUltimateBeneficialOwner');
+    }
+
     /**
      * Creates a instance of BusinessStakeholder
      *

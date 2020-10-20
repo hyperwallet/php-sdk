@@ -81,6 +81,10 @@ class PaperCheck extends BaseModel {
     const SHIPPING_METHOD_STANDARD = 'STANDARD';
     const SHIPPING_METHOD_EXPEDITED = 'EXPEDITED';
 
+    public static function FILTERS_ARRAY() {
+        return array('status');
+    }
+
     /**
      * Creates a instance of PaperCheck
      *
