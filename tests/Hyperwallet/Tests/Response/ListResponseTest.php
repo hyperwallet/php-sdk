@@ -15,7 +15,7 @@ class ListResponseTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testBodyParsing_withContent() {
-        $listResponse = new ListResponse(array('limit' => 10, 'data' => array('test', 'test2')), function ($body) {
+        $listResponse = new ListResponse(array('limit' => 10,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array('test', 'test2')), function ($body) {
             return array(
                 'test' => 'value',
                 'body' => $body
@@ -36,7 +36,7 @@ class ListResponseTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testBodyParsing_withContentAndLinks() {
-        $listResponse = new ListResponse(array('limit' => 10, 'data' => array(
+        $listResponse = new ListResponse(array('limit' => 10,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(
             array(
                 'test' => 'test1',
                 'links' => array()
@@ -72,7 +72,7 @@ class ListResponseTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testBodyParsing_withContentNextPreviousAndLinks() {
-        $listResponse = new ListResponse(array('limit' => 10, 'data' => array(
+        $listResponse = new ListResponse(array('limit' => 10,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(
             array(
                 'test' => 'test1',
                 'links' => array()
@@ -114,7 +114,7 @@ class ListResponseTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testMagicDataAccessor() {
-        $listResponse = new ListResponse(array('limit' => 10, 'data' => array('test', 'test2')), function ($body) {
+        $listResponse = new ListResponse(array('limit' => 10,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array('test', 'test2')), function ($body) {
             return array(
                 'test' => 'value',
                 'links'=> Array (),

@@ -46,6 +46,10 @@ class BankCard extends BaseModel {
     const CARD_BRAND_VISA = 'VISA';
     const CARD_BRAND_MASTERCARD = 'MASTERCARD';
 
+    public static function FILTERS_ARRAY() {
+        return array('status');
+    }
+
     /**
      * Creates a instance of BankCard
      *
