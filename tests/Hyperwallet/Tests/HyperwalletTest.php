@@ -4967,50 +4967,5 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Validate mock
         \Phake::verify($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $options);
-
     }
-
-    // IT tests
-
-    public function testListTransfers_withParametersIT() {
-        // Setup
-        $username = "selrestuser@1861681";
-        $password = "Password1!";
-        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-        $client = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-
-        // Run test
-        $options = array('status'=>'EXPIRED');
-        $transferList = $client->listTransfers($options);
-        var_dump("transfer List",$transferList);
-        $this->assertNotNull($transferList);
-        $this->assertCount(21, $transferList);
-        $this->assertEquals(100, $transferList->getLimit());
-
-   }
-
-    public function testCreateTransfer_allParametersIT() {
-        // Setup
-        $username = "selrestuser@1861681";
-        $password = "Password1!";
-        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-        $client = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-        $transfer = new Transfer();
-        $transfer->setSourceToken("usr-8f999d85-6e4d-4349-97a5-793a875b44f5");
-        $transfer->setDestinationToken("act-d468a8e7-19f5-4dac-9fcd-5bd0d9a80c09");
-        $transfer->setClientTransferId("cc1603228890");
-        $transfer->setDestinationAmount("3");
-        $transfer->setDestinationCurrency("USD");
-
-        // Run test
-        $transferResponse = $client->createTransfer($transfer);
-        var_dump("-----------createTransfer---------",$transferResponse);
-        $this->assertNotNull($transferResponse);
-        $this->assertEquals('2.00', $transferResponse->getDestinationAmount());
-
-    }
-
-
 }
