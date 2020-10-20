@@ -4884,10 +4884,10 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links','data' => array(array('postalCode' => 'ABCD'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array('status' => BusinessStakeholder::STATUS_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links','data' => array(array('postalCode' => 'ABCD'))));
 
         // Run test
-        $businessStakeholderList = $client->listBusinessStakeholders('test-user-token', array('test' => 'value'));
+        $businessStakeholderList = $client->listBusinessStakeholders('test-user-token', array('status' => BusinessStakeholder::STATUS_ACTIVATED));
         $this->assertNotNull($businessStakeholderList);
         $this->assertCount(1, $businessStakeholderList);
         $this->assertEquals(1, $businessStakeholderList->getLimit());
@@ -4898,7 +4898,19 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('postalCode' => 'ABCD'), $businessStakeholderList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array('status' => BusinessStakeholder::STATUS_ACTIVATED));
+    }
+
+    public function testListBusinessStakeholder_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listBusinessStakeholders("test-user-token" ,$options=array('profileType'=>BusinessStakeholder::PROFILE_TYPE_INDIVIDUAL));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     public function testuploadDocumentsForBusinessStakeholder_withoutUserToken() {

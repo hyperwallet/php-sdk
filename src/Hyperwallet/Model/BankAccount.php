@@ -87,6 +87,11 @@ class BankAccount extends BaseModel {
     const PROFILE_TYPE_INDIVIDUAL = 'INDIVIDUAL';
     const PROFILE_TYPE_BUSINESS = 'BUSINESS';
 
+    public static function FILTERS_ARRAY() {
+        return array('type','status');
+    }
+
+
     /**
      * Creates a instance of BankAccount
      *

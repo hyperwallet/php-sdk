@@ -23,6 +23,7 @@ use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\Program;
 use Hyperwallet\Model\ProgramAccount;
 use Hyperwallet\Model\Receipt;
+use Hyperwallet\Model\StatusTransition;
 use Hyperwallet\Model\Transfer;
 use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\TransferMethodConfiguration;
@@ -137,11 +138,10 @@ class Hyperwallet {
      *
      * @throws HyperwalletApiException
      */
-    public function listUsers($options=array()) {
-        if(!empty($options)) {
-            $filterOutKeys = array('status', 'clientUserId','email','programToken','verificationStatus');
-            $filteredArr = array_diff_key( $options, array_flip( $filterOutKeys ) );
-            if(!empty($filteredArr)){
+    public function listUsers($options = array()) {
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(User::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -191,10 +191,9 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('transition');
-            $filteredArr = array_diff_key( $options, array_flip( $filterOutKeys ) );
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key( $options, array_flip(StatusTransition::FILTERS_ARRAY()) );
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -305,10 +304,9 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('status');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(PaperCheck::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -410,10 +408,9 @@ class Hyperwallet {
         if (empty($paperCheckToken)) {
             throw new HyperwalletArgumentException('paperCheckToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('transition');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -510,10 +507,9 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function listTransfers($options = array()) {
-        if(!empty($options)) {
-            $filterOutKeys = array('clientTransferId','sourceToken','destinationToken');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options))  {
+            $filteredArr = array_diff_key($options, array_flip(Transfer::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -646,10 +642,9 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('status');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(PayPalAccount::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -751,10 +746,9 @@ class Hyperwallet {
         if (empty($payPalAccountToken)) {
             throw new HyperwalletArgumentException('payPalAccountToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('transition');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -843,10 +837,9 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('status');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(PrepaidCard::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -1033,10 +1026,9 @@ class Hyperwallet {
         if (empty($prepaidCardToken)) {
             throw new HyperwalletArgumentException('prepaidCardToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('transition');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -1125,10 +1117,9 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array( 'type','status');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(BankAccount::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -1230,10 +1221,9 @@ class Hyperwallet {
         if (empty($bankAccountToken)) {
             throw new HyperwalletArgumentException('bankAccountToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('transition');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -1323,10 +1313,9 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('status');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(BankCard::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -1426,10 +1415,9 @@ class Hyperwallet {
         if (empty($bankCardToken)) {
             throw new HyperwalletArgumentException('bankCardToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('transition');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -1491,10 +1479,9 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('currency');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(Balance::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -1603,10 +1590,9 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function listPayments($options = array()) {
-        if(!empty($options)) {
-            $filterOutKeys = array('clientPaymentId');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(Payment::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -1677,10 +1663,9 @@ class Hyperwallet {
         if (empty($paymentToken)) {
             throw new HyperwalletArgumentException('paymentToken is required!');
         }
-        if(!empty($options)) {
-            $filterOutKeys = array('transition');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -1922,10 +1907,9 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function listWebhookNotifications($options = array()) {
-        if(!empty($options)) {
-            $filterOutKeys = array('programToken','type');
-            $filteredArr = array_diff_key($options, array_flip($filterOutKeys));
-            if(!empty($filteredArr)){
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(WebhookNotification::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
             }
         }
@@ -2399,6 +2383,12 @@ class Hyperwallet {
     public function listBusinessStakeholders($userToken , $options) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(BusinessStakeholder::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
         }
         $body = $this->client->doGet('/rest/v4/users/{user-token}/business-stakeholders',array(
             'user-token' => $userToken
