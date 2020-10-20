@@ -507,7 +507,7 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function listTransfers($options = array()) {
-        if (!empty($options))  {
+        if (!empty($options)) {
             $filteredArr = array_diff_key($options, array_flip(Transfer::FILTERS_ARRAY()));
             if (!empty($filteredArr)) {
                 throw new HyperwalletArgumentException('Invalid filter');
