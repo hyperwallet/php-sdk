@@ -749,6 +749,8 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function getPrepaidCard($userToken, $prepaidCardToken) {
+        echo("======User Token=======".$userToken);
+        echo("======PPC Token=======".$prepaidCardToken);
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }

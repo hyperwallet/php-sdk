@@ -57,6 +57,7 @@ class ApiClient {
     public function __construct($username, $password, $server, $clientOptions = array(), $encryptionData = array()) {
         // Setup http client if not specified
         $this->client = new Client(array_merge_recursive(array(
+            'verify'=>false,
             'base_uri' => $server,
             'auth' => array($username, $password),
             'headers' => array(
@@ -160,6 +161,8 @@ class ApiClient {
                 return array();
             }
             $this->checkResponseHeaderContentType($response);
+            var_dump('------URL PARAMS--------',$urlParams);
+            var_dump('------RESPONSE--------',$response);
             $body = $this->isEncrypted ? \GuzzleHttp\json_decode(\GuzzleHttp\json_encode($this->encryption->decrypt($response->getBody())), true) :
                 \GuzzleHttp\json_decode($response->getBody(), true);
 
