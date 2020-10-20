@@ -94,7 +94,6 @@ class User extends BaseModel implements IProgramAware {
     const VERIFICATION_STATUS_REQUESTED = 'REQUESTED';
     const VERIFICATION_STATUS_EXPIRED = 'EXPIRED';
     const VERIFICATION_STATUS_READY_FOR_REVIEW='READY_FOR_REVIEW';
-    const VERIFICATION_STATUS_FAILED='FAILED';
 
     const BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
     const BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_REQUIRED = 'REQUIRED';
@@ -112,6 +111,10 @@ class User extends BaseModel implements IProgramAware {
 
     const GOVERNMENT_ID_TYPE_PASSPORT = 'PASSPORT';
     const GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD = 'NATIONAL_ID_CARD';
+
+    public static function FILTERS_ARRAY() {
+        return array('clientUserId','email','programToken','status','verificationStatus');
+    }
 
     /**
      * Creates a instance of User

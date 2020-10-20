@@ -34,6 +34,10 @@ class Payment extends BaseModel implements IProgramAware {
      */
     private static $READ_ONLY_FIELDS = array('token', 'createdOn');
 
+    public static function FILTERS_ARRAY() {
+        return array('clientPaymentId');
+    }
+
     /**
      * Creates a instance of Payment
      *
