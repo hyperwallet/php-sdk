@@ -2980,7 +2980,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(1, $balanceList->getLimit());
         $this->assertEquals(false, $balanceList->getHasNextPage());
         $this->assertEquals(false, $balanceList->getHasPreviousPage());
-        $this->assertEquals('links', $balanceList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/balances', array('user-token' => 'test-user-token'), array());
@@ -3000,7 +2999,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(1, $balanceList->getLimit());
         $this->assertEquals(false, $balanceList->getHasNextPage());
         $this->assertEquals(false, $balanceList->getHasPreviousPage());
-        $this->assertEquals('links', $balanceList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
 
@@ -3060,7 +3058,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(1, $balanceList->getLimit());
         $this->assertEquals(false, $balanceList->getHasNextPage());
         $this->assertEquals(false, $balanceList->getHasPreviousPage());
-        $this->assertEquals('links', $balanceList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array());
@@ -3080,7 +3077,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(1, $balanceList->getLimit());
         $this->assertEquals(false, $balanceList->getHasNextPage());
         $this->assertEquals(false, $balanceList->getHasPreviousPage());
-        $this->assertEquals('links', $balanceList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
 
@@ -3128,7 +3124,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(1, $balanceList->getLimit());
         $this->assertEquals(false, $balanceList->getHasNextPage());
         $this->assertEquals(false, $balanceList->getHasPreviousPage());
-        $this->assertEquals('links', $balanceList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/programs/{program-token}/accounts/{account-token}/balances', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array());
@@ -3148,7 +3143,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(1, $balanceList->getLimit());
         $this->assertEquals(false, $balanceList->getHasNextPage());
         $this->assertEquals(false, $balanceList->getHasPreviousPage());
-        $this->assertEquals('links', $balanceList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
 

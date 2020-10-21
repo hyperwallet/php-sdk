@@ -1488,9 +1488,11 @@ class Hyperwallet {
         }
 
         $body = $this->client->doGet('/rest/v4/users/{user-token}/balances', array('user-token' => $userToken), $options);
-        return new ListResponse($body, function ($entry) {
+        $listResponse = new ListResponse($body, function ($entry) {
             return new Balance($entry);
         });
+        call_user_func(array($listResponse, 'unsetLinksAttribute'));
+        return $listResponse;
     }
 
     /**
@@ -1515,9 +1517,11 @@ class Hyperwallet {
             'user-token' => $userToken,
             'prepaid-card-token' => $prepaidCardToken
         ), $options);
-        return new ListResponse($body, function ($entry) {
+        $listResponse = new ListResponse($body, function ($entry) {
             return new Balance($entry);
         });
+        call_user_func(array($listResponse, 'unsetLinksAttribute'));
+        return $listResponse;
     }
 
     /**
@@ -1542,9 +1546,11 @@ class Hyperwallet {
             'program-token' => $programToken,
             'account-token' => $accountToken
         ), $options);
-        return new ListResponse($body, function ($entry) {
+        $listResponse = new ListResponse($body, function ($entry) {
             return new Balance($entry);
         });
+        call_user_func(array($listResponse, 'unsetLinksAttribute'));
+        return $listResponse;
     }
 
     //--------------------------------------
