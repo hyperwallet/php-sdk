@@ -191,16 +191,4 @@ class ListResponse implements \Countable , \ArrayAccess{
     public function offsetUnset($offset) {
         unset($this->data[$offset]);
     }
-
-    /**
-     * @external
-     *
-     * The links to unset.
-     * @method unsetLinksAttribute()
-     * @return void
-     * @description unsetting links attribute.
-     */
-    public function unsetLinksAttribute(){
-        unset($this->links);
-    }
 }
