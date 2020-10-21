@@ -4990,4 +4990,63 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $options);
 
     }
+
+    //--------------------------------------
+    // List Transfer Methods
+    //--------------------------------------
+
+    public function testListTransferMethods_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listTransferMethods('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListTransferMethods_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
+
+        // Run test
+        $listTransferMethods = $client->listTransferMethods('test-user-token');
+        $this->assertNotNull($listTransferMethods);
+        $this->assertCount(0, $listTransferMethods);
+        $this->assertEquals(1, $listTransferMethods->getLimit());
+        $this->assertEquals(false, $listTransferMethods->getHasNextPage());
+        $this->assertEquals(false, $listTransferMethods->getHasPreviousPage());
+        $this->assertEquals('links', $listTransferMethods->getLinks());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array());
+    }
+
+    public function testListTransferMethods_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array('type'=>TransferMethod::TYPE_PREPAID_CARD))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
+
+        // Run test
+        $listTransferMethods = $client->listTransferMethods('test-user-token', array('type'=>TransferMethod::TYPE_PREPAID_CARD));
+        $this->assertNotNull($listTransferMethods);
+        $this->assertCount(1, $listTransferMethods);
+        $this->assertEquals(1, $listTransferMethods->getLimit());
+        $this->assertEquals(false, $listTransferMethods->getHasNextPage());
+        $this->assertEquals(false, $listTransferMethods->getHasPreviousPage());
+        $this->assertEquals('links', $listTransferMethods->getLinks());
+
+        $this->assertEquals(array('success' => 'true'), $listTransferMethods[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array('type'=>TransferMethod::TYPE_PREPAID_CARD));
+    }
 }
