@@ -1,5 +1,5 @@
 <?php
-namespace Hyperwallet\Tests;
+namespace Hyperwallet\Tests\Util;
 
 use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Util\HyperwalletEncryption;
