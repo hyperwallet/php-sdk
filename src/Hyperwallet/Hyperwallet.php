@@ -2397,9 +2397,6 @@ class Hyperwallet {
         });
     }
 
-    //--------------------------------------
-    // Business Stakeholders
-    //--------------------------------------
     /**
      * List all Transfer Methods
      *
