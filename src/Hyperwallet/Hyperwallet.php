@@ -1735,50 +1735,6 @@ class Hyperwallet {
     }
 
     //--------------------------------------
-    // Transfer Method Configurations
-    //--------------------------------------
-
-    /**
-     * Get a transfer method configuration
-     *
-     * @param string $userToken The user token
-     * @param string $country The transfer method country
-     * @param string $currency The transfer method currency
-     * @param string $type The transfer method type
-     * @param string $profileType The profile type
-     * @return TransferMethodConfiguration
-     *
-     * @throws HyperwalletArgumentException
-     * @throws HyperwalletApiException
-     */
-    public function getTransferMethodConfiguration($userToken, $country, $currency, $type, $profileType) {
-        if (empty($userToken)) {
-            throw new HyperwalletArgumentException('userToken is required!');
-        }
-        if (empty($country)) {
-            throw new HyperwalletArgumentException('country is required!');
-        }
-        if (empty($currency)) {
-            throw new HyperwalletArgumentException('currency is required!');
-        }
-        if (empty($type)) {
-            throw new HyperwalletArgumentException('type is required!');
-        }
-        if (empty($profileType)) {
-            throw new HyperwalletArgumentException('profileType is required!');
-        }
-
-        $body = $this->client->doGet('/rest/v4/transfer-method-configurations', array(), array(
-            'userToken' => $userToken,
-            'country' => $country,
-            'currency' => $currency,
-            'type' => $type,
-            'profileType' => $profileType
-        ));
-        return new TransferMethodConfiguration($body);
-    }
-
-    //--------------------------------------
     // Receipts
     //--------------------------------------
 
