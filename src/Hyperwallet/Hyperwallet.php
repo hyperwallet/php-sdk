@@ -4,7 +4,6 @@ namespace Hyperwallet;
 
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletArgumentException;
-use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\AuthenticationToken;
 use Hyperwallet\Model\Balance;
 use Hyperwallet\Model\BankAccount;
@@ -24,6 +23,7 @@ use Hyperwallet\Model\PrepaidCardStatusTransition;
 use Hyperwallet\Model\Program;
 use Hyperwallet\Model\ProgramAccount;
 use Hyperwallet\Model\Receipt;
+use Hyperwallet\Model\StatusTransition;
 use Hyperwallet\Model\Transfer;
 use Hyperwallet\Model\TransferMethod;
 use Hyperwallet\Model\TransferMethodConfiguration;
@@ -66,16 +66,17 @@ class Hyperwallet {
      * @param string|null $programToken The program token that is used for some API calls
      * @param string $server The API server to connect to
      * @param string $encryptionData Encryption data to initialize ApiClient with encryption enabled
+     * @param array $clientOptions Guzzle Client Options
      *
      * @throws HyperwalletArgumentException
      */
-    public function __construct($username, $password, $programToken = null, $server = 'https://api.sandbox.hyperwallet.com', $encryptionData = array()) {
+    public function __construct($username, $password, $programToken = null, $server = 'https://api.sandbox.hyperwallet.com', $encryptionData = array(), $clientOptions = array()) {
         if (empty($username) || empty($password)) {
             throw new HyperwalletArgumentException('You need to specify your API username and password!');
         }
 
         $this->programToken = $programToken;
-        $this->client = new ApiClient($username, $password, $server, array(), $encryptionData);
+        $this->client = new ApiClient($username, $password, $server, $clientOptions, $encryptionData);
     }
 
     //--------------------------------------
@@ -139,7 +140,14 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function listUsers($options = array()) {
-        $body = $this->client->doGet('/rest/v4/users', array(), $options);
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(User::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
+
+        $body = $this->client->doGet('/rest/v4/users', array(),$options) ;
         return new ListResponse($body, function ($entry) {
             return new User($entry);
         });
@@ -183,6 +191,12 @@ class Hyperwallet {
     public function listUserStatusTransitions($userToken, array $options = array()) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key( $options, array_flip(StatusTransition::FILTERS_ARRAY()) );
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
         }
 
         $body = $this->client->doGet('/rest/v4/users/{user-token}/status-transitions', array(
@@ -291,6 +305,13 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(PaperCheck::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
+
         $body = $this->client->doGet('/rest/v4/users/{user-token}/paper-checks', array('user-token' => $userToken), $options);
         return new ListResponse($body, function ($entry) {
             return new PaperCheck($entry);
@@ -388,6 +409,12 @@ class Hyperwallet {
         if (empty($paperCheckToken)) {
             throw new HyperwalletArgumentException('paperCheckToken is required!');
         }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
 
         $body = $this->client->doGet('/rest/v4/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array(
             'user-token' => $userToken,
@@ -481,6 +508,13 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function listTransfers($options = array()) {
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(Transfer::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
+
         $body = $this->client->doGet('/rest/v4/transfers', array(), $options);
         return new ListResponse($body, function ($entry) {
             return new Transfer($entry);
@@ -609,6 +643,13 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(PayPalAccount::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
+
         $body = $this->client->doGet('/rest/v4/users/{user-token}/paypal-accounts', array('user-token' => $userToken), $options);
         return new ListResponse($body, function ($entry) {
             return new PayPalAccount($entry);
@@ -706,6 +747,12 @@ class Hyperwallet {
         if (empty($payPalAccountToken)) {
             throw new HyperwalletArgumentException('payPalAccountToken is required!');
         }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
 
         $body = $this->client->doGet('/rest/v4/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array(
             'user-token' => $userToken,
@@ -791,6 +838,13 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(PrepaidCard::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
+
         $body = $this->client->doGet('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => $userToken), $options);
         return new ListResponse($body, function ($entry) {
             return new PrepaidCard($entry);
@@ -973,6 +1027,12 @@ class Hyperwallet {
         if (empty($prepaidCardToken)) {
             throw new HyperwalletArgumentException('prepaidCardToken is required!');
         }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
 
         $body = $this->client->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/status-transitions', array(
             'user-token' => $userToken,
@@ -1058,6 +1118,13 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(BankAccount::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
+
         $body = $this->client->doGet('/rest/v4/users/{user-token}/bank-accounts', array('user-token' => $userToken), $options);
         return new ListResponse($body, function ($entry) {
             return new BankAccount($entry);
@@ -1155,6 +1222,12 @@ class Hyperwallet {
         if (empty($bankAccountToken)) {
             throw new HyperwalletArgumentException('bankAccountToken is required!');
         }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
 
         $body = $this->client->doGet('/rest/v4/users/{user-token}/bank-accounts/{bank-account-token}/status-transitions', array(
             'user-token' => $userToken,
@@ -1241,6 +1314,13 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(BankCard::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
+
         $body = $this->client->doGet('/rest/v4/users/{user-token}/bank-cards', array('user-token' => $userToken), $options);
         return new ListResponse($body, function ($entry) {
             return new BankCard($entry);
@@ -1336,6 +1416,12 @@ class Hyperwallet {
         if (empty($bankCardToken)) {
             throw new HyperwalletArgumentException('bankCardToken is required!');
         }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
 
         $body = $this->client->doGet('/rest/v4/users/{user-token}/bank-cards/{bank-card-token}/status-transitions', array(
             'user-token' => $userToken,
@@ -1393,6 +1479,12 @@ class Hyperwallet {
     public function listBalancesForUser($userToken, $options = array()) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(Balance::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
         }
 
         $body = $this->client->doGet('/rest/v4/users/{user-token}/balances', array('user-token' => $userToken), $options);
@@ -1499,6 +1591,13 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function listPayments($options = array()) {
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(Payment::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
+
         $body = $this->client->doGet('/rest/v4/payments', array(), $options);
         return new ListResponse($body, function ($entry) {
             return new Payment($entry);
@@ -1564,6 +1663,12 @@ class Hyperwallet {
     public function listPaymentStatusTransitions($paymentToken, array $options = array()) {
         if (empty($paymentToken)) {
             throw new HyperwalletArgumentException('paymentToken is required!');
+        }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
         }
 
         $body = $this->client->doGet('/rest/v4/payments/{payment-token}/status-transitions', array(
@@ -1803,6 +1908,13 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function listWebhookNotifications($options = array()) {
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(WebhookNotification::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
+
         $body = $this->client->doGet('/rest/v4/webhook-notifications', array(), $options);
         return new ListResponse($body, function ($entry) {
             return new WebhookNotification($entry);
@@ -1871,7 +1983,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('verificationStatus is required!');
         }
         $user = new User(array('verificationStatus'=> $verificationStatus));
-        $responseUser = $this->client->doPut('/rest/v3/users/{user-token}', array('user-token' => $userToken), $user, array());
+        $responseUser = $this->client->doPut('/rest/v4/users/{user-token}', array('user-token' => $userToken), $user, array());
         return new User($responseUser);
     }
 
@@ -1891,7 +2003,7 @@ class Hyperwallet {
         if (empty($transition->getTransition())) {
             throw new HyperwalletArgumentException('userStatusTransition is required!');
         }
-        $body = $this->client->doPost('/rest/v3/users/{user-token}/status-transitions', array(
+        $body = $this->client->doPost('/rest/v4/users/{user-token}/status-transitions', array(
             'user-token' => $userToken), $transition, array());
         return new UserStatusTransition($body);
     }
@@ -2270,6 +2382,12 @@ class Hyperwallet {
     public function listBusinessStakeholders($userToken , $options) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(BusinessStakeholder::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
         }
         $body = $this->client->doGet('/rest/v4/users/{user-token}/business-stakeholders',array(
             'user-token' => $userToken

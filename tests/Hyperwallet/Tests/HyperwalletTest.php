@@ -12,25 +12,25 @@ use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
+use Hyperwallet\Model\BusinessStakeholder;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
-use Hyperwallet\Model\Transfer;
-use Hyperwallet\Model\TransferRefund;
-use Hyperwallet\Model\TransferStatusTransition;
-use Hyperwallet\Model\PayPalAccount;
-use Hyperwallet\Model\PayPalAccountStatusTransition;
 use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PaymentStatusTransition;
+use Hyperwallet\Model\PayPalAccount;
+use Hyperwallet\Model\PayPalAccountStatusTransition;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\PrepaidCardStatusTransition;
+use Hyperwallet\Model\Transfer;
 use Hyperwallet\Model\TransferMethod;
+use Hyperwallet\Model\TransferRefund;
+use Hyperwallet\Model\TransferStatusTransition;
 use Hyperwallet\Model\User;
 use Hyperwallet\Model\UserStatusTransition;
 use Hyperwallet\Model\VenmoAccount;
 use Hyperwallet\Model\VenmoAccountStatusTransition;
 use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\ApiClient;
-use Hyperwallet\Model\BusinessStakeholder;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
@@ -209,13 +209,34 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $user = new User(array('token' => 'test-user-token'));
+        $user->setFirstName("test-first-name");
 
-        \Phake::when($apiClientMock)->doPut('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), $user, array())->thenReturn(array('success' => 'true'));
+        $user->setVerificationStatus(User::VERIFICATION_STATUS_VERIFIED);
+        $user->setBusinessStakeholderVerificationStatus(User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED);
+        $user->setLetterOfAuthorizationStatus(User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED);
+        $user->setGovernmentIdType(User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD);
+
+        $expectedResponse = array('success' => 'true','verificationStatus'=>User::VERIFICATION_STATUS_VERIFIED,
+            'businessStakeholderVerificationStatus'=>User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED,
+            'letterOfAuthorizationStatus'=>User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED,
+            'governmentIdType'=>User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD,
+            'firstName'=>"test-first-name",
+            'businessOperatingName'=>"test-business-operating-name",
+            'timeZone'=>'test-time-zone');
+
+        \Phake::when($apiClientMock)->doPut('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), $user, array())->thenReturn($expectedResponse);
 
         // Run test
         $newUser = $client->updateUser($user);
         $this->assertNotNull($newUser);
-        $this->assertEquals(array('success' => 'true'), $newUser->getProperties());
+        $this->assertEquals(array('success' => 'true','verificationStatus'=>User::VERIFICATION_STATUS_VERIFIED,
+            'businessStakeholderVerificationStatus'=>User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED,
+            'letterOfAuthorizationStatus'=>User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED,
+            'governmentIdType'=>User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD,
+            'firstName'=>"test-first-name",
+            'businessOperatingName'=>"test-business-operating-name",
+            'timeZone'=>'test-time-zone'), $newUser->getProperties());
+
 
         // Validate mock
         \Phake::verify($apiClientMock)->doPut('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), $user, array());
@@ -226,13 +247,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users', array(), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users', array(), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $userList = $client->listUsers();
         $this->assertNotNull($userList);
         $this->assertCount(0, $userList);
         $this->assertEquals(1, $userList->getLimit());
+        $this->assertEquals(false, $userList->getHasNextPage());
+        $this->assertEquals(false, $userList->getHasPreviousPage());
+        $this->assertEquals('links', $userList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users', array(), array());
@@ -243,18 +267,33 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users', array(), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users', array(), array('status' => User::STATUS_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $userList = $client->listUsers(array('test' => 'value'));
+        $userList = $client->listUsers(array('status' => User::STATUS_ACTIVATED));
         $this->assertNotNull($userList);
         $this->assertCount(1, $userList);
         $this->assertEquals(1, $userList->getLimit());
+        $this->assertEquals(false, $userList->getHasNextPage());
+        $this->assertEquals(false, $userList->getHasPreviousPage());
+        $this->assertEquals('links', $userList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $userList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users', array(), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users', array(), array('status' => User::STATUS_ACTIVATED));
+    }
+
+    public function testListUser_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listUsers($options=array('profileType'=>User::PROFILE_TYPE_INDIVIDUAL));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     public function testGetUserStatusTransition_noUserToken() {
@@ -265,7 +304,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Run test
         try {
-            $client->createUserStatusTransition('',$statusTransition);
+            $client->getUserStatusTransition('',$statusTransition);
             $this->fail('HyperwalletArgumentException expected');
         } catch (HyperwalletArgumentException $e) {
             $this->assertEquals('userToken is required!', $e->getMessage());
@@ -292,7 +331,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_ACTIVATED);
 
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array())->thenReturn(array('success' => 'true'));
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array())->thenReturn(array('success' => 'true'));
 
         // Run test
         $newStatusTransition = $client->createUserStatusTransition('test-user-token', $statusTransition);
@@ -300,7 +339,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array());
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), $statusTransition, array());
     }
 
     public function testActivateUser() {
@@ -309,7 +348,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_ACTIVATED);
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array())->thenReturn(array('success' => 'true'));
         // Run test
         $newStatusTransition = $client->activateUser('test-user-token');
@@ -317,7 +356,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
 
@@ -328,7 +367,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_DE_ACTIVATED);
 
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array())->thenReturn(array('success' => 'true'));
         // Run test
         $newStatusTransition = $client->deactivateUser('test-user-token');
@@ -336,7 +375,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
 
@@ -347,7 +386,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_LOCKED);
 
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array())->thenReturn(array('success' => 'true'));
         // Run test
         $newStatusTransition = $client->lockUser('test-user-token');
@@ -355,7 +394,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
 
@@ -366,7 +405,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_FROZEN);
 
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array())->thenReturn(array('success' => 'true'));
         // Run test
         $newStatusTransition = $client->freezeUser('test-user-token');
@@ -374,7 +413,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
 
@@ -385,7 +424,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $statusTransition = new UserStatusTransition();
         $statusTransition->setTransition(UserStatusTransition::TRANSITION_PRE_ACTIVATED);
 
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array())->thenReturn(array('success' => 'true'));
         // Run test
         $newStatusTransition = $client->preactivateUser('test-user-token');
@@ -393,7 +432,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doPost('/rest/v3/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'),
             $statusTransition, array());
     }
 
@@ -444,13 +483,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $statusTransitionList = $client->listUserStatusTransitions('test-user-token');
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(0, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array());
@@ -461,18 +503,35 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array('transition'=>UserStatusTransition::TRANSITION_DE_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $statusTransitionList = $client->listUserStatusTransitions('test-user-token', array('test' => 'value'));
+        $statusTransitionList = $client->listUserStatusTransitions('test-user-token', array('transition'=>UserStatusTransition::TRANSITION_DE_ACTIVATED));
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(1, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $statusTransitionList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array('transition'=>UserStatusTransition::TRANSITION_DE_ACTIVATED));
+    }
+
+    public function testListUserStatusTransitions_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/status-transitions', array('user-token' => 'test-user-token'), array('profileType' => User::PROFILE_TYPE_INDIVIDUAL))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+
+        try {
+            $client->listUserStatusTransitions("test-user-token",$options=array('profileType'=>User::PROFILE_TYPE_INDIVIDUAL));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     //--------------------------------------
@@ -641,13 +700,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $paperCheckList = $client->listPaperChecks('test-user-token');
         $this->assertNotNull($paperCheckList);
         $this->assertCount(0, $paperCheckList);
         $this->assertEquals(1, $paperCheckList->getLimit());
+        $this->assertEquals(false, $paperCheckList->getHasNextPage());
+        $this->assertEquals(false, $paperCheckList->getHasPreviousPage());
+        $this->assertEquals('links', $paperCheckList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array());
@@ -658,18 +720,32 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('postalCode' => 'ABCD'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array('status' => PaperCheck::STATUS_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('postalCode' => 'ABCD'))));
 
         // Run test
-        $paperCheckList = $client->listPaperChecks('test-user-token', array('test' => 'value'));
+        $paperCheckList = $client->listPaperChecks('test-user-token', array('status' => PaperCheck::STATUS_ACTIVATED));
         $this->assertNotNull($paperCheckList);
         $this->assertCount(1, $paperCheckList);
         $this->assertEquals(1, $paperCheckList->getLimit());
+        $this->assertEquals(false, $paperCheckList->getHasNextPage());
+        $this->assertEquals(false, $paperCheckList->getHasPreviousPage());
+        $this->assertEquals('links', $paperCheckList->getLinks());
 
         $this->assertEquals(array('postalCode' => 'ABCD'), $paperCheckList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array('status' => PaperCheck::STATUS_ACTIVATED));
+    }
+
+    public function testListPaperChecks_withInvalidFilter() {
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listPaperChecks("user-token",$options=array('type'=>PaperCheck::TYPE_PAPER_CHECK));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     public function testDeactivatePaperCheck_noUserToken() {
@@ -846,13 +922,17 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $statusTransitionList = $client->listPaperCheckStatusTransitions('test-user-token', 'test-paper-check-token');
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(0, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
+
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array());
@@ -863,18 +943,31 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('postalCode' => 'ABCD'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array('transition' => PaperCheckStatusTransition::TRANSITION_DE_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links','data' => array(array('postalCode' => 'ABCD'))));
 
         // Run test
-        $statusTransitionList = $client->listPaperCheckStatusTransitions('test-user-token', 'test-paper-check-token', array('test' => 'value'));
+        $statusTransitionList = $client->listPaperCheckStatusTransitions('test-user-token', 'test-paper-check-token', array('transition' => PaperCheckStatusTransition::TRANSITION_DE_ACTIVATED));
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(1, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         $this->assertEquals(array('postalCode' => 'ABCD'), $statusTransitionList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks/{paper-check-token}/status-transitions', array('user-token' => 'test-user-token', 'paper-check-token' => 'test-paper-check-token'), array('transition' => PaperCheckStatusTransition::TRANSITION_DE_ACTIVATED));
+    }
+
+    public function testListPaperCheckStatusTransitions_withInvalidFilter() {
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        try {
+            $client->listPaperCheckStatusTransitions('test-user-token', 'test-paper-check-token', array('status' => PaperCheck::STATUS_ACTIVATED));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     //--------------------------------------
@@ -976,13 +1069,17 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/transfers', array(), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/transfers', array(), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $transferList = $client->listTransfers();
         $this->assertNotNull($transferList);
         $this->assertCount(0, $transferList);
         $this->assertEquals(1, $transferList->getLimit());
+        $this->assertEquals(false, $transferList->getHasNextPage());
+        $this->assertEquals(false, $transferList->getHasPreviousPage());
+        $this->assertEquals('links', $transferList->getLinks());
+
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/transfers', array(), array());
@@ -993,18 +1090,33 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/transfers', array(), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('token' => 'test-token'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/transfers', array(), array('clientTransferId' => 'client-Transfer-Id'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('token' => 'test-token'))));
 
         // Run test
-        $transferList = $client->listTransfers(array('test' => 'value'));
+        $transferList = $client->listTransfers(array('clientTransferId' => 'client-Transfer-Id'));
         $this->assertNotNull($transferList);
         $this->assertCount(1, $transferList);
         $this->assertEquals(1, $transferList->getLimit());
+        $this->assertEquals(false, $transferList->getHasNextPage());
+        $this->assertEquals(false, $transferList->getHasPreviousPage());
+        $this->assertEquals('links', $transferList->getLinks());
 
         $this->assertEquals(array('token' => 'test-token'), $transferList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/transfers', array(), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/transfers', array(), array('clientTransferId' => 'client-Transfer-Id'));
+    }
+
+    public function testListTransfers_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listTransfers($options=array('status'=>Transfer::STATUS_COMPLETED));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     public function testCreateTransferStatusTransition_noTransferToken() {
@@ -1214,13 +1326,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $payPalAccountsList = $client->listPayPalAccounts('test-user-token');
         $this->assertNotNull($payPalAccountsList);
         $this->assertCount(0, $payPalAccountsList);
         $this->assertEquals(1, $payPalAccountsList->getLimit());
+        $this->assertEquals(false, $payPalAccountsList->getHasNextPage());
+        $this->assertEquals(false, $payPalAccountsList->getHasPreviousPage());
+        $this->assertEquals('links', $payPalAccountsList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts', array('user-token' => 'test-user-token'), array());
@@ -1231,18 +1346,32 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('token' => 'test-token'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts', array('user-token' => 'test-user-token'), array('status' =>'ACTIVATED'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('token' => 'test-token'))));
 
         // Run test
-        $payPalAccountsList = $client->listPayPalAccounts('test-user-token', array('test' => 'value'));
+        $payPalAccountsList = $client->listPayPalAccounts('test-user-token', array('status' =>'ACTIVATED'));
         $this->assertNotNull($payPalAccountsList);
         $this->assertCount(1, $payPalAccountsList);
         $this->assertEquals(1, $payPalAccountsList->getLimit());
-
+        $this->assertEquals(false, $payPalAccountsList->getHasNextPage());
+        $this->assertEquals(false, $payPalAccountsList->getHasPreviousPage());
+        $this->assertEquals('links', $payPalAccountsList->getLinks());
         $this->assertEquals(array('token' => 'test-token'), $payPalAccountsList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts', array('user-token' => 'test-user-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts', array('user-token' => 'test-user-token'), array('status' =>'ACTIVATED'));
+    }
+
+    public function testListPayPalAccounts_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listPayPalAccounts('test-user-token',$options=array('profileType'=>'INDIVIDUAL'));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     public function testDeactivatePayPalAccount_noUserToken() {
@@ -1419,13 +1548,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array('user-token' => 'test-user-token', 'payPal-account-token' => 'test-payPal-account-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array('user-token' => 'test-user-token', 'payPal-account-token' => 'test-payPal-account-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $statusTransitionList = $client->listPayPalAccountStatusTransitions('test-user-token', 'test-payPal-account-token');
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(0, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array('user-token' => 'test-user-token', 'payPal-account-token' => 'test-payPal-account-token'), array());
@@ -1436,18 +1568,31 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array('user-token' => 'test-user-token', 'payPal-account-token' => 'test-payPal-account-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array('user-token' => 'test-user-token', 'payPal-account-token' => 'test-payPal-account-token'), array('transition' => PayPalAccountStatusTransition::TRANSITION_DE_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $statusTransitionList = $client->listPayPalAccountStatusTransitions('test-user-token', 'test-payPal-account-token', array('test' => 'value'));
+        $statusTransitionList = $client->listPayPalAccountStatusTransitions('test-user-token', 'test-payPal-account-token', array('transition' => PayPalAccountStatusTransition::TRANSITION_DE_ACTIVATED));
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(1, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $statusTransitionList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array('user-token' => 'test-user-token', 'payPal-account-token' => 'test-payPal-account-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/paypal-accounts/{payPal-account-token}/status-transitions', array('user-token' => 'test-user-token', 'payPal-account-token' => 'test-payPal-account-token'), array('transition' => PayPalAccountStatusTransition::TRANSITION_DE_ACTIVATED));
+    }
+
+    public function testListPayPalAccountStatusTransitions_withInvalidFilter() {
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        try {
+            $client->listPayPalAccountStatusTransitions('test-user-token', 'test-paypal-account-token', array('status' => 'ACTIVATED'));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     //--------------------------------------
@@ -1584,13 +1729,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $prepaidCardList = $client->listPrepaidCards('test-user-token');
         $this->assertNotNull($prepaidCardList);
         $this->assertCount(0, $prepaidCardList);
         $this->assertEquals(1, $prepaidCardList->getLimit());
+        $this->assertEquals(false, $prepaidCardList->getHasNextPage());
+        $this->assertEquals(false, $prepaidCardList->getHasPreviousPage());
+        $this->assertEquals('links', $prepaidCardList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), array());
@@ -1601,18 +1749,33 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), array('status' =>PrepaidCard::STATUS_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $prepaidCardList = $client->listPrepaidCards('test-user-token', array('test' => 'value'));
+        $prepaidCardList = $client->listPrepaidCards('test-user-token', array('status' =>PrepaidCard::STATUS_ACTIVATED));
         $this->assertNotNull($prepaidCardList);
         $this->assertCount(1, $prepaidCardList);
         $this->assertEquals(1, $prepaidCardList->getLimit());
+        $this->assertEquals(false, $prepaidCardList->getHasNextPage());
+        $this->assertEquals(false, $prepaidCardList->getHasPreviousPage());
+        $this->assertEquals('links', $prepaidCardList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $prepaidCardList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), array('status' =>PrepaidCard::STATUS_ACTIVATED));
+    }
+
+    public function testListPrepaidCards_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listPrepaidCards('test-user-token',$options=array('type'=>PrepaidCard::CARD_BRAND_VISA));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     /**
@@ -1808,13 +1971,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/status-transitions', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/status-transitions', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $statusTransitionList = $client->listPrepaidCardStatusTransitions('test-user-token', 'test-prepaid-card-token');
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(0, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/status-transitions', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array());
@@ -1825,18 +1991,31 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/status-transitions', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/status-transitions', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('transition' => PrepaidCardStatusTransition::TRANSITION_DE_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links','data' => array(array('success' => 'true'))));
 
         // Run test
-        $statusTransitionList = $client->listPrepaidCardStatusTransitions('test-user-token', 'test-prepaid-card-token', array('test' => 'value'));
+        $statusTransitionList = $client->listPrepaidCardStatusTransitions('test-user-token', 'test-prepaid-card-token', array('transition' => PrepaidCardStatusTransition::TRANSITION_DE_ACTIVATED));
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(1, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $statusTransitionList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/status-transitions', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/status-transitions', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('transition' => PrepaidCardStatusTransition::TRANSITION_DE_ACTIVATED));
+    }
+
+    public function testListPrepaidCardStatusTransitions_withInvalidFilter() {
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        try {
+            $client->listPrepaidCardStatusTransitions('test-user-token', 'test-prepaid-card-token', array('status' => PrepaidCard::STATUS_ACTIVATED));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     //--------------------------------------
@@ -1974,13 +2153,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $bankAccountList = $client->listBankAccounts('test-user-token');
         $this->assertNotNull($bankAccountList);
         $this->assertCount(0, $bankAccountList);
         $this->assertEquals(1, $bankAccountList->getLimit());
+        $this->assertEquals(false, $bankAccountList->getHasNextPage());
+        $this->assertEquals(false, $bankAccountList->getHasPreviousPage());
+        $this->assertEquals('links', $bankAccountList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts', array('user-token' => 'test-user-token'), array());
@@ -1991,18 +2173,33 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts', array('user-token' => 'test-user-token'), array('status' =>BankAccount::STATUS_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $bankAccountList = $client->listBankAccounts('test-user-token', array('test' => 'value'));
+        $bankAccountList = $client->listBankAccounts('test-user-token', array('status' =>BankAccount::STATUS_ACTIVATED));
         $this->assertNotNull($bankAccountList);
         $this->assertCount(1, $bankAccountList);
         $this->assertEquals(1, $bankAccountList->getLimit());
+        $this->assertEquals(false, $bankAccountList->getHasNextPage());
+        $this->assertEquals(false, $bankAccountList->getHasPreviousPage());
+        $this->assertEquals('links', $bankAccountList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $bankAccountList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts', array('user-token' => 'test-user-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts', array('user-token' => 'test-user-token'), array('status' =>BankAccount::STATUS_ACTIVATED));
+    }
+
+    public function testListBankAccounts_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listBankAccounts('test-user-token',$options=array('profileType'=>BankAccount::PROFILE_TYPE_INDIVIDUAL));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     public function testDeactivateBankAccount_noUserToken() {
@@ -2179,13 +2376,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts/{bank-account-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-account-token' => 'test-bank-account-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts/{bank-account-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-account-token' => 'test-bank-account-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $statusTransitionList = $client->listBankAccountStatusTransitions('test-user-token', 'test-bank-account-token');
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(0, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts/{bank-account-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-account-token' => 'test-bank-account-token'), array());
@@ -2196,18 +2396,31 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts/{bank-account-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-account-token' => 'test-bank-account-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts/{bank-account-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-account-token' => 'test-bank-account-token'), array('transition' => BankAccountStatusTransition::TRANSITION_DE_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $statusTransitionList = $client->listBankAccountStatusTransitions('test-user-token', 'test-bank-account-token', array('test' => 'value'));
+        $statusTransitionList = $client->listBankAccountStatusTransitions('test-user-token', 'test-bank-account-token', array('transition' => BankAccountStatusTransition::TRANSITION_DE_ACTIVATED));
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(1, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $statusTransitionList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts/{bank-account-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-account-token' => 'test-bank-account-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-accounts/{bank-account-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-account-token' => 'test-bank-account-token'), array('transition' => BankAccountStatusTransition::TRANSITION_DE_ACTIVATED));
+    }
+
+    public function testListBankAccountStatusTransitions_withInvalidFilter() {
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        try {
+            $client->listBankAccountStatusTransitions('test-user-token', 'test-bank-account-token', array('status' => BankAccount::STATUS_ACTIVATED));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     //--------------------------------------
@@ -2344,13 +2557,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $bankCardList = $client->listBankCards('test-user-token');
         $this->assertNotNull($bankCardList);
         $this->assertCount(0, $bankCardList);
         $this->assertEquals(1, $bankCardList->getLimit());
+        $this->assertEquals(false, $bankCardList->getHasNextPage());
+        $this->assertEquals(false, $bankCardList->getHasPreviousPage());
+        $this->assertEquals('links', $bankCardList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards', array('user-token' => 'test-user-token'), array());
@@ -2361,18 +2577,34 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards', array('user-token' => 'test-user-token'), array('status' =>BankCard::STATUS_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $bankCardList = $client->listBankCards('test-user-token', array('test' => 'value'));
+        $bankCardList = $client->listBankCards('test-user-token', array('status' =>BankCard::STATUS_ACTIVATED));
         $this->assertNotNull($bankCardList);
         $this->assertCount(1, $bankCardList);
         $this->assertEquals(1, $bankCardList->getLimit());
+        $this->assertEquals(1, $bankCardList->getLimit());
+        $this->assertEquals(false, $bankCardList->getHasNextPage());
+        $this->assertEquals(false, $bankCardList->getHasPreviousPage());
+        $this->assertEquals('links', $bankCardList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $bankCardList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards', array('user-token' => 'test-user-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards', array('user-token' => 'test-user-token'), array('status' =>BankCard::STATUS_ACTIVATED));
+    }
+
+    public function testListBankCards_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listBankCards('test-user-token',$options=array('profileType'=>BankCard::TYPE_BANK_CARD));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     public function testDeactivateBankCard_noUserToken() {
@@ -2549,13 +2781,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards/{bank-card-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-card-token' => 'test-bank-card-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards/{bank-card-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-card-token' => 'test-bank-card-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $statusTransitionList = $client->listBankCardStatusTransitions('test-user-token', 'test-bank-card-token');
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(0, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards/{bank-card-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-card-token' => 'test-bank-card-token'), array());
@@ -2566,18 +2801,31 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards/{bank-card-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-card-token' => 'test-bank-card-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards/{bank-card-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-card-token' => 'test-bank-card-token'), array('transition' => BankCardStatusTransition::TRANSITION_DE_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $statusTransitionList = $client->listBankCardStatusTransitions('test-user-token', 'test-bank-card-token', array('test' => 'value'));
+        $statusTransitionList = $client->listBankCardStatusTransitions('test-user-token', 'test-bank-card-token', array('transition' => BankCardStatusTransition::TRANSITION_DE_ACTIVATED));
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(1, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $statusTransitionList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards/{bank-card-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-card-token' => 'test-bank-card-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/bank-cards/{bank-card-token}/status-transitions', array('user-token' => 'test-user-token', 'bank-card-token' => 'test-bank-card-token'), array('transition' => BankCardStatusTransition::TRANSITION_DE_ACTIVATED));
+    }
+
+    public function testListBankCardStatusTransitions_withInvalidFilter() {
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        try {
+            $client->listBankCardStatusTransitions('test-user-token', 'test-bank-card-token', array('status' => 'ACTIVATED'));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
 
@@ -2723,13 +2971,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/balances', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/balances', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $balanceList = $client->listBalancesForUser('test-user-token');
         $this->assertNotNull($balanceList);
         $this->assertCount(0, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/balances', array('user-token' => 'test-user-token'), array());
@@ -2740,18 +2991,33 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/balances', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/balances', array('user-token' => 'test-user-token'), array('currency' => 'USD'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $balanceList = $client->listBalancesForUser('test-user-token', array('test' => 'value'));
+        $balanceList = $client->listBalancesForUser('test-user-token', array('currency' => 'USD'));
         $this->assertNotNull($balanceList);
         $this->assertCount(1, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/balances', array('user-token' => 'test-user-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/balances', array('user-token' => 'test-user-token'), array('currency' => 'USD'));
+    }
+
+    public function testListBalancesForUser_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listBalancesForUser('test-user-token',$options=array('status'=> 'COMPLETED'));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     public function testListBalancesForPrepaidCard_noUserToken() {
@@ -2785,13 +3051,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $balanceList = $client->listBalancesForPrepaidCard('test-user-token', 'test-prepaid-card-token');
         $this->assertNotNull($balanceList);
         $this->assertCount(0, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array());
@@ -2802,13 +3071,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('test' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
         $balanceList = $client->listBalancesForPrepaidCard('test-user-token', 'test-prepaid-card-token', array('test' => 'value'));
         $this->assertNotNull($balanceList);
         $this->assertCount(1, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
 
@@ -2847,13 +3119,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/programs/{program-token}/accounts/{account-token}/balances', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/programs/{program-token}/accounts/{account-token}/balances', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $balanceList = $client->listBalancesForAccount('test-program-token', 'test-account-token');
         $this->assertNotNull($balanceList);
         $this->assertCount(0, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/programs/{program-token}/accounts/{account-token}/balances', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array());
@@ -2864,13 +3139,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/programs/{program-token}/accounts/{account-token}/balances', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/programs/{program-token}/accounts/{account-token}/balances', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array('test' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
         $balanceList = $client->listBalancesForAccount('test-program-token', 'test-account-token', array('test' => 'value'));
         $this->assertNotNull($balanceList);
         $this->assertCount(1, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
 
@@ -2975,13 +3253,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/payments', array(), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/payments', array(), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $userList = $client->listPayments();
         $this->assertNotNull($userList);
         $this->assertCount(0, $userList);
         $this->assertEquals(1, $userList->getLimit());
+        $this->assertEquals(false, $userList->getHasNextPage());
+        $this->assertEquals(false, $userList->getHasPreviousPage());
+        $this->assertEquals('links', $userList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/payments', array(), array());
@@ -2992,18 +3273,33 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/payments', array(), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/payments', array(), array('clientPaymentId' => 'testClient-PaymentId'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $userList = $client->listPayments(array('test' => 'value'));
+        $userList = $client->listPayments(array('clientPaymentId' => 'testClient-PaymentId'));
         $this->assertNotNull($userList);
         $this->assertCount(1, $userList);
         $this->assertEquals(1, $userList->getLimit());
+        $this->assertEquals(false, $userList->getHasNextPage());
+        $this->assertEquals(false, $userList->getHasPreviousPage());
+        $this->assertEquals('links', $userList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $userList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/payments', array(), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/payments', array(), array('clientPaymentId' => 'testClient-PaymentId'));
+    }
+
+    public function testListPayments_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listPayments($options=array('status'=> 'COMPLETED'));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     public function testCreatePaymentStatusTransition_noPaymentToken() {
@@ -3096,13 +3392,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/payments/{payment-token}/status-transitions', array('payment-token' => 'test-payment-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/payments/{payment-token}/status-transitions', array('payment-token' => 'test-payment-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $statusTransitionList = $client->listPaymentStatusTransitions('test-payment-token');
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(0, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/payments/{payment-token}/status-transitions', array('payment-token' => 'test-payment-token'), array());
@@ -3113,18 +3412,31 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/payments/{payment-token}/status-transitions', array('payment-token' => 'test-payment-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/payments/{payment-token}/status-transitions', array('payment-token' => 'test-payment-token'), array('transition' => PaymentStatusTransition::TRANSITION_CANCELLED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $statusTransitionList = $client->listPaymentStatusTransitions('test-payment-token', array('test' => 'value'));
+        $statusTransitionList = $client->listPaymentStatusTransitions('test-payment-token', array('transition' => PaymentStatusTransition::TRANSITION_CANCELLED));
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(1, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $statusTransitionList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/payments/{payment-token}/status-transitions', array('payment-token' => 'test-payment-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/payments/{payment-token}/status-transitions', array('payment-token' => 'test-payment-token'), array('transition' => PaymentStatusTransition::TRANSITION_CANCELLED));
+    }
+
+    public function testListPaymentStatusTransitions_withInvalidFilter() {
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        try {
+            $client->listPaymentStatusTransitions( 'test-payment-token', array('status' => 'ACTIVATED'));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     //--------------------------------------
@@ -3318,13 +3630,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/transfer-method-configurations', array(), array('userToken' => 'test-user-token'))->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/transfer-method-configurations', array(), array('userToken' => 'test-user-token'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $userList = $client->listTransferMethodConfigurations('test-user-token');
         $this->assertNotNull($userList);
         $this->assertCount(0, $userList);
         $this->assertEquals(1, $userList->getLimit());
+        $this->assertEquals(false, $userList->getHasNextPage());
+        $this->assertEquals(false, $userList->getHasPreviousPage());
+        $this->assertEquals('links', $userList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/transfer-method-configurations', array(), array('userToken' => 'test-user-token'));
@@ -3338,13 +3653,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::when($apiClientMock)->doGet('/rest/v4/transfer-method-configurations', array(), array(
             'userToken' => 'test-user-token',
             'test' => 'value'
-        ))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        ))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
         $tmcList = $client->listTransferMethodConfigurations('test-user-token', array('test' => 'value'));
         $this->assertNotNull($tmcList);
         $this->assertCount(1, $tmcList);
         $this->assertEquals(1, $tmcList->getLimit());
+        $this->assertEquals(false, $tmcList->getHasNextPage());
+        $this->assertEquals(false, $tmcList->getHasPreviousPage());
+        $this->assertEquals('links', $tmcList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $tmcList[0]->getProperties());
 
@@ -3390,13 +3708,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/programs/{program-token}/accounts/{account-token}/receipts', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/programs/{program-token}/accounts/{account-token}/receipts', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $balanceList = $client->listReceiptsForProgramAccount('test-program-token', 'test-account-token');
         $this->assertNotNull($balanceList);
         $this->assertCount(0, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/programs/{program-token}/accounts/{account-token}/receipts', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array());
@@ -3407,13 +3728,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/programs/{program-token}/accounts/{account-token}/receipts', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/programs/{program-token}/accounts/{account-token}/receipts', array('program-token' => 'test-program-token', 'account-token' => 'test-account-token'), array('test' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
         $balanceList = $client->listReceiptsForProgramAccount('test-program-token', 'test-account-token', array('test' => 'value'));
         $this->assertNotNull($balanceList);
         $this->assertCount(1, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
 
@@ -3439,13 +3763,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/receipts', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/receipts', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $balanceList = $client->listReceiptsForUser('test-user-token');
         $this->assertNotNull($balanceList);
         $this->assertCount(0, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/receipts', array('user-token' => 'test-user-token'), array());
@@ -3456,13 +3783,17 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/receipts', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/receipts', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
         $balanceList = $client->listReceiptsForUser('test-user-token', array('test' => 'value'));
         $this->assertNotNull($balanceList);
         $this->assertCount(1, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
+
 
         $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
 
@@ -3501,13 +3832,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/receipts', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/receipts', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $balanceList = $client->listReceiptsForPrepaidCard('test-user-token', 'test-prepaid-card-token');
         $this->assertNotNull($balanceList);
         $this->assertCount(0, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/receipts', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array());
@@ -3518,13 +3852,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/receipts', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/receipts', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('test' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
         $balanceList = $client->listReceiptsForPrepaidCard('test-user-token', 'test-prepaid-card-token', array('test' => 'value'));
         $this->assertNotNull($balanceList);
         $this->assertCount(1, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
+        $this->assertEquals(false, $balanceList->getHasNextPage());
+        $this->assertEquals(false, $balanceList->getHasPreviousPage());
+        $this->assertEquals('links', $balanceList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
 
@@ -3569,13 +3906,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/webhook-notifications', array(), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/webhook-notifications', array(), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $webhookNotificationList = $client->listWebhookNotifications();
         $this->assertNotNull($webhookNotificationList);
         $this->assertCount(0, $webhookNotificationList);
         $this->assertEquals(1, $webhookNotificationList->getLimit());
+        $this->assertEquals(false, $webhookNotificationList->getHasNextPage());
+        $this->assertEquals(false, $webhookNotificationList->getHasPreviousPage());
+        $this->assertEquals('links', $webhookNotificationList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/webhook-notifications', array(), array());
@@ -3586,18 +3926,33 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/webhook-notifications', array(), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/webhook-notifications', array(), array('programToken' => 'test-program-token'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $webhookNotificationList = $client->listWebhookNotifications(array('test' => 'value'));
+        $webhookNotificationList = $client->listWebhookNotifications(array('programToken' => 'test-program-token'));
         $this->assertNotNull($webhookNotificationList);
         $this->assertCount(1, $webhookNotificationList);
         $this->assertEquals(1, $webhookNotificationList->getLimit());
+        $this->assertEquals(false, $webhookNotificationList->getHasNextPage());
+        $this->assertEquals(false, $webhookNotificationList->getHasPreviousPage());
+        $this->assertEquals('links', $webhookNotificationList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $webhookNotificationList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/webhook-notifications', array(), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/webhook-notifications', array(), array('programToken' => 'test-program-token'));
+    }
+
+    public function testListWebhookNotifications_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listWebhookNotifications($options=array('status'=> 'COMPLETED'));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     //--------------------------------------
@@ -3696,8 +4051,8 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $user = new user(array('verificationStatus'=> User::VERIFICATION_STATUS_REQUESTED));
-        \Phake::when($apiClientMock)->doPut('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), $user, array())->thenReturn(array("status"=> User::STATUS_PRE_ACTIVATED, 'verificationStatus'=> User::VERIFICATION_STATUS_REQUIRED));
-        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), array())->thenReturn(array("status"=> User::STATUS_PRE_ACTIVATED, 'verificationStatus'=> User::VERIFICATION_STATUS_REQUIRED));
+        \Phake::when($apiClientMock)->doPut('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), $user, array())->thenReturn(array("status"=> User::STATUS_PRE_ACTIVATED, 'verificationStatus'=> User::VERIFICATION_STATUS_REQUIRED));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), array())->thenReturn(array("status"=> User::STATUS_PRE_ACTIVATED, 'verificationStatus'=> User::VERIFICATION_STATUS_REQUIRED));
 
         // Run test
         try {
@@ -3708,7 +4063,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertNotNull($responseUser);
         $this->assertEquals('REQUIRED', $responseUser->getVerificationStatus());
         // Validate mock
-        \Phake::verify($apiClientMock)->doPut('/rest/v3/users/{user-token}', array('user-token' => 'test-user-token'), $user, array());
+        \Phake::verify($apiClientMock)->doPut('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), $user, array());
     }
 
 
@@ -3938,13 +4293,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $venmoAccountsList = $client->listVenmoAccounts('test-user-token');
         $this->assertNotNull($venmoAccountsList);
         $this->assertCount(0, $venmoAccountsList);
         $this->assertEquals(1, $venmoAccountsList->getLimit());
+        $this->assertEquals(false, $venmoAccountsList->getHasNextPage());
+        $this->assertEquals(false, $venmoAccountsList->getHasPreviousPage());
+        $this->assertEquals('links', $venmoAccountsList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), array());
@@ -3955,13 +4313,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('token' => 'test-token'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/venmo-accounts', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('token' => 'test-token'))));
 
         // Run test
         $venmoAccountsList = $client->listVenmoAccounts('test-user-token', array('test' => 'value'));
         $this->assertNotNull($venmoAccountsList);
         $this->assertCount(1, $venmoAccountsList);
         $this->assertEquals(1, $venmoAccountsList->getLimit());
+        $this->assertEquals(false, $venmoAccountsList->getHasNextPage());
+        $this->assertEquals(false, $venmoAccountsList->getHasPreviousPage());
+        $this->assertEquals('links', $venmoAccountsList->getLinks());
 
         $this->assertEquals(array('token' => 'test-token'), $venmoAccountsList[0]->getProperties());
 
@@ -4130,13 +4491,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $statusTransitionList = $client->listVenmoAccountStatusTransitions('test-user-token', 'test-venmo-account-token');
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(0, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array());
@@ -4147,13 +4511,16 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/venmo-accounts/{venmo-account-token}/status-transitions', array('user-token' => 'test-user-token', 'venmo-account-token' => 'test-venmo-account-token'), array('test' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
         $statusTransitionList = $client->listVenmoAccountStatusTransitions('test-user-token', 'test-venmo-account-token', array('test' => 'value'));
         $this->assertNotNull($statusTransitionList);
         $this->assertCount(1, $statusTransitionList);
         $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
 
         $this->assertEquals(array('success' => 'true'), $statusTransitionList[0]->getProperties());
 
@@ -4371,10 +4738,13 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
         \Phake::when($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/refunds',
-            $uriParams, $queryParams)->thenReturn(array('limit' => 1, 'data' => array(array('refundToken' => $refundToken, array('sourceCurrency' => $sourceCurrency)))));
+            $uriParams, $queryParams)->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('refundToken' => $refundToken, array('sourceCurrency' => $sourceCurrency)))));
 
         // Run test
         $transferRefundList = $client->listTransferRefunds($transferToken);
+        $this->assertEquals(false, $transferRefundList->getHasNextPage());
+        $this->assertEquals(false, $transferRefundList->getHasPreviousPage());
+        $this->assertEquals('links', $transferRefundList->getLinks());
         $this->assertEquals(array('sourceCurrency' => $sourceCurrency), $transferRefundList[0]->getProperties()[0]);
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/refunds',
@@ -4396,10 +4766,13 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
         \Phake::when($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/refunds',
-            $uriParams, $queryParams)->thenReturn(array('limit' => 1, 'data' => array(array('refundToken' => $refundToken, array('sourceCurrency' => $sourceCurrency)))));
+            $uriParams, $queryParams)->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('refundToken' => $refundToken, array('sourceCurrency' => $sourceCurrency)))));
 
         // Run test
         $transferRefundList = $client->listTransferRefunds($transferToken, $queryParams);
+        $this->assertEquals(false, $transferRefundList->getHasNextPage());
+        $this->assertEquals(false, $transferRefundList->getHasPreviousPage());
+        $this->assertEquals('links', $transferRefundList->getLinks());
         $this->assertEquals(array('sourceCurrency' => $sourceCurrency), $transferRefundList[0]->getProperties()[0]);
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/refunds', $uriParams, $queryParams);
@@ -4520,6 +4893,17 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertCount(0, $transferMethodsList);
         $this->assertEquals(1, $transferMethodsList->getLimit());
 
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links','data' => array()));
+
+        // Run test
+        $businessStakeholderList = $client->listBusinessStakeholders('test-user-token',array());
+        $this->assertNotNull($businessStakeholderList);
+        $this->assertCount(0, $businessStakeholderList);
+        $this->assertEquals(1, $businessStakeholderList->getLimit());
+        $this->assertEquals(false, $businessStakeholderList->getHasNextPage());
+        $this->assertEquals(false, $businessStakeholderList->getHasPreviousPage());
+        $this->assertEquals('links', $businessStakeholderList->getLinks());
+
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array());
     }
@@ -4529,17 +4913,33 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('data' => array(array('postalCode' => 'ABCD'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array('status' => BusinessStakeholder::STATUS_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links','data' => array(array('postalCode' => 'ABCD'))));
 
         // Run test
-        $businessStakeholderList = $client->listBusinessStakeholders('test-user-token', array('test' => 'value'));
+        $businessStakeholderList = $client->listBusinessStakeholders('test-user-token', array('status' => BusinessStakeholder::STATUS_ACTIVATED));
         $this->assertNotNull($businessStakeholderList);
         $this->assertCount(1, $businessStakeholderList);
+        $this->assertEquals(1, $businessStakeholderList->getLimit());
+        $this->assertEquals(false, $businessStakeholderList->getHasNextPage());
+        $this->assertEquals(false, $businessStakeholderList->getHasPreviousPage());
+        $this->assertEquals('links', $businessStakeholderList->getLinks());
 
         $this->assertEquals(array('postalCode' => 'ABCD'), $businessStakeholderList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array('status' => BusinessStakeholder::STATUS_ACTIVATED));
+    }
+
+    public function testListBusinessStakeholder_withInvalidFilter() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        try {
+            $client->listBusinessStakeholders("test-user-token" ,$options=array('profileType'=>BusinessStakeholder::PROFILE_TYPE_INDIVIDUAL));
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('Invalid filter', $e->getMessage());
+        }
     }
 
     public function testuploadDocumentsForBusinessStakeholder_withoutUserToken() {
@@ -4620,35 +5020,40 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1, 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
-        $transferMethodsList = $client->listTransferMethods('test-user-token');
-        $this->assertNotNull($transferMethodsList);
-        $this->assertCount(0, $transferMethodsList);
-        $this->assertEquals(1, $transferMethodsList->getLimit());
+        $listTransferMethods = $client->listTransferMethods('test-user-token');
+        $this->assertNotNull($listTransferMethods);
+        $this->assertCount(0, $listTransferMethods);
+        $this->assertEquals(1, $listTransferMethods->getLimit());
+        $this->assertEquals(false, $listTransferMethods->getHasNextPage());
+        $this->assertEquals(false, $listTransferMethods->getHasPreviousPage());
+        $this->assertEquals('links', $listTransferMethods->getLinks());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array());
     }
 
-    public function testListTransferMethods_allParametersWithSuccess() {
+    public function testListTransferMethods_withParameters() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array('test' => 'value'))->thenReturn(array('limit' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array('type'=>TransferMethod::TYPE_PREPAID_CARD))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $transferMethodsList = $client->listTransferMethods('test-user-token', array('test' => 'value'));
-        $this->assertNotNull($transferMethodsList);
-        $this->assertCount(1, $transferMethodsList);
-        $this->assertEquals(1, $transferMethodsList->getLimit());
+        $listTransferMethods = $client->listTransferMethods('test-user-token', array('type'=>TransferMethod::TYPE_PREPAID_CARD));
+        $this->assertNotNull($listTransferMethods);
+        $this->assertCount(1, $listTransferMethods);
+        $this->assertEquals(1, $listTransferMethods->getLimit());
+        $this->assertEquals(false, $listTransferMethods->getHasNextPage());
+        $this->assertEquals(false, $listTransferMethods->getHasPreviousPage());
+        $this->assertEquals('links', $listTransferMethods->getLinks());
 
-        $this->assertEquals(array('success' => 'true'), $transferMethodsList[0]->getProperties());
+        $this->assertEquals(array('success' => 'true'), $listTransferMethods[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array('test' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array('type'=>TransferMethod::TYPE_PREPAID_CARD));
     }
-
 }

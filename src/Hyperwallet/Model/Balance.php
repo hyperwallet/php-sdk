@@ -20,6 +20,10 @@ class Balance extends BaseModel {
      */
     private static $READ_ONLY_FIELDS = array('currency', 'amount');
 
+    public static function FILTERS_ARRAY() {
+        return array('currency');
+    }
+
     /**
      * Creates a instance of Balance
      *
