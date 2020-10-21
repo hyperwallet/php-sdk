@@ -3606,67 +3606,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         ));
     }
 
-    public function testListTransferMethodConfigurations_noUserToken() {
-        // Setup
-        $client = new Hyperwallet('test-username', 'test-password');
-
-        // Run test
-        try {
-            $client->listTransferMethodConfigurations('');
-            $this->fail('HyperwalletArgumentException expected');
-        } catch (HyperwalletArgumentException $e) {
-            $this->assertEquals('userToken is required!', $e->getMessage());
-        }
-    }
-
-    public function testListTransferMethodConfigurations_noParameters() {
-        // Setup
-        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
-        $apiClientMock = $this->createAndInjectApiClientMock($client);
-
-        \Phake::when($apiClientMock)->doGet('/rest/v4/transfer-method-configurations', array(), array('userToken' => 'test-user-token'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
-
-        // Run test
-        $userList = $client->listTransferMethodConfigurations('test-user-token');
-        $this->assertNotNull($userList);
-        $this->assertCount(0, $userList);
-        $this->assertEquals(1, $userList->getLimit());
-        $this->assertEquals(false, $userList->getHasNextPage());
-        $this->assertEquals(false, $userList->getHasPreviousPage());
-        $this->assertEquals('links', $userList->getLinks());
-
-        // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/transfer-method-configurations', array(), array('userToken' => 'test-user-token'));
-    }
-
-    public function testListTransferMethodConfigurations_withParameters() {
-        // Setup
-        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
-        $apiClientMock = $this->createAndInjectApiClientMock($client);
-
-        \Phake::when($apiClientMock)->doGet('/rest/v4/transfer-method-configurations', array(), array(
-            'userToken' => 'test-user-token',
-            'test' => 'value'
-        ))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
-
-        // Run test
-        $tmcList = $client->listTransferMethodConfigurations('test-user-token', array('test' => 'value'));
-        $this->assertNotNull($tmcList);
-        $this->assertCount(1, $tmcList);
-        $this->assertEquals(1, $tmcList->getLimit());
-        $this->assertEquals(false, $tmcList->getHasNextPage());
-        $this->assertEquals(false, $tmcList->getHasPreviousPage());
-        $this->assertEquals('links', $tmcList->getLinks());
-
-        $this->assertEquals(array('success' => 'true'), $tmcList[0]->getProperties());
-
-        // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/transfer-method-configurations', array(), array(
-            'userToken' => 'test-user-token',
-            'test' => 'value'
-        ));
-    }
-
     //--------------------------------------
     // Receipts
     //--------------------------------------

@@ -1778,29 +1778,6 @@ class Hyperwallet {
         return new TransferMethodConfiguration($body);
     }
 
-    /**
-     * List all transfer method configurations
-     *
-     * @param string $userToken The user token
-     * @param array $options The query parameters
-     * @return ListResponse
-     *
-     * @throws HyperwalletArgumentException
-     * @throws HyperwalletApiException
-     */
-    public function listTransferMethodConfigurations($userToken, $options = array()) {
-        if (empty($userToken)) {
-            throw new HyperwalletArgumentException('userToken is required!');
-        }
-
-        $body = $this->client->doGet('/rest/v4/transfer-method-configurations', array(), array_merge(array(
-            'userToken' => $userToken,
-        ), $options));
-        return new ListResponse($body, function ($entity) {
-            return new TransferMethodConfiguration($entity);
-        });
-    }
-
     //--------------------------------------
     // Receipts
     //--------------------------------------
