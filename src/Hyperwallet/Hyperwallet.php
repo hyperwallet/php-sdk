@@ -2339,10 +2339,6 @@ class Hyperwallet {
         return new BusinessStakeholder($body);
     }
 
-    //--------------------------------------
-    // Business Stakeholders
-    //--------------------------------------
-
     /**
      * Create a Business Stakeholder
      *
@@ -2364,6 +2360,7 @@ class Hyperwallet {
      *
      * @param Business Stakeholder $BusinessStakeholder The Business Stakeholder
      * @return BusinessStakeholder
+
      *
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
@@ -2387,6 +2384,7 @@ class Hyperwallet {
      *
      * @throws HyperwalletApiException
      */
+
     public function listBusinessStakeholders($userToken , $options) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
@@ -2402,6 +2400,27 @@ class Hyperwallet {
         ), $options);
         return new ListResponse($body, function ($entry) {
             return new BusinessStakeholder($entry);
+        });
+    }
+
+    /**
+     * List all Transfer Methods
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters
+     * @return ListResponse of HyperwalletTransferMethod
+     */
+
+     public function listTransferMethods($userToken, $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v4/users/{user-token}/transfer-methods', array(
+            'user-token' => $userToken
+        ), $options);
+        return new ListResponse($body, function ($entry) {
+            return new TransferMethod($entry);
         });
     }
 }
