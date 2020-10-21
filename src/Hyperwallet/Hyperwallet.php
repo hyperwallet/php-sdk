@@ -2409,6 +2409,7 @@ class Hyperwallet {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
+
         $body = $this->client->doGet('/rest/v4/users/{user-token}/transfer-methods', array(
             'user-token' => $userToken
         ), $options);
