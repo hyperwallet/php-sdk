@@ -4885,14 +4885,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links','data' => array()));
-
-        // Run test
-        $transferMethodsList = $client->listTransferMethods('test-user-token');
-        $this->assertNotNull($transferMethodsList);
-        $this->assertCount(0, $transferMethodsList);
-        $this->assertEquals(1, $transferMethodsList->getLimit());
-
         \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links','data' => array()));
 
         // Run test
@@ -4905,7 +4897,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('links', $businessStakeholderList->getLinks());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array());
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders', array('user-token' => 'test-user-token'), array());
     }
 
     public function testListBusinessStakeholder_allParametersWithSuccess() {
