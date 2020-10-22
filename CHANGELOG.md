@@ -1,6 +1,6 @@
 ChangeLog
 =========
-2.0.0
+2.0.0 
 -------------------
 - Updated the methods to point to V4 Rest APIs
 - Added Business Stakeholders - create, update, list methods
