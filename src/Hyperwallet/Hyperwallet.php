@@ -66,16 +66,17 @@ class Hyperwallet {
      * @param string|null $programToken The program token that is used for some API calls
      * @param string $server The API server to connect to
      * @param string $encryptionData Encryption data to initialize ApiClient with encryption enabled
+     * @param array $clientOptions Guzzle Client Options
      *
      * @throws HyperwalletArgumentException
      */
-    public function __construct($username, $password, $programToken = null, $server = 'https://api.sandbox.hyperwallet.com', $encryptionData = array()) {
+    public function __construct($username, $password, $programToken = null, $server = 'https://api.sandbox.hyperwallet.com', $encryptionData = array(), $clientOptions = array()) {
         if (empty($username) || empty($password)) {
             throw new HyperwalletArgumentException('You need to specify your API username and password!');
         }
 
         $this->programToken = $programToken;
-        $this->client = new ApiClient($username, $password, $server, array(), $encryptionData);
+        $this->client = new ApiClient($username, $password, $server, $clientOptions, $encryptionData);
     }
 
     //--------------------------------------
@@ -1501,9 +1502,11 @@ class Hyperwallet {
         }
 
         $body = $this->client->doGet('/rest/v4/users/{user-token}/balances', array('user-token' => $userToken), $options);
-        return new ListResponse($body, function ($entry) {
+        $listResponse = new ListResponse($body, function ($entry) {
             return new Balance($entry);
         });
+        call_user_func(array($listResponse, 'unsetLinksAttribute'));
+        return $listResponse;
     }
 
     /**
@@ -1528,9 +1531,11 @@ class Hyperwallet {
             'user-token' => $userToken,
             'prepaid-card-token' => $prepaidCardToken
         ), $options);
-        return new ListResponse($body, function ($entry) {
+        $listResponse = new ListResponse($body, function ($entry) {
             return new Balance($entry);
         });
+        call_user_func(array($listResponse, 'unsetLinksAttribute'));
+        return $listResponse;
     }
 
     /**
@@ -1555,9 +1560,11 @@ class Hyperwallet {
             'program-token' => $programToken,
             'account-token' => $accountToken
         ), $options);
-        return new ListResponse($body, function ($entry) {
+        $listResponse = new ListResponse($body, function ($entry) {
             return new Balance($entry);
         });
+        call_user_func(array($listResponse, 'unsetLinksAttribute'));
+        return $listResponse;
     }
 
     //--------------------------------------
@@ -1996,7 +2003,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('verificationStatus is required!');
         }
         $user = new User(array('verificationStatus'=> $verificationStatus));
-        $responseUser = $this->client->doPut('/rest/v3/users/{user-token}', array('user-token' => $userToken), $user, array());
+        $responseUser = $this->client->doPut('/rest/v4/users/{user-token}', array('user-token' => $userToken), $user, array());
         return new User($responseUser);
     }
 
@@ -2016,7 +2023,7 @@ class Hyperwallet {
         if (empty($transition->getTransition())) {
             throw new HyperwalletArgumentException('userStatusTransition is required!');
         }
-        $body = $this->client->doPost('/rest/v3/users/{user-token}/status-transitions', array(
+        $body = $this->client->doPost('/rest/v4/users/{user-token}/status-transitions', array(
             'user-token' => $userToken), $transition, array());
         return new UserStatusTransition($body);
     }
@@ -2346,10 +2353,6 @@ class Hyperwallet {
         return new BusinessStakeholder($body);
     }
 
-    //--------------------------------------
-    // Business Stakeholders
-    //--------------------------------------
-
     /**
      * Create a Business Stakeholder
      *
@@ -2371,6 +2374,7 @@ class Hyperwallet {
      *
      * @param Business Stakeholder $BusinessStakeholder The Business Stakeholder
      * @return BusinessStakeholder
+
      *
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
@@ -2394,6 +2398,7 @@ class Hyperwallet {
      *
      * @throws HyperwalletApiException
      */
+
     public function listBusinessStakeholders($userToken , $options) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
@@ -2409,6 +2414,27 @@ class Hyperwallet {
         ), $options);
         return new ListResponse($body, function ($entry) {
             return new BusinessStakeholder($entry);
+        });
+    }
+
+    /**
+     * List all Transfer Methods
+     *
+     * @param string $userToken The user token
+     * @param array $options The query parameters
+     * @return ListResponse of HyperwalletTransferMethod
+     */
+
+     public function listTransferMethods($userToken, $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v4/users/{user-token}/transfer-methods', array(
+            'user-token' => $userToken
+        ), $options);
+        return new ListResponse($body, function ($entry) {
+            return new TransferMethod($entry);
         });
     }
 }
