@@ -1,5 +1,10 @@
 ChangeLog
 =========
+2.0.0
+-------------------
+- Updated the methods to point to V4 Rest APIs
+- Added Business Stakeholders - create, update, list methods
+- Added Business Stakeholders - upload multipart document
 
 1.5.1
 -------------------
