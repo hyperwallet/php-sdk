@@ -1608,6 +1608,44 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), $prepaidCard, array());
     }
 
+    public function testReplacePrepaidCard_noReplacementReason() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $prepaidCard = new PrepaidCard();
+        $prepaidCard->setType(PrepaidCard::TYPE_PREPAID_CARD);
+        $prepaidCard->setCardPackage("test-card-package");
+        $prepaidCard->setReplacementOf("test-prepaid-card-token");
+
+        try {
+            $client->replacePrepaidCard('test-user-token', $prepaidCard);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('replacementReason is required!', $e->getMessage());
+        }
+    }
+
+    public function testReplacePrepaidCard_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $prepaidCard = new PrepaidCard();
+        $prepaidCard->setType(PrepaidCard::TYPE_PREPAID_CARD);
+        $prepaidCard->setCardPackage("test-card-package");
+        $prepaidCard->setReplacementOf("test-prepaid-card-token");
+        $prepaidCard->setReplacementReason(PrepaidCard::REPLACEMENT_REASON_DAMAGED);
+
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), $prepaidCard, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $replacedPrepaidCard = $client->replacePrepaidCard('test-user-token', $prepaidCard);
+        $this->assertNotNull($replacedPrepaidCard);
+        $this->assertEquals(array('success' => 'true'), $replacedPrepaidCard->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), $prepaidCard, array());
+    }
+
     public function testGetPrepaidCard_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -4967,77 +5005,5 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Validate mock
         \Phake::verify($apiClientMock)->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $options);
-
-    }
-
-    //IT tests
-
-    /*
-        public function testListUsers_successfulIT() {
-            $newStatusTransition = "";
-            $username = "selrestuser@1861681";
-            $password = "Password1!";
-            $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-            $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-            $hyperwallet = new Hyperwallet($username, $password, $programToken, $server);
-            $listedUsers = $hyperwallet->listUsers(array('status'=>User::STATUS_ACTIVATED));
-            $this->assertNotNull($listedUsers);
-            var_dump("Listed users",$listedUsers);
-            $this->assertEquals('ACTIVATED', $listedUsers->getData()[0]->getProperties()['status']);
-        }
-
-
-        public function testListPrepaidCards_withParametersIT() {
-            // Setup
-            $username = "selrestuser@1861681";
-            $password = "Password1!";
-            //$programToken = "prg-82499161-57d3-4160-8209-85db18d62c02";
-            $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-            $userToken = "usr-f12e77ad-c938-4f72-9121-c25442795f05";
-            $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-            $client = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-            // Run test
-            $prepaidCardList = $client->listPrepaidCards($userToken);
-            var_dump('Prepaid card list--------',$prepaidCardList);
-            $this->assertNotNull($prepaidCardList);
-            $this->assertCount(1, $prepaidCardList);
-            $this->assertEquals(1, $prepaidCardList->getLimit());
-            $this->assertEquals(array('success' => 'true'), $prepaidCardList[0]->getProperties());
-        }
-
-
-        public function testCreatePrepaidCard_allParametersIT() {
-            // Setup
-            $username = "selrestuser@1861681";
-            $password = "Password1!";
-            //$programToken = "prg-82499161-57d3-4160-8209-85db18d62c02";
-            $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-            $userToken = "usr-8f999d85-6e4d-4349-97a5-793a875b44f5";
-            $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-            $prepaidCard = new PrepaidCard();
-            $prepaidCard->setType(PrepaidCard::TYPE_PREPAID_CARD);
-            $client = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-
-            // Run test
-            $newPrepaidCard = $client->createPrepaidCard($userToken, $prepaidCard);
-            var_dump('-------new prepaid card-----',$newPrepaidCard);
-            $this->assertNotNull($newPrepaidCard);
-        }
-    */
-    public function testGetPrepaidCard_allParametersIT() {
-        // Setup
-        $username = "selrestuser@1861681";
-        $password = "Password1!";
-        //$programToken = "prg-82499161-57d3-4160-8209-85db18d62c02";
-        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-        $userToken = "usr-8f999d85-6e4d-4349-97a5-793a875b44f5";
-        $prepaidCardToken = "trm-53cb72f0-a28e-47ba-bf33-a3f093399529";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-        $client = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-
-        // Run test
-        $prepaidCard = $client->getPrepaidCard($userToken, $prepaidCardToken);
-        var_dump('======Prepaid card======',$prepaidCard);
-        $this->assertNotNull($prepaidCard);
     }
 }

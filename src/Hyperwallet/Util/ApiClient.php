@@ -57,7 +57,6 @@ class ApiClient {
     public function __construct($username, $password, $server, $clientOptions = array(), $encryptionData = array()) {
         // Setup http client if not specified
         $this->client = new Client(array_merge_recursive(array(
-            'verify'=>false,
             'base_uri' => $server,
             'auth' => array($username, $password),
             'headers' => array(
@@ -85,7 +84,7 @@ class ApiClient {
      * @throws HyperwalletApiException
      */
     public function doPost($partialUrl, array $uriParams, BaseModel $data = null, array $query = array(), array $headers = array()) {
-        return $this->doRequest('POST', $partialUrl, $uriParams, array(
+       return $this->doRequest('POST', $partialUrl, $uriParams, array(
             'query' => $query,
             'body' => $data ? \GuzzleHttp\json_encode($data->getPropertiesForCreate(), JSON_FORCE_OBJECT) : '{}',
             'headers' => array_merge($headers, array(
@@ -161,8 +160,6 @@ class ApiClient {
                 return array();
             }
             $this->checkResponseHeaderContentType($response);
-            var_dump('------URL PARAMS--------',$urlParams);
-            var_dump('------RESPONSE--------',$response);
             $body = $this->isEncrypted ? \GuzzleHttp\json_decode(\GuzzleHttp\json_encode($this->encryption->decrypt($response->getBody())), true) :
                 \GuzzleHttp\json_decode($response->getBody(), true);
 

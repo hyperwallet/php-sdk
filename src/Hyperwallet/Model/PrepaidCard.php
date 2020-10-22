@@ -15,6 +15,8 @@ namespace Hyperwallet\Model;
  *
  * @property string $cardType The prepaid card type
  *
+ * @property String $replacementOf The token of prepaid card to be replaced
+ * @property String $replacementReason The prepaid card replacement reason
  * @property string $cardPackage The prepaid card package
  * @property string $cardNumber The prepaid card number
  * @property string $cardBrand The prepaid card brand
@@ -51,6 +53,11 @@ class PrepaidCard extends BaseModel {
 
     const CARD_BRAND_VISA = 'VISA';
     const CARD_BRAND_MASTERCARD = 'MASTERCARD';
+
+    const REPLACEMENT_REASON_LOST_STOLEN= 'LOST_STOLEN';
+    const REPLACEMENT_REASON_DAMAGED= 'DAMAGED';
+    const REPLACEMENT_REASON_COMPROMISED= 'COMPROMISED';
+    const REPLACEMENT_REASON_EXPIRED= 'EXPIRED';
 
     public static function FILTERS_ARRAY() {
         return array('status');
@@ -195,6 +202,47 @@ class PrepaidCard extends BaseModel {
      */
     public function getDateOfExpiry() {
         return $this->dateOfExpiry ? new \DateTime($this->dateOfExpiry) : null;
+    }
+
+
+    /**
+     * Get the prepaid card token to be replaced
+     *
+     * @return string
+     */
+    public function getReplacementOf() {
+        return $this->replacementOf;
+    }
+
+    /**
+     * Set the prepaid card token to be replaced
+     *
+     * @param string $token
+     * @return PrepaidCard
+     */
+    public function setReplacementOf($replacementOf) {
+        $this->replacementOf = $replacementOf;
+        return $this;
+    }
+
+    /**
+     * Get the prepaid card's replacement reason
+     *
+     * @return string
+     */
+    public function getReplacementReason() {
+        return $this->replacementReason;
+    }
+
+    /**
+     * set the prepaid card's replacement reason
+     *
+     * @param string $token
+     * @return PrepaidCard
+     */
+    public function setReplacementReason($replacementReason) {
+        $this->replacementReason = $replacementReason;
+        return $this;
     }
 
 }

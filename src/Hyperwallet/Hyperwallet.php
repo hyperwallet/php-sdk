@@ -785,6 +785,20 @@ class Hyperwallet {
     }
 
     /**
+     * Replace a prepaid card
+     *
+     * @param string $userToken The user token
+     * @param PrepaidCard $prepaidCard The prepaid card data
+     * @return PrepaidCard
+     */
+    public function replacePrepaidCard($userToken, PrepaidCard $prepaidCard) {
+        if (empty($prepaidCard->getReplacementReason())) {
+            throw new HyperwalletArgumentException('replacementReason is required!');
+        }
+        return $this->createPrepaidCard($userToken, $prepaidCard);
+    }
+
+    /**
      * Get a prepaid card
      *
      * @param string $userToken The user token
@@ -795,8 +809,6 @@ class Hyperwallet {
      * @throws HyperwalletApiException
      */
     public function getPrepaidCard($userToken, $prepaidCardToken) {
-        echo("======User Token=======".$userToken);
-        echo("======PPC Token=======".$prepaidCardToken);
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
