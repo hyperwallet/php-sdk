@@ -1629,6 +1629,44 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), $prepaidCard, array());
     }
 
+    public function testReplacePrepaidCard_noReplacementReason() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $prepaidCard = new PrepaidCard();
+        $prepaidCard->setType(PrepaidCard::TYPE_PREPAID_CARD);
+        $prepaidCard->setCardPackage("test-card-package");
+        $prepaidCard->setReplacementOf("test-prepaid-card-token");
+
+        try {
+            $client->replacePrepaidCard('test-user-token', $prepaidCard);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('replacementReason is required!', $e->getMessage());
+        }
+    }
+
+    public function testReplacePrepaidCard_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $prepaidCard = new PrepaidCard();
+        $prepaidCard->setType(PrepaidCard::TYPE_PREPAID_CARD);
+        $prepaidCard->setCardPackage("test-card-package");
+        $prepaidCard->setReplacementOf("test-prepaid-card-token");
+        $prepaidCard->setReplacementReason(PrepaidCard::REPLACEMENT_REASON_DAMAGED);
+
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), $prepaidCard, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $replacedPrepaidCard = $client->replacePrepaidCard('test-user-token', $prepaidCard);
+        $this->assertNotNull($replacedPrepaidCard);
+        $this->assertEquals(array('success' => 'true'), $replacedPrepaidCard->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/prepaid-cards', array('user-token' => 'test-user-token'), $prepaidCard, array());
+    }
+
     public function testGetPrepaidCard_noUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
