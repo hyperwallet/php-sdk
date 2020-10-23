@@ -26,6 +26,10 @@ abstract class StatusTransition extends BaseModel {
      */
     protected static $READ_ONLY_FIELDS = array('token', 'createdOn', 'fromStatus', 'toStatus');
 
+    public static function FILTERS_ARRAY() {
+        return array('transition');
+    }
+
     /**
      * Creates a instance of StatusTransition
      *
@@ -113,7 +117,7 @@ abstract class StatusTransition extends BaseModel {
 
     /**
      * Set the status transition notes
-     * 
+     *
      * @param string $notes
      * @return StatusTransition
      */
