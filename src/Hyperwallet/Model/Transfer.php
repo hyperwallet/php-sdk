@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Transfer
+ * Represents a V4 Transfer
  *
  * @property string $token The transfer token
  * @property string $status The transfer status
@@ -45,6 +45,10 @@ class Transfer extends BaseModel {
     const STATUS_RETURNED = 'RETURNED';
     const STATUS_FAILED = 'FAILED';
     const STATUS_EXPIRED = 'EXPIRED';
+
+    public static function FILTERS_ARRAY() {
+        return array('clientTransferId','sourceToken','destinationToken');
+    }
 
     /**
      * Creates a instance of Transfer

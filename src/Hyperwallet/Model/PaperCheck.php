@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Paper Check
+ * Represents a V4 Paper Check
  *
  * @property string $token The paper check token
  * @property string $status The paper check status
@@ -10,42 +10,42 @@ namespace Hyperwallet\Model;
  * @property string $type The transfer method type
  * @property string $transferMethodCountry The transfer method country
  * @property string $transferMethodCurrency The transfer method currency
- * @property string $addressLine1 The address line #1 
+ * @property string $addressLine1 The address line #1
  * @property string $addressLine2 The address line #2
  * @property string $businessContactRole The business contact role
  * @property string $businessName The business name
  * @property string $businessOperatingName The business operating name
  * @property string $businessRegistrationCountry The business registration country
- * @property string $businessRegistrationId The business registration id 
- * @property string $businessRegistrationStateProvince The business registration state province 
- * @property string $businessType The business type 
- * @property string $city The city 
+ * @property string $businessRegistrationId The business registration id
+ * @property string $businessRegistrationStateProvince The business registration state province
+ * @property string $businessType The business type
+ * @property string $city The city
  * @property string $country The country
- * @property string $countryOfBirth The country of birth 
- * @property string $countryOfNationality The country of nationality 
- * @property \DateTime $dateOfBirth The date of birth 
- * @property string $driversLicenseId The drivers license id 
- * @property string $employerId The employer id 
- * @property string $firstName The first name 
- * @property string $gender The gender 
+ * @property string $countryOfBirth The country of birth
+ * @property string $countryOfNationality The country of nationality
+ * @property \DateTime $dateOfBirth The date of birth
+ * @property string $driversLicenseId The drivers license id
+ * @property string $employerId The employer id
+ * @property string $firstName The first name
+ * @property string $gender The gender
  * @property string $governmentId The government id
- * @property string $governmentIdType The government id type 
- * @property string $isDefaultTransferMethod The is default transfer method 
- * @property string $lastName The last name 
- * @property string $middleName The middle name 
- * @property string $mobileNumber The mobile number 
- * @property string $passportId The passport id 
- * @property string $phoneNumber The phone number 
- * @property string $postalCode The postal code 
- * @property string $profileType The profile type 
- * @property string $shippingMethod The shipping method 
+ * @property string $governmentIdType The government id type
+ * @property string $isDefaultTransferMethod The is default transfer method
+ * @property string $lastName The last name
+ * @property string $middleName The middle name
+ * @property string $mobileNumber The mobile number
+ * @property string $passportId The passport id
+ * @property string $phoneNumber The phone number
+ * @property string $postalCode The postal code
+ * @property string $profileType The profile type
+ * @property string $shippingMethod The shipping method
  * @property string $stateProvince The state province
  *
  * @package Hyperwallet\Model
  */
 
 class PaperCheck extends BaseModel {
-    
+
     /**
      * @internal
      *
@@ -56,7 +56,7 @@ class PaperCheck extends BaseModel {
     private static $READ_ONLY_FIELDS = array('phoneNumber', 'passportId', 'mobileNumber', 'middleName', 'lastName', 'governmentIdType', 'governmentId', 'gender', 'firstName', 'employerId', 'driversLicenseId', 'dateOfBirth', 'countryOfNationality', 'countryOfBirth', 'businessType', 'businessRegistrationStateProvince', 'businessRegistrationId', 'businessRegistrationCountry', 'businessName', 'businessOperatingName', 'businessContactRole', 'createdOn', 'status', 'token');
 
     const TYPE_PAPER_CHECK = 'PAPER_CHECK';
-    
+
     const STATUS_ACTIVATED = 'ACTIVATED';
     const STATUS_VERIFIED = 'VERIFIED';
     const STATUS_INVALID = 'INVALID';
@@ -65,22 +65,26 @@ class PaperCheck extends BaseModel {
     const BUSINESS_CONTACT_ROLE_DIRECTOR = 'DIRECTOR';
     const BUSINESS_CONTACT_ROLE_OWNER = 'OWNER';
     const BUSINESS_CONTACT_ROLE_OTHER = 'OTHER';
-    
+
     const BUSINESS_TYPE_CORPORATION = 'CORPORATION';
     const BUSINESS_TYPE_PARTNERSHIP = 'PARTNERSHIP';
-    
+
     const GENDER_MALE = 'MALE';
     const GENDER_FEMALE = 'FEMALE';
-    
+
     const GOVERNMENT_ID_TYPE_PASSPORT = 'PASSPORT';
     const GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD = 'NATIONAL_ID_CARD';
-    
+
     const PROFILE_TYPE_INDIVIDUAL = 'INDIVIDUAL';
     const PROFILE_TYPE_BUSINESS = 'BUSINESS';
-    
+
     const SHIPPING_METHOD_STANDARD = 'STANDARD';
     const SHIPPING_METHOD_EXPEDITED = 'EXPEDITED';
-    
+
+    public static function FILTERS_ARRAY() {
+        return array('status');
+    }
+
     /**
      * Creates a instance of PaperCheck
      *
@@ -89,9 +93,9 @@ class PaperCheck extends BaseModel {
     public function __construct(array $properties = array()) {
         parent::__construct(self::$READ_ONLY_FIELDS, $properties);
     }
-    
+
     /**
-     * Get the paper check token 
+     * Get the paper check token
      *
      * @return string
      */
@@ -109,9 +113,9 @@ class PaperCheck extends BaseModel {
         $this->token = $token;
         return $this;
     }
-    
+
     /**
-     * Get the paper check status 
+     * Get the paper check status
      *
      * @return string
      */
@@ -120,7 +124,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the paper check creation date 
+     * Get the paper check creation date
      *
      * @return \DateTime
      */
@@ -136,7 +140,7 @@ class PaperCheck extends BaseModel {
     public function getType() {
         return $this->type;
     }
-    
+
     /**
      * Set the transfer method type
      *
@@ -149,14 +153,14 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the transfer method country 
+     * Get the transfer method country
      *
      * @return string
      */
     public function getTransferMethodCountry() {
         return $this->transferMethodCountry;
     }
-    
+
     /**
      * Set the transfer method country
      *
@@ -169,14 +173,14 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the transfer method currency 
+     * Get the transfer method currency
      *
      * @return string
      */
     public function getTransferMethodCurrency() {
         return $this->transferMethodCurrency;
     }
-    
+
     /**
      * Set the transfer method currency
      *
@@ -189,14 +193,14 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the address line #1 
+     * Get the address line #1
      *
      * @return string
      */
     public function getAddressLine1() {
         return $this->addressLine1;
     }
-    
+
     /**
      * Set the address line #1
      *
@@ -209,14 +213,14 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the address line #2 
+     * Get the address line #2
      *
      * @return string
      */
     public function getAddressLine2() {
         return $this->addressLine2;
     }
-    
+
     /**
      * Set the address line #2
      *
@@ -229,7 +233,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the business contact role 
+     * Get the business contact role
      *
      * @return string
      */
@@ -238,7 +242,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the business name 
+     * Get the business name
      *
      * @return string
      */
@@ -257,7 +261,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the business registration country 
+     * Get the business registration country
      *
      * @return string
      */
@@ -266,7 +270,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the business registration id 
+     * Get the business registration id
      *
      * @return string
      */
@@ -275,7 +279,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the business registration state province 
+     * Get the business registration state province
      *
      * @return string
      */
@@ -284,7 +288,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the business type 
+     * Get the business type
      *
      * @return string
      */
@@ -293,14 +297,14 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the city 
+     * Get the city
      *
      * @return string
      */
     public function getCity() {
         return $this->city;
     }
-    
+
     /**
      * Set the city
      *
@@ -313,14 +317,14 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the country 
+     * Get the country
      *
      * @return string
      */
     public function getCountry() {
         return $this->country;
     }
-    
+
     /**
      * Set the country
      *
@@ -333,7 +337,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the country of birth 
+     * Get the country of birth
      *
      * @return string
      */
@@ -342,7 +346,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the country of nationality 
+     * Get the country of nationality
      *
      * @return string
      */
@@ -351,7 +355,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the date of birth 
+     * Get the date of birth
      *
      * @return \DateTime
      */
@@ -360,7 +364,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the drivers license id 
+     * Get the drivers license id
      *
      * @return string
      */
@@ -369,7 +373,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the employer id 
+     * Get the employer id
      *
      * @return string
      */
@@ -378,7 +382,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the first name 
+     * Get the first name
      *
      * @return string
      */
@@ -387,7 +391,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the gender 
+     * Get the gender
      *
      * @return string
      */
@@ -396,7 +400,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the government id 
+     * Get the government id
      *
      * @return string
      */
@@ -405,7 +409,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the government id type 
+     * Get the government id type
      *
      * @return string
      */
@@ -414,14 +418,14 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the is default transfer method 
+     * Get the is default transfer method
      *
      * @return string
      */
     public function getIsDefaultTransferMethod() {
         return $this->isDefaultTransferMethod;
     }
-    
+
     /**
      * Set the is default transfer method
      *
@@ -434,7 +438,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the last name 
+     * Get the last name
      *
      * @return string
      */
@@ -443,7 +447,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the middle name 
+     * Get the middle name
      *
      * @return string
      */
@@ -452,7 +456,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the mobile number 
+     * Get the mobile number
      *
      * @return string
      */
@@ -461,7 +465,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the passport id 
+     * Get the passport id
      *
      * @return string
      */
@@ -470,7 +474,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the phone number 
+     * Get the phone number
      *
      * @return string
      */
@@ -479,7 +483,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the postal code 
+     * Get the postal code
      *
      * @return string
      */
@@ -499,7 +503,7 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the profile type 
+     * Get the profile type
      *
      * @return string
      */
@@ -517,16 +521,16 @@ class PaperCheck extends BaseModel {
         $this->profileType = $profileType;
         return $this;
     }
-	
+
     /**
-     * Get the shipping method 
+     * Get the shipping method
      *
      * @return string
      */
     public function getShippingMethod() {
         return $this->shippingMethod;
     }
-    
+
     /**
      * Set the shipping method
      *
@@ -539,14 +543,14 @@ class PaperCheck extends BaseModel {
     }
 
     /**
-     * Get the state province 
+     * Get the state province
      *
      * @return string
      */
     public function getStateProvince() {
         return $this->stateProvince;
     }
-    
+
     /**
      * Set the state province
      *

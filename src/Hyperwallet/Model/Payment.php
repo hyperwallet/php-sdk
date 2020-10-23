@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Payment
+ * Represents a V4 Payment
  *
  * @property string $token The payment token
  * @property string $status The status
@@ -33,6 +33,10 @@ class Payment extends BaseModel implements IProgramAware {
      * @var string[]
      */
     private static $READ_ONLY_FIELDS = array('token', 'createdOn');
+
+    public static function FILTERS_ARRAY() {
+        return array('clientPaymentId');
+    }
 
     /**
      * Creates a instance of Payment
@@ -281,7 +285,7 @@ class Payment extends BaseModel implements IProgramAware {
 
     /**
      * Set the payment program token
-     * 
+     *
      * @param string $programToken
      * @return Payment
      */

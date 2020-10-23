@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Transfer Method
+ * Represents a V4 Transfer Method
  *
  * @property string $token The transfer method token
  * @property string $type The transfer method type
@@ -192,7 +192,7 @@ class TransferMethod extends BaseModel {
     public function getDateOfExpiry() {
         return $this->dateOfExpiry ? new \DateTime($this->dateOfExpiry) : null;
     }
-    
+
     /**
      * Get the bank account id
      *

@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 PayPal Account
+ * Represents a V4 PayPal Account
  *
  * @property string $token The PayPal account token
  * @property string $status The PayPal account status
@@ -27,6 +27,10 @@ class PayPalAccount extends BaseModel {
      * @var string[]
      */
     private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn');
+
+    public static function FILTERS_ARRAY() {
+        return array('status');
+    }
 
     /**
      * Creates a instance of PayPalAccount

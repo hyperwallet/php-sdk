@@ -26,7 +26,7 @@ class ApiClient {
 
     /**
      * The Guzzle http client
-     * 
+     *
      * @var Client
      */
     private $client;
@@ -84,7 +84,7 @@ class ApiClient {
      * @throws HyperwalletApiException
      */
     public function doPost($partialUrl, array $uriParams, BaseModel $data = null, array $query = array(), array $headers = array()) {
-        return $this->doRequest('POST', $partialUrl, $uriParams, array(
+       return $this->doRequest('POST', $partialUrl, $uriParams, array(
             'query' => $query,
             'body' => $data ? \GuzzleHttp\json_encode($data->getPropertiesForCreate(), JSON_FORCE_OBJECT) : '{}',
             'headers' => array_merge($headers, array(
@@ -162,9 +162,7 @@ class ApiClient {
             $this->checkResponseHeaderContentType($response);
             $body = $this->isEncrypted ? \GuzzleHttp\json_decode(\GuzzleHttp\json_encode($this->encryption->decrypt($response->getBody())), true) :
                 \GuzzleHttp\json_decode($response->getBody(), true);
-            if (isset($body['links'])) {
-                unset($body['links']);
-            }
+
             return $body;
         } catch (ConnectException $e) {
             $errorResponse = new ErrorResponse(0, array('errors' => array(

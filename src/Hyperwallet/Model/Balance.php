@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V3 Balance
+ * Represents a V4 Balance
  *
  * @property string $currency The currency
  * @property string $amount The amount
@@ -13,12 +13,16 @@ class Balance extends BaseModel {
 
     /**
      * @internal
-     * 
+     *
      * Read only fields
      *
      * @var string[]
      */
     private static $READ_ONLY_FIELDS = array('currency', 'amount');
+
+    public static function FILTERS_ARRAY() {
+        return array('currency');
+    }
 
     /**
      * Creates a instance of Balance

@@ -3,7 +3,7 @@
 
 namespace Hyperwallet\Model;
 /**
- * Represents a V3 Venmo Account
+ * Represents a V4 Venmo Account
  *
  * @property string $token The Venmo account token
  * @property string $status The Venmo account status
