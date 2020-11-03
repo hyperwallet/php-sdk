@@ -2181,7 +2181,7 @@ class Hyperwallet {
     }
 
     /**
-     * List all Transfer Methods
+     * List all Transfer Methods for the user
      *
      * @param string $userToken The user token
      * @param array $options The query parameters
