@@ -4396,4 +4396,56 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
             $this->assertEquals('transferToken is required!', $e->getMessage());
         }
     }
+
+    //--------------------------------------
+    // List Transfer Methods
+    //--------------------------------------
+
+    public function testListTransferMethods_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listTransferMethods('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListTransferMethods_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array())->thenReturn(array('count' => 1, 'data' => array()));
+
+        // Run test
+        $listTransferMethods = $client->listTransferMethods('test-user-token');
+        $this->assertNotNull($listTransferMethods);
+        $this->assertCount(0, $listTransferMethods);
+        $this->assertEquals(1, $listTransferMethods->getCount());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array());
+    }
+
+    public function testListTransferMethods_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array('type'=>TransferMethod::TYPE_PREPAID_CARD))->thenReturn(array('count' => 1, 'data' => array(array('success' => 'true'))));
+
+        // Run test
+        $listTransferMethods = $client->listTransferMethods('test-user-token', array('type'=>TransferMethod::TYPE_PREPAID_CARD));
+        $this->assertNotNull($listTransferMethods);
+        $this->assertCount(1, $listTransferMethods);
+        $this->assertEquals(1, $listTransferMethods->getCount());
+        $this->assertEquals(array('success' => 'true'), $listTransferMethods[0]->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array('type'=>TransferMethod::TYPE_PREPAID_CARD));
+    }
 }
