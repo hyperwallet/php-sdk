@@ -22,6 +22,8 @@ namespace Hyperwallet\Model;
  *
  * @property string $email The email associated with the paypal account
  * 
+ * @property string $accountId The accountId associated with the venmo account
+ * 
  * @property string $bankName The bank name
  * @property string $bankId The bank id
  * @property string $branchName The branch name
@@ -84,7 +86,7 @@ class TransferMethod extends BaseModel {
      *
      * @var string[]
      */
-    private static $READ_ONLY_FIELDS = array('token', 'status', 'cardType', 'cardNumber', 'cardBrand', 'dateOfExpiry', 'createdOn', 'email' );
+    private static $READ_ONLY_FIELDS = array('token', 'status', 'cardType', 'cardNumber', 'cardBrand', 'dateOfExpiry', 'createdOn', 'email', 'accountId');
 
     const TYPE_PREPAID_CARD = 'PREPAID_CARD';
     const TYPE_BANK_ACCOUNT = 'BANK_ACCOUNT';
@@ -205,6 +207,15 @@ class TransferMethod extends BaseModel {
      */
     public function getEmail() {
         return $this->email;
+    }
+
+    /**
+     * Get the accountId
+     *
+     * @return string
+     */
+    public function getAccountId() {
+        return $this->accountId;
     }
     
     /**
