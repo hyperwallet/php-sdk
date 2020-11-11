@@ -22,7 +22,7 @@ class ApiClient {
      *
      * @var string
      */
-    const VERSION = '0.1.0';
+    const VERSION = '2.1.0';
 
     /**
      * The Guzzle http client
