@@ -219,7 +219,7 @@ class ApiClient {
         return $this->doRequest('PUT', $partialUrl, $uriParams, $options);
     }
 
-    function uuid()
+    private function uuid()
     {
         return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
             mt_rand(0, 0xffff), mt_rand(0, 0xffff),
