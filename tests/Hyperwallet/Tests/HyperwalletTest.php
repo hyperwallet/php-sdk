@@ -33,9 +33,6 @@ use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
-
-    private $includeIntegrationTest = true;
-
     public function testConstructor_throwErrorIfUsernameIsEmpty() {
         try {
             new Hyperwallet('', 'test-password');
@@ -5082,67 +5079,4 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array('type'=>TransferMethod::TYPE_PREPAID_CARD));
     }
-
-    //functional test
-
-    public function testGetUserSampleIT() {
-        $username = "selrestuser@1861681";
-        $password = "Password1!";
-        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-        $userToken = "usr-f49967a9-9b7f-4cfc-9fc7-037d736711ba";
-        $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-        try {
-            if (!$this->includeIntegrationTest) {
-                $this->markTestSkipped('This test is skipped.');
-            }
-            $user = $hyperwallet->getUser($userToken);
-            var_dump('GET USER - User details', $user);
-            echo "Got the user successfully";
-        } catch (\Hyperwallet\Exception\HyperwalletException $e) {
-            echo $e->getMessage();
-            die("\n");
-        }
-    }
-
-    public function testCreateUser_successfulIT() {
-        $username = "selrestuser@1861681";
-        $password = "Password1!";
-        $programToken = "prg-eedaf875-01f1-4524-8b94-d4936255af78";
-        $server = "https://localhost-hyperwallet.aws.paylution.net:8181";
-        $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken, $server);
-        $user = new User(array(  "clientUserId"=> "user1877270",
-            "email"=> "user1877270@sink.sendgrid.net",
-            "profileType"=> "INDIVIDUAL",
-            "firstName"=> "Stan",
-            "middleName"=> "QA",
-            "lastName"=> "Fung",
-            "dateOfBirth"=> "1980-01-01",
-            "phoneNumber"=> "647-90531",
-            "addressLine1"=> "abc",
-            "city"=> "vancouver",
-            "gender"=> "MALE",
-            "stateProvince"=> "AZ",
-            "country"=> "US",
-            "postalCode"=> "12345",
-            "language"=> "en",
-            "mobileNumber"=> "605-555-1323",
-            "timeZone"=> "MST",
-            "programToken"=> $programToken,
-            "governmentId"=> "987654321",
-            "verificationStatus"=>"NOT_REQUIRED",
-            "businessStakeholderVerificationStatus"=>"VERIFIED",
-            "letterOfAuthorizationStatus"=>"VERIFIED",
-            "governmentIdType"=>"NATIONAL_ID_CARD"
-        ));
-        // Run test
-        if (!$this->includeIntegrationTest) {
-            $this->markTestSkipped('This test is skipped.');
-        }
-        $newStatusTransition = $hyperwallet->createUser($user);
-        var_dump('-----CREATE USER-User details----',$user);
-        $this->assertNotNull($newStatusTransition);
-        $this->assertEquals('NOT_REQUIRED', $newStatusTransition->getVerificationStatus());
-    }
-
 }
