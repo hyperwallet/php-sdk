@@ -57,12 +57,15 @@ class ApiClient {
     public function __construct($username, $password, $server, $clientOptions = array(), $encryptionData = array()) {
         // Setup http client if not specified
         $this->client = new Client(array_merge_recursive(array(
+            'verify'=>false,
             'base_uri' => $server,
             'auth' => array($username, $password),
             'headers' => array(
                 'User-Agent' => 'Hyperwallet PHP SDK v' . self::VERSION,
-                'Accept' => 'application/json'
-            )
+                'Accept' => 'application/json',
+                'x-sdk-version' => self::VERSION,
+                'x-sdk-type' => 'PHP',
+                'x-sdk-contextId' => $this->uuid())
         ), $clientOptions));
         if (!empty($encryptionData) && isset($encryptionData['clientPrivateKeySetLocation']) &&
             isset($encryptionData['hyperwalletKeySetLocation'])) {
@@ -215,5 +218,16 @@ class ApiClient {
      */
     public function putMultipartData($partialUrl, array $uriParams, array $options) {
         return $this->doRequest('PUT', $partialUrl, $uriParams, $options);
+    }
+
+    function uuid()
+    {
+        return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+            mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0x0fff) | 0x4000,
+            mt_rand(0, 0x3fff) | 0x8000,
+            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+        );
     }
 }
