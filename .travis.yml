@@ -3,7 +3,7 @@ php:
 - '5.6'
 - '7.0'
 - '7.3'
-- hhvm-3.18
+- hhvm-3.24
 cache:
   directories:
   - $HOME/.composer/cache
