@@ -1149,6 +1149,81 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         \Phake::verify($apiClientMock)->doPost('/rest/v4/transfers/{transfer-token}/status-transitions', array('transfer-token' => 'test-transfer-token'), $statusTransition, array());
     }
 
+    public function testGetTransferStatusTransition_noTransferToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getTransferStatusTransition('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('transferToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetTransferStatusTransition_noStatusTransitionToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getTransferStatusTransition('test-transfer-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('statusTransitionToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetTransferStatusTransition_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/status-transitions/{status-transition-token}', array('transfer-token' => 'test-transfer-token', 'status-transition-token' => 'test-status-transition-token'), array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $statusTransition = $client->getTransferStatusTransition('test-transfer-token', 'test-status-transition-token');
+        $this->assertNotNull($statusTransition);
+        $this->assertEquals(array('success' => 'true'), $statusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/status-transitions/{status-transition-token}', array('transfer-token' => 'test-transfer-token', 'status-transition-token' => 'test-status-transition-token'), array());
+    }
+
+    public function testListTransferStatusTransitions_noTransferToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listTransferStatusTransitions('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('transfer token is required!', $e->getMessage());
+        }
+    }
+
+    public function testListTransferStatusTransitions_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/status-transitions', array('transfer-token' => 'test-transfer-token'), array('test' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
+
+        // Run test
+        $statusTransitionList = $client->listTransferStatusTransitions('test-transfer-token', array('test' => 'value'));
+        $this->assertNotNull($statusTransitionList);
+        $this->assertCount(0, $statusTransitionList);
+        $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/status-transitions', array('transfer-token' => 'test-transfer-token'), array('test' => 'value'));
+    }
+
     //--------------------------------------
     // PayPal Accounts
     //--------------------------------------
