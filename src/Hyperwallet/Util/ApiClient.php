@@ -9,6 +9,8 @@ use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\HyperwalletEncryption;
+use Hyperwallet\Util\HyperwalletUUID;
+
 
 /**
  * The internal API client
@@ -39,6 +41,13 @@ class ApiClient {
     private $encryption;
 
     /**
+     * The UUID generator for http request/response
+     *
+     * @var HyperwalletUUID
+     */
+    private $uuid;
+
+    /**
      * Boolean flag that checks if ApiClient is constructed with encryption enabled or not
      *
      * @var boolean
@@ -55,6 +64,7 @@ class ApiClient {
      * @param array $encryptionData Encryption data to initialize ApiClient with encryption enabled
      */
     public function __construct($username, $password, $server, $clientOptions = array(), $encryptionData = array()) {
+        $this->uuid = HyperwalletUUID::v4();
         // Setup http client if not specified
         $this->client = new Client(array_merge_recursive(array(
             'base_uri' => $server,
@@ -64,7 +74,7 @@ class ApiClient {
                 'Accept' => 'application/json',
                 'x-sdk-version' => self::VERSION,
                 'x-sdk-type' => 'PHP',
-                'x-sdk-contextId' => $this->uuid())
+                'x-sdk-contextId' => $this->uuid)
         ), $clientOptions));
         if (!empty($encryptionData) && isset($encryptionData['clientPrivateKeySetLocation']) &&
             isset($encryptionData['hyperwalletKeySetLocation'])) {
@@ -217,16 +227,5 @@ class ApiClient {
      */
     public function putMultipartData($partialUrl, array $uriParams, array $options) {
         return $this->doRequest('PUT', $partialUrl, $uriParams, $options);
-    }
-
-    private function uuid()
-    {
-        return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff),
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0x0fff) | 0x4000,
-            mt_rand(0, 0x3fff) | 0x8000,
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
-        );
     }
 }
