@@ -2029,7 +2029,7 @@ class Hyperwallet {
     }
 
     /**
-     * Activate an User
+     * Activate a User
      *
      * @param string $userToken The user token
      * @return UserStatusTransition
