@@ -525,6 +525,54 @@ class Hyperwallet {
         return new TransferStatusTransition($body);
     }
 
+    /**
+     * Get a transfer status transition
+     *
+     * @param string $transferToken The transfer token
+     * @param string $statusTransitionToken The status transition token
+     * @return TransferStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getTransferStatusTransition($transferToken, $statusTransitionToken) {
+        if (empty($transferToken)) {
+            throw new HyperwalletArgumentException('transferToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/transfers/{transfer-token}/status-transitions/{status-transition-token}', array(
+            'transfer-token' => $transferToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new TransferStatusTransition($body);
+    }
+
+    /**
+     * List all transfer status transitions
+     *
+     * @param string $transferToken The transfer token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listTransferStatusTransitions($transferToken, array $options = array()) {
+        if (empty($transferToken)) {
+            throw new HyperwalletArgumentException('transfer token is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v3/transfers/{transfer-token}/status-transitions', array(
+            'transfer-token' => $transferToken
+        ), $options);
+        return new ListResponse($body, function ($entry) {
+            return new TransferStatusTransition($entry);
+        });
+    }
+
     //--------------------------------------
     // PayPal Accounts
     //--------------------------------------
