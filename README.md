@@ -20,7 +20,6 @@ Installation
 $ composer require hyperwallet/sdk
 ```
 
-
 Documentation
 -------------
 

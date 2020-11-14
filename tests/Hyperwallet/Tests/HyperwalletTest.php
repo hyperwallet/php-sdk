@@ -13,6 +13,7 @@ use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
 use Hyperwallet\Model\BusinessStakeholder;
+use Hyperwallet\Model\BusinessStakeholderStatusTransition;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
 use Hyperwallet\Model\Payment;
@@ -31,6 +32,7 @@ use Hyperwallet\Model\VenmoAccount;
 use Hyperwallet\Model\VenmoAccountStatusTransition;
 use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\ApiClient;
+use Hyperwallet\Util\HyperwalletUUID;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
@@ -1147,6 +1149,81 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         // Validate mock
         \Phake::verify($apiClientMock)->doPost('/rest/v4/transfers/{transfer-token}/status-transitions', array('transfer-token' => 'test-transfer-token'), $statusTransition, array());
+    }
+
+    public function testGetTransferStatusTransition_noTransferToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getTransferStatusTransition('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('transferToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetTransferStatusTransition_noStatusTransitionToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getTransferStatusTransition('test-transfer-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('statusTransitionToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetTransferStatusTransition_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/status-transitions/{status-transition-token}', array('transfer-token' => 'test-transfer-token', 'status-transition-token' => 'test-status-transition-token'), array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $statusTransition = $client->getTransferStatusTransition('test-transfer-token', 'test-status-transition-token');
+        $this->assertNotNull($statusTransition);
+        $this->assertEquals(array('success' => 'true'), $statusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/status-transitions/{status-transition-token}', array('transfer-token' => 'test-transfer-token', 'status-transition-token' => 'test-status-transition-token'), array());
+    }
+
+    public function testListTransferStatusTransitions_noTransferToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listTransferStatusTransitions('');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('transfer token is required!', $e->getMessage());
+        }
+    }
+
+    public function testListTransferStatusTransitions_withParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/status-transitions', array('transfer-token' => 'test-transfer-token'), array('test' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
+
+        // Run test
+        $statusTransitionList = $client->listTransferStatusTransitions('test-transfer-token', array('test' => 'value'));
+        $this->assertNotNull($statusTransitionList);
+        $this->assertCount(0, $statusTransitionList);
+        $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/transfers/{transfer-token}/status-transitions', array('transfer-token' => 'test-transfer-token'), array('test' => 'value'));
     }
 
     //--------------------------------------
@@ -4964,6 +5041,260 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         } catch (HyperwalletArgumentException $e) {
             $this->assertEquals('Invalid filter', $e->getMessage());
         }
+    }
+
+    public function testCreateBusinessStakeholderStatusTransition_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $statusTransition = new BusinessStakeholderStatusTransition();
+
+        try {
+            $client->createBusinessStakeholderStatusTransition('', '', $statusTransition);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateBusinessStakeholderStatusTransition_noBusinessToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $statusTransition = new BusinessStakeholderStatusTransition();
+
+        try {
+            $client->createBusinessStakeholderStatusTransition('test-user-token', '', $statusTransition);
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('businessToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testCreateBusinessStakeholderStatusTransition_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $statusTransition = new BusinessStakeholderStatusTransition(array('transition' => 'test'));
+
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token'), $statusTransition, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $newStatusTransition = $client->createBusinessStakeholderStatusTransition('test-user-token', 'test-business-token', $statusTransition);
+        $this->assertNotNull($newStatusTransition);
+        $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token'), $statusTransition, array());
+    }
+
+    public function testActivateBusinessStakeholder_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+
+        // Run test
+        try {
+            $client->activateBusinessStakeholder('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testActivateBusinessStakeholder_noBusinessToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+
+        // Run test
+        try {
+            $client->activateBusinessStakeholder('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('businessToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testActivateBusinessStakeholder_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        $statusTransition = new BusinessStakeholderStatusTransition();
+        $statusTransition->setTransition(BusinessStakeholderStatusTransition::TRANSITION_ACTIVATED);
+
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token'), $statusTransition, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $newStatusTransition = $client->activateBusinessStakeholder('test-user-token', 'test-business-token');
+        $this->assertNotNull($newStatusTransition);
+        $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token'), $statusTransition, array());
+    }
+
+    public function testDeactivateBusinessStakeholder_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+
+        // Run test
+        try {
+            $client->deactivateBusinessStakeholder('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testDeactivateBusinessStakeholder_noBusinessToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+
+        // Run test
+        try {
+            $client->deactivateBusinessStakeholder('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('businessToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testDeactivateBusinessStakeholder_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        $statusTransition = new BusinessStakeholderStatusTransition();
+        $statusTransition->setTransition(BusinessStakeholderStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token'), $statusTransition, array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $newStatusTransition = $client->deactivateBusinessStakeholder('test-user-token', 'test-business-token');
+        $this->assertNotNull($newStatusTransition);
+        $this->assertEquals(array('success' => 'true'), $newStatusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token'), $statusTransition, array());
+    }
+
+    public function testGetBusinessStakeholderStatusTransition_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getBusinessStakeholderStatusTransition('', '', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetBusinessStakeholderStatusTransition_noBusinessToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getBusinessStakeholderStatusTransition('test-user-token', '', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('businessToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetBusinessStakeholderStatusTransition_noStatusTransitionToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->getBusinessStakeholderStatusTransition('test-user-token', 'test-business-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('statusTransitionToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testGetBusinessStakeholderStatusTransition_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions/{status-transition-token}', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token', 'status-transition-token' => 'test-status-transition-token'), array())->thenReturn(array('success' => 'true'));
+
+        // Run test
+        $statusTransition = $client->getBusinessStakeholderStatusTransition('test-user-token', 'test-business-token', 'test-status-transition-token');
+        $this->assertNotNull($statusTransition);
+        $this->assertEquals(array('success' => 'true'), $statusTransition->getProperties());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions/{status-transition-token}', array('user-token' => "test-user-token", 'business-token' => 'test-business-token', 'status-transition-token' => 'test-status-transition-token'), array());
+    }
+
+    public function testListBusinessStakeholderStatusTransition_noUserToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listBusinessStakeholderStatusTransitions('', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('userToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListBusinessStakeholderStatusTransitions_noBusinessToken() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+
+        // Run test
+        try {
+            $client->listBusinessStakeholderStatusTransitions('test-user-token', '');
+            $this->fail('HyperwalletArgumentException expected');
+        } catch (HyperwalletArgumentException $e) {
+            $this->assertEquals('businessToken is required!', $e->getMessage());
+        }
+    }
+
+    public function testListBusinessStakeholderStatusTransitions_noParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
+
+        // Run test
+        $statusTransitionList = $client->listBusinessStakeholderStatusTransitions('test-user-token', 'test-business-token');
+        $this->assertNotNull($statusTransitionList);
+        $this->assertCount(0, $statusTransitionList);
+        $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token'), array());
+    }
+
+    public function testListBusinessStakeholderStatusTransitions_allParameters() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token'), array('transition' => PayPalAccountStatusTransition::TRANSITION_DE_ACTIVATED))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
+
+        // Run test
+        $statusTransitionList = $client->listBusinessStakeholderStatusTransitions('test-user-token', 'test-business-token', array('transition' => PayPalAccountStatusTransition::TRANSITION_DE_ACTIVATED));
+        $this->assertNotNull($statusTransitionList);
+        $this->assertCount(1, $statusTransitionList);
+        $this->assertEquals(1, $statusTransitionList->getLimit());
+        $this->assertEquals(false, $statusTransitionList->getHasNextPage());
+        $this->assertEquals(false, $statusTransitionList->getHasPreviousPage());
+        $this->assertEquals('links', $statusTransitionList->getLinks());
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array('user-token' => 'test-user-token', 'business-token' => 'test-business-token'), array('transition' => PayPalAccountStatusTransition::TRANSITION_DE_ACTIVATED));
     }
 
     public function testuploadDocumentsForBusinessStakeholder_withoutUserToken() {

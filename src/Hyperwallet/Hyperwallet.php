@@ -11,6 +11,7 @@ use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
 use Hyperwallet\Model\BusinessStakeholder;
+use Hyperwallet\Model\BusinessStakeholderStatusTransition;
 use Hyperwallet\Model\IProgramAware;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
@@ -558,6 +559,54 @@ class Hyperwallet {
             'transfer-token' => $transferToken
         ), $transition, array());
         return new TransferStatusTransition($body);
+    }
+
+    /**
+     * Get a transfer status transition
+     *
+     * @param string $transferToken The transfer token
+     * @param string $statusTransitionToken The status transition token
+     * @return TransferStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getTransferStatusTransition($transferToken, $statusTransitionToken) {
+        if (empty($transferToken)) {
+            throw new HyperwalletArgumentException('transferToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v4/transfers/{transfer-token}/status-transitions/{status-transition-token}', array(
+            'transfer-token' => $transferToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new TransferStatusTransition($body);
+    }
+
+    /**
+     * List all transfer status transitions
+     *
+     * @param string $transferToken The transfer token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listTransferStatusTransitions($transferToken, array $options = array()) {
+        if (empty($transferToken)) {
+            throw new HyperwalletArgumentException('transfer token is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v4/transfers/{transfer-token}/status-transitions', array(
+            'transfer-token' => $transferToken
+        ), $options);
+        return new ListResponse($body, function ($entry) {
+            return new TransferStatusTransition($entry);
+        });
     }
 
     //--------------------------------------
@@ -2029,7 +2078,7 @@ class Hyperwallet {
     }
 
     /**
-     * Activate an User
+     * Activate a User
      *
      * @param string $userToken The user token
      * @return UserStatusTransition
@@ -2414,6 +2463,130 @@ class Hyperwallet {
         ), $options);
         return new ListResponse($body, function ($entry) {
             return new BusinessStakeholder($entry);
+        });
+    }
+
+    /**
+     * Create a Business Stakeholder status transition
+     *
+     * @param string $userToken The user token
+     * @param string $businessToken The Business Token
+     * @param BusinessStakeholderStatusTransition $transition The status transition
+     * @return BusinessStakeholderStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function createBusinessStakeholderStatusTransition($userToken, $businessToken, BusinessStakeholderStatusTransition $transition) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($businessToken)) {
+            throw new HyperwalletArgumentException('businessToken is required!');
+        }
+
+        $body = $this->client->doPost('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'business-token' => $businessToken
+        ), $transition, array());
+        return new BusinessStakeholderStatusTransition($body);
+    }
+
+    /**
+     * activate a Business Stakeholder
+     *
+     * @param string $userToken The user token
+     * @param string $businessToken The Business Token
+     * @return BusinessStakeholderStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function activateBusinessStakeholder($userToken, $businessToken) {
+        $transition = new BusinessStakeholderStatusTransition();
+        $transition->setTransition(BusinessStakeholderStatusTransition::TRANSITION_ACTIVATED);
+
+        return $this->createBusinessStakeholderStatusTransition($userToken, $businessToken, $transition);
+    }
+
+    /**
+     * Deactivate a Business Stakeholder
+     *
+     * @param string $userToken The user token
+     * @param string $businessToken The Business Token
+     * @return BusinessStakeholderStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function deactivateBusinessStakeholder($userToken, $businessToken) {
+        $transition = new BusinessStakeholderStatusTransition();
+        $transition->setTransition(BusinessStakeholderStatusTransition::TRANSITION_DE_ACTIVATED);
+
+        return $this->createBusinessStakeholderStatusTransition($userToken, $businessToken, $transition);
+    }
+
+    /**
+     * Get a Business Stakeholder status transition
+     *
+     * @param string $userToken The user token
+     * @param string $businessToken The Business Token
+     * @param string $statusTransitionToken The status transition token
+     * @return BusinessStakeholderStatusTransition
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function getBusinessStakeholderStatusTransition($userToken, $businessToken, $statusTransitionToken) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($businessToken)) {
+            throw new HyperwalletArgumentException('businessToken is required!');
+        }
+        if (empty($statusTransitionToken)) {
+            throw new HyperwalletArgumentException('statusTransitionToken is required!');
+        }
+
+        $body = $this->client->doGet('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions/{status-transition-token}', array(
+            'user-token' => $userToken,
+            'business-token' => $businessToken,
+            'status-transition-token' => $statusTransitionToken
+        ), array());
+        return new BusinessStakeholderStatusTransition($body);
+    }
+
+    /**
+     * List all Business Stakeholder status transitions
+     *
+     * @param string $userToken The user token
+     * @param string $businessToken The Business Token
+     * @param array $options The query parameters
+     * @return ListResponse
+     *
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
+     */
+    public function listBusinessStakeholderStatusTransitions($userToken, $businessToken, array $options = array()) {
+        if (empty($userToken)) {
+            throw new HyperwalletArgumentException('userToken is required!');
+        }
+        if (empty($businessToken)) {
+            throw new HyperwalletArgumentException('businessToken is required!');
+        }
+        if (!empty($options)) {
+            $filteredArr = array_diff_key($options, array_flip(StatusTransition::FILTERS_ARRAY()));
+            if (!empty($filteredArr)) {
+                throw new HyperwalletArgumentException('Invalid filter');
+            }
+        }
+
+        $body = $this->client->doGet('/rest/v4/users/{user-token}/business-stakeholders/{business-token}/status-transitions', array(
+            'user-token' => $userToken,
+            'business-token' => $businessToken
+        ), $options);
+        return new ListResponse($body, function ($entry) {
+            return new BusinessStakeholderStatusTransition($entry);
         });
     }
 
