@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+1.6.0
+-------------------
+- Added Transfer status transitions - get, list
+- Added filters
+- Fields added to Transfer Method
+
 1.5.1
 -------------------
 - Added fields processingTime to BankCards, expiresOn to Payments

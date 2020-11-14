@@ -89,6 +89,10 @@ class User extends BaseModel implements IProgramAware {
     const VERIFICATION_STATUS_READY_FOR_REVIEW='READY_FOR_REVIEW';
     const VERIFICATION_STATUS_FAILED='FAILED';
 
+    public static function FILTERS_ARRAY() {
+        return array('clientUserId','email','programToken','status','verificationStatus');
+    }
+
     /**
      * Creates a instance of User
      *
