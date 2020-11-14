@@ -32,6 +32,7 @@ use Hyperwallet\Model\VenmoAccount;
 use Hyperwallet\Model\VenmoAccountStatusTransition;
 use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\ApiClient;
+use Hyperwallet\Util\HyperwalletUUID;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
