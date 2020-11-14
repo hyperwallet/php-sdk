@@ -1,5 +1,12 @@
 ChangeLog
 =========
+
+2.1.0 
+-------------------
+- Added header data to the requests (user-agent, sdk version etc) 
+- Added Business Stakeholders status transitions
+- Added Transfer status transitions - get, list
+
 2.0.0 
 -------------------
 - Updated the methods to point to V4 Rest APIs
