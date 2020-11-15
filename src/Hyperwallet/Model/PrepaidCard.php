@@ -52,6 +52,10 @@ class PrepaidCard extends BaseModel {
     const CARD_BRAND_VISA = 'VISA';
     const CARD_BRAND_MASTERCARD = 'MASTERCARD';
 
+    public static function FILTERS_ARRAY() {
+        return array('status');
+    }
+
     /**
      * Creates a instance of PrepaidCard
      *
@@ -186,7 +190,7 @@ class PrepaidCard extends BaseModel {
 
     /**
      * Get the prepaid card expiry date
-     * 
+     *
      * @return \DateTime
      */
     public function getDateOfExpiry() {

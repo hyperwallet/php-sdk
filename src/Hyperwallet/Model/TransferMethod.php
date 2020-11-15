@@ -20,6 +20,10 @@ namespace Hyperwallet\Model;
  * @property string $cardBrand The prepaid card brand
  * @property \DateTime $dateOfExpiry The prepaid card expiry date
  *
+ * @property string $email The email associated with the paypal account
+ * 
+ * @property string $accountId The accountId associated with the venmo account
+ * 
  * @property string $bankName The bank name
  * @property string $bankId The bank id
  * @property string $branchName The branch name
@@ -82,11 +86,14 @@ class TransferMethod extends BaseModel {
      *
      * @var string[]
      */
-    private static $READ_ONLY_FIELDS = array('token', 'status', 'cardType', 'cardNumber', 'cardBrand', 'dateOfExpiry', 'createdOn');
+    private static $READ_ONLY_FIELDS = array('token', 'status', 'cardType', 'cardNumber', 'cardBrand', 'dateOfExpiry', 'createdOn', 'email', 'accountId');
 
     const TYPE_PREPAID_CARD = 'PREPAID_CARD';
     const TYPE_BANK_ACCOUNT = 'BANK_ACCOUNT';
     const TYPE_WIRE_ACCOUNT = 'WIRE_ACCOUNT';
+    const TYPE_BANK_CARD = 'BANK_CARD';
+    const TYPE_PAYPAL_ACCOUNT = 'PAYPAL_ACCOUNT';
+    const TYPE_VENMO_ACCOUNT = 'VENMO_ACCOUNT';
 
     const STATUS_QUEUED = 'QUEUED';
     const STATUS_PRE_ACTIVATED = 'PRE_ACTIVATED';
@@ -191,6 +198,24 @@ class TransferMethod extends BaseModel {
      */
     public function getDateOfExpiry() {
         return $this->dateOfExpiry ? new \DateTime($this->dateOfExpiry) : null;
+    }
+
+    /**
+     * Get the email
+     *
+     * @return string
+     */
+    public function getEmail() {
+        return $this->email;
+    }
+
+    /**
+     * Get the accountId
+     *
+     * @return string
+     */
+    public function getAccountId() {
+        return $this->accountId;
     }
     
     /**

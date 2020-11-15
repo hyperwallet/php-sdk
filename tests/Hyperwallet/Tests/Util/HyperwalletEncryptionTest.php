@@ -40,7 +40,8 @@ class HyperwalletEncryptionTest extends \PHPUnit_Framework_TestCase {
             $this->assertThat($e->getMessage(), $this->logicalOr(
                 $this->equalTo('Decryption error'),
                 $this->equalTo('Ciphertext representative out of range')
-            ));        }
+            ));
+        }
     }
 
     public function testShouldFailSignatureVerificationWhenWrongPublicKeyIsUsed() {
