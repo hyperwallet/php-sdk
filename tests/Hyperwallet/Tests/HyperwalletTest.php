@@ -33,8 +33,6 @@ use Hyperwallet\Util\ApiClient;
 
 class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
-    private $includeIntegrationTest = false; //change this value to true if integration tests have to be run
-
     public function testConstructor_throwErrorIfUsernameIsEmpty() {
         try {
             new Hyperwallet('', 'test-password');
