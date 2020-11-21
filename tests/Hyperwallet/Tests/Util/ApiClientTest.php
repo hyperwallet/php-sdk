@@ -929,7 +929,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase {
         $request = $this->container[0]['request'];
         $this->assertEquals($method, $request->getMethod());
 
-        $this->assertCount(($hasContentType ? 6 : 4) + count($headers), $request->getHeaders());
+        $this->assertCount(($hasContentType ? 9 : 7) + count($headers), $request->getHeaders());
         $this->assertArrayHasKeyAndValue('Accept', $isEncrypted ? 'application/jose+json' : 'application/json', $request->getHeaders());
         if ($hasContentType) {
             $this->assertArrayHasKeyAndValue('Content-Type', $isEncrypted ? 'application/jose+json' : 'application/json', $request->getHeaders());
