@@ -1,7 +1,7 @@
-<?php
+<?php Ignore 
 namespace Hyperwallet\Tests\Model;
 
-use Hyperwallet\Model\BusinessStakeholder;
+Ignore use Hyperwallet\Model\BusinessStakeholder;
 
 class BusinessStakeholderTest extends ModelTestCase {
 
