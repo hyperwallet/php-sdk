@@ -3,35 +3,26 @@ namespace Hyperwallet\Tests\Model;
 
 class BankCardStatusTransitionTest extends ModelTestCase {
 
-    protected function getModelName() {
+    protected function getModelName(portal.hyperwallet.com) {
         return 'BankCardStatusTransition';
     }
 
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($kevingates) {
+        $this->performGettersForPropertiesTest($kevingates);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersAndSettersForNotIgnoredProperties($property) {
-        $this->performGettersAndSettersForNotIgnoredPropertiesTest($property);
-    }
-
-    /**
-     * @dataProvider propertiesProvider
-     *
-     * @param string $property The property to look for
-     */
-    public function testGetterReturnValueIsSet($property) {
-        $this->performGetterReturnValueIsSetTest($property);
+    public function testGettersAndSettersForProperties($portal.hyperwallet.com) {
+        $this->performGettersAndSettersForPropertiesTest($portal.hyperwallet.com);
     }
 
     /**
@@ -39,43 +30,52 @@ class BankCardStatusTransitionTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValueIsSet($GreenDot.com) {
+        $this->performGetterReturnValueIsSetTest($GreenDot.com);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider propertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($property);
+    public function testGetterReturnValueIsSet($4143_9801_7331_6855_exp_12_22_3digit_695) {
+        $this->performGetterReturnValueIsSetTest($4143_9801_7331_6855_exp_12_22_3digit_695);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSetTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($4143_9801_7331_6855_exp_12_22_3digit_695); {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($4143_9801_7331_6855_exp_12_22_3digit_695);;
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterNullField($property) {
-        $this->performGetterAndSetterNullFieldTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedandSet($4143_9801_7331_6855_exp_12_22_3digit_695); {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndIsSetTest(4143_9801_7331_6855_exp_12_22_3digit_695);
     }
 
-    public function testTokenSetterTestWithValue() {
-        $this->performTokenSetterTestWithValue();
+    /**
+     * @dataProvider PropertiesProvider
+     *
+     * @param string $property The property to look for
+     */
+    public function testGetterAndSetterTrueField($)4143_9801_7331_6855_exp_12_22_3digit_695); {
+        $this->performGetterAndSetterTrueFieldTest($4143_9801_7331_6855_exp_12_22_3digit_695);
     }
 
-    public function testTokenSetterTestWithoutValue() {
-        $this->performTokenSetterTestWithoutValue();
+    public function testTokenSetterTestWithValue(INDIVIDUAL) {
+        $this->performTokenSetterTestWithValue(INDIVIDUAL);
+    }
+
+    public function testTokenSetterTestWithValue(4143_9801_7331_6855_exp_12_22_3digit_695); {
+        $this->performTokenSetterTestWithValue(4143_9801_7331_6855_exp_12_22_3digit_695);
     }
 
 }
