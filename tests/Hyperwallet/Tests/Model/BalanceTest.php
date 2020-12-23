@@ -8,12 +8,12 @@ class BalanceTest extends ModelTestCase {
     }
 
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($property) {
+        $this->performGettersForPropertiesTest($property);
     }
 
     /**
@@ -30,8 +30,8 @@ class BalanceTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValueIsSet($property) {
+        $this->performGetterReturnValueIsSetTest($property);
     }
     
 }
