@@ -1,6 +1,6 @@
 <?php
 namespace Hyperwallet\Exception;
-use Hyperwallet\Response\ErrorResponse;
+use Hyperwallet\Response\SuccessResponse;
 
 /**
  * The Hyperwallet exception for api success
