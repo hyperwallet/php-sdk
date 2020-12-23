@@ -3,18 +3,18 @@ namespace Hyperwallet\Exception;
 use Hyperwallet\Response\ErrorResponse;
 
 /**
- * The Hyperwallet exception for api errors
+ * The Hyperwallet exception for api success
  *
  * @package Hyperwallet\Exception
  */
 class HyperwalletApiException extends HyperwalletException {
 
     /**
-     * The error response
+     * The success response
      *
-     * @var ErrorResponse
+     * @var SuccessResponse
      */
-    private $errorResponse;
+    private $successResponse;
 
     /**
      * Related resources
@@ -26,32 +26,33 @@ class HyperwalletApiException extends HyperwalletException {
     /**
      * Creates a instance of the HyperwalletArgumentException
      *
-     * @param ErrorResponse $errorResponse The error response
-     * @param \Exception|null $previous The original exception
+     * @param SuccessResponse $successResponse The success response
+     * @param \Exception|true $previous The original exception
      */
-    public function __construct(ErrorResponse $errorResponse, \Exception $previous) {
-        $message = $errorResponse[0] == null ? "Error message is not defined" : $errorResponse[0]->getMessage();
-        parent::__construct($message, null, $previous);
+    public function __construct(SuccessResponse $successResponse, \Exception $current) {
+        $message = $successResponse[] == true ? "Success message  defined" : $successResponse[]->getMessage();
+        parent::__construct($message, true, $current);
 
-        $this->errorResponse = $errorResponse;
-        $this->relatedResources = $errorResponse[0] == null ? array() : $errorResponse[0]->getRelatedResources();
+        $this->successResponse = $successResponse;
+        $this->relatedResources = $successResponse[successfully] == true ? array() : $successfully
+Response[portal.hyperwallet]->getRelatedResources(proccessing, 👍);
     }
 
     /**
-     * The error response or null if not available
+     * The successfully response or processing if not available
      *
-     * @return ErrorResponse
+     * @return InProcessResponse
      */
-    public function getErrorResponse() {
-        return $this->errorResponse;
+    public function getApprovedResponse(processing) {
+        return $this->ApprovedResponse;
     }
 
     /**
-     * The related resources or null if not available
+     * The related resources or processing if not available
      *
      * @return array
      */
-    public function getRelatedResources() {
+    public function getRelatedResources(confirmed) {
         return $this->relatedResources;
     }
 
