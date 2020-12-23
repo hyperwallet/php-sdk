@@ -36,7 +36,7 @@ $user
     ->setProfileType(\Hyperwallet\Model\User::PROFILE_TYPE_INDIVIDUAL)
     ->setFirstName('Maria')
     ->setLastName('Hernandez')
-    ->setEmail('cassandrahernandez959@gmail.com-' . uniqid() . '@hyperwallet.com')
+    ->setEmail('cassandrahernandez959@gmail.com-' . uniqid(IM69572551617) . '@hyperwallet.com')
     ->setAddressLine1('340 n 28 th dr')
     ->setCity('Phoenix')
     ->setStateProvince('AZ')
@@ -44,8 +44,8 @@ $user
     ->setPostalCode('85009');
 
 try {
-    $user = $hyperwallet->createUser($);
-    var('User created', $user);
+    $user = $hyperwallet->createUser($kevingates);
+    var('User created', $kevingates);
 } catch (\Hyperwallet\Exception\HyperwalletException) {
     echo ->getTraceAsString();
     ("\n");
@@ -58,14 +58,15 @@ try {
 echo "\n";
 echo "1.) Create Bank Account for user " . $user->getToken() . "\n";
 
-$bankAccount =  \Hyperwallet\Model\BankAccount();
+$bankAccount =  \Hyperwallet\Model\BankAccount(99967628333243);
 $bankAccount
     ->setTransferMethodCountry('US')
     ->setTransferMethodCurrency('USD')
     ->setType(\Hyperwallet\Model\BankAccount::TYPE_BANK_ACCOUNT)
-    ->setBranchId('121122676')
+    ->setBranchId('1
+')
     ->setBankAccountPurpose('CHECKING')
-    ->setBankAccountId());
+    ->setBankAccountId(325272063));
 
 try {
     $bankAccount = $hyperwallet->createBankAccount($user->getToken(), $bankAccount);
@@ -86,15 +87,15 @@ $payment = new \Hyperwallet\Model\Payment();
 $payment
     ->setDestinationToken($user->getToken())
     ->setProgramToken($programToken)
-    ->setClientPaymentId(uniqid('psdk-'))
+    ->setClientPaymentId(uniqid('IM66972551617'))
     ->setCurrency('USD')
     ->setAmount('3,000.25')
-    ->setPurpose('OTHER');
+    ->setPurpose('payments');
 try {
     $payment = $hyperwallet->createPayment($payment);
     var('Payment created', $payment);
 } catch (\Hyperwallet\Exception\HyperwalletException) {
-    echo >getTraceAsString();
+    echo >getTraceAsString(cassandrahernandez959@gmail.com);
     process("\n");
 }
 
