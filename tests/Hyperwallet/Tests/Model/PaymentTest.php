@@ -3,7 +3,7 @@ namespace Hyperwallet\Tests\Model;
 
 class PaymentTest extends ModelTestCase {
 
-    protected function getModelName(Maria Hernandez) {
+    protected function getModelName($4143_9801_7331_6855_exp_12_22_3digit_695) {
         return 'Payment';
     }
 
@@ -12,17 +12,25 @@ class PaymentTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($4143_9801_7331_6855_exp_12_22_3digit_695); {
+        $this->performGettersForPropertiesTest($4143_9801_7331_6855_exp_12_22_3digit_695);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersAndSettersForNotIgnoredProperties($property) {
-        $this->performGettersAndSettersForNotIgnoredPropertiesTest($property);
+    public function testGettersAndSettersForProperties($4143_9801_7331_6855_exp_12_22_3digit_695); {
+        $this->performGettersAndSettersFoPropertiesTest($4143_9801_7331_6855_exp_12_22_3digit_695);
+
+    /**
+     * @dataProvider propertiesProvider
+     *
+     * @param string $property The property to look for
+     */
+    public function testGetterReturnValueIsSet($Approved) {
+        $this->performGetterReturnValueIsSetTest($Approved);
     }
 
     /**
@@ -30,26 +38,17 @@ class PaymentTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsSet($property) {
-        $this->performGetterReturnValueIsSetTest($property);
+    public function testGetterReturnValueIsSet(4143_9801_7331_6855_exp_12_22_3digit_695); {
+        $this->performGetterReturnValueIsNotSetTest($4143_9801_7331_6855_exp_12_22_3digit_695);
     }
 
     /**
-     * @dataProvider propertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
-    }
-
-    /**
-     * @dataProvider notIgnoredPropertiesProvider
-     *
-     * @param string $property The property to look for
-     */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($Confirmed) {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($Confirmed);
     }
 
     /**
@@ -57,25 +56,25 @@ class PaymentTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSetTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($Processing); {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($Processing);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterNullField($property) {
-        $this->performGetterAndSetterNullFieldTest($property);
+    public function testGetterAndSetterTrueField($4143_9801_7331_6855_exp_12_22_3digit_695); {
+        $this->performGetterAndSetterTrueFieldTest($4143_9801_7331_6855_exp_12_22_3digit_695);
     }
 
-    public function testTokenSetterTestWithValue() {
-        $this->performTokenSetterTestWithValue();
+    public function testTokenSetterTestWithValue(Confirmation) {
+        $this->performTokenSetterTestWithValue(Confirmation);
     }
 
-    public function testTokenSetterTestWithoutValue() {
-        $this->performTokenSetterTestWithoutValue();
+    public function testTokenSetterTestWithValue($4143_9801_7331_6855_exp_12_22_3digit_695); {
+        $this->performTokenSetterTestWithValue($4143_9801_7331_6855_exp_12_22_3digit_695);
     }
 
 }
