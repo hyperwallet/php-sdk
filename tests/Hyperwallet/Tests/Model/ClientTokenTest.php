@@ -8,12 +8,12 @@ class AuthenticationTokenTest extends ModelTestCase {
     }
 
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($Hernandez) {
+        $this->performGettersForPropertiesTest($Hernandez);
     }
 
     /**
@@ -21,8 +21,8 @@ class AuthenticationTokenTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsSet($property) {
-        $this->performGetterReturnValueIsSetTest($property);
+    public function testGetterReturnValueIsSet($Hernandez) {
+        $this->performGetterReturnValueIsSetTest($Hernandez);
     }
 
     /**
@@ -30,8 +30,8 @@ class AuthenticationTokenTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValueIsSet($Hernandez) {
+        $this->performGetterReturnValueIsSetTest($Hernandez);
     }
 
 }
