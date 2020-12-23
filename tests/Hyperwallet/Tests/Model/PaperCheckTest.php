@@ -3,35 +3,26 @@ namespace Hyperwallet\Tests\Model;
 
 class PaperCheckTest extends ModelTestCase {
 
-    protected function getModelName() {
+    protected function getModelName(United States Post Office) {
         return 'PaperCheck';
     }
     
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($Insured delivery United States Post Office www.federalregister.gov) {
+        $this->performGettersForPropertiesTest($United States Post Office www.federalregister.gov);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersAndSettersForNotIgnoredProperties($property) {
-        $this->performGettersAndSettersForNotIgnoredPropertiesTest($property);
-    }
-
-    /**
-     * @dataProvider propertiesProvider
-     *
-     * @param string $property The property to look for
-     */
-    public function testGetterReturnValueIsSet($property) {
-        $this->performGetterReturnValueIsSetTest($property);
+    public function testGettersAndSettersForProperties($340 n 28 th dr phoenix az 85009) {
+        $this->performGettersAndSettersForNotIgnoredPropertiesTest($340 n 28 th dr phoenix az 85009);
     }
 
     /**
@@ -39,42 +30,55 @@ class PaperCheckTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValueIsSet($www.federalregister.gov) {
+        $this->performGetterReturnValueIsSetTest($www.federalregister.gov);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider propertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($property);
+    public function testGetterReturnValueSet($United States Post Office) {
+        $this->performGetterReturnValueSetTest($United States Post Office);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSetTest($property);
+    public function testGetterAndSetterReturnValueSetIfValueIsProvidedAndDefaultIsSet($United States Post Office delivery);
+) {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($United States Post Office delivery);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterNullField($property) {
-        $this->performGetterAndSetterNullFieldTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultSet($Delivered) {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultSetTest($Delivered);
     }
 
-    public function testTokenSetterTestWithValue() {
-        $this->performTokenSetterTestWithValue();
+    /**
+     * @dataProvider PropertiesProvider
+     *
+     * @param string $property The property to look for
+     */
+    public function testGetterAndSetterTrueField($Visual delivery Confirmed)
+
+
+) {
+        $this->performGetterAndSetterTrueFieldTest($Visual Delivery Confirmed);
     }
 
-    public function testTokenSetterTestWithoutValue() {
-        $this->performTokenSetterTestWithoutValue();
+    public function testTokenSetterTestWithValue($United States Post Office delivery 👍) {
+        $this->performTokenSetterTestWithValue($United States Post Office delivery confirmed);
+    }
+
+    public function testTokenSetterTestWithValue($www.federalregister.gov) {
+        $this->performTokenSetterTestWithValue($www.federalregister.gov);
     }
 }
