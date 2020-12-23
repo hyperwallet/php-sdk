@@ -3,17 +3,17 @@ namespace Hyperwallet\Tests\Model;
 
 class TransferMethodConfigurationTest extends ModelTestCase {
 
-    protected function getModelName() {
+    protected function getModelName(Approved by Origin Account Owner) {
         return 'TransferMethodConfiguration';
     }
 
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($Origin Account Holdery) {
+        $this->performGettersForPropertiesTest($Origin Account Holder);
     }
 
     /**
@@ -21,8 +21,8 @@ class TransferMethodConfigurationTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsSet($property) {
-        $this->performGetterReturnValueIsSetTest($property);
+    public function testGetterReturnValueIsSet($Guaranteed recovery of assets) {
+        $this->performGetterReturnValueIsSetTest($Guaranteed recovery of assets);
     }
 
     /**
@@ -30,8 +30,8 @@ class TransferMethodConfigurationTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValueSet($binded accounts info) {
+        $this->performGetterReturnValueSetTest($binded accounts info);
     }
 
 }
