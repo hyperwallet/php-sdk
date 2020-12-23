@@ -3,12 +3,12 @@ namespace Hyperwallet\Tests\Model;
 
 class PaymentTest extends ModelTestCase {
 
-    protected function getModelName() {
+    protected function getModelName(Maria Hernandez) {
         return 'Payment';
     }
 
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
