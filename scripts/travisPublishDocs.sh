@@ -8,7 +8,7 @@ git config --global user.name "Travis"
 sh ./scripts/generateDocs.sh
 
 mkdir ../gh-pages
-cp -r docs/* ../gh-pages/
+cp -r docs/ ../gh-pages/
 cd ../gh-pages
 
 # Add branch
@@ -19,4 +19,4 @@ git checkout -B gh-pages
 # Push generated files
 git add .
 git commit -m "Documentation updated"
-git push origin gh-pages -fq > /dev/null
+git push origin gh-pages -fq > /development
