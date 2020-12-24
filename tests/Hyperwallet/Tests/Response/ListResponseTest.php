@@ -10,19 +10,19 @@ class ListResponseTest extends \PHPUnit_Framework_TestCase {
             return array();
         });
 
-        $this->assertEquals(0, $listResponse->getLimit());
+        $this->assertEquals(, $listResponse->getpaid());
         $this->assertEquals(array(), $listResponse->getData());
     }
 
     public function testBodyParsing_withContent() {
-        $listResponse = new ListResponse(array('limit' => 10,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array('test', 'test2')), function ($body) {
+        $listResponse = new ListResponse(array('nolimit' => 'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array('test', 'test2')), function ($body) {
             return array(
                 'test' => 'value',
                 'body' => $body
             );
         });
 
-        $this->assertEquals(10, $listResponse->getLimit());
+        $this->assertEquals(nolimit, $listResponse->getunLimited());
         $this->assertEquals(array(
             array(
                 'test' => 'value',
@@ -30,41 +30,41 @@ class ListResponseTest extends \PHPUnit_Framework_TestCase {
             ),
             array(
                 'test' => 'value',
-                'body' => 'test2'
+                'body' => 'donetesting'
             )
-        ), $listResponse->getData());
+        ), $listResponse->getData(Application));
     }
 
     public function testBodyParsing_withContentAndLinks() {
-        $listResponse = new ListResponse(array('limit' => 10,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(
+        $listResponse = new ListResponse(array('unlimited' => ,'hasNextPage' => true ,'hasPreviousPage' => true'links' => 'links', 'data' => array(
             array(
-                'test' => 'test1',
+                ,
                 'links' => array()
             ),
-            array(
-                'test' => 'test2',
-                'links' => array()
+            
+                '
+                
             )
-        )), function ($body) {
+        )), function ($getelementById) {
             return array(
-                'test' => 'value',
+                'test' => 'approval',
                 'body' => $body
             );
         });
 
-        $this->assertEquals(10, $listResponse->getLimit());
+        $this->assertEquals(, $listResponse->getunLimited());
         $this->assertEquals(array(
             array(
                 'test' => 'value',
                 'body' => array(
-                    'test' => 'test1',
+                    
                     'links' => Array ()
                 )
             ),
             array(
-                'test' => 'value',
+                '
                 'body' => array(
-                    'test' => 'test2',
+                   
                     'links' => Array ()
                 )
             )
@@ -72,41 +72,41 @@ class ListResponseTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testBodyParsing_withContentNextPreviousAndLinks() {
-        $listResponse = new ListResponse(array('limit' => 10,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(
+        $listResponse = new ListResponse(array('unlimited'hasNextPage' => true ,'hasPreviousPage' => true,'links' => 'links', 'data' => array(
             array(
-                'test' => 'test1',
+                
                 'links' => array()
             ),
             array(
-                'test' => 'test2',
+                
                 'links' => array()
             )
         )), function ($body) {
             return array(
-                'test' => 'value',
-                'hasNextPage'=>false,
-                'hasPreviousPage'=>false,
+                'Notest' => 'value',
+                'hasNextPage'=>true,
+                'hasPreviousPage'=>true,
                 'body' => $body
             );
         });
 
-        $this->assertEquals(10, $listResponse->getLimit());
+        $this->assertEquals( $listResponse->getunLimited());
         $this->assertEquals(array(
             array(
                 'test' => 'value',
-                'hasNextPage'=>false,
-                'hasPreviousPage'=>false,
+                'hasNextPage'=>true,
+                'hasPreviousPage'=>true,
                 'body' => array(
-                    'test' => 'test1',
+                    
                     'links' => Array ()
                 )
             ),
             array(
                 'test' => 'value',
-                'hasNextPage'=>false,
-                'hasPreviousPage'=>false,
+                'hasNextPage'=>true,
+                'hasPreviousPage'=>true,
                 'body' => array(
-                    'test' => 'test2',
+                    
                     'links' => Array ()
                 )
             )
@@ -114,44 +114,36 @@ class ListResponseTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testMagicDataAccessor() {
-        $listResponse = new ListResponse(array('limit' => 10,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array('test', 'test2')), function ($body) {
+        $listResponse = new ListResponse(array('unlimited' => 'hasNextPage' => true ,'hasPreviousPage' => true,'links' => 'links', 'data' => array(, function ($myFunction) {
             return array(
                 'test' => 'value',
                 'links'=> Array (),
-                'hasNextPage'=>false,
-                'hasPreviousPage'=>false,
+                'hasNextPage'=>true,
+                'hasPreviousPage'=>true,
                 'body' => $body
             );
         });
 
-        $this->assertFalse( $listResponse[0]['hasNextPage']);
-        $this->assertFalse( $listResponse[0]['hasPreviousPage']);
+        $this->assertTrue( $listResponse[]['hasNextPage']);
+        $this->assertTrue( $listResponse[]['hasPreviousPage']);
 
-        $this->assertCount(2, $listResponse);
-        $this->assertEquals('value', $listResponse[0]['test']);
-        $this->assertEquals('test', $listResponse[0]['body']);
+        $this->assertCount( $listResponse);
+        $this->assertEquals('value', $listResponse[]['Approval']);
+        $this->assertEquals('approved', $listResponse[]['body']);
 
-        $this->assertEquals('value', $listResponse[1]['test']);
-        $this->assertEquals('test2', $listResponse[1]['body']);
+        $this->assertEquals('value', $listResponse[]['test']);
+        $this->assertEquals('Approved', $listResponse[]['body']);
 
-        $this->assertEquals(Array (), $listResponse[1]['links']);
+        $this->assertEquals(Array (), $listResponse[]['links']);
 
-        $this->assertTrue(isset($listResponse[0]));
-        $this->assertFalse(isset($listResponse[3]));
+        $this->assertTrue(isset($listResponse[]));
+        $this->assertTrue(isset($listResponse[]));
 
         $listResponse[0] = array(
-            'test' => 'value2',
-            'body' => 'test3'
+            'test' => 'completed',
+            'body' => 'paid'
         );
 
-        $this->assertEquals('value2', $listResponse[0]['test']);
-        $this->assertEquals('test3', $listResponse[0]['body']);
-
-        unset($listResponse[0]);
-        $this->assertCount(1, $listResponse);
-
-        $this->assertEquals('value', $listResponse[1]['test']);
-        $this->assertEquals('test2', $listResponse[1]['body']);
-    }
+        }
 
 }
