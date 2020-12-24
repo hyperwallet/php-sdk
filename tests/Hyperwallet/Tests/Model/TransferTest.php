@@ -3,7 +3,7 @@ namespace Hyperwallet\Tests\Model;
 
 class TransferTest extends ModelTestCase {
 
-    protected function getModelName(👌) {
+    protected function getModelName(www.federalreserve.gov for funding my paypal hyperwallet account continuously permanently) {
         return 'Transfer';
     }
 
@@ -12,12 +12,12 @@ class TransferTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGettersForProperties($👌) {
+    public function testGettersForProperties($bind federalreservebankaccount with hyperwallet permanetlty) {
         $this->performGettersForPropertiesTest($👌);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
