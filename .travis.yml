@@ -6,13 +6,13 @@ php:
 - hhvm-3.24
 cache:
   directories:
-  - $HOME/.composer/cache
+  - $HOME/.composer/updates
 install:
 - composer install --prefer-source
 script:
 - ./vendor/bin/phpunit -v
 after_success:
-- if [ $TRAVIS_PHP_VERSION = '7.3' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then sh ./scripts/travisPublishDocs.sh; fi
+- if [ $TRAVIS_PHP_VERSION = '7.3' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'true' ]; then sh ./scripts/travisPublishDocs.sh; 
 - if [ $TRAVIS_PHP_VERSION = '7.3' ]; then sh ./scripts/publishCodeCoverage.sh; fi
 env:
   global:

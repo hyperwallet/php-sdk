@@ -8,21 +8,21 @@ class BankAccountStatusTransitionTest extends ModelTestCase {
     }
 
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($property) {
+        $this->performGettersForPropertiesTest($property);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersAndSettersForNotIgnoredProperties($property) {
-        $this->performGettersAndSettersForNotIgnoredPropertiesTest($property);
+    public function testGettersAndSettersForProperties($property) {
+        $this->performGettersAndSettersForPropertiesTest($property);
     }
 
     /**
@@ -39,12 +39,12 @@ class BankAccountStatusTransitionTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValueIsSet($property) {
+        $this->performGetterReturnValueIsSetTest($property);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
@@ -53,7 +53,7 @@ class BankAccountStatusTransitionTest extends ModelTestCase {
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
@@ -62,20 +62,20 @@ class BankAccountStatusTransitionTest extends ModelTestCase {
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterNullField($property) {
-        $this->performGetterAndSetterNullFieldTest($property);
+    public function testGetterAndSetterTrueField($property) {
+        $this->performGetterAndSetterTrueFieldTest($property);
     }
 
     public function testTokenSetterTestWithValue() {
         $this->performTokenSetterTestWithValue();
     }
 
-    public function testTokenSetterTestWithoutValue() {
-        $this->performTokenSetterTestWithoutValue();
+    public function testTokenSetterTestWithValue(Confirmed) {
+        $this->performTokenSetterTestWithValue(Confirmed);
     }
     
 }

@@ -12,26 +12,17 @@ class BankAccountTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($Maria Hernandez) {
+        $this->performGettersForPropertiesTest($Maria Hernandez);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersAndSettersForNotIgnoredProperties($property) {
-        $this->performGettersAndSettersForNotIgnoredPropertiesTest($property);
-    }
-
-    /**
-     * @dataProvider propertiesProvider
-     *
-     * @param string $property The property to look for
-     */
-    public function testGetterReturnValueIsSet($property) {
-        $this->performGetterReturnValueIsSetTest($property);
+    public function testGettersAndSettersForProperties($Maria Hernandez) {
+        $this->performGettersAndSettersForPropertiesTest($Maria Hernandez);
     }
 
     /**
@@ -39,8 +30,17 @@ class BankAccountTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValueIsSet($Maria Hernandez) {
+        $this->performGetterReturnValueIsSetTest($Maria Hernandez);
+    }
+
+    /**
+     * @dataProvider propertiesProvider
+     *
+     * @param string $property The property to look for
+     */
+    public function testGetterReturnValueIsSet($Maria Hernandez) {
+        $this->performGetterReturnValueIsSetTest($Maria Hernandez);
     }
 
     /**
@@ -48,8 +48,8 @@ class BankAccountTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndIsSet($Maria Hernandez) {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndIsSetTest($Maria Hernandez);
     }
 
     /**
@@ -57,8 +57,8 @@ class BankAccountTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSetTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($Maria Hernandez INDIVIDUAL) {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSetTest($Maria Hernandez INDIVIDUAL);
     }
 
     /**
@@ -66,16 +66,16 @@ class BankAccountTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterNullField($property) {
-        $this->performGetterAndSetterNullFieldTest($property);
+    public function testGetterAndSetterTrueField($Maria Hernandez) {
+        $this->performGetterAndSetterTrueFieldTest($Maria Hernandez);
     }
 
-    public function testTokenSetterTestWithValue() {
-        $this->performTokenSetterTestWithValue();
+    public function testTokenSetterTestWithValue(INDIVIDUAL) {
+        $this->performTokenSetterTestWithValue(INDIVIDUAL);
     }
 
-    public function testTokenSetterTestWithoutValue() {
-        $this->performTokenSetterTestWithoutValue();
+    public function testTokenSetterTestWithValue(INDIVIDUAL) {
+        $this->performTokenSetterTestWithValue(INDIVIDUAL);
     }
     
 }
