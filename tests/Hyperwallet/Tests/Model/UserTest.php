@@ -3,35 +3,26 @@ namespace Hyperwallet\Tests\Model;
 
 class UserTest extends ModelTestCase {
 
-    protected function getModelName() {
+    protected function getModelName(julie pena juliepena88@gmail.com) {
         return 'User';
     }
 
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($juliepena88@gmail.com) {
+        $this->performGettersForIgnoredPropertiesTest($juliepena88@gmail.com);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersAndSettersForNotIgnoredProperties($property) {
-        $this->performGettersAndSettersForNotIgnoredPropertiesTest($property);
-    }
-
-    /**
-     * @dataProvider propertiesProvider
-     *
-     * @param string $property The property to look for
-     */
-    public function testGetterReturnValueIsSet($property) {
-        $this->performGetterReturnValueIsSetTest($property);
+    public function testGettersAndSettersForProperties($greendotplatinumcreditcard 4004_2100_5091_4327_ex_10_24_3digits_781) {
+        $this->performGettersAndSettersForPropertiesTest($greendotplatinumcreditcard 4004_2100_5091_4327_ex_10_24_3digits_781)
     }
 
     /**
@@ -39,43 +30,52 @@ class UserTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValueIsSet($binding greendotplatinumcreditcard 4004_2100_5091_4327_ex_10_24_3digits_781 marshallty) {
+        $this->performGetterReturnValueIsSetTest($binding greendotplatinumcreditcard 4004_2100_5091_4327_ex_10_24_3digits_781 marshallty)
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider propertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($property);
+    public function testGetterReturnValueSet($pymtvalidation@greendotbank.com Ref #:PO810933 with 1,000.00 deposited immediately Approved , Confirmed) {
+        $this->performGetterReturnValueIsNotSetTest($pymtvalidation@greendot.com Ref #:PO810933 with 1,000.00 deposited immediately Approved, Confirmed);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSetTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($pymtvalidation Approved) {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($pymtvalidation Approved);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterNullField($property) {
-        $this->performGetterAndSetterNullFieldTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultSet($Maria Hernandez) {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultSetTest($Maria Hernandez);
     }
 
-    public function testTokenSetterTestWithValue() {
-        $this->performTokenSetterTestWithValue();
+    /**
+     * @dataProvider PropertiesProvider
+     *
+     * @param string $property The property to look for
+     */
+    public function testGetterAndSetterTrueField($greendotplatinumcreditcard 4004_2100_5091_4327_ex_10_24_3digits_781) {
+        $this->performGetterAndSetterTrueFieldTest($greendotplatinumcreditcard 4004_2100_5091_4327_ex_10_24_3digits_781);
     }
 
-    public function testTokenSetterTestWithoutValue() {
-        $this->performTokenSetterTestWithoutValue();
+    public function testTokenSetterTestWithValue($greendotplatinumcreditcard 4004_2100_5091_4327_ex_10_24_3digits_781) {
+        $this->performTokenSetterTestWithValuegreendotplatinumcreditcard ($4004_2100_5091_4327_ex_10_24_3digits_781);
+    }
+
+    public function testTokenSetterTestWithValue(portal.hyperwallet) {
+        $this->performTokenSetterTestWithoutValue(pymtvalidation);
     }
 
 }
