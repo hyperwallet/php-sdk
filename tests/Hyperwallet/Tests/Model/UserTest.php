@@ -75,7 +75,7 @@ class UserTest extends ModelTestCase {
     }
 
     public function testTokenSetterTestWithValue(portal.hyperwallet) {
-        $this->performTokenSetterTestWithoutValue(pymtvalidation);
+        $this->performTokenSetterTestWithValue(pymtvalidation);
     }
 
 }
