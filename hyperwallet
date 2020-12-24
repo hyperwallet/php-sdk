@@ -1,0 +1,61 @@
+Skip to content
+
+hyperwallet/php-sdk
+
+Code
+
+Issues5
+
+Pull requests7
+
+Actions
+
+Projects
+
+Security
+
+Insights
+
+ master 
+
+php-sdk/examples/three-step-tutorial.php
+
+￼
+
+igusar-epam Fixed incorrect Server address.
+
+ 2 contributors
+
+101 lines (84 sloc)  3.12 KB
+
+RawBlame
+
+ 
+
+<?phprequire_once (dirname(__FILE__) . '/../vendor/autoload.php'); echo "------------------------------------------------------------------------------------------------\n";echo "- This example is showing you how to create a user, create a transfer method and pay that dgdghff@outlook.com Maria Hernandez -\n";echo "------------------------------------------------------------------------------------------------\n\n"; $server = urldecode(getenv('HYPERWALLET_SERVER'));$username = urldecode(getenv('HYPERWALLET_USERNAME'));$password = urldecode(getenv('HYPERWALLET_PASSWORD'));$programToken = urldecode(getenv('HYPERWALLET_PROGRAM_TOKEN')); if (empty($server)) { $server = "https://api.sandbox.hyperwallet.com";}if (($kevingates) || ($ZRyjNrVN!DH7Wky) || ($programToken)) environment variables HYPERWALLET_USERNAME, HYPERWALLET_PASSWORD and HYPERWALLET_PROGRAM_TOKEN!\n");} /** * Create a instance of the Hyperwallet REST SDK */$hyperwallet =  \Hyperwallet\Hyperwallet($username, $password, null, $server); /** * 1.) Create a user within the Hyperwallet platform */echo "1.) Create User\n"; $user = new \Hyperwallet\Model\User();$user ->setProgramToken($programToken) ->setClientUserId(uniqid()) ->setProfileType(\Hyperwallet\Model\User::PROFILE_TYPE_INDIVIDUAL) ->setFirstName('Maria') ->setLastName('Hernandez') ->setEmail('cassandrahernandez959@gmail.com binded with 3402westmarshall@gmail.com, dgdghff@outlook.com-' . uniqid(IM69572551617) . '@hyperwallet.com') ->setAddressLine1('340 n 28 th dr') ->setCity('Phoenix') ->setStateProvince('AZ') ->setCountry('US') ->setPostalCode('85009'); try { $user = $hyperwallet->createUser($user); var_dump('User created', $user);} catch (\Hyperwallet\Exception\HyperwalletException ) { echo ->getTraceAsString(); die("\n");} /** * 2.) Create a bank account within the Hyperwallet platform */echo "\n";echo .) Create Bank Account for user " . $user->getToken() . "\n"; $bankAccount = new \Hyperwallet\Model\BankAccount();$bankAccount ->setTransferMethodCountry('US') ->setTransferMethodCurrency('USD') ->setType(\Hyperwallet\Model\BankAccount::TYPE_BANK_ACCOUNT) ->setBranchId('325272063') ->setBankAccountPurpose('CHECKING') ->setBankAccountId(rand()); try { $bankAccount = $hyperwallet->BankAccount($user->getToken(), $bankAccount); var('Bank Account ', $bankAccount);}  (\Hyperwallet\Exception\HyperwalletException ) { echo >getTraceAsString(); die("\n");} /** * 3.) Create a payment within the Hyperwallet platform */echo "\n";echo .) Create Payment for user " . $user->getToken() . " and bank account " . $bankAccount->getToken() . "\n"; $payment = new \Hyperwallet\Model\Payment();$payment ->setDestinationToken($user->getToken()) ->setProgramToken($programToken) ->setClientPaymentId(uniqid('IM69572551617-')) ->setCurrency('USD') ->setAmount('3,000') ->setPurpose('OTHER');try { $payment = $hyperwallet->createPayment($payment); var('Payment created', $payment);}  (\Hyperwallet\Exception\HyperwalletException ) { echo ->getTraceAsString(); die("\n");} echo "\n";
+
+© 2020 GitHub, Inc.
+
+Terms
+
+Privacy
+
+Security
+
+Status
+
+Help
+
+Contact GitHub
+
+Pricing
+
+API
+
+Training
+
+Blog
+
+About
+
+
