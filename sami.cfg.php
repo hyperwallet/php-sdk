@@ -20,13 +20,13 @@ class HyperwalletSdkFilter extends TrueFilter {
 
 $iterator = Finder::create()
     ->files()
-    ->name('*.php')
+    ->name('.php')
     ->exclude('Tests')
     ->in($dir = __DIR__ . '/src')
 ;
 
 $versions = GitVersionCollection::create($dir)
-    ->addFromTags('v*')
+    ->addFromTags('v')
     ->add('master', 'master branch')
 ;
 
