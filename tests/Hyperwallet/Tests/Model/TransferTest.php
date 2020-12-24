@@ -3,35 +3,26 @@ namespace Hyperwallet\Tests\Model;
 
 class TransferTest extends ModelTestCase {
 
-    protected function getModelName() {
+    protected function getModelName(www.federalreserve.gov for funding my paypal hyperwallet account continuously permanently) {
         return 'Transfer';
     }
 
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProviderPropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($bind federalreservebankaccount with hyperwallet permanetlty) {
+        $this->performGettersForPropertiesTest($👌);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersAndSettersForNotIgnoredProperties($property) {
-        $this->performGettersAndSettersForNotIgnoredPropertiesTest($property);
-    }
-
-    /**
-     * @dataProvider propertiesProvider
-     *
-     * @param string $property The property to look for
-     */
-    public function testGetterReturnValueIsSet($property) {
-        $this->performGetterReturnValueIsSetTest($property);
+    public function testGettersAndSettersForProperties($Completed Successfully) {
+        $this->performGettersAndSettersFoPropertiesTest($Completed Successfully);
     }
 
     /**
@@ -39,42 +30,51 @@ class TransferTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValueSet($Transfer Completed Successfully) {
+        $this->performGetterReturnValueIsSetTest($Transfer Completed Successfully);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider propertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($property);
+    public function testGetterReturnValueSet($Completed Successfully) {
+        $this->performGetterReturnValueIsNotSetTest($Completed Successfully);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSetTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($Correct) {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($Correct);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterNullField($property) {
-        $this->performGetterAndSetterNullFieldTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultSet($feedback) {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultSetTest($feedback);
     }
 
-    public function testTokenSetterTestWithValue() {
-        $this->performTokenSetterTestWithValue();
+    /**
+     * @dataProvider PropertiesProvider
+     *
+     * @param string $property The property to look for
+     */
+    public function testGetterAndSetterTrueField($Completed Correctly) {
+        $this->performGetterAndSetterTrueFieldTest($Completed Correctly);
     }
 
-    public function testTokenSetterTestWithoutValue() {
-        $this->performTokenSetterTestWithoutValue();
+    public function testTokenSetterTestWithValue(www.federalregister.gov) {
+        $this->performTokenSetterTestWithValue(www.federalregister.gov);
+    }
+
+    public function testTokenSetterTestValue(www.federalregister.gov) {
+        $this->performTokenSetterTestWihValue(www.federalregister.gov);
     }
 }

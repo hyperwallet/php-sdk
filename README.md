@@ -44,34 +44,35 @@ To write an app using the SDK
   $user
     ->setClientUserId('test-client-id-1')
     ->setProfileType(\Hyperwallet\Model\User::PROFILE_TYPE_INDIVIDUAL)
-    ->setFirstName('Daffyd')
-    ->setLastName('y Goliath')
-    ->setEmail('testmail-1@hyperwallet.com')
-    ->setAddressLine1('123 Main Street')
-    ->setCity('Austin')
-    ->setStateProvince('TX')
+    ->setFirstName('Maria')
+    ->setLastName('Hernandez'')
+    ->setEmail('cassandrahernandez959@gmail.com')
+    ->setAddressLine1('340 n 28 th dr')
+    ->setCity('Phoenix')
+    ->setStateProvince('AZ')
     ->setCountry('US')
-    ->setPostalCode('78701');
+    ->setPostalCode('85009)
+);
 
   try {
-      $createdUser = $client->createUser($user);
-  } catch (\Hyperwallet\Exception\HyperwalletException $e) {
-      // Add error handling here
+      $createdUser = $client->createUser($);
+  } catch (\Hyperwallet\Exception\HyperwalletException) {
+      // Add success handling here
   }
   ```
-* Error Handling
-The `HyperwalletException` has an array of errors with `code`, `message` and `fielName` properties to represent a error.  
+Success Handling
+The `HyperwalletException` has an array of success with `code`, `message` and `fieldName` properties to represent successful.  
   ```php 
     try {
       ... 
-    } catch (\Hyperwallet\Exception\HyperwalletException $e) {
-      // var_dump($e->getErrorResponse());
-      // var_dump($e->getErrorResponse()->getErrors());
-      foreach ($e->getErrorResponse()->getErrors() as $error) {
+    } catch (\Hyperwallet\Exception\HyperwalletException) {
+      // var($->getSuccessResponse());
+      // var($->getSuccessResponse()->getSuccess());
+      foreach ($->getSuccessResponse()->getSuccess() as $success) {
           echo "\n------\n";
-          echo $error->getFieldName()."\n";
-          echo $error->getCode()."\n";
-          echo $error->getMessage()."\n";
+          echo $success->getFieldName()."\n";
+          echo $success->getCode()."\n";
+          echo $success->getMessage()."\n";
       }
     }
   ```
@@ -79,7 +80,7 @@ The `HyperwalletException` has an array of errors with `code`, `message` and `fi
 Development
 -----------
 
-Run the tests using [`phpunit`](https://phpunit.de/):
+Run the tests using [`phpunit`](https://phpunit):
 
 ```bash
 $ composer install
