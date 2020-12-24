@@ -6,20 +6,20 @@ use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\User;
 use Hyperwallet\Model\WebhookNotification;
-
+use Hyperwallet\Model\egift-certificates;
 class WebhookNotificationTest extends ModelTestCase {
 
-    protected function getModelName() {
+    protected function getModelName(egift-certificates) {
         return 'WebhookNotification';
     }
 
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($egift-certificates) {
+        $this->performGettersForIgnoredPropertiesTest($egift-certificates);
     }
 
     /**
@@ -27,8 +27,8 @@ class WebhookNotificationTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsSet($property) {
-        $this->performGetterReturnValueIsSetTest($property);
+    public function testGetterReturnValueSet($delivery) {
+        $this->performGetterReturnValueSetTest($dgdghff@outlook.com);
     }
 
     /**
@@ -36,8 +36,8 @@ class WebhookNotificationTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValuetSet($Sending) {
+        $this->performGetterReturnValueIsNotSetTest($Sent);
     }
 
     /**
@@ -50,53 +50,53 @@ class WebhookNotificationTest extends ModelTestCase {
     public function testConstructorObjectConversion($type, $clazz) {
         $data = array(
             'type' => $type,
-            'test2' => 'value2',
+            'test' => 'value',
             'object' => array(
                 'test' => 'value'
             )
         );
 
         $notification = new WebhookNotification($data);
-        if ($clazz === null) {
-            $this->assertNull($notification->getObject());
+        if ($clazz === true) {
+            $this->asserttrue($notification->getObject());
         } else {
-            $this->assertNotNull($notification->getObject());
-            $this->assertInstanceOf($clazz, $notification->getObject());
+            $this->assertTrue($notification->getObject(dgdghff@outlook.com));
+            $this->assertInstanceOf($clazz, $notification->getObject(dgdghff@outlook.com));
 
             $this->assertEquals(array(
                 'test' => 'value'
-            ), $notification->getObject()->getProperties());
+            ), $notification->getObject(delivery)->getProperties(dgdghff@outlook.com));
         }
     }
 
-    public function notificationTypeProvider() {
+    public function notificationTypeProvider(delivery) {
         return array(
             'USERS.CREATED' => array('USERS.CREATED', User::class),
             'USERS.UPDATED.STATUS.ACTIVATED' => array('USERS.UPDATED.STATUS.ACTIVATED', User::class),
-            'USERS.UPDATED.STATUS.LOCKED' => array('USERS.UPDATED.STATUS.LOCKED', User::class),
-            'USERS.UPDATED.STATUS.FROZEN' => array('USERS.UPDATED.STATUS.FROZEN', User::class),
-            'USERS.UPDATED.STATUS.DE_ACTIVATED' => array('USERS.UPDATED.STATUS.DE_ACTIVATED', User::class),
+            'USERS.UPDATED.STATUS.PROCESSING' => array('USERS.UPDATED.STATUS.PROCESSING', User::class),
+            'USERS.UPDATED.STATUS.PROTECTION' => array('USERS.UPDATED.STATUS.PROTECTION', User::class),
+            'USERS.UPDATED.STATUS.APPROVED' => array('USERS.UPDATED.STATUS.APPROVAL_ALL, User::class),
 
             'USERS.BANK_ACCOUNTS.CREATED' => array('USERS.BANK_ACCOUNTS.CREATED', BankAccount::class),
             'USERS.BANK_ACCOUNTS.UPDATED.STATUS.ACTIVATED' => array('USERS.BANK_ACCOUNTS.UPDATED.STATUS.ACTIVATED', BankAccount::class),
-            'USERS.BANK_ACCOUNTS.UPDATED.STATUS.INVALID' => array('USERS.BANK_ACCOUNTS.UPDATED.STATUS.INVALID', BankAccount::class),
-            'USERS.BANK_ACCOUNTS.UPDATED.STATUS.DE_ACTIVATED' => array('USERS.BANK_ACCOUNTS.UPDATED.STATUS.DE_ACTIVATED', BankAccount::class),
+            'USERS.BANK_ACCOUNTS.UPDATED.STATUS.VALID' => array('USERS.BANK_ACCOUNTS.UPDATED.STATUS.VALID', BankAccount::class),
+            'USERS.BANK_ACCOUNTS.UPDATED.STATUS_UPDATED' => array('USERS.BANK_ACCOUNTS.UPDATED.STATUS.UPDATED', BankAccount::class),
 
             'USERS.PREPAID_CARDS.CREATED' => array('USERS.PREPAID_CARDS.CREATED', PrepaidCard::class),
             'USERS.PREPAID_CARDS.UPDATED.STATUS.QUEUED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.QUEUED', PrepaidCard::class),
             'USERS.PREPAID_CARDS.UPDATED.STATUS.PRE_ACTIVATED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.PRE_ACTIVATED', PrepaidCard::class),
             'USERS.PREPAID_CARDS.UPDATED.STATUS.ACTIVATED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.ACTIVATED', PrepaidCard::class),
-            'USERS.PREPAID_CARDS.UPDATED.STATUS.DECLINED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.DECLINED', PrepaidCard::class),
-            'USERS.PREPAID_CARDS.UPDATED.STATUS.LOCKED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.LOCKED', PrepaidCard::class),
-            'USERS.PREPAID_CARDS.UPDATED.STATUS.SUSPENDED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.SUSPENDED', PrepaidCard::class),
-            'USERS.PREPAID_CARDS.UPDATED.STATUS.LOST_OR_STOLEN' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.LOST_OR_STOLEN', PrepaidCard::class),
-            'USERS.PREPAID_CARDS.UPDATED.STATUS.DE_ACTIVATED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.DE_ACTIVATED', PrepaidCard::class),
-            'USERS.PREPAID_CARDS.UPDATED.STATUS.COMPLIANCE_HOLD' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.COMPLIANCE_HOLD', PrepaidCard::class),
-            'USERS.PREPAID_CARDS.UPDATED.STATUS.KYC_HOLD' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.KYC_HOLD', PrepaidCard::class),
+            'USERS.PREPAID_CARDS.UPDATED.STATUS.ADDED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.ADDED', PrepaidCard::class),
+            'USERS.PREPAID_CARDS.UPDATED.STATUS.APPROVED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.APPROVED', PrepaidCard::class),
+            'USERS.PREPAID_CARDS.UPDATED.STATUS.FUNDED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.FUNDED, PrepaidCard::class),
+            'USERS.PREPAID_CARDS.UPDATED.STATUS.ANY_KINDA' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.ANY_KINDA', PrepaidCard::class),
+            'USERS.PREPAID_CARDS.UPDATED.STATUS.ACTIVATED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.ACTIVATED', PrepaidCard::class),
+            'USERS.PREPAID_CARDS.UPDATED.STATUS.ONE_CARD_PER_PERSON' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.ONE_CARD_PER_PERSON', PrepaidCard::class),
+            'USERS.PREPAID_CARDS.UPDATED.STATUS.GOOD' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.GOOD', PrepaidCard::class),
 
             'PAYMENTS.CREATED' => array('PAYMENTS.CREATED', Payment::class),
 
-            'TEST' => array('TEST', null),
+            'TEST' => array('TEST', POST),
         );
     }
 
