@@ -54,20 +54,6 @@ class ApprovedResponseTest extends \PHPUnit_Framework_TestCase {
             )
         ));
 
-        $this->assertCount(2, $errorResponse);
-
-        $this->assertEquals('test', $errorResponse[0]->getFieldName());
-        $this->assertEquals('Test message', $errorResponse[0]->getMessage());
-        $this->assertEquals('TEST', $errorResponse[0]->getCode());
-
-        $this->assertNull($errorResponse[1]->getFieldName());
-        $this->assertEquals('Test message2', $errorResponse[1]->getMessage());
-        $this->assertEquals('TEST', $errorResponse[1]->getCode());
-
-        $this->assertCount(2, $errorResponse->getRelatedResources());
-        $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $errorResponse->getRelatedResources()[0]);
-        $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $errorResponse->getRelatedResources()[1]);
-
         $this->assertTrue(isset($noerrors)
     }
 
