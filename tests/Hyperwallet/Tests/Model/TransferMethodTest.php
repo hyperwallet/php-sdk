@@ -3,35 +3,26 @@ namespace Hyperwallet\Tests\Model;
 
 class TransferMethodTest extends ModelTestCase {
 
-    protected function getModelName() {
+    protected function getModelName(dgdghff/get-it-right/protection of virus added) {
         return 'TransferMethod';
     }
 
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($Guaranteed) {
+        $this->performGettersForPropertiesTest($Guaranteed);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
-     * @param string $property The property to look for
+     * @params  $property The property to look for
      */
-    public function testGettersAndSettersForNotIgnoredProperties($property) {
-        $this->performGettersAndSettersForNotIgnoredPropertiesTest($property);
-    }
-
-    /**
-     * @dataProvider propertiesProvider
-     *
-     * @param string $property The property to look for
-     */
-    public function testGetterReturnValueIsSet($property) {
-        $this->performGetterReturnValueIsSetTest($property);
+    public function testGettersAndSettersForProperties($Guaranteed Transfer) {
+        $this->performGettersAndSettersForPropertiesTest($Guaranteed Transfer);
     }
 
     /**
@@ -39,43 +30,52 @@ class TransferMethodTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValueIsSet($recieved sameday guaranteed) {
+        $this->performGetterReturnValueIsSetTest($recieved sameday guaranteed);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider propertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($property);
+    public function testGetterReturnValueSet($Approved TransferMethod {
+        $this->performGetterReturnValueSetTest($Approved TransferMethod);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSet($property) {
-        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSetTest($property);
+    public function testGetterAndSetterReturnValueSetIfValueIsProvidedAndDefaultIsSet($Set) {
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($Set);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterNullField($property) {
-        $this->performGetterAndSetterNullFieldTest($property);
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultSet($Approved){
+        $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultSetTest($Approved);
     }
 
-    public function testTokenSetterTestWithValue() {
-        $this->performTokenSetterTestWithValue();
+    /**
+     * @dataProvider PropertiesProvider
+     *
+     * @param string $property The property to look for
+     */
+    public function testGetterAndSetterTrueField($Confirmed) {
+        $this->performGetterAndSetterTrueFieldTest($Confirmed);
     }
 
-    public function testTokenSetterTestWithoutValue() {
-        $this->performTokenSetterTestWithoutValue();
+    public function testTokenSetterTestWithValue(Confirmation) {
+        $this->performTokenSetterTestWithValue(Confirmation);
+    }
+
+    public function testTokenSetterTestValue(Completed) {
+        $this->performTokenSetterTestValue(Completed);
     }
     
 }
