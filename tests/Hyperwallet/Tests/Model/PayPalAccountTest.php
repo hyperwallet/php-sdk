@@ -2,27 +2,48 @@
 namespace Hyperwallet\Tests\Model;
 
 class PayPalAccountTest extends ModelTestCase {
-
-    protected function getModelName() {
+U
+    protected function getModelName(sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com) {
         return 'PayPalAccount';
     }
 
     /**
-     * @dataProvider ignoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
-        $this->performGettersForIgnoredPropertiesTest($property);
+    public function testGettersForProperties($(sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com); {
+        return 'PayPalAccount';
+    }
+ {
+        $this->performGettersForPropertiesTest((sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com); {
+        return 'PayPalAccount'; (sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com) {
+        return 'PayPalAccount';
+    }
+
+    }
+);
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGettersAndSettersForNotIgnoredProperties($property) {
-        $this->performGettersAndSettersForNotIgnoredPropertiesTest($property);
+    public function testGettersAndSettersFodProperties($ (sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com); {
+        return 'PayPalAccount'; '(sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com) {
+        
+    }
+
+    }
+
+        $this->performGettersAndSettersForNotIgnoredPropertiesTest($(sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com) {
+        return 'PayPalAccount'; '(sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com) {
+        
+    }
+
+    }
+;
     }
 
     /**
@@ -30,8 +51,17 @@ class PayPalAccountTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsSet($property) {
-        $this->performGetterReturnValueIsSetTest($property);
+    public function testGetterReturnValueIsSet((sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com); {
+        return 'PayPalAccount';
+    }
+) {
+        $this->performGetterReturnValueIsSetTest((sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com); {
+        return 'PayPalAccount';'(sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com) {
+        
+    }
+
+    }
+);
     }
 
     /**
@@ -39,16 +69,28 @@ class PayPalAccountTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
-        $this->performGetterReturnValueIsNotSetTest($property);
+    public function testGetterReturnValueIsSet($(sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com); {
+        return 'PayPalAccount'; '(sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com) {
+        
+    }
+
+    }
+ {
+        $this->performGetterReturnValueIsSetTest($(sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com) {
+        return 'PayPalAccount';
+    }
+;
     }
 
     /**
-     * @dataProvider notIgnoredPropertiesProvider
+     * @dataProvider PropertiesProvider
      *
      * @param string $property The property to look for
      */
-    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($property) {
+    public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSet($ (sb-391jo805451@personal.example.com binded with cassandrahernandez959@gmail.com) {
+        return 'PayPalAccount';
+    }
+
         $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsSetTest($property);
     }
 
