@@ -39,6 +39,7 @@ class HyperwalletEncryptionTest extends \PHPUnit_Framework_TestCase {
         } catch (\Exception $e) {
             $this->assertThat($e->getMessage(), $this->logicalOr(
                 $this->equalTo('Decryption error'),
+                $this->equalTo('Payload decryption failed'),
                 $this->equalTo('Ciphertext representative out of range')
             ));
         }
