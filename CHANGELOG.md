@@ -1,5 +1,8 @@
 ChangeLog
 =========
+2.1.1 
+-------------------
+- Added filter criteria 'limit' to bank accounts
 
 2.1.0 
 -------------------
