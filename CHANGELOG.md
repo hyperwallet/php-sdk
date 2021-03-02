@@ -1,5 +1,9 @@
 ChangeLog
 =========
+1.6.2
+-------------------
+Updated README file
+
 1.6.1
 -------------------
 Added custom headers
