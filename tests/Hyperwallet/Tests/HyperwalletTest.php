@@ -3816,10 +3816,14 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v3/webhook-notifications', array(), array('programToken' => 'test-program-token'))->thenReturn(array('count' => 1, 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v3/webhook-notifications', array(), array('programToken' => 'test-program-token',
+            'createdBefore' => 'test-created-before','createdAfter'=>'test-created-After', 'type'=>'test-type', 'sortBy'=>'test-sortBy',
+            'offset'=>'test-offset', 'limit'=>'test-limit'))->thenReturn(array('count' => 1, 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $webhookNotificationList = $client->listWebhookNotifications(array('programToken' => 'test-program-token'));
+        $webhookNotificationList = $client->listWebhookNotifications(array('programToken' => 'test-program-token',
+            'createdBefore' => 'test-created-before','createdAfter'=>'test-created-After', 'type'=>'test-type', 'sortBy'=>'test-sortBy',
+            'offset'=>'test-offset', 'limit'=>'test-limit'));
         $this->assertNotNull($webhookNotificationList);
         $this->assertCount(1, $webhookNotificationList);
         $this->assertEquals(1, $webhookNotificationList->getCount());
@@ -3827,7 +3831,9 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $webhookNotificationList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v3/webhook-notifications', array(), array('programToken' => 'test-program-token'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v3/webhook-notifications', array(), array('programToken' => 'test-program-token',
+            'createdBefore' => 'test-created-before','createdAfter'=>'test-created-After', 'type'=>'test-type', 'sortBy'=>'test-sortBy',
+            'offset'=>'test-offset', 'limit'=>'test-limit'));
     }
 
     public function testListWebhookNotifications_withInvalidFilter() {
