@@ -23,11 +23,11 @@ class ApiClient {
      *
      * @var string
      */
-    const VERSION = '1.6.2';
+    const VERSION = '1.6.3';
 
     /**
      * The Guzzle http client
-     * 
+     *
      * @var Client
      */
     private $client;

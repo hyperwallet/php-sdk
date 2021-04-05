@@ -2,7 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/hyperwallet/php-sdk/badge.svg?branch=master)](https://coveralls.io/github/hyperwallet/php-sdk?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/hyperwallet/sdk/version)](https://packagist.org/packages/hyperwallet/sdk)
 
-Hyperwallet REST SDK 1.6.2
+Hyperwallet REST SDK 1.6.3
 ===========================
 
 A library to manage users, transfer methods and payments through the Hyperwallet v3 API.
