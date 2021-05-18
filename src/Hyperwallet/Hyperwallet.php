@@ -215,7 +215,7 @@ class Hyperwallet {
     /**
      * Get authentication token
      *
-     * @param $userToken The user token
+     * @param string $userToken The user token
      * @return AuthenticationToken
      *
      * @throws HyperwalletApiException
