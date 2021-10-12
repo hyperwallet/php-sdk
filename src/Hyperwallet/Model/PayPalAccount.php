@@ -29,7 +29,7 @@ class PayPalAccount extends BaseModel {
     private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn');
 
     public static function FILTERS_ARRAY() {
-        return array('status');
+        return array('status', 'type', 'createdOn' , 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
     }
 
     /**

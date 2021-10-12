@@ -88,7 +88,7 @@ class BankAccount extends BaseModel {
     const PROFILE_TYPE_BUSINESS = 'BUSINESS';
 
     public static function FILTERS_ARRAY() {
-        return array('type','status','limit');
+        return array('type','status', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
     }
 
 

@@ -113,7 +113,7 @@ class User extends BaseModel implements IProgramAware {
     const GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD = 'NATIONAL_ID_CARD';
 
     public static function FILTERS_ARRAY() {
-        return array('clientUserId','email','programToken','status','verificationStatus');
+        return array('clientUserId','email','programToken','status','verificationStatus', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
     }
 
     /**
