@@ -29,7 +29,7 @@ class WebhookNotification extends BaseModel {
     private static $READ_ONLY_FIELDS = array('token', 'type', 'createdOn');
 
     public static function FILTERS_ARRAY() {
-        return array('programToken','createdBefore', 'createdAfter', 'type', 'sortBy', 'offset', 'limit');
+        return array('programToken', 'type', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
     }
 
     /**

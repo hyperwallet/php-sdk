@@ -47,7 +47,7 @@ class Transfer extends BaseModel {
     const STATUS_EXPIRED = 'EXPIRED';
 
     public static function FILTERS_ARRAY() {
-        return array('clientTransferId','sourceToken','destinationToken');
+        return array('clientTransferId','sourceToken','destinationToken', 'createdBefore', 'createdAfter', 'offset', 'limit');
     }
 
     /**
