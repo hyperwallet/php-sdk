@@ -34,7 +34,7 @@ namespace Hyperwallet\Model;
  * @property string $stateProvince The state or province
  * @property string $country The country
  * @property string $postalCode The postal code
- * @property array $documents The array of documents returned for document upload
+ * @property HyperwalletVerificationDocumentCollection $documents The array of documents returned for document upload
  *
  * @package Hyperwallet\Model
  */

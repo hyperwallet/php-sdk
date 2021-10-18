@@ -81,6 +81,34 @@ class Hyperwallet {
     }
 
     //--------------------------------------
+    // Helpers
+    //--------------------------------------
+
+    /**
+     * Modify body for nested formatting
+     *
+     * @param array $bodyResponse Body Response from request
+     * @return array
+     */
+    private function setDocumentAndReasonFromResponseHelper($bodyResponse) {
+        $documents = $bodyResponse->documents;
+        if ($documents) {
+            foreach ($documents as &$dVal) {
+                $reasons = $dVal->reasons;
+
+                foreach ($reasons as &$rVal) {
+                    $rVal = new HyperwalletVerificationDocumentReason($rVal);
+                }
+                $dVal->reasons = new HyperwalletVerificationDocumentReasonCollection(...$reasons);
+                $dVal = new HyperwalletVerificationDocument($dVal);
+            }
+            $bodyResponse->documents = new HyperwalletVerificationDocumentCollection($documents);
+        }
+        return $bodyResponse;
+    }
+
+
+    //--------------------------------------
     // Users
     //--------------------------------------
 
@@ -2171,6 +2199,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('userToken is required!');
         }
         $body = $this->client->putMultipartData('/rest/v4/users/{user-token}', array('user-token' => $userToken), $options);
+        $body = setDocumentAndReasonFromResponseHelper($body);
         return new User($body);
     }
 
@@ -2399,6 +2428,7 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('businessToken is required!');
         }
         $body = $this->client->putMultipartData('/rest/v4/users/{user-token}/business-stakeholders/{business-token}', array('user-token' => $userToken,'business-token' => $businessToken), $options);
+        $body = setDocumentAndReasonFromResponseHelper($body);
         return new BusinessStakeholder($body);
     }
 
