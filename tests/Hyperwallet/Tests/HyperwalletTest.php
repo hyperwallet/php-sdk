@@ -4088,7 +4088,8 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertNotNull($newUser);
         $this->assertNull($newUser->getProgramToken());
-        $this->assertEquals($this->UPLOAD_SUCCESS_DATA(), $newUser->getProperties());
+        $this->assertEquals($this->UPLOAD_SUCCESS_DATA()["documents"][0]["type"], $newUser->documents->documents[0]->type);
+
 
         // Validate mock
         \Phake::verify($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options);
@@ -4123,7 +4124,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $newUser = $client->uploadDocumentsForUser($userToken, $options);
         $this->assertNotNull($newUser);
         $this->assertNull($newUser->getProgramToken());
-        $this->assertEquals($this->UPLOAD_REASON_DATA(), $newUser->getProperties());
+        $this->assertEquals($this->UPLOAD_REASON_DATA()["documents"][0]["type"], $newUser->documents->documents[0]->type);
 
         // Validate mock
         \Phake::verify($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options);

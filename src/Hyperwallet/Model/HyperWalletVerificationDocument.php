@@ -160,7 +160,7 @@ class HyperwalletVerificationDocument extends BaseModel {
  *
  * @package Hyperwallet\Model
  */
-class HyperwalletVerificationDocumentCollection extends BaseModel implements IteratorAggregate {
+class HyperwalletVerificationDocumentCollection {
 
     public function __construct(HyperwalletVerificationDocument ...$documents) {
         $this->documents = $documents;

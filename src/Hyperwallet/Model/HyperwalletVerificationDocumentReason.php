@@ -67,7 +67,7 @@ class HyperwalletVerificationDocumentReason extends BaseModel {
  *
  * @package Hyperwallet\Model
  */
-class HyperwalletVerificationDocumentReasonCollection extends BaseModel implements IteratorAggregate {
+class HyperwalletVerificationDocumentReasonCollection {
 
     public function __construct(HyperwalletVerificationDocumentReason ...$reasons) {
         $this->reasons = $reasons;

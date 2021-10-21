@@ -12,6 +12,8 @@ use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
 use Hyperwallet\Model\HyperWalletVerificationDocument;
 use Hyperwallet\Model\HyperWalletVerificationDocumentReason;
+use Hyperwallet\Model\HyperWalletVerificationDocumentCollection;
+use Hyperwallet\Model\HyperWalletVerificationDocumentReasonCollection;
 use Hyperwallet\Model\IProgramAware;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
@@ -100,7 +102,6 @@ class Hyperwallet {
                     $dVal["reasons"] = new HyperwalletVerificationDocumentReasonCollection(...$reasons);
                 }
                 $dVal = new HyperwalletVerificationDocument($dVal);
-                // var_dump($dVal);
             }
             $bodyResponse["documents"] = new HyperwalletVerificationDocumentCollection(...$documents);
         }
@@ -2170,7 +2171,6 @@ class Hyperwallet {
         }
         $body = $this->client->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options);
         $body = $this->setDocumentAndReasonFromResponseHelper($body);
-        var_dump($body);
         return new User($body);
     }
 
