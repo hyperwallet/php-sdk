@@ -46,7 +46,7 @@ namespace Hyperwallet\Model;
  * @property string $language The user language
  * @property string $programToken The users program token
  * @property string $verificationStatus The status of user verification
- * @property array $documents The array of documents returned for document upload
+ * @property HyperwalletVerificationDocumentCollection $documents The array of documents of type HyperwalletVerificationDocument returned for document upload
  *
  * @package Hyperwallet\Model
  */

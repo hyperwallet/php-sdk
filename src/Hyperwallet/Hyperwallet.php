@@ -10,6 +10,8 @@ use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
+use Hyperwallet\Model\HyperWalletVerificationDocument;
+use Hyperwallet\Model\HyperWalletVerificationDocumentReason;
 use Hyperwallet\Model\IProgramAware;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
@@ -75,6 +77,34 @@ class Hyperwallet {
 
         $this->programToken = $programToken;
         $this->client = new ApiClient($username, $password, $server, $clientOptions, $encryptionData);
+    }
+    //--------------------------------------
+    // Helpers
+    //--------------------------------------
+
+    /**
+     * Modify body for nested formatting
+     *
+     * @param array $bodyResponse Body Response from request
+     * @return array
+     */
+    private function setDocumentAndReasonFromResponseHelper($bodyResponse) {
+        $documents = $bodyResponse["documents"];
+        if ($documents) {
+            foreach ($documents as &$dVal) {
+                $reasons = $dVal["reasons"];
+                if ($reasons) {
+                    foreach ($reasons as &$rVal) {
+                        $rVal = new HyperwalletVerificationDocumentReason($rVal);
+                    }
+                    $dVal["reasons"] = new HyperwalletVerificationDocumentReasonCollection(...$reasons);
+                }
+                $dVal = new HyperwalletVerificationDocument($dVal);
+                // var_dump($dVal);
+            }
+            $bodyResponse["documents"] = new HyperwalletVerificationDocumentCollection(...$documents);
+        }
+        return $bodyResponse;
     }
 
     //--------------------------------------
@@ -2139,6 +2169,8 @@ class Hyperwallet {
             throw new HyperwalletArgumentException('userToken is required!');
         }
         $body = $this->client->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options);
+        $body = $this->setDocumentAndReasonFromResponseHelper($body);
+        var_dump($body);
         return new User($body);
     }
 
