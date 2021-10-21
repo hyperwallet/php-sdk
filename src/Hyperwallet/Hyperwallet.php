@@ -12,6 +12,10 @@ use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
 use Hyperwallet\Model\BusinessStakeholder;
 use Hyperwallet\Model\BusinessStakeholderStatusTransition;
+use Hyperwallet\Model\HyperwalletVerificationDocument;
+use Hyperwallet\Model\HyperwalletVerificationDocumentReason;
+use Hyperwallet\Model\HyperwalletVerificationDocumentCollection;
+use Hyperwallet\Model\HyperwalletVerificationDocumentReasonCollection;
 use Hyperwallet\Model\IProgramAware;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\PaperCheckStatusTransition;
@@ -91,19 +95,19 @@ class Hyperwallet {
      * @return array
      */
     private function setDocumentAndReasonFromResponseHelper($bodyResponse) {
-        $documents = $bodyResponse->documents;
+        $documents = $bodyResponse["documents"];
         if ($documents) {
             foreach ($documents as &$dVal) {
-                $reasons = $dVal->reasons;
+                $reasons = $dVal["reasons"];
                 if ($reasons) {
                     foreach ($reasons as &$rVal) {
                         $rVal = new HyperwalletVerificationDocumentReason($rVal);
                     }
-                    $dVal->reasons = new HyperwalletVerificationDocumentReasonCollection(...$reasons);
+                    $dVal["reasons"] = new HyperwalletVerificationDocumentReasonCollection(...$reasons);
                 }
                 $dVal = new HyperwalletVerificationDocument($dVal);
             }
-            $bodyResponse->documents = new HyperwalletVerificationDocumentCollection($documents);
+            $bodyResponse["documents"] = new HyperwalletVerificationDocumentCollection(...$documents);
         }
         return $bodyResponse;
     }
