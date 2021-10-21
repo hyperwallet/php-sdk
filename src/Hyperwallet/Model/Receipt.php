@@ -31,7 +31,7 @@ class Receipt extends BaseModel {
     private static $READ_ONLY_FIELDS = array('journalId', 'type', 'createdOn', 'entry', 'sourceToken', 'destinationToken', 'amount', 'fee', 'currency', 'foreignExchangeRate', 'foreignExchangeCurrency', 'details');
 
     public static function FILTERS_ARRAY_USER() {
-        return array('currency', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
+        return array('createdBefore', 'createdAfter', 'sortBy', 'limit');
     }
 
     public static function FILTERS_ARRAY_PREPAID_CARD() {
@@ -39,7 +39,7 @@ class Receipt extends BaseModel {
     }
 
     public static function FILTERS_ARRAY_ACCOUNT() {
-        return array('currency', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
+        return array('currency', 'createdBefore', 'createdAfter', 'sortBy', 'limit');
     }
 
     const ENTRY_DEBIT = 'DEBIT';

@@ -21,15 +21,15 @@ class Balance extends BaseModel {
     private static $READ_ONLY_FIELDS = array('currency', 'amount');
 
     public static function FILTERS_ARRAY_USER() {
-        return array('currency', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
+        return array('currency', 'limit');
     }
 
     public static function FILTERS_ARRAY_PREPAID_CARD() {
-        return array('createdBefore', 'createdAfter');
+        return array('sortBy', 'limit');
     }
 
     public static function FILTERS_ARRAY_ACCOUNT() {
-        return array('currency', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
+        return array('currency', 'sortBy', 'limit');
     }
 
     /**

@@ -3183,10 +3183,10 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('createdBefore' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('sortBy' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $balanceList = $client->listBalancesForPrepaidCard('test-user-token', 'test-prepaid-card-token', array('createdBefore' => 'value'));
+        $balanceList = $client->listBalancesForPrepaidCard('test-user-token', 'test-prepaid-card-token', array('sortBy' => 'value'));
         $this->assertNotNull($balanceList);
         $this->assertCount(1, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
@@ -3196,7 +3196,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('createdBefore' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/balances', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('sortBy' => 'value'));
     }
 
     public function testListBalancesForPrepaidCard_withInvalidFilter() {
@@ -3937,10 +3937,10 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/receipts', array('user-token' => 'test-user-token'), array('currency' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/receipts', array('user-token' => 'test-user-token'), array('sortBy' => 'value'))->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array(array('success' => 'true'))));
 
         // Run test
-        $balanceList = $client->listReceiptsForUser('test-user-token', array('currency' => 'value'));
+        $balanceList = $client->listReceiptsForUser('test-user-token', array('sortBy' => 'value'));
         $this->assertNotNull($balanceList);
         $this->assertCount(1, $balanceList);
         $this->assertEquals(1, $balanceList->getLimit());
@@ -3952,7 +3952,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(array('success' => 'true'), $balanceList[0]->getProperties());
 
         // Validate mock
-        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/receipts', array('user-token' => 'test-user-token'), array('currency' => 'value'));
+        \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/receipts', array('user-token' => 'test-user-token'), array('sortBy' => 'value'));
     }
 
     public function testListReceiptsForUser_withInvalidFilter() {

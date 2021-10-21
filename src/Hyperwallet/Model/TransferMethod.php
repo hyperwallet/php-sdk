@@ -85,7 +85,7 @@ class TransferMethod extends BaseModel {
     private static $READ_ONLY_FIELDS = array('token', 'status', 'cardType', 'cardNumber', 'cardBrand', 'dateOfExpiry', 'createdOn');
 
     public static function FILTERS_ARRAY() {
-        return array('status', 'type', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
+        return array('status', 'type', 'createdBefore', 'createdAfter', 'sortBy', 'limit');
     }
 
     const TYPE_PREPAID_CARD = 'PREPAID_CARD';
