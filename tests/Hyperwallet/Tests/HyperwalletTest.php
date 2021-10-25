@@ -4082,7 +4082,6 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         );
         \Phake::when($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options)->thenReturn($this->UPLOAD_SUCCESS_DATA());
 
-        // var_dump($this->UPLOAD_SUCCESS_DATA());
         // Run test
         $newUser = $client->uploadDocumentsForUser($userToken, $options);
 
