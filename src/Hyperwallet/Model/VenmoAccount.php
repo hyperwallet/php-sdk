@@ -26,6 +26,10 @@ class VenmoAccount extends BaseModel {
      */
     private static $READ_ONLY_FIELDS = array('token', 'status', 'createdOn');
 
+    public static function FILTERS_ARRAY() {
+        return array('status', 'type', 'createdBefore', 'createdAfter', 'sortBy', 'limit');
+    }
+
     /**
      * Creates a instance of VenmoAccount
      *

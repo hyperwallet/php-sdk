@@ -27,7 +27,7 @@ abstract class StatusTransition extends BaseModel {
     protected static $READ_ONLY_FIELDS = array('token', 'createdOn', 'fromStatus', 'toStatus');
 
     public static function FILTERS_ARRAY() {
-        return array('transition');
+        return array('transition', 'createdBefore', 'createdAfter', 'sortBy', 'limit');
     }
 
     /**

@@ -47,7 +47,7 @@ class BankCard extends BaseModel {
     const CARD_BRAND_MASTERCARD = 'MASTERCARD';
 
     public static function FILTERS_ARRAY() {
-        return array('status');
+        return array('status', 'createdBefore', 'createdAfter', 'sortBy', 'limit');
     }
 
     /**

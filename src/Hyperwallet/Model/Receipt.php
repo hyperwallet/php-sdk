@@ -30,6 +30,18 @@ class Receipt extends BaseModel {
      */
     private static $READ_ONLY_FIELDS = array('journalId', 'type', 'createdOn', 'entry', 'sourceToken', 'destinationToken', 'amount', 'fee', 'currency', 'foreignExchangeRate', 'foreignExchangeCurrency', 'details');
 
+    public static function FILTERS_ARRAY_USER() {
+        return array('createdBefore', 'createdAfter', 'sortBy', 'limit');
+    }
+
+    public static function FILTERS_ARRAY_PREPAID_CARD() {
+        return array('createdBefore', 'createdAfter');
+    }
+
+    public static function FILTERS_ARRAY_ACCOUNT() {
+        return array('currency', 'createdBefore', 'createdAfter', 'sortBy', 'limit');
+    }
+
     const ENTRY_DEBIT = 'DEBIT';
     const ENTRY_CREDIT = 'CREDIT';
 

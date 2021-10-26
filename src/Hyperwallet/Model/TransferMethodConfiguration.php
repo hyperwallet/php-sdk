@@ -23,6 +23,10 @@ class TransferMethodConfiguration extends BaseModel {
      */
     private static $READ_ONLY_FIELDS = array('countries', 'currencies', 'type', 'profileType', 'fields');
 
+    public static function FILTERS_ARRAY() {
+        return array('userToken', 'limit');
+    }
+
     /**
      * Creates a instance of TransferMethodConfiguration
      *
