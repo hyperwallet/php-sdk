@@ -35,7 +35,7 @@ class Payment extends BaseModel implements IProgramAware {
     private static $READ_ONLY_FIELDS = array('token', 'createdOn');
 
     public static function FILTERS_ARRAY() {
-        return array('clientPaymentId','releaseOn');
+        return array('clientPaymentId', 'currency', 'memo', 'releaseDate', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
     }
 
     /**
