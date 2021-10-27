@@ -49,7 +49,7 @@ namespace Hyperwallet\Model;
  * @property string $language The user language
  * @property string $programToken The users program token
  * @property string $timeZone The users program token
- * @property array $documents The array of documents returned for document upload
+ * @property HyperwalletVerificationDocumentCollection $documents The array of documents of type HyperwalletVerificationDocument returned for document upload
  * @property array $links The array of HATEOS links
  *
  * @package Hyperwallet\Model
