@@ -14,7 +14,7 @@ abstract class RejectReason {
 
 
 /**
- * Represents a V4 HyperwalletVerificationDocumentReason
+ * Represents a V3 HyperwalletVerificationDocumentReason
  *
  * @property RejectReason $name The reason for rejection
  * @property string $description The description of the rejection
@@ -61,7 +61,7 @@ class HyperwalletVerificationDocumentReason extends BaseModel {
 }
 
 /**
- * Represents a V4 HyperwalletVerificationDocumentReasonsCollection
+ * Represents a V3 HyperwalletVerificationDocumentReasonsCollection
  *
  * @property array $reasons The list of reasons
  *

@@ -2,7 +2,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V4 HyperwalletVerificationDocument
+ * Represents a V3 HyperwalletVerificationDocument
  *
  * @property string $category The category of the document
  * @property string $type The type of the document
@@ -61,17 +61,6 @@ class HyperwalletVerificationDocument extends BaseModel {
         return $this->category;
     }
 
-    // /**
-    //  * Set the document category
-    //  *
-    //  * @param string $category
-    //  * @return HyperwalletVerificationDocument
-    //  */
-    // public function setCategory($category) {
-    //     $this->category = $category;
-    //     return $this;
-    // }
-
     /**
      * Get the document type
      *
@@ -81,16 +70,6 @@ class HyperwalletVerificationDocument extends BaseModel {
         return $this->type;
     }
 
-    // /**
-    //  * Set the document type
-    //  *
-    //  * @param string $type
-    //  * @return HyperwalletVerificationDocument
-    //  */
-    // public function setType($type) {
-    //     $this->type = $type;
-    //     return $this;
-    // }
 
     /**
      * Get the country
@@ -101,60 +80,30 @@ class HyperwalletVerificationDocument extends BaseModel {
         return $this->country;
     }
 
-    // /**
-    //  * Set the country
-    //  *
-    //  * @param string $country
-    //  * @return HyperwalletVerificationDocument
-    //  */
-    // public function setCountry($country) {
-    //     $this->country = $country;
-    //     return $this;
-    // }
 
     /**
      * Get the document reasons
      *
      * @return HyperwalletVerificationDocumentReason $reasons
      */
-    public function getReasons($reasons) {
+    public function getReasons() {
         return $this->reasons;
     }
 
-    // /**
-    //  * Set the document reasons
-    //  *
-    //  * @param HyperwalletVerificationDocumentReason $reasons
-    //  * @return HyperwalletVerificationDocument
-    //  */
-    // public function setReasons($reasons) {
-    //     $this->reasons = $reasons;
-    //     return $this;
-    // }
 
     /**
      * Get the uploadFiles
      *
      * @return object $uploadFiles
      */
-    public function getUploadFiles($uploadFiles) {
+    public function getUploadFiles() {
         return $this->uploadFiles;
     }
 
-    // /**
-    //  * Set the uploadFiles
-    //  *
-    //  * @param object $uploadFiles
-    //  * @return HyperwalletVerificationDocument
-    //  */
-    // public function setUploadFiles($uploadFiles) {
-    //     $this->uploadFiles = $uploadFiles;
-    //     return $this;
-    // }
 }
 
 /**
- * Represents a V4 HyperwalletVerificationDocumentCollection
+ * Represents a V3 HyperwalletVerificationDocumentCollection
  *
  * @property array $documents The list of documents
  *
