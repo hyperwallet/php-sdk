@@ -4192,7 +4192,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertNotNull($newUser);
         $this->assertNull($newUser->getProgramToken());
         $this->assertEquals($this->UPLOAD_REASON_DATA()["documents"][0]["type"], $newUser->documents->documents[0]->type);
-
+        $this->assertEquals($this->UPLOAD_REASON_DATA()["documents"][0]["reasons"][0]["name"], $newUser->documents->documents[0]->reasons->reasons[0]->name);
         // Validate mock
         \Phake::verify($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options);
     }

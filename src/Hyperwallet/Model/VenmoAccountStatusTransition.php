@@ -4,7 +4,7 @@
 namespace Hyperwallet\Model;
 
 /**
- * Represents a V4 Venmo Account Status Transition
+ * Represents a V3 Venmo Account Status Transition
  *
  * @package Hyperwallet\Model
  */
