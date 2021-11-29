@@ -130,6 +130,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $apiClientMock = $this->createAndInjectApiClientMock($client);
         $user = new User(array('programToken' => 'test-program-token2'));
         $user->setVerificationStatus(User::VERIFICATION_STATUS_VERIFIED);
+        $user->setTaxVerificationStatus(User::TAX_VERIFICATION_STATUS_NOT_REQUIRED);
         $user->setBusinessStakeholderVerificationStatus(User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED);
         $user->setLetterOfAuthorizationStatus(User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED);
         $user->setGovernmentIdType(User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD);
@@ -138,6 +139,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $user->setTimeZone("test-time-zone");
 
         $expectedResponse = array('success' => 'true','verificationStatus'=>User::VERIFICATION_STATUS_VERIFIED,
+            'taxVerificationStatus'=>User::TAX_VERIFICATION_STATUS_NOT_REQUIRED,
             'businessStakeholderVerificationStatus'=>User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED,
             'letterOfAuthorizationStatus'=>User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED,
             'governmentIdType'=>User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD,
@@ -154,6 +156,7 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertNotNull($newUser);
         $this->assertEquals('test-program-token2', $user->getProgramToken());
         $this->assertEquals(array('success' => 'true','verificationStatus'=>User::VERIFICATION_STATUS_VERIFIED,
+            'taxVerificationStatus'=>User::TAX_VERIFICATION_STATUS_NOT_REQUIRED,
             'businessStakeholderVerificationStatus'=>User::BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED,
             'letterOfAuthorizationStatus'=>User::LETTER_OF_AUTHORIZATION_STATUS_VERIFIED,
             'governmentIdType'=>User::GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD,
