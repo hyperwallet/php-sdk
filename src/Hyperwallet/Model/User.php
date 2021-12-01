@@ -7,6 +7,7 @@ namespace Hyperwallet\Model;
  * @property string $token The user token
  * @property string $status The user status
  * @property string $verificationStatus The status of user verification
+ * @property string $taxVerificationStatus The status of tax verification
  * @property string $businessStakeholderVerificationStatus The status of Business Stakeholder verification
  * @property string $letterOfAuthorizationStatus The status of Letter of Authorization verification
  *
@@ -95,6 +96,11 @@ class User extends BaseModel implements IProgramAware {
     const VERIFICATION_STATUS_EXPIRED = 'EXPIRED';
     const VERIFICATION_STATUS_READY_FOR_REVIEW='READY_FOR_REVIEW';
 
+    const TAX_VERIFICATION_STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
+    const TAX_VERIFICATION_STATUS_REQUIRED = 'REQUIRED';
+    const TAX_VERIFICATION_STATUS_VERIFIED= 'VERIFIED';
+    const TAX_VERIFICATION_STATUS_UNDER_REVIEW = 'UNDER_REVIEW';
+
     const BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
     const BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_REQUIRED = 'REQUIRED';
     const BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_FAILED = 'FAILED';
@@ -113,7 +119,7 @@ class User extends BaseModel implements IProgramAware {
     const GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD = 'NATIONAL_ID_CARD';
 
     public static function FILTERS_ARRAY() {
-        return array('clientUserId','email','programToken','status','verificationStatus', 'createdBefore', 'createdAfter', 'sortBy', 'limit');
+        return array('clientUserId','email','programToken','status','verificationStatus', 'taxVerificationStatus', 'createdBefore', 'createdAfter', 'sortBy', 'limit');
     }
 
     /**
@@ -815,6 +821,26 @@ class User extends BaseModel implements IProgramAware {
      */
     public function setVerificationStatus($verificationStatus) {
         $this->verificationStatus = $verificationStatus;
+        return $this;
+    }
+
+    /**
+     * Get the tax verification status
+     *
+     * @return string
+     */
+    public function getTaxVerificationStatus() {
+        return $this->taxVerificationStatus;
+    }
+
+    /**
+     * Set the tax verification status
+     *
+     * @param string $taxVerificationStatus
+     * @return User
+     */
+    public function setTaxVerificationStatus($taxVerificationStatus) {
+        $this->taxVerificationStatus = $taxVerificationStatus;
         return $this;
     }
 
