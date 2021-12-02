@@ -46,6 +46,14 @@ class WebhookNotification extends BaseModel {
                 $this->object = new BankAccount($properties['object']);
             } else if (strpos($properties['type'], 'USERS.PREPAID_CARDS') === 0) {
                 $this->object = new PrepaidCard($properties['object']);
+            } else if (strpos($properties['type'], 'USERS.PAYPAL_ACCOUNTS') === 0) {
+                $this->object = new PayPalAccount($properties['object']);
+            } else if (strpos($properties['type'], 'USERS.VENMO_ACCOUNTS') === 0) {
+                $this->object = new VenmoAccount($properties['object']);
+            } else if (strpos($properties['type'], 'USERS.BANK_CARDS') === 0) {
+                $this->object = new BankCard($properties['object']);
+            } else if (strpos($properties['type'], 'USERS.PAPER_CHECKS') === 0) {
+                $this->object = new PaperCheck($properties['object']);
             } else if (strpos($properties['type'], 'USERS') === 0) {
                 $this->object = new User($properties['object']);
             } else if (strpos($properties['type'], 'PAYMENTS') === 0) {

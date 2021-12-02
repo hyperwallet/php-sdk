@@ -2,9 +2,13 @@
 namespace Hyperwallet\Tests\Model;
 
 use Hyperwallet\Model\BankAccount;
+use Hyperwallet\Model\BankCard;
+use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\Payment;
+use Hyperwallet\Model\PayPalAccount;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\User;
+use Hyperwallet\Model\VenmoAccount;
 use Hyperwallet\Model\WebhookNotification;
 
 class WebhookNotificationTest extends ModelTestCase {
@@ -93,6 +97,31 @@ class WebhookNotificationTest extends ModelTestCase {
             'USERS.PREPAID_CARDS.UPDATED.STATUS.DE_ACTIVATED' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.DE_ACTIVATED', PrepaidCard::class),
             'USERS.PREPAID_CARDS.UPDATED.STATUS.COMPLIANCE_HOLD' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.COMPLIANCE_HOLD', PrepaidCard::class),
             'USERS.PREPAID_CARDS.UPDATED.STATUS.KYC_HOLD' => array('USERS.PREPAID_CARDS.UPDATED.STATUS.KYC_HOLD', PrepaidCard::class),
+
+            'USERS.PAYPAL_ACCOUNTS.CREATED' => array('USERS.PAYPAL_ACCOUNTS.CREATED', PayPalAccount::class),
+            'USERS.PAYPAL_ACCOUNTS.UPDATED.STATUS.ACTIVATED' => array('USERS.PAYPAL_ACCOUNTS.UPDATED.STATUS.ACTIVATED', PayPalAccount::class),
+            'USERS.PAYPAL_ACCOUNTS.UPDATED.STATUS.DE_ACTIVATED' => array('USERS.PAYPAL_ACCOUNTS.UPDATED.STATUS.DE_ACTIVATED', PayPalAccount::class),
+            'USERS.PAYPAL_ACCOUNTS.UPDATED.STATUS.VERIFIED' => array('USERS.PAYPAL_ACCOUNTS.UPDATED.STATUS.VERIFIED', PayPalAccount::class),
+            'USERS.PAYPAL_ACCOUNTS.UPDATED.STATUS.INVALID' => array('USERS.PAYPAL_ACCOUNTS.UPDATED.STATUS.INVALID', PayPalAccount::class),
+
+            'USERS.VENMO_ACCOUNTS.CREATED' => array('USERS.VENMO_ACCOUNTS.CREATED', VenmoAccount::class),
+            'USERS.VENMO_ACCOUNTS.UPDATED.STATUS.ACTIVATED' => array('USERS.VENMO_ACCOUNTS.UPDATED.STATUS.ACTIVATED', VenmoAccount::class),
+            'USERS.VENMO_ACCOUNTS.UPDATED.STATUS.DE_ACTIVATED' => array('USERS.VENMO_ACCOUNTS.UPDATED.STATUS.DE_ACTIVATED', VenmoAccount::class),
+            'USERS.VENMO_ACCOUNTS.UPDATED.STATUS.VERIFIED' => array('USERS.VENMO_ACCOUNTS.UPDATED.STATUS.VERIFIED', VenmoAccount::class),
+            'USERS.VENMO_ACCOUNTS.UPDATED.STATUS.INVALID' => array('USERS.VENMO_ACCOUNTS.UPDATED.STATUS.INVALID', VenmoAccount::class),
+
+            'USERS.BANK_CARDS.CREATED' => array('USERS.BANK_CARDS.CREATED', BankCard::class),
+            'USERS.BANK_CARDS.UPDATED.STATUS.ACTIVATED' => array('USERS.BANK_CARDS.UPDATED.STATUS.ACTIVATED', BankCard::class),
+            'USERS.BANK_CARDS.UPDATED.STATUS.DE_ACTIVATED' => array('USERS.BANK_CARDS.UPDATED.STATUS.DE_ACTIVATED', BankCard::class),
+            'USERS.BANK_CARDS.UPDATED.STATUS.VERIFIED' => array('USERS.BANK_CARDS.UPDATED.STATUS.VERIFIED', BankCard::class),
+            'USERS.BANK_CARDS.UPDATED.STATUS.INVALID' => array('USERS.BANK_CARDS.UPDATED.STATUS.INVALID', BankCard::class),
+
+            'USERS.PAPER_CHECKS.CREATED' => array('USERS.PAPER_CHECKS.CREATED', PaperCheck::class),
+            'USERS.PAPER_CHECKS.UPDATED' => array('USERS.PAPER_CHECKS.UPDATED', PaperCheck::class),
+            'USERS.PAPER_CHECKS.UPDATED.STATUS.ACTIVATED' => array('USERS.PAPER_CHECKS.UPDATED.STATUS.ACTIVATED', PaperCheck::class),
+            'USERS.PAPER_CHECKS.UPDATED.STATUS.DE_ACTIVATED' => array('USERS.PAPER_CHECKS.UPDATED.STATUS.DE_ACTIVATED', PaperCheck::class),
+            'USERS.PAPER_CHECKS.UPDATED.STATUS.VERIFIED' => array('USERS.PAPER_CHECKS.UPDATED.STATUS.VERIFIED', PaperCheck::class),
+            'USERS.PAPER_CHECKS.UPDATED.STATUS.INVALID' => array('USERS.PAPER_CHECKS.UPDATED.STATUS.INVALID', PaperCheck::class),
 
             'PAYMENTS.CREATED' => array('PAYMENTS.CREATED', Payment::class),
 
