@@ -15,11 +15,9 @@ use Hyperwallet\Model\User;
 use Hyperwallet\Model\VenmoAccount;
 use Hyperwallet\Model\WebhookNotification;
 
-class WebhookNotificationTest extends ModelTestCase
-{
+class WebhookNotificationTest extends ModelTestCase {
 
-    protected function getModelName()
-    {
+    protected function getModelName() {
         return 'WebhookNotification';
     }
 
@@ -28,8 +26,7 @@ class WebhookNotificationTest extends ModelTestCase
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property)
-    {
+    public function testGettersForIgnoredProperties($property) {
         $this->performGettersForIgnoredPropertiesTest($property);
     }
 
@@ -38,8 +35,7 @@ class WebhookNotificationTest extends ModelTestCase
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsSet($property)
-    {
+    public function testGetterReturnValueIsSet($property) {
         $this->performGetterReturnValueIsSetTest($property);
     }
 
@@ -48,8 +44,7 @@ class WebhookNotificationTest extends ModelTestCase
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property)
-    {
+    public function testGetterReturnValueIsNotSet($property) {
         $this->performGetterReturnValueIsNotSetTest($property);
     }
 
@@ -60,8 +55,7 @@ class WebhookNotificationTest extends ModelTestCase
      * @param object $clazz The expected class type
      *
      */
-    public function testConstructorObjectConversion($type, $clazz)
-    {
+    public function testConstructorObjectConversion($type, $clazz) {
         $data = array(
             'type' => $type,
             'test2' => 'value2',
@@ -83,8 +77,7 @@ class WebhookNotificationTest extends ModelTestCase
         }
     }
 
-    public function notificationTypeProvider()
-    {
+    public function notificationTypeProvider() {
         return array(
             'USERS.CREATED' => array('USERS.CREATED', User::class),
             'USERS.UPDATED.STATUS.ACTIVATED' => array('USERS.UPDATED.STATUS.ACTIVATED', User::class),
