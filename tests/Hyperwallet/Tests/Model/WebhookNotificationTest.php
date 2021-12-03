@@ -1,19 +1,24 @@
 <?php
+
 namespace Hyperwallet\Tests\Model;
 
 use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankCard;
+use Hyperwallet\Model\BusinessStakeholder;
 use Hyperwallet\Model\PaperCheck;
 use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PayPalAccount;
 use Hyperwallet\Model\PrepaidCard;
+use Hyperwallet\Model\Transfer;
 use Hyperwallet\Model\User;
 use Hyperwallet\Model\VenmoAccount;
 use Hyperwallet\Model\WebhookNotification;
 
-class WebhookNotificationTest extends ModelTestCase {
+class WebhookNotificationTest extends ModelTestCase
+{
 
-    protected function getModelName() {
+    protected function getModelName()
+    {
         return 'WebhookNotification';
     }
 
@@ -22,7 +27,8 @@ class WebhookNotificationTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGettersForIgnoredProperties($property) {
+    public function testGettersForIgnoredProperties($property)
+    {
         $this->performGettersForIgnoredPropertiesTest($property);
     }
 
@@ -31,7 +37,8 @@ class WebhookNotificationTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsSet($property) {
+    public function testGetterReturnValueIsSet($property)
+    {
         $this->performGetterReturnValueIsSetTest($property);
     }
 
@@ -40,7 +47,8 @@ class WebhookNotificationTest extends ModelTestCase {
      *
      * @param string $property The property to look for
      */
-    public function testGetterReturnValueIsNotSet($property) {
+    public function testGetterReturnValueIsNotSet($property)
+    {
         $this->performGetterReturnValueIsNotSetTest($property);
     }
 
@@ -51,7 +59,8 @@ class WebhookNotificationTest extends ModelTestCase {
      * @param object $clazz The expected class type
      *
      */
-    public function testConstructorObjectConversion($type, $clazz) {
+    public function testConstructorObjectConversion($type, $clazz)
+    {
         $data = array(
             'type' => $type,
             'test2' => 'value2',
@@ -73,13 +82,21 @@ class WebhookNotificationTest extends ModelTestCase {
         }
     }
 
-    public function notificationTypeProvider() {
+    public function notificationTypeProvider()
+    {
         return array(
             'USERS.CREATED' => array('USERS.CREATED', User::class),
             'USERS.UPDATED.STATUS.ACTIVATED' => array('USERS.UPDATED.STATUS.ACTIVATED', User::class),
             'USERS.UPDATED.STATUS.LOCKED' => array('USERS.UPDATED.STATUS.LOCKED', User::class),
             'USERS.UPDATED.STATUS.FROZEN' => array('USERS.UPDATED.STATUS.FROZEN', User::class),
             'USERS.UPDATED.STATUS.DE_ACTIVATED' => array('USERS.UPDATED.STATUS.DE_ACTIVATED', User::class),
+
+            'USERS.BUSINESS_STAKEHOLDERS.UPDATED.VERIFICATION_STATUS.REQUIRED' => array('USERS.BUSINESS_STAKEHOLDERS.UPDATED.VERIFICATION_STATUS.REQUIRED', BusinessStakeholder::class),
+            'USERS.BUSINESS_STAKEHOLDERS.UPDATED.VERIFICATION_STATUS.UNDER_REVIEW' => array('USERS.BUSINESS_STAKEHOLDERS.UPDATED.VERIFICATION_STATUS.UNDER_REVIEW', BusinessStakeholder::class),
+            'USERS.BUSINESS_STAKEHOLDERS.UPDATED.VERIFICATION_STATUS.VERIFIED' => array('USERS.BUSINESS_STAKEHOLDERS.UPDATED.VERIFICATION_STATUS.VERIFIED', BusinessStakeholder::class),
+            'USERS.BUSINESS_STAKEHOLDERS.UPDATED.VERIFICATION_STATUS.NOT_REQUIRED' => array('USERS.BUSINESS_STAKEHOLDERS.UPDATED.VERIFICATION_STATUS.NOT_REQUIRED', BusinessStakeholder::class),
+            'USERS.BUSINESS_STAKEHOLDERS.CREATED' => array('USERS.BUSINESS_STAKEHOLDERS.CREATED', BusinessStakeholder::class),
+            'USERS.BUSINESS_STAKEHOLDERS.UPDATED.STATUS.DE_ACTIVATED' => array('USERS.BUSINESS_STAKEHOLDERS.UPDATED.STATUS.DE_ACTIVATED', BusinessStakeholder::class),
 
             'USERS.BANK_ACCOUNTS.CREATED' => array('USERS.BANK_ACCOUNTS.CREATED', BankAccount::class),
             'USERS.BANK_ACCOUNTS.UPDATED.STATUS.ACTIVATED' => array('USERS.BANK_ACCOUNTS.UPDATED.STATUS.ACTIVATED', BankAccount::class),
@@ -124,6 +141,16 @@ class WebhookNotificationTest extends ModelTestCase {
             'USERS.PAPER_CHECKS.UPDATED.STATUS.INVALID' => array('USERS.PAPER_CHECKS.UPDATED.STATUS.INVALID', PaperCheck::class),
 
             'PAYMENTS.CREATED' => array('PAYMENTS.CREATED', Payment::class),
+            'PAYMENTS.UPDATED.STATUS.SCHEDULED' => array('PAYMENTS.UPDATED.STATUS.SCHEDULED', Payment::class),
+            'PAYMENTS.UPDATED.STATUS.PENDING_ACCOUNT_ACTIVATION' => array('PAYMENTS.UPDATED.STATUS.PENDING_ACCOUNT_ACTIVATION', Payment::class),
+            'PAYMENTS.UPDATED.STATUS.PENDING_ID_VERIFICATION' => array('PAYMENTS.UPDATED.STATUS.PENDING_ID_VERIFICATION', Payment::class),
+            'PAYMENTS.UPDATED.STATUS.PENDING_TAX_VERIFICATION' => array('PAYMENTS.UPDATED.STATUS.PENDING_TAX_VERIFICATION', Payment::class),
+
+
+            'TRANSFERS.UPDATED.STATUS.SCHEDULED' => array('TRANSFERS.UPDATED.STATUS.SCHEDULED', Transfer::class),
+            'TRANSFERS.UPDATED.STATUS.IN_PROGRESS' => array('TRANSFERS.UPDATED.STATUS.IN_PROGRESS', Transfer::class),
+            'TRANSFERS.UPDATED.STATUS.COMPLETED' => array('TRANSFERS.UPDATED.STATUS.COMPLETED', Transfer::class),
+            'TRANSFERS.UPDATED.STATUS.FAILED' => array('TRANSFERS.UPDATED.STATUS.FAILED', Transfer::class),
 
             'TEST' => array('TEST', null),
         );

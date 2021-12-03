@@ -52,12 +52,16 @@ class WebhookNotification extends BaseModel {
                 $this->object = new VenmoAccount($properties['object']);
             } else if (strpos($properties['type'], 'USERS.BANK_CARDS') === 0) {
                 $this->object = new BankCard($properties['object']);
+            } else if (strpos($properties['type'], 'USERS.BUSINESS_STAKEHOLDERS') === 0) {
+                $this->object = new BusinessStakeholder($properties['object']);
             } else if (strpos($properties['type'], 'USERS.PAPER_CHECKS') === 0) {
                 $this->object = new PaperCheck($properties['object']);
             } else if (strpos($properties['type'], 'USERS') === 0) {
                 $this->object = new User($properties['object']);
             } else if (strpos($properties['type'], 'PAYMENTS') === 0) {
                 $this->object = new Payment($properties['object']);
+            } else if (strpos($properties['type'], 'TRANSFERS') === 0) {
+                $this->object = new Transfer($properties['object']);
             }
         }
     }
