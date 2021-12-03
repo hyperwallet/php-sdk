@@ -60,6 +60,8 @@ class WebhookNotification extends BaseModel {
                 $this->object = new User($properties['object']);
             } else if (strpos($properties['type'], 'PAYMENTS') === 0) {
                 $this->object = new Payment($properties['object']);
+            } else if (strpos($properties['type'], 'TRANSFERS.REFUND') === 0) {
+                $this->object = new TransferRefund($properties['object']);
             } else if (strpos($properties['type'], 'TRANSFERS') === 0) {
                 $this->object = new Transfer($properties['object']);
             }

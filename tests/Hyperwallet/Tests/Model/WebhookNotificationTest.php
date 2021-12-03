@@ -10,6 +10,7 @@ use Hyperwallet\Model\Payment;
 use Hyperwallet\Model\PayPalAccount;
 use Hyperwallet\Model\PrepaidCard;
 use Hyperwallet\Model\Transfer;
+use Hyperwallet\Model\TransferRefund;
 use Hyperwallet\Model\User;
 use Hyperwallet\Model\VenmoAccount;
 use Hyperwallet\Model\WebhookNotification;
@@ -151,6 +152,9 @@ class WebhookNotificationTest extends ModelTestCase
             'TRANSFERS.UPDATED.STATUS.IN_PROGRESS' => array('TRANSFERS.UPDATED.STATUS.IN_PROGRESS', Transfer::class),
             'TRANSFERS.UPDATED.STATUS.COMPLETED' => array('TRANSFERS.UPDATED.STATUS.COMPLETED', Transfer::class),
             'TRANSFERS.UPDATED.STATUS.FAILED' => array('TRANSFERS.UPDATED.STATUS.FAILED', Transfer::class),
+
+            'TRANSFERS.REFUND.CREATED' => array('TRANSFERS.REFUND.CREATED', TransferRefund::class),
+            'TRANSFERS.REFUND.UPDATED' => array('TRANSFERS.REFUND.UPDATED', TransferRefund::class),
 
             'TEST' => array('TEST', null),
         );
