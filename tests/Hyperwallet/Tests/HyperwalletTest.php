@@ -134,9 +134,9 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
 
         $newUser = $client->createUser($user);
         $this->assertNotNull($newUser);
-        $this->assertEquals($newUser->getTaxVerificationStatus(), User::TAX_VERIFICATION_STATUS_NOT_REQUIRED); 
 
         $this->assertEquals('test-program-token2', $user->getProgramToken());
+        $this->assertEquals($newUser->getTaxVerificationStatus(), User::TAX_VERIFICATION_STATUS_NOT_REQUIRED); 
         $this->assertEquals($userProperties, $newUser->getProperties());
 
         // Validate mock

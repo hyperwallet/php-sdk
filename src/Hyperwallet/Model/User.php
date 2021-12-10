@@ -6,8 +6,8 @@ namespace Hyperwallet\Model;
  *
  * @property string $token The user token
  * @property string $status The user status
+ * 
  * @property string $taxVerificationStatus The status of tax verification
-
  *
  * @property \DateTime $createdOn The user creation date
  *
