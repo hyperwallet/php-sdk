@@ -1,5 +1,12 @@
 ChangeLog
 =========
+2.2.0
+-------------------
+- Added missing webhook types
+- Added taxVerificationStatus to User class
+- Added reject reasons to document class
+- Updated filters for list endpoints
+
 2.1.1 
 -------------------
 - Added filter criteria 'limit' to bank accounts
