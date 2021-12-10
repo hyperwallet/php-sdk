@@ -125,17 +125,19 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
-        $user = new User(array('programToken' => 'test-program-token2'));
-
-        \Phake::when($apiClientMock)->doPost('/rest/v3/users', array(), $user, array())->thenReturn(array('success' => 'true'));
+        $userProperties = array('success' => 'true', 'programToken' => 'test-program-token2', 'taxVerificationStatus' => User::TAX_VERIFICATION_STATUS_NOT_REQUIRED);
+        $user = new User($userProperties);
+        \Phake::when($apiClientMock)->doPost('/rest/v3/users', array(), $user, array())->thenReturn($userProperties);
 
         // Run test
         $this->assertEquals('test-program-token2', $user->getProgramToken());
 
         $newUser = $client->createUser($user);
         $this->assertNotNull($newUser);
+        $this->assertEquals($newUser->getTaxVerificationStatus(), User::TAX_VERIFICATION_STATUS_NOT_REQUIRED); 
+
         $this->assertEquals('test-program-token2', $user->getProgramToken());
-        $this->assertEquals(array('success' => 'true'), $newUser->getProperties());
+        $this->assertEquals($userProperties, $newUser->getProperties());
 
         // Validate mock
         \Phake::verify($apiClientMock)->doPost('/rest/v3/users', array(), $user, array());
