@@ -1,11 +1,5 @@
 ChangeLog
 =========
-1.7.0
--------------------
-- Added taxVerificationStatus to User class
-- Added reject reasons to document class
-- Updated filters for list endpoints
-
 1.6.3
 -------------------
 Updated List webhook filters
