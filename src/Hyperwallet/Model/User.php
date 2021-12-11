@@ -6,6 +6,8 @@ namespace Hyperwallet\Model;
  *
  * @property string $token The user token
  * @property string $status The user status
+ * @property string $taxVerificationStatus The status of tax verification
+
  *
  * @property \DateTime $createdOn The user creation date
  *
@@ -89,8 +91,13 @@ class User extends BaseModel implements IProgramAware {
     const VERIFICATION_STATUS_READY_FOR_REVIEW='READY_FOR_REVIEW';
     const VERIFICATION_STATUS_FAILED='FAILED';
 
+    const TAX_VERIFICATION_STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
+    const TAX_VERIFICATION_STATUS_REQUIRED = 'REQUIRED';
+    const TAX_VERIFICATION_STATUS_VERIFIED= 'VERIFIED';
+    const TAX_VERIFICATION_STATUS_UNDER_REVIEW = 'UNDER_REVIEW';
+
     public static function FILTERS_ARRAY() {
-        return array('clientUserId','email','programToken','status','verificationStatus', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
+        return array('clientUserId','email','programToken','status','verificationStatus', 'taxVerificationStatus', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
     }
 
     /**
@@ -779,6 +786,26 @@ class User extends BaseModel implements IProgramAware {
      */
     public function setVerificationStatus($verificationStatus) {
         $this->verificationStatus = $verificationStatus;
+        return $this;
+    }
+
+    /**
+     * Get the tax verification status
+     *
+     * @return string
+     */
+    public function getTaxVerificationStatus() {
+        return $this->taxVerificationStatus;
+    }
+
+    /**
+     * Set the tax verification status
+     *
+     * @param string $taxVerificationStatus
+     * @return User
+     */
+    public function setTaxVerificationStatus($taxVerificationStatus) {
+        $this->taxVerificationStatus = $taxVerificationStatus;
         return $this;
     }
 
