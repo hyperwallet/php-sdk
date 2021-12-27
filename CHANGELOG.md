@@ -2,6 +2,7 @@ ChangeLog
 =========
 1.7.0
 -------------------
+- Added missing webhook types
 - Added reject reasons to document class
 - Added taxVerificationStatus to User class
 - Updated filters for list endpoints
