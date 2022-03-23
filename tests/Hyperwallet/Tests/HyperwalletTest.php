@@ -4081,6 +4081,26 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         );
     }
 
+    public static function UPLOAD_REASON_DATA_NO_REASON() {
+        return array(
+            'token' => 'tkn-12345',
+            "documents" => array( array(
+                "category" => "IDENTIFICATION",
+                "type" => "PASSPORT",
+                "country" => "ES",
+                "status" => "NEW",
+                "createdOn" => "2020-11-24T19:05:02"
+
+            ))
+        );
+    }
+
+    public static function UPLOAD_REASON_DATA_NO_DOC() {
+        return array(
+            'token' => 'tkn-12345',
+        );
+    }
+
     public function testuploadDocumentsForUser_withoutUserToken() {
         // Setup
         $client = new Hyperwallet('test-username', 'test-password');
@@ -4195,6 +4215,75 @@ class HyperwalletTest extends \PHPUnit_Framework_TestCase {
         $this->assertNull($newUser->getProgramToken());
         $this->assertEquals($this->UPLOAD_REASON_DATA()["documents"][0]["type"], $newUser->documents->documents[0]->type);
         $this->assertEquals($this->UPLOAD_REASON_DATA()["documents"][0]["reasons"][0]["name"], $newUser->documents->documents[0]->reasons->reasons[0]->name);
+        // Validate mock
+        \Phake::verify($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options);
+    }
+
+    public function testuploadDocumentsForUser_parseNoReasons() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $userToken = "user-token";
+
+        $options = array(
+            'multipart' => [
+                [
+                    'name'     => 'data',
+                    'contents' => '{"documents":[{"type":"DRIVERS_LICENSE","country":"AL","category":"IDENTIFICATION"}]}'
+                ],
+                [
+                    'name'     => 'drivers_license_front',
+                    'contents' => fopen(__DIR__ . "/../../resources/license-front.png", "r")
+                ],
+                [
+                    'name'     => 'drivers_license_back',
+                    'contents' => fopen(__DIR__ . "/../../resources/license-back.png", 'r')
+                ]
+            ]
+        );
+
+        \Phake::when($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options)->thenReturn($this->UPLOAD_REASON_DATA_NO_REASON());
+        // Run test
+        $newUser = $client->uploadDocumentsForUser($userToken, $options);
+        $this->assertNotNull($newUser);
+        $this->assertNull($newUser->getProgramToken());
+        $this->assertEquals($this->UPLOAD_REASON_DATA_NO_REASON()["documents"][0]["type"], $newUser->documents->documents[0]->type);
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options);
+    }
+
+    public function testuploadDocumentsForUser_parseNoDocument() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $userToken = "user-token";
+
+        $options = array(
+            'multipart' => [
+                [
+                    'name'     => 'data',
+                    'contents' => '{"documents":[{"type":"DRIVERS_LICENSE","country":"AL","category":"IDENTIFICATION"}]}'
+                ],
+                [
+                    'name'     => 'drivers_license_front',
+                    'contents' => fopen(__DIR__ . "/../../resources/license-front.png", "r")
+                ],
+                [
+                    'name'     => 'drivers_license_back',
+                    'contents' => fopen(__DIR__ . "/../../resources/license-back.png", 'r')
+                ]
+            ]
+        );
+
+        \Phake::when($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options)->thenReturn($this->UPLOAD_REASON_DATA_NO_DOC());
+
+        // Run test
+        $newUser = $client->uploadDocumentsForUser($userToken, $options);
+        $this->assertNotNull($newUser);
+        $this->assertNull($newUser->getProgramToken());
+        $this->assertEquals($this->UPLOAD_REASON_DATA_NO_DOC()["token"], $newUser->token);
+
         // Validate mock
         \Phake::verify($apiClientMock)->putMultipartData('/rest/v3/users/{user-token}', array('user-token' => $userToken), $options);
     }
