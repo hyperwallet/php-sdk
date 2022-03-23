@@ -95,11 +95,11 @@ class Hyperwallet {
      * @return array
      */
     private function setDocumentAndReasonFromResponseHelper($bodyResponse) {
-        $documents = $bodyResponse["documents"];
-        if ($documents) {
+        if (array_key_exists("documents", $bodyResponse)) {
+            $documents = $bodyResponse["documents"];
             foreach ($documents as &$dVal) {
-                $reasons = $dVal["reasons"];
-                if ($reasons) {
+                if (array_key_exists("reasons", $dVal)) {
+                    $reasons = $dVal["reasons"];
                     foreach ($reasons as &$rVal) {
                         $rVal = new HyperwalletVerificationDocumentReason($rVal);
                     }
