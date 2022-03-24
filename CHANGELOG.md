@@ -1,5 +1,9 @@
 ChangeLog
 =========
+1.7.1
+-------------------
+- Updated helper for formatting document response
+
 1.7.0
 -------------------
 - Added missing webhook types
