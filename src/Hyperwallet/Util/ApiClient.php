@@ -182,7 +182,8 @@ class ApiClient {
             )));
             throw new HyperwalletApiException($errorResponse, $e);
         } catch (BadResponseException $e) {
-            $body = \GuzzleHttp\json_decode($e->getResponse()->getBody(), true);
+            $body = $this->isEncrypted ? \GuzzleHttp\json_decode(\GuzzleHttp\json_encode($this->encryption->decrypt($e->getResponse()->getBody())), true) :
+                \GuzzleHttp\json_decode($e->getResponse()->getBody(), true);
             if (is_null($body) || !isset($body['errors']) || empty($body['errors'])) {
                 $body = array('errors' => array(
                     array(
