@@ -1,5 +1,9 @@
 ChangeLog
 =========
+2.2.2
+-------------------
+- Added Support for guzzle 7
+
 2.2.1
 -------------------
 - Updated helper for formatting document response
