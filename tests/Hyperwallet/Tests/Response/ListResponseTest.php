@@ -3,7 +3,7 @@ namespace Hyperwallet\Tests\Response;
 
 use Hyperwallet\Response\ListResponse;
 
-class ListResponseTest extends \PHPUnit_Framework_TestCase {
+class ListResponseTest extends \PHPUnit\Framework\TestCase {
 
     public function testBodyParsing_noContent() {
         $listResponse = new ListResponse(array(), function ($body) {

@@ -3,7 +3,7 @@ namespace Hyperwallet\Tests\Model;
 
 use Hyperwallet\Model\BaseModel;
 
-class BaseModelTest extends \PHPUnit_Framework_TestCase {
+class BaseModelTest extends \PHPUnit\Framework\TestCase {
 
     public function testMagicGetter() {
         $data = array(
