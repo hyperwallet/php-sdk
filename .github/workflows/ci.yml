@@ -16,9 +16,6 @@ on:
       - bugfix/**
 
 jobs:
-
-
-
   tests:
     name: Tests
     runs-on: ${{ matrix.operating-system }}
@@ -35,16 +32,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          coverage: xdebug
-
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('composer.json') }}
 
       - name: Validate composer.json and composer.lock
         run: composer validate
