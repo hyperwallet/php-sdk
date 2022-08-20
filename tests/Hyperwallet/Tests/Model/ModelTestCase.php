@@ -356,6 +356,5 @@ abstract class ModelTestCase extends \PHPUnit\Framework\TestCase {
     private static function toFunctionName($property, $prefix) {
         return $prefix . ucfirst($property);
     }
-
 }
 
