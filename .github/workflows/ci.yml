@@ -64,6 +64,7 @@ jobs:
       - name: Run test suite
         run: |
           php --version
+          ./vendor/bin/phpunit --version
           ./vendor/bin/phpunit -v
 
 #  build:
