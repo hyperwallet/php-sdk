@@ -16,24 +16,74 @@ on:
       - bugfix/**
 
 jobs:
-  build:
-    run:
-      runs-on: ${{ matrix.operating-system }}
-      strategy:
-        matrix:
-          operating-system: ['ubuntu-latest', 'windows-latest', 'macos-latest']
-          php-versions: ['7.4', '8.0', '8.1']
-          phpunit-versions: ['latest']
-          include:
-            - operating-system: 'ubuntu-latest'
-              php-versions: '7.2'
-              phpunit-versions: '8.5.21'
-      steps:
-        - name: Setup PHP
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: ${{ matrix.php-versions }}
-            extensions: mbstring, intl
-            ini-values: post_max_size=256M, max_execution_time=180
-            coverage: xdebug
-            tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
+  tests:
+    name: Tests
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        env:
+          - AUTOLOAD=0
+          - AUTOLOAD=1
+        php-version:
+          - "5.6"
+          - "7.0"
+          - "7.1"
+          - "7.2"
+          - "7.3"
+          - "7.4"
+          - "8.0"
+          - "8.1"
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: xdebug
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.json') }}
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run test suite
+        run: |
+          php --version
+          ./vendor/bin/phpunit -v
+
+#  build:
+#    run:
+#      runs-on: ${{ matrix.operating-system }}
+#      strategy:
+#        matrix:
+#          operating-system: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+#          php-versions: ['7.4', '8.0', '8.1']
+#          phpunit-versions: ['latest']
+#          include:
+#            - operating-system: 'ubuntu-latest'
+#              php-versions: '7.2'
+#              phpunit-versions: '8.5.21'
+#      steps:
+#        - name: Setup PHP
+#          uses: shivammathur/setup-php@v2
+#          with:
+#            php-version: ${{ matrix.php-versions }}
+#            extensions: mbstring, intl
+#            ini-values: post_max_size=256M, max_execution_time=180
+#            coverage: xdebug
+#            tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
