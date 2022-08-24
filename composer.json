@@ -32,7 +32,7 @@
     "psr-4": { "Hyperwallet\\Tests\\" : "tests/Hyperwallet/Tests", "ComposerScript\\" : "src/ComposerScript" }
   },
   "require-dev": {
-    "phpunit/phpunit": "^5.7 || ^9.0",
+    "phpunit/phpunit": "^5.7 || ^7.0.0 || ^9.0",
     "phake/phake": "^2.3 || ^4.2",
     "satooshi/php-coveralls": "^1.0"
   },
