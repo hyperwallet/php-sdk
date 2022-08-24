@@ -1,5 +1,9 @@
 ChangeLog
 =========
+1.7.3
+-------------------
+- Enhanced the code base to support PHP build from version 5.6 to 8.x
+
 1.7.2
 -------------------
 - Added Support for guzzle 7
