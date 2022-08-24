@@ -32,6 +32,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
+          coverage: xdebug
 
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -42,5 +43,9 @@ jobs:
       - name: Run test suite
         run: |
           php --version
-          ./vendor/bin/phpunit --version
           ./vendor/bin/phpunit -v
+
+      - name: Upload coverage results to Coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./vendor/bin/php-coveralls -v --exclude-no-stmt
