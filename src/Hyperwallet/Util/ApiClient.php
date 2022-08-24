@@ -7,8 +7,6 @@ use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Response\ErrorResponse;
-use Hyperwallet\Util\HyperwalletUriTemplate;
-use Hyperwallet\Util\HyperwalletUUID;
 
 /**
  * The internal API client
@@ -22,7 +20,7 @@ class ApiClient {
      *
      * @var string
      */
-    const VERSION = '2.2.1';
+    const VERSION = '2.2.3';
 
     /**
      * The Guzzle http client
@@ -225,18 +223,5 @@ class ApiClient {
      */
     public function putMultipartData($partialUrl, array $uriParams, array $options) {
         return $this->doRequest('PUT', $partialUrl, $uriParams, $options);
-    }
-
-    /**
-     * Builds the UriTemplate
-     * Helper method to support PHP 5.6.0 and Grizzle 6x and PHP 8.x and Grizzle 7.x
-     * @return \GuzzleHttp\UriTemplate|\GuzzleHttp\UriTemplate\UriTemplate
-     */
-    private function buildURITemplate() {
-        if (class_exists('GuzzleHttp\UriTemplate\UriTemplate')) {
-           return new \GuzzleHttp\UriTemplate\UriTemplate();
-        }
-
-        return new \GuzzleHttp\UriTemplate();
     }
 }
