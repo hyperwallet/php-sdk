@@ -4,7 +4,7 @@ namespace Hyperwallet\Tests\Util;
 use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Util\HyperwalletEncryption;
 
-class HyperwalletEncryptionTest extends \PHPUnit_Framework_TestCase {
+class HyperwalletEncryptionTest extends \PHPUnit\Framework\TestCase {
 
     public function testShouldSuccessfullyEncryptAndDecryptTextMessage() {
         // Setup data

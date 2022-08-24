@@ -170,8 +170,8 @@ class HyperwalletVerificationDocumentCollection {
         return $this->documents;
     }
    
-    public function getIterator() : ArrayIterator {
-        return new ArrayIterator($this->documents);
+    public function getIterator() {
+        return new \ArrayIterator($this->documents);
     }
    
 }

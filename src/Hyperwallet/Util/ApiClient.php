@@ -3,14 +3,10 @@ namespace Hyperwallet\Util;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\UriTemplate\UriTemplate;
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Response\ErrorResponse;
-use Hyperwallet\Util\HyperwalletEncryption;
-use Hyperwallet\Util\HyperwalletUUID;
-
 
 /**
  * The internal API client
@@ -24,7 +20,7 @@ class ApiClient {
      *
      * @var string
      */
-    const VERSION = '2.2.1';
+    const VERSION = '2.2.3';
 
     /**
      * The Guzzle http client
@@ -155,7 +151,7 @@ class ApiClient {
      */
     private function doRequest($method, $url, array $urlParams, array $options) {
         try {
-            $uri = new UriTemplate();
+            $uri = new HyperwalletUriTemplate();
             if (!isset($options['headers'])) {
                 $options[] = array('headers' => array());
             }

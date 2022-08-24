@@ -31,7 +31,7 @@ class HyperwalletApiException extends HyperwalletException {
      */
     public function __construct(ErrorResponse $errorResponse, \Exception $previous) {
         $message = $errorResponse[0] == null ? "Error message is not defined" : $errorResponse[0]->getMessage();
-        parent::__construct($message, null, $previous);
+        parent::__construct($message, 0, $previous);
 
         $this->errorResponse = $errorResponse;
         $this->relatedResources = $errorResponse[0] == null ? array() : $errorResponse[0]->getRelatedResources();
