@@ -77,8 +77,8 @@ class HyperwalletVerificationDocumentReasonCollection {
         return $this->reasons;
     }
    
-    public function getIterator() : ArrayIterator {
-        return new ArrayIterator($this->reasons);
+    public function getIterator() {
+        return new \ArrayIterator($this->reasons);
     }
    
 }
