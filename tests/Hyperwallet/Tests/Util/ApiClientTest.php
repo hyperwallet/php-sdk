@@ -13,7 +13,7 @@ use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Util\ApiClient;
 use Hyperwallet\Util\HyperwalletEncryption;
 
-class ApiClientTest extends \PHPUnit_Framework_TestCase {
+class ApiClientTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @var array

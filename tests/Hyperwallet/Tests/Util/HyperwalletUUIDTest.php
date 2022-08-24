@@ -4,7 +4,7 @@ namespace Hyperwallet\Tests\Util;
 use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Util\HyperwalletUUID;
 
-class HyperwalletUUIDTest extends \PHPUnit_Framework_TestCase {
+class HyperwalletUUIDTest extends \PHPUnit\Framework\TestCase {
 
     public function testShouldSuccessfullyGenerateRandomUUIDs() {
         // Setup data
