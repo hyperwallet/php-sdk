@@ -1,22 +1,7 @@
 <?php
 namespace Hyperwallet\Util;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\BadResponseException;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\UriTemplate\UriTemplate;
-use Hyperwallet\Exception\HyperwalletApiException;
+
 use Hyperwallet\Exception\HyperwalletException;
-use Hyperwallet\Model\BaseModel;
-use Hyperwallet\Response\ErrorResponse;
-use Composer\Autoload\ClassLoader;
-use phpseclib\Crypt\RSA;
-use phpseclib\Math\BigInteger;
-use phpseclib\Crypt\Hash;
-use JOSE_URLSafeBase64;
-use JOSE_JWS;
-use JOSE_JWE;
-use JOSE_JWK;
-use JOSE_JWT;
 
 /**
  * The encryption service for Hyperwallet client's requests/responses
