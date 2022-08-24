@@ -3,14 +3,12 @@ namespace Hyperwallet\Util;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\UriTemplate\UriTemplate;
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Response\ErrorResponse;
-use Hyperwallet\Util\HyperwalletEncryption;
+use Hyperwallet\Util\HyperwalletUriTemplate;
 use Hyperwallet\Util\HyperwalletUUID;
-
 
 /**
  * The internal API client
@@ -155,7 +153,7 @@ class ApiClient {
      */
     private function doRequest($method, $url, array $urlParams, array $options) {
         try {
-            $uri = new UriTemplate();
+            $uri = new HyperwalletUriTemplate();
             if (!isset($options['headers'])) {
                 $options[] = array('headers' => array());
             }
@@ -227,5 +225,18 @@ class ApiClient {
      */
     public function putMultipartData($partialUrl, array $uriParams, array $options) {
         return $this->doRequest('PUT', $partialUrl, $uriParams, $options);
+    }
+
+    /**
+     * Builds the UriTemplate
+     * Helper method to support PHP 5.6.0 and Grizzle 6x and PHP 8.x and Grizzle 7.x
+     * @return \GuzzleHttp\UriTemplate|\GuzzleHttp\UriTemplate\UriTemplate
+     */
+    private function buildURITemplate() {
+        if (class_exists('GuzzleHttp\UriTemplate\UriTemplate')) {
+           return new \GuzzleHttp\UriTemplate\UriTemplate();
+        }
+
+        return new \GuzzleHttp\UriTemplate();
     }
 }
