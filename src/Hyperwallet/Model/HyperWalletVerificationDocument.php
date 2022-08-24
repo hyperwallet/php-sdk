@@ -14,7 +14,7 @@ namespace Hyperwallet\Model;
  *
  * @package Hyperwallet\Model
  */
-class HyperwalletVerificationDocument extends BaseModel {
+class HyperWalletVerificationDocument extends BaseModel {
 
     /**
      * @internal
@@ -111,7 +111,7 @@ class HyperwalletVerificationDocument extends BaseModel {
  */
 class HyperwalletVerificationDocumentCollection {
 
-    public function __construct(HyperwalletVerificationDocument ...$documents) {
+    public function __construct(HyperWalletVerificationDocument ...$documents) {
         $this->documents = $documents;
     }
 
