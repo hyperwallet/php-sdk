@@ -31,7 +31,7 @@ use Hyperwallet\Model\VenmoAccountStatusTransition;
 use Hyperwallet\Response\ErrorResponse;
 use Hyperwallet\Util\ApiClient;
 
-class HyperwalletTest extends \PHPUnit_Framework_TestCase {
+class HyperwalletTest extends \PHPUnit\Framework\TestCase {
 
     public function testConstructor_throwErrorIfUsernameIsEmpty() {
         try {

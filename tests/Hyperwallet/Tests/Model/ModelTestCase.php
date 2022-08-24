@@ -1,7 +1,7 @@
 <?php
 namespace Hyperwallet\Tests\Model;
 
-abstract class ModelTestCase extends \PHPUnit_Framework_TestCase {
+abstract class ModelTestCase extends \PHPUnit\Framework\TestCase {
 
     /**
      * @var \ReflectionClass
@@ -25,8 +25,9 @@ abstract class ModelTestCase extends \PHPUnit_Framework_TestCase {
 
     protected abstract function getModelName();
 
-    public function setUp() {
-        parent::setUp();
+    public function __construct($name = null, array $data = [], $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
         $this->init();
     }
 

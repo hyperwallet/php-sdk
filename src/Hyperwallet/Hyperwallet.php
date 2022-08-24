@@ -10,7 +10,7 @@ use Hyperwallet\Model\BankAccount;
 use Hyperwallet\Model\BankAccountStatusTransition;
 use Hyperwallet\Model\BankCard;
 use Hyperwallet\Model\BankCardStatusTransition;
-use Hyperwallet\Model\HyperwalletVerificationDocument;
+use Hyperwallet\Model\HyperWalletVerificationDocument;
 use Hyperwallet\Model\HyperwalletVerificationDocumentReason;
 use Hyperwallet\Model\HyperwalletVerificationDocumentCollection;
 use Hyperwallet\Model\HyperwalletVerificationDocumentReasonCollection;
@@ -101,7 +101,7 @@ class Hyperwallet {
                     }
                     $dVal["reasons"] = new HyperwalletVerificationDocumentReasonCollection(...$reasons);
                 }
-                $dVal = new HyperwalletVerificationDocument($dVal);
+                $dVal = new HyperWalletVerificationDocument($dVal);
             }
             $bodyResponse["documents"] = new HyperwalletVerificationDocumentCollection(...$documents);
         }

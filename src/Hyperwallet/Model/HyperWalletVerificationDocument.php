@@ -14,7 +14,7 @@ namespace Hyperwallet\Model;
  *
  * @package Hyperwallet\Model
  */
-class HyperwalletVerificationDocument extends BaseModel {
+class HyperWalletVerificationDocument extends BaseModel {
 
     /**
      * @internal
@@ -111,7 +111,7 @@ class HyperwalletVerificationDocument extends BaseModel {
  */
 class HyperwalletVerificationDocumentCollection {
 
-    public function __construct(HyperwalletVerificationDocument ...$documents) {
+    public function __construct(HyperWalletVerificationDocument ...$documents) {
         $this->documents = $documents;
     }
 
@@ -119,8 +119,8 @@ class HyperwalletVerificationDocumentCollection {
         return $this->documents;
     }
    
-    public function getIterator() : ArrayIterator {
-        return new ArrayIterator($this->documents);
+    public function getIterator() {
+        return new \ArrayIterator($this->documents);
     }
    
 }
