@@ -51,7 +51,7 @@ jobs:
       #evaluate the code
       - name: Run static analysis tool
         run: |
-          vendor/bin/phpstan analyse -l 2 src/Hyperwallet tests
+          vendor/bin/phpstan analyse -l 1 src/Hyperwallet tests
 
   tests:
     name: Tests
