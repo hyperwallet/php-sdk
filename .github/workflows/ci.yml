@@ -16,7 +16,7 @@ on:
       - bugfix/**
 
 jobs:
-  static-analisis:
+  static-analysis:
     name: Static-analysis
     runs-on: ${{ matrix.operating-system }}
     strategy:
@@ -55,6 +55,7 @@ jobs:
 
   tests:
     name: Tests
+    needs: [static-analysis]
     runs-on: ${{ matrix.operating-system }}
     strategy:
       fail-fast: false
@@ -85,6 +86,7 @@ jobs:
 
   code-coverage:
     name: Report code coverage
+    needs: [tests]
     runs-on: ${{ matrix.operating-system }}
     strategy:
       fail-fast: false
