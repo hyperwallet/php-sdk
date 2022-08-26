@@ -40,7 +40,7 @@ class ErrorResponse implements \Countable, \ArrayAccess {
     public function __construct($statusCode, array $errors) {
         $this->statusCode = $statusCode;
         $this->errors = array_map(function ($error) {
-            if (!isset($relatedResources) && isset($error['relatedResources'])) {
+            if (!isset($this->relatedResources) && isset($error['relatedResources'])) {
                 $this->relatedResources = $error['relatedResources'];
             }
             return new Error($error);
@@ -84,7 +84,11 @@ class ErrorResponse implements \Countable, \ArrayAccess {
      * <p>
      * The return value is cast to an integer.
      * @since 5.1.0
+     *
+     * Note: Temporarily suppress the required return type, to keep compatibility with PHP 5.6
+     * the #[\ReturnTypeWillChange] must be removed once 5.6
      */
+    #[\ReturnTypeWillChange]
     public function count() {
         return count($this->errors);
     }
@@ -102,7 +106,11 @@ class ErrorResponse implements \Countable, \ArrayAccess {
      * <p>
      * The return value will be casted to boolean if non-boolean was returned.
      * @since 5.0.0
+     *
+     * Note: Temporarily suppress the required return type, to keep compatibility with PHP 5.6
+     * the #[\ReturnTypeWillChange] must be removed once 5.6
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset) {
         return isset($this->errors[$offset]);
     }
@@ -117,7 +125,11 @@ class ErrorResponse implements \Countable, \ArrayAccess {
      * </p>
      * @return mixed Can return all value types.
      * @since 5.0.0
+     *
+     * Note: Temporarily suppress the required return type, to keep compatibility with PHP 5.6
+     * the #[\ReturnTypeWillChange] must be removed once 5.6
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset) {
         return $this->errors[$offset];
     }
@@ -135,7 +147,11 @@ class ErrorResponse implements \Countable, \ArrayAccess {
      * </p>
      * @return void
      * @since 5.0.0
+     *
+     * Note: Temporarily suppress the required return type, to keep compatibility with PHP 5.6
+     * the #[\ReturnTypeWillChange] must be removed once 5.6
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value) {
         $this->errors[$offset] = $value;
     }
@@ -150,9 +166,12 @@ class ErrorResponse implements \Countable, \ArrayAccess {
      * </p>
      * @return void
      * @since 5.0.0
+     *
+     * Note: Temporarily suppress the required return type, to keep compatibility with PHP 5.6
+     * the #[\ReturnTypeWillChange] must be removed once 5.6
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset) {
         unset($this->errors[$offset]);
     }
-
 }

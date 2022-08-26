@@ -705,7 +705,7 @@ class HyperwalletTest extends \PHPUnit\Framework\TestCase {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         $apiClientMock = $this->createAndInjectApiClientMock($client);
 
-        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
+        \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}/paper-checks', array('user-token' => 'test-user-token'), array())->thenReturn(array('limit' => 1,'hasNextPage' => false ,'hasPreviousPage' => false,'links' => 'links', 'data' => array()));
 
         // Run test
         $paperCheckList = $client->listPaperChecks('test-user-token');
@@ -4233,6 +4233,7 @@ class HyperwalletTest extends \PHPUnit\Framework\TestCase {
         \Phake::when($apiClientMock)->doPut('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), $user, array())->thenReturn(array("status"=> User::STATUS_PRE_ACTIVATED, 'verificationStatus'=> User::VERIFICATION_STATUS_REQUIRED));
         \Phake::when($apiClientMock)->doGet('/rest/v4/users/{user-token}', array('user-token' => 'test-user-token'), array())->thenReturn(array("status"=> User::STATUS_PRE_ACTIVATED, 'verificationStatus'=> User::VERIFICATION_STATUS_REQUIRED));
 
+        $responseUser = null;
         // Run test
         try {
             $responseUser = $client->updateVerificationStatus('test-user-token', User::VERIFICATION_STATUS_REQUESTED);
@@ -5112,6 +5113,7 @@ class HyperwalletTest extends \PHPUnit\Framework\TestCase {
             $uriParams, $queryParams)->thenReturn(array('token' => $refundToken));
 
         // Run test
+        $transferRefund = null;
         try {
             $transferRefund = $client->getTransferRefund($transferToken, $refundToken);
         } catch (HyperwalletArgumentException $e) {

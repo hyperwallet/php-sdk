@@ -87,7 +87,7 @@ class ListResponse implements \Countable , \ArrayAccess{
     /**
      * Get the Total number of Model's
      *
-     * @var int
+     * @return int
      */
     public function getLimit() {
         return $this->limit;
@@ -96,7 +96,7 @@ class ListResponse implements \Countable , \ArrayAccess{
     /**
      * Get Has Next Page of Model's
      *
-     * @var boolean
+     * @return boolean
      */
     public function getHasNextPage() {
         return $this->hasNextPage;
@@ -105,7 +105,7 @@ class ListResponse implements \Countable , \ArrayAccess{
     /**
      * Get Has Previous Page of Model's
      *
-     * @var boolean
+     * @return boolean
      */
     public function getHasPreviousPage() {
         return $this->hasPreviousPage;
@@ -122,7 +122,11 @@ class ListResponse implements \Countable , \ArrayAccess{
      * <p>
      * The return value is cast to an integer.
      * @since 5.1.0
+     *
+     * Note: Temporarily suppress the required return type, to keep compatibility with PHP 5.6
+     * the #[\ReturnTypeWillChange] must be removed once 5.6
      */
+    #[\ReturnTypeWillChange]
     public function count() {
         return count($this->data);
     }
@@ -139,7 +143,11 @@ class ListResponse implements \Countable , \ArrayAccess{
      * <p>
      * The return value will be casted to boolean if non-boolean was returned.
      * @since 5.0.0
+     *
+     * Note: Temporarily suppress the required return type, to keep compatibility with PHP 5.6
+     * the #[\ReturnTypeWillChange] must be removed once 5.6
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset) {
         return isset($this->data[$offset]);
     }
@@ -154,7 +162,11 @@ class ListResponse implements \Countable , \ArrayAccess{
      * </p>
      * @return mixed Can return all value types.
      * @since 5.0.0
+     *
+     * Note: Temporarily suppress the required return type, to keep compatibility with PHP 5.6
+     * the #[\ReturnTypeWillChange] must be removed once 5.6
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset) {
         return $this->data[$offset];
     }
@@ -172,7 +184,11 @@ class ListResponse implements \Countable , \ArrayAccess{
      * </p>
      * @return void
      * @since 5.0.0
+     *
+     * Note: Temporarily suppress the required return type, to keep compatibility with PHP 5.6
+     * the #[\ReturnTypeWillChange] must be removed once 5.6
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value) {
         $this->data[$offset] = $value;
     }
@@ -187,7 +203,11 @@ class ListResponse implements \Countable , \ArrayAccess{
      * </p>
      * @return void
      * @since 5.0.0
+     *
+     * Note: Temporarily suppress the required return type, to keep compatibility with PHP 5.6
+     * the #[\ReturnTypeWillChange] must be removed once 5.6
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset) {
         unset($this->data[$offset]);
     }
