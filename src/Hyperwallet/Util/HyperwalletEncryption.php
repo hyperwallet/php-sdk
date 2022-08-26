@@ -87,9 +87,9 @@ class HyperwalletEncryption {
      * @param string $clientPrivateKeySetLocation String that can be a URL or path to file with client JWK set
      * @param string $hyperwalletKeySetLocation String that can be a URL or path to file with hyperwallet JWK set
      * @param string $encryptionAlgorithm JWE encryption algorithm, by default value = RSA-OAEP-256
-     * @param array $signAlgorithm JWS signature algorithm, by default value = RS256
-     * @param array $encryptionMethod JWE encryption method, by default value = A256CBC-HS512
-     * @param array $jwsExpirationMinutes Minutes when JWS signature is valid, by default value = 5
+     * @param string $signAlgorithm JWS signature algorithm, by default value = RS256
+     * @param string $encryptionMethod JWE encryption method, by default value = A256CBC-HS512
+     * @param integer $jwsExpirationMinutes Minutes when JWS signature is valid, by default value = 5
      */
     public function __construct($clientPrivateKeySetLocation, $hyperwalletKeySetLocation,
                 $encryptionAlgorithm = 'RSA-OAEP-256', $signAlgorithm = 'RS256', $encryptionMethod = 'A256CBC-HS512',

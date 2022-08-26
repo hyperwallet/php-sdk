@@ -70,7 +70,7 @@ class Hyperwallet {
      * @param string $password The API password
      * @param string|null $programToken The program token that is used for some API calls
      * @param string $server The API server to connect to
-     * @param string $encryptionData Encryption data to initialize ApiClient with encryption enabled
+     * @param array $encryptionData Encryption data to initialize ApiClient with encryption enabled
      * @param array $clientOptions Guzzle Client Options
      *
      * @throws HyperwalletArgumentException
@@ -1467,9 +1467,9 @@ class Hyperwallet {
     /**
      * Get a bank card status transition
      *
-     * @param $userToken The user token
-     * @param $bankCardToken The bank card token
-     * @param $statusTransitionToken The status transition token
+     * @param string $userToken The user token
+     * @param string $bankCardToken The bank card token
+     * @param string $statusTransitionToken The status transition token
      * @return BankCardStatusTransition
      *
      * @throws HyperwalletApiException
@@ -2150,7 +2150,9 @@ class Hyperwallet {
      * Activate a User
      *
      * @param string $userToken The user token
-     * @return UserStatusTransition
+     * @return UserStatusTransition the status transition
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
      */
     public function activateUser($userToken) {
         $transition = new UserStatusTransition();
@@ -2162,7 +2164,9 @@ class Hyperwallet {
      * De-activate a User
      *
      * @param string $userToken The user token
-     * @return UserStatusTransition
+     * @return UserStatusTransition the status transition
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
      */
     public function deactivateUser($userToken) {
         $transition = new UserStatusTransition();
@@ -2173,8 +2177,10 @@ class Hyperwallet {
     /**
      * Lock a User account
      *
-     * @param userToken User token
-     * @return The status transition
+     * @param string $userToken User token
+     * @return UserStatusTransition the status transition
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
      */
     public function lockUser($userToken) {
         $transition = new UserStatusTransition();
@@ -2185,8 +2191,10 @@ class Hyperwallet {
     /**
      * Freeze a User account
      *
-     * @param userToken User token
-     * @return The status transition
+     * @param string $userToken User token
+     * @return UserStatusTransition the status transition
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
      */
     public function freezeUser($userToken) {
         $transition = new UserStatusTransition();
@@ -2197,8 +2205,10 @@ class Hyperwallet {
     /**
      * Pre-activate a User account
      *
-     * @param userToken User token
-     * @return The status transition
+     * @param string $userToken User token
+     * @return UserStatusTransition the status transition
+     * @throws HyperwalletArgumentException
+     * @throws HyperwalletApiException
      */
     public function preactivateUser($userToken) {
         $transition = new UserStatusTransition();
@@ -2489,12 +2499,14 @@ class Hyperwallet {
     /**
      * Create a Business Stakeholder
      *
-     * @param Business Stakeholder $BusinessStakeholder The Business Stakeholder data
+     * @param string $userToken The user token
+     * @param BusinessStakeholder $businessStakeholder The business stakeholder
      * @return BusinessStakeholder
      *
+     * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException
      */
-    public function createBusinessStakeholder($userToken,$businessStakeholder) {
+    public function createBusinessStakeholder($userToken, $businessStakeholder) {
         if (empty($userToken)) {
             throw new HyperwalletArgumentException('userToken is required!');
         }
@@ -2505,9 +2517,7 @@ class Hyperwallet {
     /**
      * Update a Business Stakeholder
      *
-     * @param Business Stakeholder $BusinessStakeholder The Business Stakeholder
      * @return BusinessStakeholder
-
      *
      * @throws HyperwalletArgumentException
      * @throws HyperwalletApiException

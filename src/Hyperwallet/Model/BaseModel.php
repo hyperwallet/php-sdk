@@ -53,7 +53,7 @@ class BaseModel {
      *
      * Magic get method
      *
-     * @param $key
+     * @param string $key
      * @return mixed
      */
     public function __get($key) {
@@ -68,8 +68,8 @@ class BaseModel {
      *
      * Magic set method
      *
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param mixed $value
      */
     public function __set($key, $value) {
         if (!in_array($key, $this->updatedProperties)) {
@@ -84,7 +84,7 @@ class BaseModel {
      *
      * Magic isset method
      *
-     * @param $key
+     * @param string $key
      * @return bool
      *
      * @access private
@@ -98,7 +98,7 @@ class BaseModel {
      *
      * Magic unset method
      *
-     * @param $key
+     * @param string $key
      */
     public function __unset($key) {
         unset($this->updatedProperties[array_search($key, $this->updatedProperties)]);

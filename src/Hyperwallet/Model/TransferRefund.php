@@ -89,7 +89,7 @@ class TransferRefund extends BaseModel {
     /**
      * Set the transfer token
      *
-     * @param string $token
+     * @param string $clientRefundId
      * @return TransferRefund
      */
     public function setClientRefundId($clientRefundId) {
@@ -298,7 +298,7 @@ class TransferRefund extends BaseModel {
     }
 
     /**
-     * Get transfer memo
+     * Get the Foreign Exchanges
      *
      * @return string
      */
@@ -307,9 +307,9 @@ class TransferRefund extends BaseModel {
     }
 
     /**
-     * Set transfer memo
+     * Set the Foreign Exchanges
      *
-     * @param string $memo
+     * @param string $foreignExchanges
      * @return TransferRefund
      */
     public function setForeignExchanges($foreignExchanges) {

@@ -7,6 +7,7 @@ use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Response\ErrorResponse;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * The internal API client
@@ -198,7 +199,7 @@ class ApiClient {
     /**
      * Checks whether Content-Type header is valid in response
      *
-     * @param string $response Response to be checked
+     * @param ResponseInterface $response Response to be checked
      *
      * @throws HyperwalletException
      */
