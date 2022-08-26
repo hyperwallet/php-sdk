@@ -1,7 +1,9 @@
-[![Packagist Downloads](https://img.shields.io/packagist/dt/hyperwallet/sdk)](https://packagist.org/packages/hyperwallet/sdk)
 [![Build Status](https://github.com/hyperwallet/php-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/hyperwallet/php-sdk/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/hyperwallet/php-sdk/badge.svg?branch=master)](https://coveralls.io/github/hyperwallet/php-sdk?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/hyperwallet/sdk/version)](https://packagist.org/packages/hyperwallet/sdk)
+[![PHP Version Require](http://poser.pugx.org/hyperwallet/sdk/require/php)](https://packagist.org/packages/hyperwallet/sdk)
+[![Packagist Downloads](https://img.shields.io/packagist/dm/hyperwallet/sdk?style=flat&logo=appveyor)](https://packagist.org/packages/hyperwallet/sdk)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/hyperwallet/sdk?style=flat&logo=appveyor)](https://packagist.org/packages/hyperwallet/sdk)
 
 
 
