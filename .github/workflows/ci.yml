@@ -16,6 +16,44 @@ on:
       - bugfix/**
 
 jobs:
+  static-analisis:
+    name: Static-analysis
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ 'ubuntu-latest' ]
+        # The 5.6 PHP will be validated by 7.0 since the Static analysis tools is only supported by 7.x and latest
+        php-versions: [ '7.0','7.1', '7.2', '7.3', '7.4', '8.0', '8.1' ]
+
+    steps:
+      - uses: actions/checkout@master
+
+      #sets up the PHP version
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: xdebug
+
+      #validate composer files
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      #get dependencies
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      #get static analysis tool
+      - name: Install static analysis tool
+        run: |
+          composer require --dev phpstan/phpstan 
+
+      #evaluate the code
+      - name: Run static analysis tool
+        run: |
+          vendor/bin/phpstan analyse -l 1 src/Hyperwallet tests
+
   tests:
     name: Tests
     runs-on: ${{ matrix.operating-system }}
@@ -28,6 +66,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
+      #sets up the PHP version
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
