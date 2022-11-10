@@ -16,8 +16,46 @@ on:
       - bugfix/**
 
 jobs:
+  static-analysis:
+    name: Static-analysis
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ 'ubuntu-latest' ]
+        php-versions: [ '7.1', '7.2', '7.3', '7.4', '8.0', '8.1' ]
+
+    steps:
+      - uses: actions/checkout@master
+
+      #sets up the PHP version
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: xdebug
+
+      #validate composer files
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      #get dependencies
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      #get static analysis tool
+      - name: Install static analysis tool
+        run: |
+          composer require --dev phpstan/phpstan 
+
+      #evaluate the code
+      - name: Run static analysis tool
+        run: |
+          vendor/bin/phpstan analyse -l 1 src/Hyperwallet tests
+
   tests:
     name: Tests
+    needs: [static-analysis]
     runs-on: ${{ matrix.operating-system }}
     strategy:
       fail-fast: false
@@ -28,6 +66,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
+      #sets up the PHP version
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -47,6 +86,7 @@ jobs:
 
   code-coverage:
     name: Report code coverage
+    needs: [tests]
     runs-on: ${{ matrix.operating-system }}
     strategy:
       fail-fast: false

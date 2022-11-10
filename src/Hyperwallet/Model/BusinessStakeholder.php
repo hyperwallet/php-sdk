@@ -5,10 +5,10 @@ namespace Hyperwallet\Model;
  * Represents a V4 BusinessStakeholder
  *
  * @property string $token The BusinessStakeholder token
- * @property boolen $isBusinessContact The business contact
- * @property boolen $isDirector The Director
- * @property boolen $isUltimateBeneficialOwner The UltimateBeneficial Owner
- * @property boolen $isSeniorManagingOfficial The Senior Managing Official
+ * @property bool $isBusinessContact The business contact
+ * @property bool $isDirector The Director
+ * @property bool $isUltimateBeneficialOwner The UltimateBeneficial Owner
+ * @property bool $isSeniorManagingOfficial The Senior Managing Official
  * @property string $verificationStatus The status of Business user verification
  * @property string $status The Business user status
  * @property \DateTime $createdOn The Business user creation date
@@ -65,6 +65,10 @@ class BusinessStakeholder extends BaseModel {
 
     const GOVERNMENT_ID_TYPE_PASSPORT = 'PASSPORT';
     const GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD = 'NATIONAL_ID_CARD';
+    /**
+     * @var mixed|null
+     */
+    private $businessName;
 
     public static function FILTERS_ARRAY() {
         return array('status', 'createdBefore', 'createdAfter', 'sortBy', 'limit');
@@ -102,7 +106,7 @@ class BusinessStakeholder extends BaseModel {
     /**
      * Get the BusinessStakeholder Contact
      *
-     * @return Boolean
+     * @return bool
      */
     public function getIsBusinessContact() {
         return $this->isBusinessContact;
@@ -110,7 +114,7 @@ class BusinessStakeholder extends BaseModel {
     /**
      * Set the BusinessStakeholder Contact
      *
-     * @param Boolean $isBusinessContact
+     * @param bool $isBusinessContact
 
      * @return BusinessStakeholder
      */
@@ -122,7 +126,7 @@ class BusinessStakeholder extends BaseModel {
     /**
      * Get the BusinessStakeholder Director
      *
-     * @return Boolean
+     * @return bool
      */
     public function getIsDirector() {
         return $this->isDirector;
@@ -131,7 +135,7 @@ class BusinessStakeholder extends BaseModel {
     /**
      * Set the BusinessStakeholder Director
      *
-     * @param Boolean $isDirector
+     * @param bool $isDirector
 
      * @return BusinessStakeholder
      */
@@ -143,7 +147,7 @@ class BusinessStakeholder extends BaseModel {
     /**
      * Get the BusinessStakeholder Ultimate Beneficial Owner
      *
-     * @return Boolean
+     * @return bool
      */
     public function getIsUltimateBeneficialOwner() {
         return $this->isUltimateBeneficialOwner;
@@ -152,7 +156,7 @@ class BusinessStakeholder extends BaseModel {
     /**
      * Set the BusinessStakeholder Ultimate Beneficial Owner
      *
-     * @param Boolean $isUltimateBeneficialOwner
+     * @param bool $isUltimateBeneficialOwner
 
      * @return BusinessStakeholder
      */
@@ -164,7 +168,7 @@ class BusinessStakeholder extends BaseModel {
     /**
      * Get the BusinessStakeholder Senior Managing Official
      *
-     * @return Boolean
+     * @return bool
      */
     public function getIsSeniorManagingOfficial() {
         return $this->isSeniorManagingOfficial;
@@ -173,7 +177,7 @@ class BusinessStakeholder extends BaseModel {
     /**
      * Set the BusinessStakeholder Senior Managing Official
      *
-     * @param Boolean $isSeniorManagingOfficial
+     * @param bool $isSeniorManagingOfficial
 
      * @return BusinessStakeholder
      */
@@ -482,7 +486,7 @@ class BusinessStakeholder extends BaseModel {
     /**
      * Set the business governmentIdType
      *
-     * @param string $businessType
+     * @param string $governmentIdType
      * @return BusinessStakeholder
      */
     public function setGovernmentIdType($governmentIdType) {

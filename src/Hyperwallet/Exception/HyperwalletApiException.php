@@ -1,5 +1,6 @@
 <?php
 namespace Hyperwallet\Exception;
+use Exception;
 use Hyperwallet\Response\ErrorResponse;
 
 /**
@@ -24,12 +25,12 @@ class HyperwalletApiException extends HyperwalletException {
     private $relatedResources;
 
     /**
-     * Creates a instance of the HyperwalletArgumentException
+     * Creates an instance of the HyperwalletArgumentException
      *
      * @param ErrorResponse $errorResponse The error response
-     * @param \Exception|null $previous The original exception
+     * @param Exception $previous The original exception
      */
-    public function __construct(ErrorResponse $errorResponse, \Exception $previous) {
+    public function __construct(ErrorResponse $errorResponse, Exception $previous) {
         $message = $errorResponse[0] == null ? "Error message is not defined" : $errorResponse[0]->getMessage();
         parent::__construct($message, 0, $previous);
 

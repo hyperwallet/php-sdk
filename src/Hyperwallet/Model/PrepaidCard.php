@@ -217,7 +217,7 @@ class PrepaidCard extends BaseModel {
     /**
      * Set the prepaid card token to be replaced
      *
-     * @param string $token
+     * @param string $replacementOf
      * @return PrepaidCard
      */
     public function setReplacementOf($replacementOf) {
@@ -237,7 +237,7 @@ class PrepaidCard extends BaseModel {
     /**
      * set the prepaid card's replacement reason
      *
-     * @param string $token
+     * @param string $replacementReason
      * @return PrepaidCard
      */
     public function setReplacementReason($replacementReason) {
