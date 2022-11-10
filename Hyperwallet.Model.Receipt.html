@@ -1,0 +1,4022 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Class Hyperwallet\Model\Receipt |  API</title>
+	<link rel="stylesheet" href="assets/main.css">
+	<script src="assets/main.js" defer></script>
+</head>
+
+<body class="layout">
+	<div class="layout-aside">
+	<div class="menu">
+			<div class="menu-section">
+				<h3>Namespaces</h3>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-ComposerScript.html">ComposerScript</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.html">Hyperwallet</a>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Exception.html">Exception</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.Model.html">Model</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Response.html">Response</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Util.html">Util</a>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</div>
+
+		<div class="menu-section">
+			<h3>Classes</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.AuthenticationToken.html">
+							AuthenticationToken
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Balance.html">
+							Balance
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccount.html">
+							BankAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccountStatusTransition.html">
+							BankAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCard.html">
+							BankCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCardStatusTransition.html">
+							BankCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BaseModel.html">
+							BaseModel
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholder.html">
+							BusinessStakeholder
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholderStatusTransition.html">
+							BusinessStakeholderStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Error.html">
+							Error
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocument.html">
+							HyperwalletVerificationDocument
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentCollection.html">
+							HyperwalletVerificationDocumentCollection
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReason.html">
+							HyperwalletVerificationDocumentReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReasonCollection.html">
+							HyperwalletVerificationDocumentReasonCollection
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaperCheck.html">
+							PaperCheck
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaperCheckStatusTransition.html">
+							PaperCheckStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Payment.html">
+							Payment
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaymentStatusTransition.html">
+							PaymentStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccount.html">
+							PayPalAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccountStatusTransition.html">
+							PayPalAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PrepaidCard.html">
+							PrepaidCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PrepaidCardStatusTransition.html">
+							PrepaidCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Program.html">
+							Program
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.ProgramAccount.html">
+							ProgramAccount
+						</a>
+					</li>
+					<li class="active">
+						<a href="Hyperwallet.Model.Receipt.html">
+							Receipt
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.RejectReason.html">
+							RejectReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.StatusTransition.html">
+							StatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Transfer.html">
+							Transfer
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethod.html">
+							TransferMethod
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethodConfiguration.html">
+							TransferMethodConfiguration
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferRefund.html">
+							TransferRefund
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferStatusTransition.html">
+							TransferStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.User.html">
+							User
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.UserStatusTransition.html">
+							UserStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccount.html">
+							VenmoAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccountStatusTransition.html">
+							VenmoAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.WebhookNotification.html">
+							WebhookNotification
+						</a>
+					</li>
+			</ul>
+		</div>
+
+		<div class="menu-section">
+			<h3>Interfaces</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.IProgramAware.html">
+							IProgramAware
+						</a>
+					</li>
+			</ul>
+		</div>
+
+
+
+
+	</div>
+	</div>
+
+	<div class="layout-main">
+		<div class="layout-navbar">
+	<nav class="navbar">
+		<div class="navbar-left">
+			<ul class="navbar-links">
+				<li>
+					<a href="index.html">Overview</a>
+				</li>
+				<li>
+					
+						<a href="namespace-Hyperwallet.Model.html">Namespace</a>
+					
+				</li>
+<li class="active"><a href="Hyperwallet.Model.Receipt.html">Class</a></li>				<li>
+					<a href="tree.html">Tree</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-right">
+	<div class="search" data-elements="assets/elements.js">
+		<input class="search-input" placeholder="Search class, function or namespace" autofocus>
+		<ul class="search-results"></ul>
+	</div>
+		</div>
+	</nav>
+		</div>
+
+		<div class="layout-content">
+		<h1>
+			Class <a href="namespace-Hyperwallet.html">Hyperwallet</a>\<a href="namespace-Hyperwallet.Model.html">Model</a>\<a href="Hyperwallet.Model.Receipt.html">Receipt</a>
+		</h1>
+
+
+	<table class="classLikeSignatureTable">
+
+
+
+		<tr>
+			<th><code>extends</code></th>
+			<td>
+<code><a href="Hyperwallet.Model.BaseModel.html"><span title="Hyperwallet\Model\BaseModel">BaseModel</span></a></code>			</td>
+		</tr>
+
+	</table>
+		<div class="classLikeDescription">
+	<div class="description"><p>Represents a V4 Receipt</p>
+</div>
+		</div>
+
+			<div class="classLikeSection">
+	<ul class="classTree">
+	<li>
+<a href="Hyperwallet.Model.BaseModel.html"><span>Hyperwallet\Model\BaseModel</span></a>
+
+
+	<ul class="classTree">
+	<li>
+<b><span class="active">Hyperwallet\Model\Receipt</span></b>
+
+
+	</li>
+	</ul>
+	</li>
+	</ul>
+			</div>
+
+		<div class="classLikeSection">
+			<b>Located at</b> <a href="source-Hyperwallet.Model.Receipt.html#22" title="Go to source code">Hyperwallet/Model/Receipt.php</a><br>
+		</div>
+
+
+		<table class="table" id="methods">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Methods</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="FILTERS_ARRAY_USER" id="_FILTERS_ARRAY_USER">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					static
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#33-35" title="Go to source code">FILTERS_ARRAY_USER</a>()</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_FILTERS_ARRAY_USER">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="FILTERS_ARRAY_PREPAID_CARD" id="_FILTERS_ARRAY_PREPAID_CARD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					static
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#37-39" title="Go to source code">FILTERS_ARRAY_PREPAID_CARD</a>()</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_FILTERS_ARRAY_PREPAID_CARD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="FILTERS_ARRAY_ACCOUNT" id="_FILTERS_ARRAY_ACCOUNT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					static
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#41-43" title="Go to source code">FILTERS_ARRAY_ACCOUNT</a>()</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_FILTERS_ARRAY_ACCOUNT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="__construct" id="___construct">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#221-228" title="Go to source code">__construct</a>(<span>string[] <var>$properties</var> = []</span>)</code>
+
+
+	<div class="expandable-collapsedView">
+		Creates a instance of Balance
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Creates a instance of Balance</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$properties</var>&nbsp;&nbsp;</td>
+										<td><p>The default properties</p>
+</td>
+									</tr>
+							</table>
+
+
+
+		<h4>Overrides</h4>
+		<ul>
+				<li>
+<a href="Hyperwallet.Model.BaseModel.html#___construct">						<code>Hyperwallet\Model\BaseModel::__construct()</code></a>				</li>
+		</ul>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#___construct">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getJournalId" id="_getJournalId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#230-237" title="Go to source code">getJournalId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the journal id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the journal id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getJournalId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getType" id="_getType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#239-246" title="Go to source code">getType</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transcation type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transcation type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCreatedOn" id="_getCreatedOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#248-255" title="Go to source code">getCreatedOn</a>(): <a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transaction creation date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transaction creation date</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCreatedOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getEntry" id="_getEntry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#257-264" title="Go to source code">getEntry</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the entry type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the entry type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getEntry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getSourceToken" id="_getSourceToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#266-273" title="Go to source code">getSourceToken</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the source token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the source token</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getSourceToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDestinationToken" id="_getDestinationToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#275-282" title="Go to source code">getDestinationToken</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the destination token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the destination token</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDestinationToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getAmount" id="_getAmount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#284-291" title="Go to source code">getAmount</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transaction amount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transaction amount</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getAmount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getFee" id="_getFee">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#293-300" title="Go to source code">getFee</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transaction fee amount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transaction fee amount</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getFee">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCurrency" id="_getCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#302-309" title="Go to source code">getCurrency</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transaction currency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transaction currency</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getForeignExchangeRate" id="_getForeignExchangeRate">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#311-318" title="Go to source code">getForeignExchangeRate</a>(): float</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the foreign exchange rate
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the foreign exchange rate</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getForeignExchangeRate">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getForeignExchangeCurrency" id="_getForeignExchangeCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#320-327" title="Go to source code">getForeignExchangeCurrency</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the foreign exchange currency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the foreign exchange currency</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getForeignExchangeCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDetails" id="_getDetails">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Receipt.html#329-336" title="Go to source code">getDetails</a>(): array</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transaction details (note this is a multi dimensional array see `DETAILS_FIELD_KEY_*` for possible keys)
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transaction details (note this is a multi dimensional array see <code>DETAILS_FIELD_KEY_*</code> for possible keys)</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDetails">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+
+		<table class="table" id="constants">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Constants</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="ENTRY_DEBIT" id="ENTRY_DEBIT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#45" title="Go to source code">ENTRY_DEBIT</a> = <span class="php-str">'DEBIT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#ENTRY_DEBIT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="ENTRY_CREDIT" id="ENTRY_CREDIT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#46" title="Go to source code">ENTRY_CREDIT</a> = <span class="php-str">'CREDIT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#ENTRY_CREDIT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_ANNUAL_FEE" id="TYPE_ANNUAL_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#48-49" title="Go to source code">TYPE_ANNUAL_FEE</a> = <span class="php-str">'ANNUAL_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_ANNUAL_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_ANNUAL_FEE_REFUND" id="TYPE_ANNUAL_FEE_REFUND">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#50" title="Go to source code">TYPE_ANNUAL_FEE_REFUND</a> = <span class="php-str">'ANNUAL_FEE_REFUND'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_ANNUAL_FEE_REFUND">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_CUSTOMER_SERVICE_FEE" id="TYPE_CUSTOMER_SERVICE_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#51" title="Go to source code">TYPE_CUSTOMER_SERVICE_FEE</a> = <span class="php-str">'CUSTOMER_SERVICE_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_CUSTOMER_SERVICE_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_CUSTOMER_SERVICE_FEE_REFUND" id="TYPE_CUSTOMER_SERVICE_FEE_REFUND">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#52" title="Go to source code">TYPE_CUSTOMER_SERVICE_FEE_REFUND</a> = <span class="php-str">'CUSTOMER_SERVICE_FEE_REFUND'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_CUSTOMER_SERVICE_FEE_REFUND">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_EXPEDITED_SHIPPING_FEE" id="TYPE_EXPEDITED_SHIPPING_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#53" title="Go to source code">TYPE_EXPEDITED_SHIPPING_FEE</a> = <span class="php-str">'EXPEDITED_SHIPPING_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_EXPEDITED_SHIPPING_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_GENERIC_FEE_REFUND" id="TYPE_GENERIC_FEE_REFUND">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#54" title="Go to source code">TYPE_GENERIC_FEE_REFUND</a> = <span class="php-str">'GENERIC_FEE_REFUND'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_GENERIC_FEE_REFUND">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_MONTHLY_FEE" id="TYPE_MONTHLY_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#55" title="Go to source code">TYPE_MONTHLY_FEE</a> = <span class="php-str">'MONTHLY_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_MONTHLY_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_MONTHLY_FEE_REFUND" id="TYPE_MONTHLY_FEE_REFUND">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#56" title="Go to source code">TYPE_MONTHLY_FEE_REFUND</a> = <span class="php-str">'MONTHLY_FEE_REFUND'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_MONTHLY_FEE_REFUND">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PAYMENT_EXPIRY_FEE" id="TYPE_PAYMENT_EXPIRY_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#57" title="Go to source code">TYPE_PAYMENT_EXPIRY_FEE</a> = <span class="php-str">'PAYMENT_EXPIRY_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAYMENT_EXPIRY_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PAYMENT_FEE" id="TYPE_PAYMENT_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#58" title="Go to source code">TYPE_PAYMENT_FEE</a> = <span class="php-str">'PAYMENT_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAYMENT_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PROCESSING_FEE" id="TYPE_PROCESSING_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#59" title="Go to source code">TYPE_PROCESSING_FEE</a> = <span class="php-str">'PROCESSING_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PROCESSING_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_STANDARD_SHIPPING_FEE" id="TYPE_STANDARD_SHIPPING_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#60" title="Go to source code">TYPE_STANDARD_SHIPPING_FEE</a> = <span class="php-str">'STANDARD_SHIPPING_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_STANDARD_SHIPPING_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_TRANSFER_FEE" id="TYPE_TRANSFER_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#61" title="Go to source code">TYPE_TRANSFER_FEE</a> = <span class="php-str">'TRANSFER_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_TRANSFER_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_ADJUSTMENT" id="TYPE_ADJUSTMENT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#63-64" title="Go to source code">TYPE_ADJUSTMENT</a> = <span class="php-str">'ADJUSTMENT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_ADJUSTMENT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_FOREIGN_EXCHANGE" id="TYPE_FOREIGN_EXCHANGE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#65" title="Go to source code">TYPE_FOREIGN_EXCHANGE</a> = <span class="php-str">'FOREIGN_EXCHANGE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_FOREIGN_EXCHANGE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_DEPOSIT" id="TYPE_DEPOSIT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#66" title="Go to source code">TYPE_DEPOSIT</a> = <span class="php-str">'DEPOSIT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_DEPOSIT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_MANUAL_ADJUSTMENT" id="TYPE_MANUAL_ADJUSTMENT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#67" title="Go to source code">TYPE_MANUAL_ADJUSTMENT</a> = <span class="php-str">'MANUAL_ADJUSTMENT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_MANUAL_ADJUSTMENT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PAYMENT_EXPIRATION" id="TYPE_PAYMENT_EXPIRATION">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#68" title="Go to source code">TYPE_PAYMENT_EXPIRATION</a> = <span class="php-str">'PAYMENT_EXPIRATION'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAYMENT_EXPIRATION">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_BANK_ACCOUNT_TRANSFER_FEE" id="TYPE_BANK_ACCOUNT_TRANSFER_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#70-71" title="Go to source code">TYPE_BANK_ACCOUNT_TRANSFER_FEE</a> = <span class="php-str">'BANK_ACCOUNT_TRANSFER_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_BANK_ACCOUNT_TRANSFER_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_BANK_ACCOUNT_TRANSFER_RETURN" id="TYPE_BANK_ACCOUNT_TRANSFER_RETURN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#72" title="Go to source code">TYPE_BANK_ACCOUNT_TRANSFER_RETURN</a> = <span class="php-str">'BANK_ACCOUNT_TRANSFER_RETURN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_BANK_ACCOUNT_TRANSFER_RETURN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_BANK_ACCOUNT_TRANSFER_RETURN_FEE" id="TYPE_BANK_ACCOUNT_TRANSFER_RETURN_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#73" title="Go to source code">TYPE_BANK_ACCOUNT_TRANSFER_RETURN_FEE</a> = <span class="php-str">'BANK_ACCOUNT_TRANSFER_RETURN_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_BANK_ACCOUNT_TRANSFER_RETURN_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_TRANSFER_TO_BANK_ACCOUNT" id="TYPE_TRANSFER_TO_BANK_ACCOUNT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#74" title="Go to source code">TYPE_TRANSFER_TO_BANK_ACCOUNT</a> = <span class="php-str">'TRANSFER_TO_BANK_ACCOUNT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_TRANSFER_TO_BANK_ACCOUNT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_CARD_ACTIVATION_FEE" id="TYPE_CARD_ACTIVATION_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#76-77" title="Go to source code">TYPE_CARD_ACTIVATION_FEE</a> = <span class="php-str">'CARD_ACTIVATION_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_CARD_ACTIVATION_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_CARD_ACTIVATION_FEE_WAIVER" id="TYPE_CARD_ACTIVATION_FEE_WAIVER">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#78" title="Go to source code">TYPE_CARD_ACTIVATION_FEE_WAIVER</a> = <span class="php-str">'CARD_ACTIVATION_FEE_WAIVER'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_CARD_ACTIVATION_FEE_WAIVER">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_CARD_FEE" id="TYPE_CARD_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#79" title="Go to source code">TYPE_CARD_FEE</a> = <span class="php-str">'CARD_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_CARD_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_MANUAL_TRANSFER_TO_PREPAID_CARD" id="TYPE_MANUAL_TRANSFER_TO_PREPAID_CARD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#80" title="Go to source code">TYPE_MANUAL_TRANSFER_TO_PREPAID_CARD</a> = <span class="php-str">'MANUAL_TRANSFER_TO_PREPAID_CARD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_MANUAL_TRANSFER_TO_PREPAID_CARD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_ACCOUNT_DEPOSIT" id="TYPE_PREPAID_CARD_ACCOUNT_DEPOSIT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#81" title="Go to source code">TYPE_PREPAID_CARD_ACCOUNT_DEPOSIT</a> = <span class="php-str">'PREPAID_CARD_ACCOUNT_DEPOSIT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_ACCOUNT_DEPOSIT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_ACCOUNT_FEE" id="TYPE_PREPAID_CARD_ACCOUNT_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#82" title="Go to source code">TYPE_PREPAID_CARD_ACCOUNT_FEE</a> = <span class="php-str">'PREPAID_CARD_ACCOUNT_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_ACCOUNT_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_ANNUAL_FEE_DISCOUNT" id="TYPE_PREPAID_CARD_ANNUAL_FEE_DISCOUNT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#83" title="Go to source code">TYPE_PREPAID_CARD_ANNUAL_FEE_DISCOUNT</a> = <span class="php-str">'PREPAID_CARD_ANNUAL_FEE_DISCOUNT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_ANNUAL_FEE_DISCOUNT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_BALANCE_INQUIRY_FEE" id="TYPE_PREPAID_CARD_BALANCE_INQUIRY_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#84" title="Go to source code">TYPE_PREPAID_CARD_BALANCE_INQUIRY_FEE</a> = <span class="php-str">'PREPAID_CARD_BALANCE_INQUIRY_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_BALANCE_INQUIRY_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_BILL_REPRINT_FEE" id="TYPE_PREPAID_CARD_BILL_REPRINT_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#85" title="Go to source code">TYPE_PREPAID_CARD_BILL_REPRINT_FEE</a> = <span class="php-str">'PREPAID_CARD_BILL_REPRINT_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_BILL_REPRINT_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_CASH_ADVANCE" id="TYPE_PREPAID_CARD_CASH_ADVANCE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#86" title="Go to source code">TYPE_PREPAID_CARD_CASH_ADVANCE</a> = <span class="php-str">'PREPAID_CARD_CASH_ADVANCE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_CASH_ADVANCE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_ATM_OR_CASH_ADVANCE_FEE" id="TYPE_PREPAID_CARD_ATM_OR_CASH_ADVANCE_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#87" title="Go to source code">TYPE_PREPAID_CARD_ATM_OR_CASH_ADVANCE_FEE</a> = <span class="php-str">'PREPAID_CARD_ATM_OR_CASH_ADVANCE_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_ATM_OR_CASH_ADVANCE_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_CASH_ADVANCE_CHARGEBACK" id="TYPE_PREPAID_CARD_CASH_ADVANCE_CHARGEBACK">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#88" title="Go to source code">TYPE_PREPAID_CARD_CASH_ADVANCE_CHARGEBACK</a> = <span class="php-str">'PREPAID_CARD_CASH_ADVANCE_CHARGEBACK'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_CASH_ADVANCE_CHARGEBACK">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_CASH_ADVANCE_CHARGEBACK_REVERSAL" id="TYPE_PREPAID_CARD_CASH_ADVANCE_CHARGEBACK_REVERSAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#89" title="Go to source code">TYPE_PREPAID_CARD_CASH_ADVANCE_CHARGEBACK_REVERSAL</a> = <span class="php-str">'PREPAID_CARD_CASH_ADVANCE_CHARGEBACK_REVERSAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_CASH_ADVANCE_CHARGEBACK_REVERSAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_CASH_ADVANCE_REPRESS" id="TYPE_PREPAID_CARD_CASH_ADVANCE_REPRESS">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#90" title="Go to source code">TYPE_PREPAID_CARD_CASH_ADVANCE_REPRESS</a> = <span class="php-str">'PREPAID_CARD_CASH_ADVANCE_REPRESS'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_CASH_ADVANCE_REPRESS">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_CASH_ADVANCE_REPRESS_REVERSAL" id="TYPE_PREPAID_CARD_CASH_ADVANCE_REPRESS_REVERSAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#91" title="Go to source code">TYPE_PREPAID_CARD_CASH_ADVANCE_REPRESS_REVERSAL</a> = <span class="php-str">'PREPAID_CARD_CASH_ADVANCE_REPRESS_REVERSAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_CASH_ADVANCE_REPRESS_REVERSAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_CHARGEBACK" id="TYPE_PREPAID_CARD_CHARGEBACK">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#92" title="Go to source code">TYPE_PREPAID_CARD_CHARGEBACK</a> = <span class="php-str">'PREPAID_CARD_CHARGEBACK'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_CHARGEBACK">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_CHARGEBACK_REFUND" id="TYPE_PREPAID_CARD_CHARGEBACK_REFUND">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#93" title="Go to source code">TYPE_PREPAID_CARD_CHARGEBACK_REFUND</a> = <span class="php-str">'PREPAID_CARD_CHARGEBACK_REFUND'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_CHARGEBACK_REFUND">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_CHARGEBACK_REFUND_REVERSAL" id="TYPE_PREPAID_CARD_CHARGEBACK_REFUND_REVERSAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#94" title="Go to source code">TYPE_PREPAID_CARD_CHARGEBACK_REFUND_REVERSAL</a> = <span class="php-str">'PREPAID_CARD_CHARGEBACK_REFUND_REVERSAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_CHARGEBACK_REFUND_REVERSAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_CHARGEBACK_REVERSAL" id="TYPE_PREPAID_CARD_CHARGEBACK_REVERSAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#95" title="Go to source code">TYPE_PREPAID_CARD_CHARGEBACK_REVERSAL</a> = <span class="php-str">'PREPAID_CARD_CHARGEBACK_REVERSAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_CHARGEBACK_REVERSAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_COMMISSION_OR_FEE" id="TYPE_PREPAID_CARD_COMMISSION_OR_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#96" title="Go to source code">TYPE_PREPAID_CARD_COMMISSION_OR_FEE</a> = <span class="php-str">'PREPAID_CARD_COMMISSION_OR_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_COMMISSION_OR_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_DEBIT_TRANSFER" id="TYPE_PREPAID_CARD_DEBIT_TRANSFER">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#97" title="Go to source code">TYPE_PREPAID_CARD_DEBIT_TRANSFER</a> = <span class="php-str">'PREPAID_CARD_DEBIT_TRANSFER'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_DEBIT_TRANSFER">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_DISPUTED_CHARGE_REFUND" id="TYPE_PREPAID_CARD_DISPUTED_CHARGE_REFUND">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#98" title="Go to source code">TYPE_PREPAID_CARD_DISPUTED_CHARGE_REFUND</a> = <span class="php-str">'PREPAID_CARD_DISPUTED_CHARGE_REFUND'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_DISPUTED_CHARGE_REFUND">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_DISPUTE_DEPOSIT" id="TYPE_PREPAID_CARD_DISPUTE_DEPOSIT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#99" title="Go to source code">TYPE_PREPAID_CARD_DISPUTE_DEPOSIT</a> = <span class="php-str">'PREPAID_CARD_DISPUTE_DEPOSIT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_DISPUTE_DEPOSIT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_DOCUMENT_REQUEST_FEE" id="TYPE_PREPAID_CARD_DOCUMENT_REQUEST_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#100" title="Go to source code">TYPE_PREPAID_CARD_DOCUMENT_REQUEST_FEE</a> = <span class="php-str">'PREPAID_CARD_DOCUMENT_REQUEST_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_DOCUMENT_REQUEST_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_DOMESTIC_CASH_WITHDRAWAL_FEE" id="TYPE_PREPAID_CARD_DOMESTIC_CASH_WITHDRAWAL_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#101" title="Go to source code">TYPE_PREPAID_CARD_DOMESTIC_CASH_WITHDRAWAL_FEE</a> = <span class="php-str">'PREPAID_CARD_DOMESTIC_CASH_WITHDRAWAL_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_DOMESTIC_CASH_WITHDRAWAL_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_EMERGENCY_CASH" id="TYPE_PREPAID_CARD_EMERGENCY_CASH">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#102" title="Go to source code">TYPE_PREPAID_CARD_EMERGENCY_CASH</a> = <span class="php-str">'PREPAID_CARD_EMERGENCY_CASH'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_EMERGENCY_CASH">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_EMERGENCY_CARD" id="TYPE_PREPAID_CARD_EMERGENCY_CARD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#103" title="Go to source code">TYPE_PREPAID_CARD_EMERGENCY_CARD</a> = <span class="php-str">'PREPAID_CARD_EMERGENCY_CARD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_EMERGENCY_CARD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_EXCHANGE_RATE_DIFFERENCE" id="TYPE_PREPAID_CARD_EXCHANGE_RATE_DIFFERENCE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#104" title="Go to source code">TYPE_PREPAID_CARD_EXCHANGE_RATE_DIFFERENCE</a> = <span class="php-str">'PREPAID_CARD_EXCHANGE_RATE_DIFFERENCE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_EXCHANGE_RATE_DIFFERENCE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_INCOME" id="TYPE_PREPAID_CARD_INCOME">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#105" title="Go to source code">TYPE_PREPAID_CARD_INCOME</a> = <span class="php-str">'PREPAID_CARD_INCOME'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_INCOME">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_LOAD_FEE" id="TYPE_PREPAID_CARD_LOAD_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#106" title="Go to source code">TYPE_PREPAID_CARD_LOAD_FEE</a> = <span class="php-str">'PREPAID_CARD_LOAD_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_LOAD_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_MANUAL_UNLOAD" id="TYPE_PREPAID_CARD_MANUAL_UNLOAD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#107" title="Go to source code">TYPE_PREPAID_CARD_MANUAL_UNLOAD</a> = <span class="php-str">'PREPAID_CARD_MANUAL_UNLOAD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_MANUAL_UNLOAD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_OVERDUE_PAYMENT_INTEREST" id="TYPE_PREPAID_CARD_OVERDUE_PAYMENT_INTEREST">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#108" title="Go to source code">TYPE_PREPAID_CARD_OVERDUE_PAYMENT_INTEREST</a> = <span class="php-str">'PREPAID_CARD_OVERDUE_PAYMENT_INTEREST'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_OVERDUE_PAYMENT_INTEREST">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_OVERSEAS_CASH_WITHDRAWAL_FEE" id="TYPE_PREPAID_CARD_OVERSEAS_CASH_WITHDRAWAL_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#109" title="Go to source code">TYPE_PREPAID_CARD_OVERSEAS_CASH_WITHDRAWAL_FEE</a> = <span class="php-str">'PREPAID_CARD_OVERSEAS_CASH_WITHDRAWAL_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_OVERSEAS_CASH_WITHDRAWAL_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_PAYMENT" id="TYPE_PREPAID_CARD_PAYMENT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#110" title="Go to source code">TYPE_PREPAID_CARD_PAYMENT</a> = <span class="php-str">'PREPAID_CARD_PAYMENT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_PAYMENT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_PIN_CHANGE_FEE" id="TYPE_PREPAID_CARD_PIN_CHANGE_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#111" title="Go to source code">TYPE_PREPAID_CARD_PIN_CHANGE_FEE</a> = <span class="php-str">'PREPAID_CARD_PIN_CHANGE_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_PIN_CHANGE_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_PIN_REPRINT_FEE" id="TYPE_PREPAID_CARD_PIN_REPRINT_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#112" title="Go to source code">TYPE_PREPAID_CARD_PIN_REPRINT_FEE</a> = <span class="php-str">'PREPAID_CARD_PIN_REPRINT_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_PIN_REPRINT_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_PRIORITY_PASS_FEE" id="TYPE_PREPAID_CARD_PRIORITY_PASS_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#113" title="Go to source code">TYPE_PREPAID_CARD_PRIORITY_PASS_FEE</a> = <span class="php-str">'PREPAID_CARD_PRIORITY_PASS_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_PRIORITY_PASS_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_PRIORITY_PASS_RENEWAL" id="TYPE_PREPAID_CARD_PRIORITY_PASS_RENEWAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#114" title="Go to source code">TYPE_PREPAID_CARD_PRIORITY_PASS_RENEWAL</a> = <span class="php-str">'PREPAID_CARD_PRIORITY_PASS_RENEWAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_PRIORITY_PASS_RENEWAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_RECURRING_INTEREST" id="TYPE_PREPAID_CARD_RECURRING_INTEREST">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#115" title="Go to source code">TYPE_PREPAID_CARD_RECURRING_INTEREST</a> = <span class="php-str">'PREPAID_CARD_RECURRING_INTEREST'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_RECURRING_INTEREST">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_REFUND" id="TYPE_PREPAID_CARD_REFUND">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#116" title="Go to source code">TYPE_PREPAID_CARD_REFUND</a> = <span class="php-str">'PREPAID_CARD_REFUND'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_REFUND">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_REFUND_REPRESS" id="TYPE_PREPAID_CARD_REFUND_REPRESS">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#117" title="Go to source code">TYPE_PREPAID_CARD_REFUND_REPRESS</a> = <span class="php-str">'PREPAID_CARD_REFUND_REPRESS'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_REFUND_REPRESS">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_REFUND_REPRESS_REVERSAL" id="TYPE_PREPAID_CARD_REFUND_REPRESS_REVERSAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#118" title="Go to source code">TYPE_PREPAID_CARD_REFUND_REPRESS_REVERSAL</a> = <span class="php-str">'PREPAID_CARD_REFUND_REPRESS_REVERSAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_REFUND_REPRESS_REVERSAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_REPLACEMENT_FEE" id="TYPE_PREPAID_CARD_REPLACEMENT_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#119" title="Go to source code">TYPE_PREPAID_CARD_REPLACEMENT_FEE</a> = <span class="php-str">'PREPAID_CARD_REPLACEMENT_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_REPLACEMENT_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_SALE" id="TYPE_PREPAID_CARD_SALE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#120" title="Go to source code">TYPE_PREPAID_CARD_SALE</a> = <span class="php-str">'PREPAID_CARD_SALE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_SALE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_SALE_REPRESS" id="TYPE_PREPAID_CARD_SALE_REPRESS">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#121" title="Go to source code">TYPE_PREPAID_CARD_SALE_REPRESS</a> = <span class="php-str">'PREPAID_CARD_SALE_REPRESS'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_SALE_REPRESS">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_SALE_REVERSAL" id="TYPE_PREPAID_CARD_SALE_REVERSAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#122" title="Go to source code">TYPE_PREPAID_CARD_SALE_REVERSAL</a> = <span class="php-str">'PREPAID_CARD_SALE_REVERSAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_SALE_REVERSAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_STATEMENT_FEE" id="TYPE_PREPAID_CARD_STATEMENT_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#123" title="Go to source code">TYPE_PREPAID_CARD_STATEMENT_FEE</a> = <span class="php-str">'PREPAID_CARD_STATEMENT_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_STATEMENT_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_TELEPHONE_SUPPORT_FEE" id="TYPE_PREPAID_CARD_TELEPHONE_SUPPORT_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#124" title="Go to source code">TYPE_PREPAID_CARD_TELEPHONE_SUPPORT_FEE</a> = <span class="php-str">'PREPAID_CARD_TELEPHONE_SUPPORT_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_TELEPHONE_SUPPORT_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_TRANSFER_FEE" id="TYPE_PREPAID_CARD_TRANSFER_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#125" title="Go to source code">TYPE_PREPAID_CARD_TRANSFER_FEE</a> = <span class="php-str">'PREPAID_CARD_TRANSFER_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_TRANSFER_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_TRANSFER_RETURN" id="TYPE_PREPAID_CARD_TRANSFER_RETURN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#126" title="Go to source code">TYPE_PREPAID_CARD_TRANSFER_RETURN</a> = <span class="php-str">'PREPAID_CARD_TRANSFER_RETURN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_TRANSFER_RETURN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_UNLOAD" id="TYPE_PREPAID_CARD_UNLOAD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#127" title="Go to source code">TYPE_PREPAID_CARD_UNLOAD</a> = <span class="php-str">'PREPAID_CARD_UNLOAD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_UNLOAD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_BANK_WITHDRAWAL_REVERSAL" id="TYPE_PREPAID_CARD_BANK_WITHDRAWAL_REVERSAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#128" title="Go to source code">TYPE_PREPAID_CARD_BANK_WITHDRAWAL_REVERSAL</a> = <span class="php-str">'PREPAID_CARD_BANK_WITHDRAWAL_REVERSAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_BANK_WITHDRAWAL_REVERSAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD_BANK_WITHDRAWAL_CHARGEBACK" id="TYPE_PREPAID_CARD_BANK_WITHDRAWAL_CHARGEBACK">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#129" title="Go to source code">TYPE_PREPAID_CARD_BANK_WITHDRAWAL_CHARGEBACK</a> = <span class="php-str">'PREPAID_CARD_BANK_WITHDRAWAL_CHARGEBACK'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD_BANK_WITHDRAWAL_CHARGEBACK">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_TRANSFER_TO_PREPAID_CARD" id="TYPE_TRANSFER_TO_PREPAID_CARD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#130" title="Go to source code">TYPE_TRANSFER_TO_PREPAID_CARD</a> = <span class="php-str">'TRANSFER_TO_PREPAID_CARD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_TRANSFER_TO_PREPAID_CARD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_DONATION" id="TYPE_DONATION">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#132-133" title="Go to source code">TYPE_DONATION</a> = <span class="php-str">'DONATION'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_DONATION">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_DONATION_FEE" id="TYPE_DONATION_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#134" title="Go to source code">TYPE_DONATION_FEE</a> = <span class="php-str">'DONATION_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_DONATION_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_DONATION_RETURN" id="TYPE_DONATION_RETURN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#135" title="Go to source code">TYPE_DONATION_RETURN</a> = <span class="php-str">'DONATION_RETURN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_DONATION_RETURN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_MERCHANT_PAYMENT" id="TYPE_MERCHANT_PAYMENT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#137-138" title="Go to source code">TYPE_MERCHANT_PAYMENT</a> = <span class="php-str">'MERCHANT_PAYMENT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_MERCHANT_PAYMENT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_MERCHANT_PAYMENT_FEE" id="TYPE_MERCHANT_PAYMENT_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#139" title="Go to source code">TYPE_MERCHANT_PAYMENT_FEE</a> = <span class="php-str">'MERCHANT_PAYMENT_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_MERCHANT_PAYMENT_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_MERCHANT_PAYMENT_REFUND" id="TYPE_MERCHANT_PAYMENT_REFUND">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#140" title="Go to source code">TYPE_MERCHANT_PAYMENT_REFUND</a> = <span class="php-str">'MERCHANT_PAYMENT_REFUND'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_MERCHANT_PAYMENT_REFUND">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_MERCHANT_PAYMENT_RETURN" id="TYPE_MERCHANT_PAYMENT_RETURN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#141" title="Go to source code">TYPE_MERCHANT_PAYMENT_RETURN</a> = <span class="php-str">'MERCHANT_PAYMENT_RETURN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_MERCHANT_PAYMENT_RETURN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_MONEYGRAM_TRANSFER_RETURN" id="TYPE_MONEYGRAM_TRANSFER_RETURN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#143-144" title="Go to source code">TYPE_MONEYGRAM_TRANSFER_RETURN</a> = <span class="php-str">'MONEYGRAM_TRANSFER_RETURN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_MONEYGRAM_TRANSFER_RETURN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_TRANSFER_TO_MONEYGRAM" id="TYPE_TRANSFER_TO_MONEYGRAM">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#145" title="Go to source code">TYPE_TRANSFER_TO_MONEYGRAM</a> = <span class="php-str">'TRANSFER_TO_MONEYGRAM'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_TRANSFER_TO_MONEYGRAM">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PAPER_CHECK_FEE" id="TYPE_PAPER_CHECK_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#147-148" title="Go to source code">TYPE_PAPER_CHECK_FEE</a> = <span class="php-str">'PAPER_CHECK_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAPER_CHECK_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PAPER_CHECK_REFUND" id="TYPE_PAPER_CHECK_REFUND">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#149" title="Go to source code">TYPE_PAPER_CHECK_REFUND</a> = <span class="php-str">'PAPER_CHECK_REFUND'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAPER_CHECK_REFUND">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_TRANSFER_TO_PAPER_CHECK" id="TYPE_TRANSFER_TO_PAPER_CHECK">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#150" title="Go to source code">TYPE_TRANSFER_TO_PAPER_CHECK</a> = <span class="php-str">'TRANSFER_TO_PAPER_CHECK'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_TRANSFER_TO_PAPER_CHECK">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PAYNEARME_CASH_DEPOSIT" id="TYPE_PAYNEARME_CASH_DEPOSIT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#152-153" title="Go to source code">TYPE_PAYNEARME_CASH_DEPOSIT</a> = <span class="php-str">'PAYNEARME_CASH_DEPOSIT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAYNEARME_CASH_DEPOSIT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_ACCOUNT_CLOSURE" id="TYPE_ACCOUNT_CLOSURE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#155-156" title="Go to source code">TYPE_ACCOUNT_CLOSURE</a> = <span class="php-str">'ACCOUNT_CLOSURE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_ACCOUNT_CLOSURE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_ACCOUNT_CLOSURE_FEE" id="TYPE_ACCOUNT_CLOSURE_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#157" title="Go to source code">TYPE_ACCOUNT_CLOSURE_FEE</a> = <span class="php-str">'ACCOUNT_CLOSURE_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_ACCOUNT_CLOSURE_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_ACCOUNT_UNLOAD" id="TYPE_ACCOUNT_UNLOAD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#158" title="Go to source code">TYPE_ACCOUNT_UNLOAD</a> = <span class="php-str">'ACCOUNT_UNLOAD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_ACCOUNT_UNLOAD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_DORMANT_USER_FEE" id="TYPE_DORMANT_USER_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#159" title="Go to source code">TYPE_DORMANT_USER_FEE</a> = <span class="php-str">'DORMANT_USER_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_DORMANT_USER_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_DORMANT_USER_FEE_REFUND" id="TYPE_DORMANT_USER_FEE_REFUND">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#160" title="Go to source code">TYPE_DORMANT_USER_FEE_REFUND</a> = <span class="php-str">'DORMANT_USER_FEE_REFUND'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_DORMANT_USER_FEE_REFUND">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PAYMENT" id="TYPE_PAYMENT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#161" title="Go to source code">TYPE_PAYMENT</a> = <span class="php-str">'PAYMENT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAYMENT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PAYMENT_CANCELLATION" id="TYPE_PAYMENT_CANCELLATION">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#162" title="Go to source code">TYPE_PAYMENT_CANCELLATION</a> = <span class="php-str">'PAYMENT_CANCELLATION'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAYMENT_CANCELLATION">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PAYMENT_REVERSAL" id="TYPE_PAYMENT_REVERSAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#163" title="Go to source code">TYPE_PAYMENT_REVERSAL</a> = <span class="php-str">'PAYMENT_REVERSAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAYMENT_REVERSAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PAYMENT_REVERSAL_FEE" id="TYPE_PAYMENT_REVERSAL_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#164" title="Go to source code">TYPE_PAYMENT_REVERSAL_FEE</a> = <span class="php-str">'PAYMENT_REVERSAL_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAYMENT_REVERSAL_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_PAYMENT_RETURN" id="TYPE_PAYMENT_RETURN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#165" title="Go to source code">TYPE_PAYMENT_RETURN</a> = <span class="php-str">'PAYMENT_RETURN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAYMENT_RETURN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_TRANSFER_TO_PROGRAM_ACCOUNT" id="TYPE_TRANSFER_TO_PROGRAM_ACCOUNT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#166" title="Go to source code">TYPE_TRANSFER_TO_PROGRAM_ACCOUNT</a> = <span class="php-str">'TRANSFER_TO_PROGRAM_ACCOUNT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_TRANSFER_TO_PROGRAM_ACCOUNT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_TRANSFER_TO_USER" id="TYPE_TRANSFER_TO_USER">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#167" title="Go to source code">TYPE_TRANSFER_TO_USER</a> = <span class="php-str">'TRANSFER_TO_USER'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_TRANSFER_TO_USER">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_VIRTUAL_INCENTIVE_CANCELLATION" id="TYPE_VIRTUAL_INCENTIVE_CANCELLATION">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#169-170" title="Go to source code">TYPE_VIRTUAL_INCENTIVE_CANCELLATION</a> = <span class="php-str">'VIRTUAL_INCENTIVE_CANCELLATION'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_VIRTUAL_INCENTIVE_CANCELLATION">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_VIRTUAL_INCENTIVE_ISSUANCE" id="TYPE_VIRTUAL_INCENTIVE_ISSUANCE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#171" title="Go to source code">TYPE_VIRTUAL_INCENTIVE_ISSUANCE</a> = <span class="php-str">'VIRTUAL_INCENTIVE_ISSUANCE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_VIRTUAL_INCENTIVE_ISSUANCE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_VIRTUAL_INCENTIVE_PURCHASE" id="TYPE_VIRTUAL_INCENTIVE_PURCHASE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#172" title="Go to source code">TYPE_VIRTUAL_INCENTIVE_PURCHASE</a> = <span class="php-str">'VIRTUAL_INCENTIVE_PURCHASE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_VIRTUAL_INCENTIVE_PURCHASE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_VIRTUAL_INCENTIVE_REFUND" id="TYPE_VIRTUAL_INCENTIVE_REFUND">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#173" title="Go to source code">TYPE_VIRTUAL_INCENTIVE_REFUND</a> = <span class="php-str">'VIRTUAL_INCENTIVE_REFUND'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_VIRTUAL_INCENTIVE_REFUND">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_TRANSFER_TO_WESTERN_UNION" id="TYPE_TRANSFER_TO_WESTERN_UNION">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#175-176" title="Go to source code">TYPE_TRANSFER_TO_WESTERN_UNION</a> = <span class="php-str">'TRANSFER_TO_WESTERN_UNION'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_TRANSFER_TO_WESTERN_UNION">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_TRANSFER_TO_WUBS_WIRE" id="TYPE_TRANSFER_TO_WUBS_WIRE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#177" title="Go to source code">TYPE_TRANSFER_TO_WUBS_WIRE</a> = <span class="php-str">'TRANSFER_TO_WUBS_WIRE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_TRANSFER_TO_WUBS_WIRE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_WESTERN_UNION_TRANSFER_RETURN" id="TYPE_WESTERN_UNION_TRANSFER_RETURN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#178" title="Go to source code">TYPE_WESTERN_UNION_TRANSFER_RETURN</a> = <span class="php-str">'WESTERN_UNION_TRANSFER_RETURN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_WESTERN_UNION_TRANSFER_RETURN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_WUBS_WIRE_TRANSFER_RETURN" id="TYPE_WUBS_WIRE_TRANSFER_RETURN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#179" title="Go to source code">TYPE_WUBS_WIRE_TRANSFER_RETURN</a> = <span class="php-str">'WUBS_WIRE_TRANSFER_RETURN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_WUBS_WIRE_TRANSFER_RETURN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_TRANSFER_TO_WIRE" id="TYPE_TRANSFER_TO_WIRE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#181-182" title="Go to source code">TYPE_TRANSFER_TO_WIRE</a> = <span class="php-str">'TRANSFER_TO_WIRE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_TRANSFER_TO_WIRE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_WIRE_TRANSFER_FEE" id="TYPE_WIRE_TRANSFER_FEE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#183" title="Go to source code">TYPE_WIRE_TRANSFER_FEE</a> = <span class="php-str">'WIRE_TRANSFER_FEE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_WIRE_TRANSFER_FEE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_WIRE_TRANSFER_RETURN" id="TYPE_WIRE_TRANSFER_RETURN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#184" title="Go to source code">TYPE_WIRE_TRANSFER_RETURN</a> = <span class="php-str">'WIRE_TRANSFER_RETURN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_WIRE_TRANSFER_RETURN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_CLIENT_PAYMENT_ID" id="DETAILS_FIELD_KEY_CLIENT_PAYMENT_ID">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#186" title="Go to source code">DETAILS_FIELD_KEY_CLIENT_PAYMENT_ID</a> = <span class="php-str">'clientPaymentId'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_CLIENT_PAYMENT_ID">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_NOTES" id="DETAILS_FIELD_KEY_NOTES">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#187" title="Go to source code">DETAILS_FIELD_KEY_NOTES</a> = <span class="php-str">'notes'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_NOTES">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_MEMO" id="DETAILS_FIELD_KEY_MEMO">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#188" title="Go to source code">DETAILS_FIELD_KEY_MEMO</a> = <span class="php-str">'memo'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_MEMO">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_RETURN_OR_RECALL_REASON" id="DETAILS_FIELD_KEY_RETURN_OR_RECALL_REASON">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#189" title="Go to source code">DETAILS_FIELD_KEY_RETURN_OR_RECALL_REASON</a> = <span class="php-str">'returnOrRecallReason'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_RETURN_OR_RECALL_REASON">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_WEBSITE" id="DETAILS_FIELD_KEY_WEBSITE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#190" title="Go to source code">DETAILS_FIELD_KEY_WEBSITE</a> = <span class="php-str">'website'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_WEBSITE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_PAYER_NAME" id="DETAILS_FIELD_KEY_PAYER_NAME">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#191" title="Go to source code">DETAILS_FIELD_KEY_PAYER_NAME</a> = <span class="php-str">'payerName'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_PAYER_NAME">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_PAYEE_NAME" id="DETAILS_FIELD_KEY_PAYEE_NAME">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#192" title="Go to source code">DETAILS_FIELD_KEY_PAYEE_NAME</a> = <span class="php-str">'payeeName'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_PAYEE_NAME">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_CHARITY_NAME" id="DETAILS_FIELD_KEY_CHARITY_NAME">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#193" title="Go to source code">DETAILS_FIELD_KEY_CHARITY_NAME</a> = <span class="php-str">'charityName'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_CHARITY_NAME">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_CARD_HOLDER_NAME" id="DETAILS_FIELD_KEY_CARD_HOLDER_NAME">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#194" title="Go to source code">DETAILS_FIELD_KEY_CARD_HOLDER_NAME</a> = <span class="php-str">'cardHolderName'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_CARD_HOLDER_NAME">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BANK_NAME" id="DETAILS_FIELD_KEY_BANK_NAME">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#195" title="Go to source code">DETAILS_FIELD_KEY_BANK_NAME</a> = <span class="php-str">'bankName'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BANK_NAME">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BANK_ID" id="DETAILS_FIELD_KEY_BANK_ID">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#196" title="Go to source code">DETAILS_FIELD_KEY_BANK_ID</a> = <span class="php-str">'bankId'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BANK_ID">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BRANCH_NAME" id="DETAILS_FIELD_KEY_BRANCH_NAME">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#197" title="Go to source code">DETAILS_FIELD_KEY_BRANCH_NAME</a> = <span class="php-str">'branchName'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BRANCH_NAME">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BRANCH_ID" id="DETAILS_FIELD_KEY_BRANCH_ID">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#198" title="Go to source code">DETAILS_FIELD_KEY_BRANCH_ID</a> = <span class="php-str">'branchId'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BRANCH_ID">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BANK_ACCOUNT_ID" id="DETAILS_FIELD_KEY_BANK_ACCOUNT_ID">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#199" title="Go to source code">DETAILS_FIELD_KEY_BANK_ACCOUNT_ID</a> = <span class="php-str">'bankAccountId'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BANK_ACCOUNT_ID">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BANK_ACCOUNT_PURPOSE" id="DETAILS_FIELD_KEY_BANK_ACCOUNT_PURPOSE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#200" title="Go to source code">DETAILS_FIELD_KEY_BANK_ACCOUNT_PURPOSE</a> = <span class="php-str">'bankAccountPurpose'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BANK_ACCOUNT_PURPOSE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BRANCH_ADDRESS_LINE1" id="DETAILS_FIELD_KEY_BRANCH_ADDRESS_LINE1">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#201" title="Go to source code">DETAILS_FIELD_KEY_BRANCH_ADDRESS_LINE1</a> = <span class="php-str">'branchAddressLine1'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BRANCH_ADDRESS_LINE1">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BRANCH_ADDRESS_LINE2" id="DETAILS_FIELD_KEY_BRANCH_ADDRESS_LINE2">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#202" title="Go to source code">DETAILS_FIELD_KEY_BRANCH_ADDRESS_LINE2</a> = <span class="php-str">'branchAddressLine2'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BRANCH_ADDRESS_LINE2">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BRANCH_CITY" id="DETAILS_FIELD_KEY_BRANCH_CITY">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#203" title="Go to source code">DETAILS_FIELD_KEY_BRANCH_CITY</a> = <span class="php-str">'branchCity'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BRANCH_CITY">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BRANCH_STATE_PROVINCE" id="DETAILS_FIELD_KEY_BRANCH_STATE_PROVINCE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#204" title="Go to source code">DETAILS_FIELD_KEY_BRANCH_STATE_PROVINCE</a> = <span class="php-str">'branchStateProvince'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BRANCH_STATE_PROVINCE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BRANCH_COUNTRY" id="DETAILS_FIELD_KEY_BRANCH_COUNTRY">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#205" title="Go to source code">DETAILS_FIELD_KEY_BRANCH_COUNTRY</a> = <span class="php-str">'branchCountry'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BRANCH_COUNTRY">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_BRANCH_POSTAL_CODE" id="DETAILS_FIELD_KEY_BRANCH_POSTAL_CODE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#206" title="Go to source code">DETAILS_FIELD_KEY_BRANCH_POSTAL_CODE</a> = <span class="php-str">'branchPostalCode'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_BRANCH_POSTAL_CODE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_CHECK_NUMBER" id="DETAILS_FIELD_KEY_CHECK_NUMBER">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#207" title="Go to source code">DETAILS_FIELD_KEY_CHECK_NUMBER</a> = <span class="php-str">'checkNumber'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_CHECK_NUMBER">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_CARD_NUMBER" id="DETAILS_FIELD_KEY_CARD_NUMBER">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#208" title="Go to source code">DETAILS_FIELD_KEY_CARD_NUMBER</a> = <span class="php-str">'cardNumber'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_CARD_NUMBER">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_CARD_EXPIRY_DATE" id="DETAILS_FIELD_KEY_CARD_EXPIRY_DATE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#209" title="Go to source code">DETAILS_FIELD_KEY_CARD_EXPIRY_DATE</a> = <span class="php-str">'cardExpiryDate'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_CARD_EXPIRY_DATE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_PAYEE_EMAIL" id="DETAILS_FIELD_KEY_PAYEE_EMAIL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#210" title="Go to source code">DETAILS_FIELD_KEY_PAYEE_EMAIL</a> = <span class="php-str">'payeeEmail'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_PAYEE_EMAIL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_PAYEE_ADDRESS_LINE1" id="DETAILS_FIELD_KEY_PAYEE_ADDRESS_LINE1">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#211" title="Go to source code">DETAILS_FIELD_KEY_PAYEE_ADDRESS_LINE1</a> = <span class="php-str">'payeeAddressLine1'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_PAYEE_ADDRESS_LINE1">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_PAYEE_ADDRESS_LINE2" id="DETAILS_FIELD_KEY_PAYEE_ADDRESS_LINE2">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#212" title="Go to source code">DETAILS_FIELD_KEY_PAYEE_ADDRESS_LINE2</a> = <span class="php-str">'payeeAddressLine2'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_PAYEE_ADDRESS_LINE2">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_PAYEE_CITY" id="DETAILS_FIELD_KEY_PAYEE_CITY">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#213" title="Go to source code">DETAILS_FIELD_KEY_PAYEE_CITY</a> = <span class="php-str">'payeeCity'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_PAYEE_CITY">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_PAYEE_STATE_PROVINCE" id="DETAILS_FIELD_KEY_PAYEE_STATE_PROVINCE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#214" title="Go to source code">DETAILS_FIELD_KEY_PAYEE_STATE_PROVINCE</a> = <span class="php-str">'payeeStateProvince'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_PAYEE_STATE_PROVINCE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_PAYEE_COUNTRY" id="DETAILS_FIELD_KEY_PAYEE_COUNTRY">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#215" title="Go to source code">DETAILS_FIELD_KEY_PAYEE_COUNTRY</a> = <span class="php-str">'payeeCountry'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_PAYEE_COUNTRY">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_PAYEE_POSTAL_CODE" id="DETAILS_FIELD_KEY_PAYEE_POSTAL_CODE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#216" title="Go to source code">DETAILS_FIELD_KEY_PAYEE_POSTAL_CODE</a> = <span class="php-str">'payeePostalCode'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_PAYEE_POSTAL_CODE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_PAYMENT_EXPIRY_DATE" id="DETAILS_FIELD_KEY_PAYMENT_EXPIRY_DATE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#217" title="Go to source code">DETAILS_FIELD_KEY_PAYMENT_EXPIRY_DATE</a> = <span class="php-str">'paymentExpiryDate'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_PAYMENT_EXPIRY_DATE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_SECURITY_QUESTION" id="DETAILS_FIELD_KEY_SECURITY_QUESTION">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#218" title="Go to source code">DETAILS_FIELD_KEY_SECURITY_QUESTION</a> = <span class="php-str">'securityQuestion'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_SECURITY_QUESTION">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="DETAILS_FIELD_KEY_SECURITY_ANSWER" id="DETAILS_FIELD_KEY_SECURITY_ANSWER">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Receipt.html#219" title="Go to source code">DETAILS_FIELD_KEY_SECURITY_ANSWER</a> = <span class="php-str">'securityAnswer'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#DETAILS_FIELD_KEY_SECURITY_ANSWER">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+		<table class="table" id="properties">
+			<tr>
+				<th class="table-heading sortable" colspan="4" title="Switch between natural and alphabetical order">Properties</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="journalId" id="$journalId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$journalId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The journal id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The journal id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$journalId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="type" id="$type">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$type</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transaction type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transaction type</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$type">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createdOn" id="$createdOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap"><a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$createdOn</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transaction creation date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transaction creation date</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$createdOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="entry" id="$entry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$entry</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The entry type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The entry type</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$entry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="sourceToken" id="$sourceToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$sourceToken</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The source token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The source token</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$sourceToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="destinationToken" id="$destinationToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$destinationToken</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The destination token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The destination token</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$destinationToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="amount" id="$amount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$amount</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transaction amount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transaction amount</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$amount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="fee" id="$fee">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$fee</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The fee amount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The fee amount</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$fee">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="currency" id="$currency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$currency</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transaction currency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transaction currency</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$currency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="foreignExchangeRate" id="$foreignExchangeRate">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">double</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$foreignExchangeRate</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The foreign exchange rate
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The foreign exchange rate</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$foreignExchangeRate">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="foreignExchangeCurrency" id="$foreignExchangeCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$foreignExchangeCurrency</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The foreign exchange currency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The foreign exchange currency</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$foreignExchangeCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="details" id="$details">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">array</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Receipt.html" title="Go to source code">$details</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transaction details
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transaction details</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$details">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+		</div>
+
+		<div class="layout-footer">
+			 API documentation generated by <a href="https://www.apigen.org">ApiGen v7.0.0-alpha.3</a>
+		</div>
+	</div>
+
+	<div class="layout-rest">
+		<div class="navbar"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,4959 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Class Hyperwallet\Model\User |  API</title>
+	<link rel="stylesheet" href="assets/main.css">
+	<script src="assets/main.js" defer></script>
+</head>
+
+<body class="layout">
+	<div class="layout-aside">
+	<div class="menu">
+			<div class="menu-section">
+				<h3>Namespaces</h3>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-ComposerScript.html">ComposerScript</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.html">Hyperwallet</a>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Exception.html">Exception</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.Model.html">Model</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Response.html">Response</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Util.html">Util</a>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</div>
+
+		<div class="menu-section">
+			<h3>Classes</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.AuthenticationToken.html">
+							AuthenticationToken
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Balance.html">
+							Balance
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccount.html">
+							BankAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccountStatusTransition.html">
+							BankAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCard.html">
+							BankCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCardStatusTransition.html">
+							BankCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BaseModel.html">
+							BaseModel
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholder.html">
+							BusinessStakeholder
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholderStatusTransition.html">
+							BusinessStakeholderStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Error.html">
+							Error
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocument.html">
+							HyperwalletVerificationDocument
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentCollection.html">
+							HyperwalletVerificationDocumentCollection
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReason.html">
+							HyperwalletVerificationDocumentReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReasonCollection.html">
+							HyperwalletVerificationDocumentReasonCollection
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaperCheck.html">
+							PaperCheck
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaperCheckStatusTransition.html">
+							PaperCheckStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Payment.html">
+							Payment
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaymentStatusTransition.html">
+							PaymentStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccount.html">
+							PayPalAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccountStatusTransition.html">
+							PayPalAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PrepaidCard.html">
+							PrepaidCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PrepaidCardStatusTransition.html">
+							PrepaidCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Program.html">
+							Program
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.ProgramAccount.html">
+							ProgramAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Receipt.html">
+							Receipt
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.RejectReason.html">
+							RejectReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.StatusTransition.html">
+							StatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Transfer.html">
+							Transfer
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethod.html">
+							TransferMethod
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethodConfiguration.html">
+							TransferMethodConfiguration
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferRefund.html">
+							TransferRefund
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferStatusTransition.html">
+							TransferStatusTransition
+						</a>
+					</li>
+					<li class="active">
+						<a href="Hyperwallet.Model.User.html">
+							User
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.UserStatusTransition.html">
+							UserStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccount.html">
+							VenmoAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccountStatusTransition.html">
+							VenmoAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.WebhookNotification.html">
+							WebhookNotification
+						</a>
+					</li>
+			</ul>
+		</div>
+
+		<div class="menu-section">
+			<h3>Interfaces</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.IProgramAware.html">
+							IProgramAware
+						</a>
+					</li>
+			</ul>
+		</div>
+
+
+
+
+	</div>
+	</div>
+
+	<div class="layout-main">
+		<div class="layout-navbar">
+	<nav class="navbar">
+		<div class="navbar-left">
+			<ul class="navbar-links">
+				<li>
+					<a href="index.html">Overview</a>
+				</li>
+				<li>
+					
+						<a href="namespace-Hyperwallet.Model.html">Namespace</a>
+					
+				</li>
+<li class="active"><a href="Hyperwallet.Model.User.html">Class</a></li>				<li>
+					<a href="tree.html">Tree</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-right">
+	<div class="search" data-elements="assets/elements.js">
+		<input class="search-input" placeholder="Search class, function or namespace" autofocus>
+		<ul class="search-results"></ul>
+	</div>
+		</div>
+	</nav>
+		</div>
+
+		<div class="layout-content">
+		<h1>
+			Class <a href="namespace-Hyperwallet.html">Hyperwallet</a>\<a href="namespace-Hyperwallet.Model.html">Model</a>\<a href="Hyperwallet.Model.User.html">User</a>
+		</h1>
+
+
+	<table class="classLikeSignatureTable">
+
+
+
+		<tr>
+			<th><code>extends</code></th>
+			<td>
+<code><a href="Hyperwallet.Model.BaseModel.html"><span title="Hyperwallet\Model\BaseModel">BaseModel</span></a></code>			</td>
+		</tr>
+		<tr>
+			<th><code>implements</code></th>
+			<td>
+<code><a href="Hyperwallet.Model.IProgramAware.html"><span title="Hyperwallet\Model\IProgramAware">IProgramAware</span></a></code>			</td>
+		</tr>
+
+	</table>
+		<div class="classLikeDescription">
+	<div class="description"><p>Represents a V4 User</p>
+</div>
+		</div>
+
+			<div class="classLikeSection">
+	<ul class="classTree">
+	<li>
+<a href="Hyperwallet.Model.BaseModel.html"><span>Hyperwallet\Model\BaseModel</span></a>
+
+
+	<ul class="classTree">
+	<li>
+<b><span class="active">Hyperwallet\Model\User</span></b>
+
+		implements
+			<a href="Hyperwallet.Model.IProgramAware.html"><span title="Hyperwallet\Model\IProgramAware">IProgramAware</span></a>
+
+	</li>
+	</ul>
+	</li>
+	</ul>
+			</div>
+
+		<div class="classLikeSection">
+			<b>Located at</b> <a href="source-Hyperwallet.Model.User.html#58" title="Go to source code">Hyperwallet/Model/User.php</a><br>
+		</div>
+
+
+		<table class="table" id="methods">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Methods</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="FILTERS_ARRAY" id="_FILTERS_ARRAY">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					static
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#121-123" title="Go to source code">FILTERS_ARRAY</a>()</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_FILTERS_ARRAY">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="__construct" id="___construct">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#125-132" title="Go to source code">__construct</a>(<span>string[] <var>$properties</var> = []</span>)</code>
+
+
+	<div class="expandable-collapsedView">
+		Creates a instance of User
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Creates a instance of User</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$properties</var>&nbsp;&nbsp;</td>
+										<td><p>The default properties</p>
+</td>
+									</tr>
+							</table>
+
+
+
+		<h4>Overrides</h4>
+		<ul>
+				<li>
+<a href="Hyperwallet.Model.BaseModel.html#___construct">						<code>Hyperwallet\Model\BaseModel::__construct()</code></a>				</li>
+		</ul>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#___construct">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getToken" id="_getToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#134-141" title="Go to source code">getToken</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the user token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the user token</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setToken" id="_setToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#143-152" title="Go to source code">setToken</a>(<span>string <var>$token</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the user token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the user token</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getStatus" id="_getStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#154-161" title="Go to source code">getStatus</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the user status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the user status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCreatedOn" id="_getCreatedOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#163-183" title="Go to source code">getCreatedOn</a>(): <a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get the user creation time
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the user creation time</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCreatedOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getClientUserId" id="_getClientUserId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#185-192" title="Go to source code">getClientUserId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the client user id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the client user id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getClientUserId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setClientUserId" id="_setClientUserId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#194-203" title="Go to source code">setClientUserId</a>(<span>string <var>$clientUserId</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the client user id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the client user id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setClientUserId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getProfileType" id="_getProfileType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#205-212" title="Go to source code">getProfileType</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the profile type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the profile type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getProfileType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setProfileType" id="_setProfileType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#214-223" title="Go to source code">setProfileType</a>(<span>string <var>$profileType</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the profile type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the profile type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setProfileType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessType" id="_getBusinessType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#225-232" title="Go to source code">getBusinessType</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setBusinessType" id="_setBusinessType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#234-243" title="Go to source code">setBusinessType</a>(<span>string <var>$businessType</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the business type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the business type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setBusinessType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessName" id="_getBusinessName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#245-252" title="Go to source code">getBusinessName</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setBusinessName" id="_setBusinessName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#254-263" title="Go to source code">setBusinessName</a>(<span>string <var>$businessName</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the business name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the business name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setBusinessName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessOperatingName" id="_getBusinessOperatingName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#265-273" title="Go to source code">getBusinessOperatingName</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business operating name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business operating name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessOperatingName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setBusinessOperatingName" id="_setBusinessOperatingName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#275-285" title="Go to source code">setBusinessOperatingName</a>(<span>string <var>$businessOperatingName</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the business operating name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the business operating name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setBusinessOperatingName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessRegistrationId" id="_getBusinessRegistrationId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#287-294" title="Go to source code">getBusinessRegistrationId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business registration id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business registration id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessRegistrationId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setBusinessRegistrationId" id="_setBusinessRegistrationId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#296-305" title="Go to source code">setBusinessRegistrationId</a>(<span>string <var>$businessRegistrationId</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the business registration id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the business registration id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setBusinessRegistrationId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessRegistrationStateProvince" id="_getBusinessRegistrationStateProvince">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#307-314" title="Go to source code">getBusinessRegistrationStateProvince</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business registration state or province
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business registration state or province</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessRegistrationStateProvince">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setBusinessRegistrationStateProvince" id="_setBusinessRegistrationStateProvince">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#316-325" title="Go to source code">setBusinessRegistrationStateProvince</a>(<span>string <var>$businessRegistrationStateProvince</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the business registartion state or province
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the business registartion state or province</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setBusinessRegistrationStateProvince">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessRegistrationCountry" id="_getBusinessRegistrationCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#327-334" title="Go to source code">getBusinessRegistrationCountry</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business registartion country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business registartion country</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessRegistrationCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setBusinessRegistrationCountry" id="_setBusinessRegistrationCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#336-345" title="Go to source code">setBusinessRegistrationCountry</a>(<span>string <var>$businessRegistrationCountry</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the business registration country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the business registration country</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setBusinessRegistrationCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessContactRole" id="_getBusinessContactRole">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#347-354" title="Go to source code">getBusinessContactRole</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business contact role
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business contact role</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessContactRole">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setBusinessContactRole" id="_setBusinessContactRole">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#356-365" title="Go to source code">setBusinessContactRole</a>(<span>string <var>$businessContactRole</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the business contact role
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the business contact role</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setBusinessContactRole">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getFirstName" id="_getFirstName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#367-374" title="Go to source code">getFirstName</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the first name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the first name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getFirstName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setFirstName" id="_setFirstName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#376-385" title="Go to source code">setFirstName</a>(<span>string <var>$firstName</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the first name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the first name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setFirstName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getMiddleName" id="_getMiddleName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#387-394" title="Go to source code">getMiddleName</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the middle name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the middle name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getMiddleName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setMiddleName" id="_setMiddleName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#396-405" title="Go to source code">setMiddleName</a>(<span>string <var>$middleName</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the middle name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the middle name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setMiddleName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getLastName" id="_getLastName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#407-414" title="Go to source code">getLastName</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the last name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the last name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getLastName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setLastName" id="_setLastName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#416-425" title="Go to source code">setLastName</a>(<span>string <var>$lastName</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the last name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the last name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setLastName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDateOfBirth" id="_getDateOfBirth">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#427-434" title="Go to source code">getDateOfBirth</a>(): <a href="DateTime.html"><span title="DateTime">DateTime</span></a>|null</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the date of birth
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the date of birth</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDateOfBirth">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setDateOfBirth" id="_setDateOfBirth">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#436-445" title="Go to source code">setDateOfBirth</a>(<span><a href="DateTime.html"><span title="DateTime">DateTime</span></a>|null <var>$dateOfBirth</var> = <span class="php-kw">null</span></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the date of birth
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the date of birth</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setDateOfBirth">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCountryOfBirth" id="_getCountryOfBirth">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#447-454" title="Go to source code">getCountryOfBirth</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the country of birth
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the country of birth</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCountryOfBirth">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setCountryOfBirth" id="_setCountryOfBirth">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#456-465" title="Go to source code">setCountryOfBirth</a>(<span>string <var>$countryOfBirth</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the country of birth
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the country of birth</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setCountryOfBirth">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCountryOfNationality" id="_getCountryOfNationality">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#467-474" title="Go to source code">getCountryOfNationality</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the country of nationality
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the country of nationality</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCountryOfNationality">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setCountryOfNationality" id="_setCountryOfNationality">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#476-485" title="Go to source code">setCountryOfNationality</a>(<span>string <var>$countryOfNationality</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the country of nationality
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the country of nationality</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setCountryOfNationality">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getGender" id="_getGender">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#487-494" title="Go to source code">getGender</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the gender
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the gender</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getGender">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setGender" id="_setGender">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#496-505" title="Go to source code">setGender</a>(<span>string <var>$gender</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the gender
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the gender</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setGender">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPhoneNumber" id="_getPhoneNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#507-514" title="Go to source code">getPhoneNumber</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the phone number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the phone number</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPhoneNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setPhoneNumber" id="_setPhoneNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#516-525" title="Go to source code">setPhoneNumber</a>(<span>string <var>$phoneNumber</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the phone number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the phone number</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setPhoneNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getMobileNumber" id="_getMobileNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#527-534" title="Go to source code">getMobileNumber</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the mobile number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the mobile number</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getMobileNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setMobileNumber" id="_setMobileNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#536-545" title="Go to source code">setMobileNumber</a>(<span>string <var>$mobileNumber</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the mobile number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the mobile number</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setMobileNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getEmail" id="_getEmail">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#547-554" title="Go to source code">getEmail</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the email
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the email</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getEmail">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setEmail" id="_setEmail">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#556-565" title="Go to source code">setEmail</a>(<span>string <var>$email</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the email
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the email</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setEmail">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getGovernmentId" id="_getGovernmentId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#567-574" title="Go to source code">getGovernmentId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the government id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the government id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getGovernmentId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setGovernmentId" id="_setGovernmentId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#576-585" title="Go to source code">setGovernmentId</a>(<span>string <var>$governmentId</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the government id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the government id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setGovernmentId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPassportId" id="_getPassportId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#587-594" title="Go to source code">getPassportId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the passport id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the passport id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPassportId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setPassportId" id="_setPassportId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#596-605" title="Go to source code">setPassportId</a>(<span>string <var>$passportId</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the passport id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the passport id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setPassportId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDriversLicenseId" id="_getDriversLicenseId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#607-614" title="Go to source code">getDriversLicenseId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the drivers license id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the drivers license id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDriversLicenseId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setDriversLicenseId" id="_setDriversLicenseId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#616-625" title="Go to source code">setDriversLicenseId</a>(<span>string <var>$driversLicenseId</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the drivers license id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the drivers license id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setDriversLicenseId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getEmployerId" id="_getEmployerId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#627-634" title="Go to source code">getEmployerId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the employer id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the employer id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getEmployerId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setEmployerId" id="_setEmployerId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#636-645" title="Go to source code">setEmployerId</a>(<span>string <var>$employerId</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the employer id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the employer id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setEmployerId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getAddressLine1" id="_getAddressLine1">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#647-654" title="Go to source code">getAddressLine1</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the address line 1
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the address line 1</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getAddressLine1">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setAddressLine1" id="_setAddressLine1">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#656-665" title="Go to source code">setAddressLine1</a>(<span>string <var>$addressLine1</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the address line 1
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the address line 1</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setAddressLine1">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getAddressLine2" id="_getAddressLine2">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#667-674" title="Go to source code">getAddressLine2</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the address line 2
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the address line 2</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getAddressLine2">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setAddressLine2" id="_setAddressLine2">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#676-685" title="Go to source code">setAddressLine2</a>(<span>string <var>$addressLine2</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the address line 2
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the address line 2</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setAddressLine2">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCity" id="_getCity">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#687-694" title="Go to source code">getCity</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the city
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the city</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCity">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setCity" id="_setCity">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#696-705" title="Go to source code">setCity</a>(<span>string <var>$city</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the city
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the city</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setCity">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getStateProvince" id="_getStateProvince">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#707-714" title="Go to source code">getStateProvince</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the state or province
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the state or province</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getStateProvince">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setStateProvince" id="_setStateProvince">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#716-725" title="Go to source code">setStateProvince</a>(<span>string <var>$stateProvince</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the state or province
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the state or province</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setStateProvince">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCountry" id="_getCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#727-734" title="Go to source code">getCountry</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the country</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setCountry" id="_setCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#736-745" title="Go to source code">setCountry</a>(<span>string <var>$country</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the country</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPostalCode" id="_getPostalCode">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#747-754" title="Go to source code">getPostalCode</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the postal code
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the postal code</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPostalCode">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setPostalCode" id="_setPostalCode">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#756-765" title="Go to source code">setPostalCode</a>(<span>string <var>$postalCode</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the postal code
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the postal code</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setPostalCode">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getLanguage" id="_getLanguage">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#767-774" title="Go to source code">getLanguage</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the user language
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the user language</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getLanguage">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setLanguage" id="_setLanguage">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#776-785" title="Go to source code">setLanguage</a>(<span>string <var>$language</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the user language
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the user language</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setLanguage">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getProgramToken" id="_getProgramToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#787-794" title="Go to source code">getProgramToken</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the users program token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the users program token</p>
+</div>
+
+
+
+
+		<h4>Implements</h4>
+		<ul>
+				<li>
+<a href="Hyperwallet.Model.IProgramAware.html#_getProgramToken">						<code>Hyperwallet\Model\IProgramAware::getProgramToken()</code></a>				</li>
+		</ul>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getProgramToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setProgramToken" id="_setProgramToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#796-805" title="Go to source code">setProgramToken</a>(<span>string <var>$programToken</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the users program token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the users program token</p>
+</div>
+
+
+
+
+		<h4>Implements</h4>
+		<ul>
+				<li>
+<a href="Hyperwallet.Model.IProgramAware.html#_setProgramToken">						<code>Hyperwallet\Model\IProgramAware::setProgramToken()</code></a>				</li>
+		</ul>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setProgramToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getVerificationStatus" id="_getVerificationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#807-814" title="Go to source code">getVerificationStatus</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the users verification status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the users verification status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getVerificationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setVerificationStatus" id="_setVerificationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#816-825" title="Go to source code">setVerificationStatus</a>(<span>string <var>$verificationStatus</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the users verification status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the users verification status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setVerificationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getTaxVerificationStatus" id="_getTaxVerificationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#827-834" title="Go to source code">getTaxVerificationStatus</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the tax verification status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the tax verification status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getTaxVerificationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setTaxVerificationStatus" id="_setTaxVerificationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#836-845" title="Go to source code">setTaxVerificationStatus</a>(<span>string <var>$taxVerificationStatus</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the tax verification status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the tax verification status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setTaxVerificationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDocuments" id="_getDocuments">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#847-849" title="Go to source code">getDocuments</a>()</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDocuments">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessStakeholderVerificationStatus" id="_getBusinessStakeholderVerificationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#851-858" title="Go to source code">getBusinessStakeholderVerificationStatus</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		get Business Stakeholder verification status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>get Business Stakeholder verification status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessStakeholderVerificationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setBusinessStakeholderVerificationStatus" id="_setBusinessStakeholderVerificationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#860-869" title="Go to source code">setBusinessStakeholderVerificationStatus</a>(<span>string <var>$businessStakeholderVerificationStatus</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		set Business Stakeholder verification status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>set Business Stakeholder verification status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setBusinessStakeholderVerificationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getLetterOfAuthorizationStatus" id="_getLetterOfAuthorizationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#871-878" title="Go to source code">getLetterOfAuthorizationStatus</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the users Letter of Authorization status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the users Letter of Authorization status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getLetterOfAuthorizationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setLetterOfAuthorizationStatus" id="_setLetterOfAuthorizationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#880-889" title="Go to source code">setLetterOfAuthorizationStatus</a>(<span>string <var>$letterOfAuthorizationStatus</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the users Letter of Authorization status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the users Letter of Authorization status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setLetterOfAuthorizationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getGovernmentIdType" id="_getGovernmentIdType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#891-898" title="Go to source code">getGovernmentIdType</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		get the users government Id Type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>get the users government Id Type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getGovernmentIdType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setGovernmentIdType" id="_setGovernmentIdType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#900-909" title="Go to source code">setGovernmentIdType</a>(<span>string <var>$governmentIdType</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the users government Id Type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the users government Id Type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setGovernmentIdType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getTimeZone" id="_getTimeZone">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#911-918" title="Go to source code">getTimeZone</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		get the user's time zone
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>get the user's time zone</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getTimeZone">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setTimeZone" id="_setTimeZone">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#920-929" title="Go to source code">setTimeZone</a>(<span>string <var>$timeZone</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		set the user's time zone
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>set the user's time zone</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setTimeZone">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getLinks" id="_getLinks">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#931-938" title="Go to source code">getLinks</a>(): array</code>
+
+
+	<div class="expandable-collapsedView">
+		get the HATEOS links
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>get the HATEOS links</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getLinks">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setLinks" id="_setLinks">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.User.html#940-949" title="Go to source code">setLinks</a>(<span>array <var>$links</var></span>): <b><span class="active" title="Hyperwallet\Model\User">User</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		set the HATEOS links
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>set the HATEOS links</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setLinks">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+
+		<table class="table" id="constants">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Constants</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="STATUS_PRE_ACTIVATED" id="STATUS_PRE_ACTIVATED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#70" title="Go to source code">STATUS_PRE_ACTIVATED</a> = <span class="php-str">'PRE_ACTIVATED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_PRE_ACTIVATED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_ACTIVATED" id="STATUS_ACTIVATED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#71" title="Go to source code">STATUS_ACTIVATED</a> = <span class="php-str">'ACTIVATED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_ACTIVATED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_LOCKED" id="STATUS_LOCKED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#72" title="Go to source code">STATUS_LOCKED</a> = <span class="php-str">'LOCKED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_LOCKED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_FROZEN" id="STATUS_FROZEN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#73" title="Go to source code">STATUS_FROZEN</a> = <span class="php-str">'FROZEN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_FROZEN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_DE_ACTIVATED" id="STATUS_DE_ACTIVATED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#74" title="Go to source code">STATUS_DE_ACTIVATED</a> = <span class="php-str">'DE_ACTIVATED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_DE_ACTIVATED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="PROFILE_TYPE_INDIVIDUAL" id="PROFILE_TYPE_INDIVIDUAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#76" title="Go to source code">PROFILE_TYPE_INDIVIDUAL</a> = <span class="php-str">'INDIVIDUAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#PROFILE_TYPE_INDIVIDUAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="PROFILE_TYPE_BUSINESS" id="PROFILE_TYPE_BUSINESS">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#77" title="Go to source code">PROFILE_TYPE_BUSINESS</a> = <span class="php-str">'BUSINESS'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#PROFILE_TYPE_BUSINESS">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="PROFILE_TYPE_UNKNOWN" id="PROFILE_TYPE_UNKNOWN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#78" title="Go to source code">PROFILE_TYPE_UNKNOWN</a> = <span class="php-str">'UNKNOWN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#PROFILE_TYPE_UNKNOWN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESS_TYPE_CORPORATION" id="BUSINESS_TYPE_CORPORATION">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#80" title="Go to source code">BUSINESS_TYPE_CORPORATION</a> = <span class="php-str">'CORPORATION'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESS_TYPE_CORPORATION">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESS_TYPE_PARTNERSHIP" id="BUSINESS_TYPE_PARTNERSHIP">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#81" title="Go to source code">BUSINESS_TYPE_PARTNERSHIP</a> = <span class="php-str">'PARTNERSHIP'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESS_TYPE_PARTNERSHIP">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESS_CONTACT_ROLE_DIRECTOR" id="BUSINESS_CONTACT_ROLE_DIRECTOR">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#83" title="Go to source code">BUSINESS_CONTACT_ROLE_DIRECTOR</a> = <span class="php-str">'DIRECTOR'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESS_CONTACT_ROLE_DIRECTOR">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESS_CONTACT_ROLE_OWNER" id="BUSINESS_CONTACT_ROLE_OWNER">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#84" title="Go to source code">BUSINESS_CONTACT_ROLE_OWNER</a> = <span class="php-str">'OWNER'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESS_CONTACT_ROLE_OWNER">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESS_CONTACT_ROLE_OTHER" id="BUSINESS_CONTACT_ROLE_OTHER">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#85" title="Go to source code">BUSINESS_CONTACT_ROLE_OTHER</a> = <span class="php-str">'OTHER'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESS_CONTACT_ROLE_OTHER">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="GENDER_MALE" id="GENDER_MALE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#87" title="Go to source code">GENDER_MALE</a> = <span class="php-str">'MALE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#GENDER_MALE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="GENDER_FEMALE" id="GENDER_FEMALE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#88" title="Go to source code">GENDER_FEMALE</a> = <span class="php-str">'FEMALE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#GENDER_FEMALE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="VERIFICATION_STATUS_NOT_REQUIRED" id="VERIFICATION_STATUS_NOT_REQUIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#90" title="Go to source code">VERIFICATION_STATUS_NOT_REQUIRED</a> = <span class="php-str">'NOT_REQUIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#VERIFICATION_STATUS_NOT_REQUIRED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="VERIFICATION_STATUS_REQUIRED" id="VERIFICATION_STATUS_REQUIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#91" title="Go to source code">VERIFICATION_STATUS_REQUIRED</a> = <span class="php-str">'REQUIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#VERIFICATION_STATUS_REQUIRED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="VERIFICATION_STATUS_FAILED" id="VERIFICATION_STATUS_FAILED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#92" title="Go to source code">VERIFICATION_STATUS_FAILED</a> = <span class="php-str">'FAILED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#VERIFICATION_STATUS_FAILED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="VERIFICATION_STATUS_UNDER_REVIEW" id="VERIFICATION_STATUS_UNDER_REVIEW">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#93" title="Go to source code">VERIFICATION_STATUS_UNDER_REVIEW</a> = <span class="php-str">'UNDER_REVIEW'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#VERIFICATION_STATUS_UNDER_REVIEW">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="VERIFICATION_STATUS_VERIFIED" id="VERIFICATION_STATUS_VERIFIED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#94" title="Go to source code">VERIFICATION_STATUS_VERIFIED</a> = <span class="php-str">'VERIFIED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#VERIFICATION_STATUS_VERIFIED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="VERIFICATION_STATUS_REQUESTED" id="VERIFICATION_STATUS_REQUESTED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#95" title="Go to source code">VERIFICATION_STATUS_REQUESTED</a> = <span class="php-str">'REQUESTED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#VERIFICATION_STATUS_REQUESTED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="VERIFICATION_STATUS_EXPIRED" id="VERIFICATION_STATUS_EXPIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#96" title="Go to source code">VERIFICATION_STATUS_EXPIRED</a> = <span class="php-str">'EXPIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#VERIFICATION_STATUS_EXPIRED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="VERIFICATION_STATUS_READY_FOR_REVIEW" id="VERIFICATION_STATUS_READY_FOR_REVIEW">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#97" title="Go to source code">VERIFICATION_STATUS_READY_FOR_REVIEW</a> = <span class="php-str">'READY_FOR_REVIEW'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#VERIFICATION_STATUS_READY_FOR_REVIEW">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TAX_VERIFICATION_STATUS_NOT_REQUIRED" id="TAX_VERIFICATION_STATUS_NOT_REQUIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#99" title="Go to source code">TAX_VERIFICATION_STATUS_NOT_REQUIRED</a> = <span class="php-str">'NOT_REQUIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TAX_VERIFICATION_STATUS_NOT_REQUIRED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TAX_VERIFICATION_STATUS_REQUIRED" id="TAX_VERIFICATION_STATUS_REQUIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#100" title="Go to source code">TAX_VERIFICATION_STATUS_REQUIRED</a> = <span class="php-str">'REQUIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TAX_VERIFICATION_STATUS_REQUIRED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TAX_VERIFICATION_STATUS_VERIFIED" id="TAX_VERIFICATION_STATUS_VERIFIED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#101" title="Go to source code">TAX_VERIFICATION_STATUS_VERIFIED</a> = <span class="php-str">'VERIFIED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TAX_VERIFICATION_STATUS_VERIFIED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TAX_VERIFICATION_STATUS_UNDER_REVIEW" id="TAX_VERIFICATION_STATUS_UNDER_REVIEW">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#102" title="Go to source code">TAX_VERIFICATION_STATUS_UNDER_REVIEW</a> = <span class="php-str">'UNDER_REVIEW'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TAX_VERIFICATION_STATUS_UNDER_REVIEW">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_NOT_REQUIRED" id="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_NOT_REQUIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#104" title="Go to source code">BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_NOT_REQUIRED</a> = <span class="php-str">'NOT_REQUIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_NOT_REQUIRED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_REQUIRED" id="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_REQUIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#105" title="Go to source code">BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_REQUIRED</a> = <span class="php-str">'REQUIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_REQUIRED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_FAILED" id="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_FAILED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#106" title="Go to source code">BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_FAILED</a> = <span class="php-str">'FAILED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_FAILED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_UNDER_REVIEW" id="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_UNDER_REVIEW">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#107" title="Go to source code">BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_UNDER_REVIEW</a> = <span class="php-str">'UNDER_REVIEW'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_UNDER_REVIEW">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED" id="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#108" title="Go to source code">BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED</a> = <span class="php-str">'VERIFIED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_VERIFIED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_READY_FOR_REVIEW" id="BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_READY_FOR_REVIEW">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#109" title="Go to source code">BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_READY_FOR_REVIEW</a> = <span class="php-str">'READY_FOR_REVIEW'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESSS_STAKEHOLDER_VERIFICATION_STATUS_READY_FOR_REVIEW">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="LETTER_OF_AUTHORIZATION_STATUS_NOT_REQUIRED" id="LETTER_OF_AUTHORIZATION_STATUS_NOT_REQUIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#111" title="Go to source code">LETTER_OF_AUTHORIZATION_STATUS_NOT_REQUIRED</a> = <span class="php-str">'NOT_REQUIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#LETTER_OF_AUTHORIZATION_STATUS_NOT_REQUIRED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="LETTER_OF_AUTHORIZATION_STATUS_REQUIRED" id="LETTER_OF_AUTHORIZATION_STATUS_REQUIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#112" title="Go to source code">LETTER_OF_AUTHORIZATION_STATUS_REQUIRED</a> = <span class="php-str">'REQUIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#LETTER_OF_AUTHORIZATION_STATUS_REQUIRED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="LETTER_OF_AUTHORIZATION_STATUS_FAILED" id="LETTER_OF_AUTHORIZATION_STATUS_FAILED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#113" title="Go to source code">LETTER_OF_AUTHORIZATION_STATUS_FAILED</a> = <span class="php-str">'FAILED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#LETTER_OF_AUTHORIZATION_STATUS_FAILED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="LETTER_OF_AUTHORIZATION_STATUS_UNDER_REVIEW" id="LETTER_OF_AUTHORIZATION_STATUS_UNDER_REVIEW">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#114" title="Go to source code">LETTER_OF_AUTHORIZATION_STATUS_UNDER_REVIEW</a> = <span class="php-str">'UNDER_REVIEW'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#LETTER_OF_AUTHORIZATION_STATUS_UNDER_REVIEW">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="LETTER_OF_AUTHORIZATION_STATUS_VERIFIED" id="LETTER_OF_AUTHORIZATION_STATUS_VERIFIED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#115" title="Go to source code">LETTER_OF_AUTHORIZATION_STATUS_VERIFIED</a> = <span class="php-str">'VERIFIED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#LETTER_OF_AUTHORIZATION_STATUS_VERIFIED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="LETTER_OF_AUTHORIZATION_STATUS_READY_FOR_REVIEW" id="LETTER_OF_AUTHORIZATION_STATUS_READY_FOR_REVIEW">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#116" title="Go to source code">LETTER_OF_AUTHORIZATION_STATUS_READY_FOR_REVIEW</a> = <span class="php-str">'READY_FOR_REVIEW'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#LETTER_OF_AUTHORIZATION_STATUS_READY_FOR_REVIEW">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="GOVERNMENT_ID_TYPE_PASSPORT" id="GOVERNMENT_ID_TYPE_PASSPORT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#118" title="Go to source code">GOVERNMENT_ID_TYPE_PASSPORT</a> = <span class="php-str">'PASSPORT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#GOVERNMENT_ID_TYPE_PASSPORT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD" id="GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.User.html#119" title="Go to source code">GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD</a> = <span class="php-str">'NATIONAL_ID_CARD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+
+		<table class="table" id="properties">
+			<tr>
+				<th class="table-heading sortable" colspan="4" title="Switch between natural and alphabetical order">Properties</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="token" id="$token">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$token</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The user token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The user token</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$token">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="status" id="$status">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$status</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The user status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The user status</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$status">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="verificationStatus" id="$verificationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$verificationStatus</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The status of user verification
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The status of user verification</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$verificationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="taxVerificationStatus" id="$taxVerificationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$taxVerificationStatus</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The status of tax verification
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The status of tax verification</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$taxVerificationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessStakeholderVerificationStatus" id="$businessStakeholderVerificationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$businessStakeholderVerificationStatus</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The status of Business Stakeholder verification
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The status of Business Stakeholder verification</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessStakeholderVerificationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="letterOfAuthorizationStatus" id="$letterOfAuthorizationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$letterOfAuthorizationStatus</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The status of Letter of Authorization verification
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The status of Letter of Authorization verification</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$letterOfAuthorizationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createdOn" id="$createdOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap"><a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$createdOn</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The user creation date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The user creation date</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$createdOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="clientUserId" id="$clientUserId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$clientUserId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The client user id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The client user id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$clientUserId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="profileType" id="$profileType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$profileType</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The profile type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The profile type</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$profileType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessType" id="$businessType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$businessType</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business type</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessName" id="$businessName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$businessName</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business name</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessOperatingName" id="$businessOperatingName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$businessOperatingName</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business operating name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business operating name</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessOperatingName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessRegistrationId" id="$businessRegistrationId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$businessRegistrationId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business registration id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business registration id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessRegistrationId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessRegistrationCountry" id="$businessRegistrationCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$businessRegistrationCountry</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business registration country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business registration country</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessRegistrationCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessRegistrationStateProvince" id="$businessRegistrationStateProvince">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$businessRegistrationStateProvince</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business registration state or province
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business registration state or province</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessRegistrationStateProvince">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessContactRole" id="$businessContactRole">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$businessContactRole</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business contact role
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business contact role</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessContactRole">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="firstName" id="$firstName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$firstName</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The first name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The first name</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$firstName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="middleName" id="$middleName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$middleName</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The middle name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The middle name</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$middleName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="lastName" id="$lastName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$lastName</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The last name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The last name</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$lastName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="dateOfBirth" id="$dateOfBirth">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap"><a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$dateOfBirth</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The date of birth
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The date of birth</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$dateOfBirth">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="countryOfBirth" id="$countryOfBirth">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$countryOfBirth</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The country of birth
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The country of birth</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$countryOfBirth">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="countryOfNationality" id="$countryOfNationality">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$countryOfNationality</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The country of nationality
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The country of nationality</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$countryOfNationality">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="gender" id="$gender">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$gender</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The gender
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The gender</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$gender">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="phoneNumber" id="$phoneNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$phoneNumber</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The phone number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The phone number</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$phoneNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="mobileNumber" id="$mobileNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$mobileNumber</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The mobile number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The mobile number</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$mobileNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="email" id="$email">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$email</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The email
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The email</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$email">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="governmentId" id="$governmentId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$governmentId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The goverment id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The goverment id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$governmentId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="governmentIdType" id="$governmentIdType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$governmentIdType</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The status of Letter of Authorization verification
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The status of Letter of Authorization verification</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$governmentIdType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="passportId" id="$passportId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$passportId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The passport id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The passport id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$passportId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="driversLicenseId" id="$driversLicenseId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$driversLicenseId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The drivers license id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The drivers license id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$driversLicenseId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="employerId" id="$employerId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$employerId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The employer id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The employer id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$employerId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="addressLine1" id="$addressLine1">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$addressLine1</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The address line 1
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The address line 1</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$addressLine1">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="addressLine2" id="$addressLine2">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$addressLine2</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The address line 2
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The address line 2</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$addressLine2">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="city" id="$city">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$city</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The city
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The city</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$city">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="stateProvince" id="$stateProvince">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$stateProvince</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The state or province
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The state or province</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$stateProvince">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="postalCode" id="$postalCode">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$postalCode</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The postal code
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The postal code</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$postalCode">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="country" id="$country">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$country</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The country</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$country">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="language" id="$language">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$language</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The user language
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The user language</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$language">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="programToken" id="$programToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$programToken</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The users program token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The users program token</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$programToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="timeZone" id="$timeZone">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$timeZone</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The users program token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The users program token</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$timeZone">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="documents" id="$documents">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap"><a href="Hyperwallet.Model.HyperwalletVerificationDocumentCollection.html"><span title="Hyperwallet\Model\HyperwalletVerificationDocumentCollection">HyperwalletVerificationDocumentCollection</span></a></code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$documents</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The array of documents of type HyperwalletVerificationDocument returned for document upload
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The array of documents of type HyperwalletVerificationDocument returned for document upload</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$documents">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="links" id="$links">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">array</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.User.html" title="Go to source code">$links</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The array of HATEOS links
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The array of HATEOS links</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$links">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+		</div>
+
+		<div class="layout-footer">
+			 API documentation generated by <a href="https://www.apigen.org">ApiGen v7.0.0-alpha.3</a>
+		</div>
+	</div>
+
+	<div class="layout-rest">
+		<div class="navbar"></div>
+	</div>
+</body>
+</html>

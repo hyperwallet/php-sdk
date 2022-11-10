@@ -1,0 +1,6011 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Class Hyperwallet\Hyperwallet |  API</title>
+	<link rel="stylesheet" href="assets/main.css">
+	<script src="assets/main.js" defer></script>
+</head>
+
+<body class="layout">
+	<div class="layout-aside">
+	<div class="menu">
+			<div class="menu-section">
+				<h3>Namespaces</h3>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-ComposerScript.html">ComposerScript</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.html">Hyperwallet</a>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Exception.html">Exception</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Model.html">Model</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Response.html">Response</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Util.html">Util</a>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</div>
+
+		<div class="menu-section">
+			<h3>Classes</h3>
+			<ul>
+					<li class="active">
+						<a href="Hyperwallet.Hyperwallet.html">
+							Hyperwallet
+						</a>
+					</li>
+			</ul>
+		</div>
+
+
+
+
+
+	</div>
+	</div>
+
+	<div class="layout-main">
+		<div class="layout-navbar">
+	<nav class="navbar">
+		<div class="navbar-left">
+			<ul class="navbar-links">
+				<li>
+					<a href="index.html">Overview</a>
+				</li>
+				<li>
+					
+						<a href="namespace-Hyperwallet.html">Namespace</a>
+					
+				</li>
+<li class="active"><a href="Hyperwallet.Hyperwallet.html">Class</a></li>				<li>
+					<a href="tree.html">Tree</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-right">
+	<div class="search" data-elements="assets/elements.js">
+		<input class="search-input" placeholder="Search class, function or namespace" autofocus>
+		<ul class="search-results"></ul>
+	</div>
+		</div>
+	</nav>
+		</div>
+
+		<div class="layout-content">
+		<h1>
+			Class <a href="namespace-Hyperwallet.html">Hyperwallet</a>\<a href="Hyperwallet.Hyperwallet.html">Hyperwallet</a>
+		</h1>
+
+
+	<table class="classLikeSignatureTable">
+
+
+
+
+	</table>
+		<div class="classLikeDescription">
+	<div class="description"><p>The Hyperwallet SDK Client</p>
+</div>
+		</div>
+
+
+		<div class="classLikeSection">
+			<b>Located at</b> <a href="source-Hyperwallet.Hyperwallet.html#50" title="Go to source code">Hyperwallet/Hyperwallet.php</a><br>
+		</div>
+
+
+		<table class="table" id="methods">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Methods</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="__construct" id="___construct">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#66-85" title="Go to source code">__construct</a>(
+	<span>string <var>$username</var></span>,
+	<span>string <var>$password</var></span>,
+	<span>string|null <var>$programToken</var> = <span class="php-kw">null</span></span>,
+	<span>string <var>$server</var> = <span class="php-str">'https://api.sandbox.hyperwallet.com'</span></span>,
+	<span>array <var>$encryptionData</var> = []</span>,
+	<span>array <var>$clientOptions</var> = []</span>,
+)</code>
+
+
+	<div class="expandable-collapsedView">
+		Creates a instance of the SDK Client
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Creates a instance of the SDK Client</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$username</var>&nbsp;&nbsp;</td>
+										<td><p>The API username</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$password</var>&nbsp;&nbsp;</td>
+										<td><p>The API password</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$programToken</var>&nbsp;&nbsp;</td>
+										<td><p>The program token that is used for some API calls</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$server</var>&nbsp;&nbsp;</td>
+										<td><p>The API server to connect to</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$encryptionData</var>&nbsp;&nbsp;</td>
+										<td><p>Encryption data to initialize ApiClient with encryption enabled</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$clientOptions</var>&nbsp;&nbsp;</td>
+										<td><p>Guzzle Client Options</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#___construct">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createUser" id="_createUser">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#116-132" title="Go to source code">createUser</a>(<span><a href="Hyperwallet.Model.User.html"><span title="Hyperwallet\Model\User">User</span></a> <var>$user</var></span>): <a href="Hyperwallet.Model.User.html"><span title="Hyperwallet\Model\User">User</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a user
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a user</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$user</var>&nbsp;&nbsp;</td>
+										<td><p>The user data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createUser">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getUser" id="_getUser">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#134-149" title="Go to source code">getUser</a>(<span>string <var>$userToken</var></span>): <a href="Hyperwallet.Model.User.html"><span title="Hyperwallet\Model\User">User</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a user
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a user</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getUser">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="updateUser" id="_updateUser">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#151-166" title="Go to source code">updateUser</a>(<span><a href="Hyperwallet.Model.User.html"><span title="Hyperwallet\Model\User">User</span></a> <var>$user</var></span>): <a href="Hyperwallet.Model.User.html"><span title="Hyperwallet\Model\User">User</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Update a user
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Update a user</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$user</var>&nbsp;&nbsp;</td>
+										<td><p>The user</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_updateUser">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listUsers" id="_listUsers">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#168-188" title="Go to source code">listUsers</a>(<span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all users
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all users</p>
+</div>
+
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listUsers">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getUserStatusTransition" id="_getUserStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#190-213" title="Go to source code">getUserStatusTransition</a>(<span>string <var>$userToken</var></span>, <span>string <var>$statusTransitionToken</var></span>): <a href="Hyperwallet.Model.UserStatusTransition.html"><span title="Hyperwallet\Model\UserStatusTransition">UserStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a user status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a user status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$statusTransitionToken</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getUserStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listUserStatusTransitions" id="_listUserStatusTransitions">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#215-242" title="Go to source code">listUserStatusTransitions</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all user status transitions
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all user status transitions</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listUserStatusTransitions">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getAuthenticationToken" id="_getAuthenticationToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#244-264" title="Go to source code">getAuthenticationToken</a>(<span>string <var>$userToken</var></span>): <a href="Hyperwallet.Model.AuthenticationToken.html"><span title="Hyperwallet\Model\AuthenticationToken">AuthenticationToken</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get authentication token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get authentication token</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getAuthenticationToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createPaperCheck" id="_createPaperCheck">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#266-287" title="Go to source code">createPaperCheck</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.PaperCheck.html"><span title="Hyperwallet\Model\PaperCheck">PaperCheck</span></a> <var>$paperCheck</var></span>): <a href="Hyperwallet.Model.PaperCheck.html"><span title="Hyperwallet\Model\PaperCheck">PaperCheck</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a paper check
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a paper check</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$paperCheck</var>&nbsp;&nbsp;</td>
+										<td><p>The paper check data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createPaperCheck">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPaperCheck" id="_getPaperCheck">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#289-311" title="Go to source code">getPaperCheck</a>(<span>string <var>$userToken</var></span>, <span>string <var>$paperCheckToken</var></span>): <a href="Hyperwallet.Model.PaperCheck.html"><span title="Hyperwallet\Model\PaperCheck">PaperCheck</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a paper check
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a paper check</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$paperCheckToken</var>&nbsp;&nbsp;</td>
+										<td><p>The paper check token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPaperCheck">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="updatePaperCheck" id="_updatePaperCheck">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#313-326" title="Go to source code">updatePaperCheck</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.PaperCheck.html"><span title="Hyperwallet\Model\PaperCheck">PaperCheck</span></a> <var>$paperCheck</var></span>): <a href="Hyperwallet.Model.PaperCheck.html"><span title="Hyperwallet\Model\PaperCheck">PaperCheck</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Update a paper check
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Update a paper check</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$paperCheck</var>&nbsp;&nbsp;</td>
+										<td><p>The paper check data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_updatePaperCheck">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listPaperChecks" id="_listPaperChecks">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#328-353" title="Go to source code">listPaperChecks</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all paper checks
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all paper checks</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters to send</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listPaperChecks">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="deactivatePaperCheck" id="_deactivatePaperCheck">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#355-370" title="Go to source code">deactivatePaperCheck</a>(<span>string <var>$userToken</var></span>, <span>string <var>$paperCheckToken</var></span>): <a href="Hyperwallet.Model.PaperCheckStatusTransition.html"><span title="Hyperwallet\Model\PaperCheckStatusTransition">PaperCheckStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Deactivate a paper check
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Deactivate a paper check</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$paperCheckToken</var>&nbsp;&nbsp;</td>
+										<td><p>The paper check token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_deactivatePaperCheck">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createPaperCheckStatusTransition" id="_createPaperCheckStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#372-396" title="Go to source code">createPaperCheckStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$paperCheckToken</var></span>,
+	<span><a href="Hyperwallet.Model.PaperCheckStatusTransition.html"><span title="Hyperwallet\Model\PaperCheckStatusTransition">PaperCheckStatusTransition</span></a> <var>$transition</var></span>,
+): <a href="Hyperwallet.Model.PaperCheckStatusTransition.html"><span title="Hyperwallet\Model\PaperCheckStatusTransition">PaperCheckStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a paper check status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a paper check status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$paperCheckToken</var>&nbsp;&nbsp;</td>
+										<td><p>The paper check token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$transition</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createPaperCheckStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPaperCheckStatusTransition" id="_getPaperCheckStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#398-426" title="Go to source code">getPaperCheckStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$paperCheckToken</var></span>,
+	<span>string <var>$statusTransitionToken</var></span>,
+): <a href="Hyperwallet.Model.PaperCheckStatusTransition.html"><span title="Hyperwallet\Model\PaperCheckStatusTransition">PaperCheckStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a paper check status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a paper check status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$paperCheckToken</var>&nbsp;&nbsp;</td>
+										<td><p>The paper check token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$statusTransitionToken</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPaperCheckStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listPaperCheckStatusTransitions" id="_listPaperCheckStatusTransitions">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#428-460" title="Go to source code">listPaperCheckStatusTransitions</a>(<span>string <var>$userToken</var></span>, <span>string <var>$paperCheckToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all paper check status transitions
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all paper check status transitions</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$paperCheckToken</var>&nbsp;&nbsp;</td>
+										<td><p>The paper check token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listPaperCheckStatusTransitions">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createTransfer" id="_createTransfer">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#462-487" title="Go to source code">createTransfer</a>(<span><a href="Hyperwallet.Model.Transfer.html"><span title="Hyperwallet\Model\Transfer">Transfer</span></a> <var>$transfer</var></span>): <a href="Hyperwallet.Model.Transfer.html"><span title="Hyperwallet\Model\Transfer">Transfer</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a transfer
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a transfer</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$transfer</var>&nbsp;&nbsp;</td>
+										<td><p>The transfer data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createTransfer">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createTransferRefund" id="_createTransferRefund">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#489-502" title="Go to source code">createTransferRefund</a>(<span><var>$transferToken</var></span>, <span><var>$transferRefund</var></span>)</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createTransferRefund">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getTransfer" id="_getTransfer">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#504-520" title="Go to source code">getTransfer</a>(<span>string <var>$transferToken</var></span>): <a href="Hyperwallet.Model.Transfer.html"><span title="Hyperwallet\Model\Transfer">Transfer</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a transfer
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a transfer</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$transferToken</var>&nbsp;&nbsp;</td>
+										<td><p>The transfer token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getTransfer">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getTransferRefund" id="_getTransferRefund">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#522-534" title="Go to source code">getTransferRefund</a>(<span><var>$transferToken</var></span>, <span><var>$refundToken</var></span>)</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getTransferRefund">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listTransfers" id="_listTransfers">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#536-556" title="Go to source code">listTransfers</a>(<span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all transfers
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all transfers</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters to send</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listTransfers">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listTransferRefunds" id="_listTransferRefunds">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#558-574" title="Go to source code">listTransferRefunds</a>(<span><var>$transferToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all transfers
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all transfers</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters to send</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listTransferRefunds">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createTransferStatusTransition" id="_createTransferStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#576-595" title="Go to source code">createTransferStatusTransition</a>(<span>string <var>$transferToken</var></span>, <span><a href="Hyperwallet.Model.TransferStatusTransition.html"><span title="Hyperwallet\Model\TransferStatusTransition">TransferStatusTransition</span></a> <var>$transition</var></span>): <a href="Hyperwallet.Model.TransferStatusTransition.html"><span title="Hyperwallet\Model\TransferStatusTransition">TransferStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a transfer status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a transfer status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$transferToken</var>&nbsp;&nbsp;</td>
+										<td><p>The transfer token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$transition</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createTransferStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getTransferStatusTransition" id="_getTransferStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#597-620" title="Go to source code">getTransferStatusTransition</a>(<span>string <var>$transferToken</var></span>, <span>string <var>$statusTransitionToken</var></span>): <a href="Hyperwallet.Model.TransferStatusTransition.html"><span title="Hyperwallet\Model\TransferStatusTransition">TransferStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a transfer status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a transfer status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$transferToken</var>&nbsp;&nbsp;</td>
+										<td><p>The transfer token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$statusTransitionToken</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getTransferStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listTransferStatusTransitions" id="_listTransferStatusTransitions">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#622-643" title="Go to source code">listTransferStatusTransitions</a>(<span>string <var>$transferToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all transfer status transitions
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all transfer status transitions</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$transferToken</var>&nbsp;&nbsp;</td>
+										<td><p>The transfer token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listTransferStatusTransitions">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createPayPalAccount" id="_createPayPalAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#645-674" title="Go to source code">createPayPalAccount</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.PayPalAccount.html"><span title="Hyperwallet\Model\PayPalAccount">PayPalAccount</span></a> <var>$payPalAccount</var></span>): <a href="Hyperwallet.Model.PayPalAccount.html"><span title="Hyperwallet\Model\PayPalAccount">PayPalAccount</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a PayPal account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a PayPal account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$payPalAccount</var>&nbsp;&nbsp;</td>
+										<td><p>The PayPal account data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createPayPalAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPayPalAccount" id="_getPayPalAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#676-698" title="Go to source code">getPayPalAccount</a>(<span>string <var>$userToken</var></span>, <span>string <var>$payPalAccountToken</var></span>): <a href="Hyperwallet.Model.PayPalAccount.html"><span title="Hyperwallet\Model\PayPalAccount">PayPalAccount</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a PayPal account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a PayPal account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$payPalAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The PayPal account token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPayPalAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="updatePayPalAccount" id="_updatePayPalAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#700-713" title="Go to source code">updatePayPalAccount</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.PayPalAccount.html"><span title="Hyperwallet\Model\PayPalAccount">PayPalAccount</span></a> <var>$payPalAccount</var></span>): <a href="Hyperwallet.Model.PayPalAccount.html"><span title="Hyperwallet\Model\PayPalAccount">PayPalAccount</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Update PayPal account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Update PayPal account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$payPalAccount</var>&nbsp;&nbsp;</td>
+										<td><p>Paypal account data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_updatePayPalAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listPayPalAccounts" id="_listPayPalAccounts">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#715-739" title="Go to source code">listPayPalAccounts</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all PayPal accounts
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all PayPal accounts</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters to send</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listPayPalAccounts">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="deactivatePayPalAccount" id="_deactivatePayPalAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#741-756" title="Go to source code">deactivatePayPalAccount</a>(<span>string <var>$userToken</var></span>, <span>string <var>$payPalAccountToken</var></span>): <a href="Hyperwallet.Model.PayPalAccountStatusTransition.html"><span title="Hyperwallet\Model\PayPalAccountStatusTransition">PayPalAccountStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Deactivate a PayPal account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Deactivate a PayPal account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$payPalAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The PayPal account token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_deactivatePayPalAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createPayPalAccountStatusTransition" id="_createPayPalAccountStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#758-782" title="Go to source code">createPayPalAccountStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$payPalAccountToken</var></span>,
+	<span><a href="Hyperwallet.Model.PayPalAccountStatusTransition.html"><span title="Hyperwallet\Model\PayPalAccountStatusTransition">PayPalAccountStatusTransition</span></a> <var>$transition</var></span>,
+): <a href="Hyperwallet.Model.PayPalAccountStatusTransition.html"><span title="Hyperwallet\Model\PayPalAccountStatusTransition">PayPalAccountStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a PayPal account status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a PayPal account status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$payPalAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The PayPal account token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$transition</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createPayPalAccountStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPayPalAccountStatusTransition" id="_getPayPalAccountStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#784-812" title="Go to source code">getPayPalAccountStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$payPalAccountToken</var></span>,
+	<span>string <var>$statusTransitionToken</var></span>,
+): <a href="Hyperwallet.Model.PayPalAccountStatusTransition.html"><span title="Hyperwallet\Model\PayPalAccountStatusTransition">PayPalAccountStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a PayPal account status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a PayPal account status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$payPalAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The PayPal account token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$statusTransitionToken</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPayPalAccountStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listPayPalAccountStatusTransitions" id="_listPayPalAccountStatusTransitions">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#814-846" title="Go to source code">listPayPalAccountStatusTransitions</a>(<span>string <var>$userToken</var></span>, <span>string <var>$payPalAccountToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all PayPal account status transitions
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all PayPal account status transitions</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$payPalAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The payPal account token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listPayPalAccountStatusTransitions">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createPrepaidCard" id="_createPrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#848-868" title="Go to source code">createPrepaidCard</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.PrepaidCard.html"><span title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></a> <var>$prepaidCard</var></span>): <a href="Hyperwallet.Model.PrepaidCard.html"><span title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a prepaid card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a prepaid card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCard</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createPrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="replacePrepaidCard" id="_replacePrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#870-882" title="Go to source code">replacePrepaidCard</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.PrepaidCard.html"><span title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></a> <var>$prepaidCard</var></span>): <a href="Hyperwallet.Model.PrepaidCard.html"><span title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Replace a prepaid card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Replace a prepaid card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCard</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card data</p>
+</td>
+									</tr>
+							</table>
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_replacePrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPrepaidCard" id="_getPrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#884-906" title="Go to source code">getPrepaidCard</a>(<span>string <var>$userToken</var></span>, <span>string <var>$prepaidCardToken</var></span>): <a href="Hyperwallet.Model.PrepaidCard.html"><span title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a prepaid card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a prepaid card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="updatePrepaidCard" id="_updatePrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#908-921" title="Go to source code">updatePrepaidCard</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.PrepaidCard.html"><span title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></a> <var>$prepaidCard</var></span>): <a href="Hyperwallet.Model.PrepaidCard.html"><span title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Update a prepaid card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Update a prepaid card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCard</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_updatePrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listPrepaidCards" id="_listPrepaidCards">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#923-948" title="Go to source code">listPrepaidCards</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all prepaid cards
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all prepaid cards</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters to send</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listPrepaidCards">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="suspendPrepaidCard" id="_suspendPrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#950-965" title="Go to source code">suspendPrepaidCard</a>(<span>string <var>$userToken</var></span>, <span>string <var>$prepaidCardToken</var></span>): <a href="Hyperwallet.Model.PrepaidCardStatusTransition.html"><span title="Hyperwallet\Model\PrepaidCardStatusTransition">PrepaidCardStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Suspend a prepaid card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Suspend a prepaid card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_suspendPrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="unsuspendPrepaidCard" id="_unsuspendPrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#967-982" title="Go to source code">unsuspendPrepaidCard</a>(<span>string <var>$userToken</var></span>, <span>string <var>$prepaidCardToken</var></span>): <a href="Hyperwallet.Model.PrepaidCardStatusTransition.html"><span title="Hyperwallet\Model\PrepaidCardStatusTransition">PrepaidCardStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Unsuspend a prepaid card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Unsuspend a prepaid card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_unsuspendPrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="lostOrStolenPrepaidCard" id="_lostOrStolenPrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#984-999" title="Go to source code">lostOrStolenPrepaidCard</a>(<span>string <var>$userToken</var></span>, <span>string <var>$prepaidCardToken</var></span>): <a href="Hyperwallet.Model.PrepaidCardStatusTransition.html"><span title="Hyperwallet\Model\PrepaidCardStatusTransition">PrepaidCardStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Mark a prepaid card as lost or stolen
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Mark a prepaid card as lost or stolen</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_lostOrStolenPrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="deactivatePrepaidCard" id="_deactivatePrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1001-1016" title="Go to source code">deactivatePrepaidCard</a>(<span>string <var>$userToken</var></span>, <span>string <var>$prepaidCardToken</var></span>): <a href="Hyperwallet.Model.PrepaidCardStatusTransition.html"><span title="Hyperwallet\Model\PrepaidCardStatusTransition">PrepaidCardStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Deactivate a prepaid card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Deactivate a prepaid card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_deactivatePrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="lockPrepaidCard" id="_lockPrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1018-1033" title="Go to source code">lockPrepaidCard</a>(<span>string <var>$userToken</var></span>, <span>string <var>$prepaidCardToken</var></span>): <a href="Hyperwallet.Model.PrepaidCardStatusTransition.html"><span title="Hyperwallet\Model\PrepaidCardStatusTransition">PrepaidCardStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Lock a prepaid card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Lock a prepaid card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_lockPrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="unlockPrepaidCard" id="_unlockPrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1035-1050" title="Go to source code">unlockPrepaidCard</a>(<span>string <var>$userToken</var></span>, <span>string <var>$prepaidCardToken</var></span>): <a href="Hyperwallet.Model.PrepaidCardStatusTransition.html"><span title="Hyperwallet\Model\PrepaidCardStatusTransition">PrepaidCardStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Unlock a prepaid card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Unlock a prepaid card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_unlockPrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createPrepaidCardStatusTransition" id="_createPrepaidCardStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1052-1076" title="Go to source code">createPrepaidCardStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$prepaidCardToken</var></span>,
+	<span><a href="Hyperwallet.Model.PrepaidCardStatusTransition.html"><span title="Hyperwallet\Model\PrepaidCardStatusTransition">PrepaidCardStatusTransition</span></a> <var>$transition</var></span>,
+): <a href="Hyperwallet.Model.PrepaidCardStatusTransition.html"><span title="Hyperwallet\Model\PrepaidCardStatusTransition">PrepaidCardStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a prepaid card status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a prepaid card status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$transition</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createPrepaidCardStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPrepaidCardStatusTransition" id="_getPrepaidCardStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1078-1106" title="Go to source code">getPrepaidCardStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$prepaidCardToken</var></span>,
+	<span>string <var>$statusTransitionToken</var></span>,
+): <a href="Hyperwallet.Model.PrepaidCardStatusTransition.html"><span title="Hyperwallet\Model\PrepaidCardStatusTransition">PrepaidCardStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a prepaid card status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a prepaid card status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$statusTransitionToken</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPrepaidCardStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listPrepaidCardStatusTransitions" id="_listPrepaidCardStatusTransitions">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1108-1140" title="Go to source code">listPrepaidCardStatusTransitions</a>(<span>string <var>$userToken</var></span>, <span>string <var>$prepaidCardToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all prepaid card status transitions
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all prepaid card status transitions</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listPrepaidCardStatusTransitions">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createBankAccount" id="_createBankAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1142-1162" title="Go to source code">createBankAccount</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.BankAccount.html"><span title="Hyperwallet\Model\BankAccount">BankAccount</span></a> <var>$bankAccount</var></span>): <a href="Hyperwallet.Model.BankAccount.html"><span title="Hyperwallet\Model\BankAccount">BankAccount</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a bank account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a bank account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankAccount</var>&nbsp;&nbsp;</td>
+										<td><p>The bank account data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createBankAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBankAccount" id="_getBankAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1164-1186" title="Go to source code">getBankAccount</a>(<span>string <var>$userToken</var></span>, <span>string <var>$bankAccountToken</var></span>): <a href="Hyperwallet.Model.BankAccount.html"><span title="Hyperwallet\Model\BankAccount">BankAccount</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a bank account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a bank account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The bank account token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBankAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="updateBankAccount" id="_updateBankAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1188-1201" title="Go to source code">updateBankAccount</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.BankAccount.html"><span title="Hyperwallet\Model\BankAccount">BankAccount</span></a> <var>$bankAccount</var></span>): <a href="Hyperwallet.Model.BankAccount.html"><span title="Hyperwallet\Model\BankAccount">BankAccount</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Update a bank account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Update a bank account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankAccount</var>&nbsp;&nbsp;</td>
+										<td><p>The bank account data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_updateBankAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listBankAccounts" id="_listBankAccounts">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1203-1228" title="Go to source code">listBankAccounts</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all bank accounts
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all bank accounts</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters to send</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listBankAccounts">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="deactivateBankAccount" id="_deactivateBankAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1230-1245" title="Go to source code">deactivateBankAccount</a>(<span>string <var>$userToken</var></span>, <span>string <var>$bankAccountToken</var></span>): <a href="Hyperwallet.Model.BankAccountStatusTransition.html"><span title="Hyperwallet\Model\BankAccountStatusTransition">BankAccountStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Deactivate a bank account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Deactivate a bank account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The bank account token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_deactivateBankAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createBankAccountStatusTransition" id="_createBankAccountStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1247-1271" title="Go to source code">createBankAccountStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$bankAccountToken</var></span>,
+	<span><a href="Hyperwallet.Model.BankAccountStatusTransition.html"><span title="Hyperwallet\Model\BankAccountStatusTransition">BankAccountStatusTransition</span></a> <var>$transition</var></span>,
+): <a href="Hyperwallet.Model.BankAccountStatusTransition.html"><span title="Hyperwallet\Model\BankAccountStatusTransition">BankAccountStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a bank account status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a bank account status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The bank account token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$transition</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createBankAccountStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBankAccountStatusTransition" id="_getBankAccountStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1273-1301" title="Go to source code">getBankAccountStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$bankAccountToken</var></span>,
+	<span>string <var>$statusTransitionToken</var></span>,
+): <a href="Hyperwallet.Model.BankAccountStatusTransition.html"><span title="Hyperwallet\Model\BankAccountStatusTransition">BankAccountStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a bank account status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a bank account status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The bank account token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$statusTransitionToken</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBankAccountStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listBankAccountStatusTransitions" id="_listBankAccountStatusTransitions">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1303-1335" title="Go to source code">listBankAccountStatusTransitions</a>(<span>string <var>$userToken</var></span>, <span>string <var>$bankAccountToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all bank account status transitions
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all bank account status transitions</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The bank account token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listBankAccountStatusTransitions">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createBankCard" id="_createBankCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1337-1357" title="Go to source code">createBankCard</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.BankCard.html"><span title="Hyperwallet\Model\BankCard">BankCard</span></a> <var>$bankCard</var></span>): <a href="Hyperwallet.Model.BankCard.html"><span title="Hyperwallet\Model\BankCard">BankCard</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create Bank Card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create Bank Card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankCard</var>&nbsp;&nbsp;</td>
+										<td><p>The bank card data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createBankCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBankCard" id="_getBankCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1359-1381" title="Go to source code">getBankCard</a>(<span>string <var>$userToken</var></span>, <span>string <var>$bankCardToken</var></span>): <a href="Hyperwallet.Model.BankCard.html"><span title="Hyperwallet\Model\BankCard">BankCard</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a bank card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a bank card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The bank card token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBankCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="updateBankCard" id="_updateBankCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1384-1397" title="Go to source code">updateBankCard</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.BankCard.html"><span title="Hyperwallet\Model\BankCard">BankCard</span></a> <var>$bankCard</var></span>): <a href="Hyperwallet.Model.BankCard.html"><span title="Hyperwallet\Model\BankCard">BankCard</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Update a bank card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Update a bank card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankCard</var>&nbsp;&nbsp;</td>
+										<td><p>The bank card data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_updateBankCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listBankCards" id="_listBankCards">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1399-1424" title="Go to source code">listBankCards</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all bank cards
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all bank cards</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters to send</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listBankCards">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="deactivateBankCard" id="_deactivateBankCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1426-1439" title="Go to source code">deactivateBankCard</a>(<span>string <var>$userToken</var></span>, <span>string <var>$bankCardToken</var></span>): <a href="Hyperwallet.Model.BankCardStatusTransition.html"><span title="Hyperwallet\Model\BankCardStatusTransition">BankCardStatusTransition</span></a></code>
+
+
+
+	<div class="expandable-expandedView">
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The bank card token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_deactivateBankCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createBankCardStatusTransition" id="_createBankCardStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1441-1465" title="Go to source code">createBankCardStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$bankCardToken</var></span>,
+	<span><a href="Hyperwallet.Model.BankCardStatusTransition.html"><span title="Hyperwallet\Model\BankCardStatusTransition">BankCardStatusTransition</span></a> <var>$transition</var></span>,
+): <a href="Hyperwallet.Model.BankCardStatusTransition.html"><span title="Hyperwallet\Model\BankCardStatusTransition">BankCardStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a bank card status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a bank card status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The bank card token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$transition</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createBankCardStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBankCardStatusTransition" id="_getBankCardStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1467-1495" title="Go to source code">getBankCardStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$bankCardToken</var></span>,
+	<span>string <var>$statusTransitionToken</var></span>,
+): <a href="Hyperwallet.Model.BankCardStatusTransition.html"><span title="Hyperwallet\Model\BankCardStatusTransition">BankCardStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a bank card status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a bank card status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The bank card token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$statusTransitionToken</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBankCardStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listBankCardStatusTransitions" id="_listBankCardStatusTransitions">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1497-1529" title="Go to source code">listBankCardStatusTransitions</a>(<span>string <var>$userToken</var></span>, <span>string <var>$bankCardToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all bank card status transitions
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all bank card status transitions</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$bankCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The bank card token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listBankCardStatusTransitions">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createTransferMethod" id="_createTransferMethod">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1531-1560" title="Go to source code">createTransferMethod</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$jsonCacheToken</var></span>,
+	<span><a href="Hyperwallet.Model.TransferMethod.html"><span title="Hyperwallet\Model\TransferMethod">TransferMethod</span></a> <var>$transferMethod</var> = <span class="php-kw">null</span></span>,
+): <a href="Hyperwallet.Model.BankAccount.html"><span title="Hyperwallet\Model\BankAccount">BankAccount</span></a>|<a href="Hyperwallet.Model.PrepaidCard.html"><span title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a transfer method
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a transfer method</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$jsonCacheToken</var>&nbsp;&nbsp;</td>
+										<td><p>The json cache token supplied by the widget</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$transferMethod</var>&nbsp;&nbsp;</td>
+										<td><p>The transfer method data (to override certain fields)</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createTransferMethod">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listBalancesForUser" id="_listBalancesForUser">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1562-1592" title="Go to source code">listBalancesForUser</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List balances for a user
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List balances for a user</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listBalancesForUser">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listBalancesForPrepaidCard" id="_listBalancesForPrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1594-1627" title="Go to source code">listBalancesForPrepaidCard</a>(<span>string <var>$userToken</var></span>, <span>string <var>$prepaidCardToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List balances for a prepaid card
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List balances for a prepaid card</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listBalancesForPrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listBalancesForAccount" id="_listBalancesForAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1629-1662" title="Go to source code">listBalancesForAccount</a>(<span>string <var>$programToken</var></span>, <span>string <var>$accountToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List balances for a program account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List balances for a program account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$programToken</var>&nbsp;&nbsp;</td>
+										<td><p>The program token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$accountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The account token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listBalancesForAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createPayment" id="_createPayment">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1664-1680" title="Go to source code">createPayment</a>(<span><a href="Hyperwallet.Model.Payment.html"><span title="Hyperwallet\Model\Payment">Payment</span></a> <var>$payment</var></span>): <a href="Hyperwallet.Model.Payment.html"><span title="Hyperwallet\Model\Payment">Payment</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a payment
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a payment</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$payment</var>&nbsp;&nbsp;</td>
+										<td><p>The payment</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createPayment">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPayment" id="_getPayment">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1682-1697" title="Go to source code">getPayment</a>(<span>string <var>$paymentToken</var></span>): <a href="Hyperwallet.Model.Payment.html"><span title="Hyperwallet\Model\Payment">Payment</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a payment
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a payment</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$paymentToken</var>&nbsp;&nbsp;</td>
+										<td><p>The payment token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPayment">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listPayments" id="_listPayments">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1699-1719" title="Go to source code">listPayments</a>(<span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all payments
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all payments</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listPayments">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createPaymentStatusTransition" id="_createPaymentStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1721-1740" title="Go to source code">createPaymentStatusTransition</a>(<span>string <var>$paymentToken</var></span>, <span><a href="Hyperwallet.Model.PaymentStatusTransition.html"><span title="Hyperwallet\Model\PaymentStatusTransition">PaymentStatusTransition</span></a> <var>$transition</var></span>): <a href="Hyperwallet.Model.PaymentStatusTransition.html"><span title="Hyperwallet\Model\PaymentStatusTransition">PaymentStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a payment status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a payment status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$paymentToken</var>&nbsp;&nbsp;</td>
+										<td><p>The payment token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$transition</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createPaymentStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPaymentStatusTransition" id="_getPaymentStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1742-1765" title="Go to source code">getPaymentStatusTransition</a>(<span>string <var>$paymentToken</var></span>, <span>string <var>$statusTransitionToken</var></span>): <a href="Hyperwallet.Model.PaymentStatusTransition.html"><span title="Hyperwallet\Model\PaymentStatusTransition">PaymentStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a payment status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a payment status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$paymentToken</var>&nbsp;&nbsp;</td>
+										<td><p>The payment token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$statusTransitionToken</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPaymentStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listPaymentStatusTransitions" id="_listPaymentStatusTransitions">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1767-1794" title="Go to source code">listPaymentStatusTransitions</a>(<span>string <var>$paymentToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all payment status transitions
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all payment status transitions</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$paymentToken</var>&nbsp;&nbsp;</td>
+										<td><p>The payment token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listPaymentStatusTransitions">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getProgram" id="_getProgram">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1796-1815" title="Go to source code">getProgram</a>(<span>string <var>$programToken</var></span>): <a href="Hyperwallet.Model.Program.html"><span title="Hyperwallet\Model\Program">Program</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a program
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a program</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$programToken</var>&nbsp;&nbsp;</td>
+										<td><p>The program token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getProgram">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getProgramAccount" id="_getProgramAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1817-1843" title="Go to source code">getProgramAccount</a>(<span>string <var>$programToken</var></span>, <span>string <var>$accountToken</var></span>): <a href="Hyperwallet.Model.ProgramAccount.html"><span title="Hyperwallet\Model\ProgramAccount">ProgramAccount</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a program account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a program account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$programToken</var>&nbsp;&nbsp;</td>
+										<td><p>The program token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$accountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The account token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getProgramAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getTransferMethodConfiguration" id="_getTransferMethodConfiguration">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1845-1887" title="Go to source code">getTransferMethodConfiguration</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$country</var></span>,
+	<span>string <var>$currency</var></span>,
+	<span>string <var>$type</var></span>,
+	<span>string <var>$profileType</var></span>,
+): <a href="Hyperwallet.Model.TransferMethodConfiguration.html"><span title="Hyperwallet\Model\TransferMethodConfiguration">TransferMethodConfiguration</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a transfer method configuration
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a transfer method configuration</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$country</var>&nbsp;&nbsp;</td>
+										<td><p>The transfer method country</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$currency</var>&nbsp;&nbsp;</td>
+										<td><p>The transfer method currency</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$type</var>&nbsp;&nbsp;</td>
+										<td><p>The transfer method type</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$profileType</var>&nbsp;&nbsp;</td>
+										<td><p>The profile type</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getTransferMethodConfiguration">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listTransferMethodConfigurations" id="_listTransferMethodConfigurations">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1889-1916" title="Go to source code">listTransferMethodConfigurations</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all transfer method configurations
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all transfer method configurations</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listTransferMethodConfigurations">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listReceiptsForProgramAccount" id="_listReceiptsForProgramAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1918-1954" title="Go to source code">listReceiptsForProgramAccount</a>(<span>string <var>$programToken</var></span>, <span>string <var>$accountToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all program account receipts
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all program account receipts</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$programToken</var>&nbsp;&nbsp;</td>
+										<td><p>The program token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$accountToken</var>&nbsp;&nbsp;</td>
+										<td><p>The program account token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+							<h4>Returns</h4>
+							<div><p>of HyperwalletReceipt</p>
+</div>
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listReceiptsForProgramAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listReceiptsForUser" id="_listReceiptsForUser">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1956-1983" title="Go to source code">listReceiptsForUser</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all user receipts
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all user receipts</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+							<h4>Returns</h4>
+							<div><p>of HyperwalletReceipt</p>
+</div>
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listReceiptsForUser">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listReceiptsForPrepaidCard" id="_listReceiptsForPrepaidCard">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#1985-2017" title="Go to source code">listReceiptsForPrepaidCard</a>(<span>string <var>$userToken</var></span>, <span>string <var>$prepaidCardToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all prepaid card receipts
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all prepaid card receipts</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$prepaidCardToken</var>&nbsp;&nbsp;</td>
+										<td><p>The prepaid card token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+							<h4>Returns</h4>
+							<div><p>of HyperwalletReceipt</p>
+</div>
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listReceiptsForPrepaidCard">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getWebhookNotification" id="_getWebhookNotification">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2019-2038" title="Go to source code">getWebhookNotification</a>(<span>string <var>$webhookNotificationToken</var></span>): <a href="Hyperwallet.Model.WebhookNotification.html"><span title="Hyperwallet\Model\WebhookNotification">WebhookNotification</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a webhook notification
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a webhook notification</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$webhookNotificationToken</var>&nbsp;&nbsp;</td>
+										<td><p>The webhook notification token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getWebhookNotification">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listWebhookNotifications" id="_listWebhookNotifications">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2040-2060" title="Go to source code">listWebhookNotifications</a>(<span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all webhook notifications
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all webhook notifications</p>
+</div>
+
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listWebhookNotifications">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="updateVerificationStatus" id="_updateVerificationStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2107-2126" title="Go to source code">updateVerificationStatus</a>(<span><var>$userToken</var></span>, <span><var>$verificationStatus</var></span>)</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_updateVerificationStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createUserStatusTransition" id="_createUserStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2128-2147" title="Go to source code">createUserStatusTransition</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.UserStatusTransition.html"><span title="Hyperwallet\Model\UserStatusTransition">UserStatusTransition</span></a> <var>$transition</var></span>): <a href="Hyperwallet.Model.UserStatusTransition.html"><span title="Hyperwallet\Model\UserStatusTransition">UserStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create an User status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create an User status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$transition</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createUserStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="activateUser" id="_activateUser">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2149-2161" title="Go to source code">activateUser</a>(<span>string <var>$userToken</var></span>): <a href="Hyperwallet.Model.UserStatusTransition.html"><span title="Hyperwallet\Model\UserStatusTransition">UserStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Activate a User
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Activate a User</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+							</table>
+
+							<h4>Returns</h4>
+							<div><p>the status transition</p>
+</div>
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_activateUser">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="deactivateUser" id="_deactivateUser">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2163-2175" title="Go to source code">deactivateUser</a>(<span>string <var>$userToken</var></span>): <a href="Hyperwallet.Model.UserStatusTransition.html"><span title="Hyperwallet\Model\UserStatusTransition">UserStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		De-activate a User
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>De-activate a User</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+							</table>
+
+							<h4>Returns</h4>
+							<div><p>the status transition</p>
+</div>
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_deactivateUser">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="lockUser" id="_lockUser">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2177-2189" title="Go to source code">lockUser</a>(<span>string <var>$userToken</var></span>): <a href="Hyperwallet.Model.UserStatusTransition.html"><span title="Hyperwallet\Model\UserStatusTransition">UserStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Lock a User account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Lock a User account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>User token</p>
+</td>
+									</tr>
+							</table>
+
+							<h4>Returns</h4>
+							<div><p>the status transition</p>
+</div>
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_lockUser">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="freezeUser" id="_freezeUser">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2191-2203" title="Go to source code">freezeUser</a>(<span>string <var>$userToken</var></span>): <a href="Hyperwallet.Model.UserStatusTransition.html"><span title="Hyperwallet\Model\UserStatusTransition">UserStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Freeze a User account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Freeze a User account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>User token</p>
+</td>
+									</tr>
+							</table>
+
+							<h4>Returns</h4>
+							<div><p>the status transition</p>
+</div>
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_freezeUser">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="preactivateUser" id="_preactivateUser">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2205-2217" title="Go to source code">preactivateUser</a>(<span>string <var>$userToken</var></span>): <a href="Hyperwallet.Model.UserStatusTransition.html"><span title="Hyperwallet\Model\UserStatusTransition">UserStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Pre-activate a User account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Pre-activate a User account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>User token</p>
+</td>
+									</tr>
+							</table>
+
+							<h4>Returns</h4>
+							<div><p>the status transition</p>
+</div>
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_preactivateUser">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="uploadDocumentsForUser" id="_uploadDocumentsForUser">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2220-2255" title="Go to source code">uploadDocumentsForUser</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var></span>): <a href="Hyperwallet.Model.User.html"><span title="Hyperwallet\Model\User">User</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Upload documents for user endpoint
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Upload documents for user endpoint</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The multipart object with the required documents and json data to get uploaded</p>
+</td>
+									</tr>
+							</table>
+
+							<h4>Returns</h4>
+							<div><p>user object with updated VerificationStatus and document details</p>
+</div>
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_uploadDocumentsForUser">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createVenmoAccount" id="_createVenmoAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2257-2286" title="Go to source code">createVenmoAccount</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.VenmoAccount.html"><span title="Hyperwallet\Model\VenmoAccount">VenmoAccount</span></a> <var>$venmoAccount</var></span>): <a href="Hyperwallet.Model.VenmoAccount.html"><span title="Hyperwallet\Model\VenmoAccount">VenmoAccount</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a Venmo account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a Venmo account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$venmoAccount</var>&nbsp;&nbsp;</td>
+										<td><p>Venmo account data</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createVenmoAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getVenmoAccount" id="_getVenmoAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2288-2310" title="Go to source code">getVenmoAccount</a>(<span>string <var>$userToken</var></span>, <span>string <var>$venmoAccountToken</var></span>): <a href="Hyperwallet.Model.VenmoAccount.html"><span title="Hyperwallet\Model\VenmoAccount">VenmoAccount</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a Venmo account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a Venmo account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$venmoAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>Venmo account token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getVenmoAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="updateVenmoAccount" id="_updateVenmoAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2312-2323" title="Go to source code">updateVenmoAccount</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.VenmoAccount.html"><span title="Hyperwallet\Model\VenmoAccount">VenmoAccount</span></a> <var>$venmoAccount</var></span>): <a href="Hyperwallet.Model.VenmoAccount.html"><span title="Hyperwallet\Model\VenmoAccount">VenmoAccount</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Update Venmo account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Update Venmo account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$venmoAccount</var>&nbsp;&nbsp;</td>
+										<td><p>Venmo account data</p>
+</td>
+									</tr>
+							</table>
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_updateVenmoAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listVenmoAccounts" id="_listVenmoAccounts">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2325-2349" title="Go to source code">listVenmoAccounts</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all Venmo accounts
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all Venmo accounts</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters to send</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listVenmoAccounts">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="deactivateVenmoAccount" id="_deactivateVenmoAccount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2351-2366" title="Go to source code">deactivateVenmoAccount</a>(<span>string <var>$userToken</var></span>, <span>string <var>$venmoAccountToken</var></span>): <a href="Hyperwallet.Model.VenmoAccountStatusTransition.html"><span title="Hyperwallet\Model\VenmoAccountStatusTransition">VenmoAccountStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Deactivate a Venmo account
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Deactivate a Venmo account</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$venmoAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>Venmo account token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_deactivateVenmoAccount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createVenmoAccountStatusTransition" id="_createVenmoAccountStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2368-2392" title="Go to source code">createVenmoAccountStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$venmoAccountToken</var></span>,
+	<span><a href="Hyperwallet.Model.VenmoAccountStatusTransition.html"><span title="Hyperwallet\Model\VenmoAccountStatusTransition">VenmoAccountStatusTransition</span></a> <var>$transition</var></span>,
+): <a href="Hyperwallet.Model.VenmoAccountStatusTransition.html"><span title="Hyperwallet\Model\VenmoAccountStatusTransition">VenmoAccountStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a Venmo account status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a Venmo account status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$venmoAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>Venmo account token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$transition</var>&nbsp;&nbsp;</td>
+										<td><p>status transition</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createVenmoAccountStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getVenmoAccountStatusTransition" id="_getVenmoAccountStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2394-2422" title="Go to source code">getVenmoAccountStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$venmoAccountToken</var></span>,
+	<span>string <var>$statusTransitionToken</var></span>,
+): <a href="Hyperwallet.Model.VenmoAccountStatusTransition.html"><span title="Hyperwallet\Model\VenmoAccountStatusTransition">VenmoAccountStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a Venmo account status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a Venmo account status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$venmoAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>Venmo account token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$statusTransitionToken</var>&nbsp;&nbsp;</td>
+										<td><p>status transition token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getVenmoAccountStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listVenmoAccountStatusTransitions" id="_listVenmoAccountStatusTransitions">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2424-2456" title="Go to source code">listVenmoAccountStatusTransitions</a>(<span>string <var>$userToken</var></span>, <span>string <var>$venmoAccountToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all Venmo account status transitions
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all Venmo account status transitions</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$venmoAccountToken</var>&nbsp;&nbsp;</td>
+										<td><p>Venmo account token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listVenmoAccountStatusTransitions">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="uploadDocumentsForBusinessStakeholder" id="_uploadDocumentsForBusinessStakeholder">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2457-2497" title="Go to source code">uploadDocumentsForBusinessStakeholder</a>(<span>string <var>$userToken</var></span>, <span><var>$businessToken</var></span>, <span>array <var>$options</var></span>): <a href="Hyperwallet.Model.BusinessStakeholder.html"><span title="Hyperwallet\Model\BusinessStakeholder">BusinessStakeholder</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Upload documents for Business Stakeholder endpoint
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Upload documents for Business Stakeholder endpoint</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The multipart object with the required documents and json data to get uploaded</p>
+</td>
+									</tr>
+							</table>
+
+							<h4>Returns</h4>
+							<div><p>object with updated VerificationStatus and document details</p>
+</div>
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_uploadDocumentsForBusinessStakeholder">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createBusinessStakeholder" id="_createBusinessStakeholder">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2499-2515" title="Go to source code">createBusinessStakeholder</a>(<span>string <var>$userToken</var></span>, <span><a href="Hyperwallet.Model.BusinessStakeholder.html"><span title="Hyperwallet\Model\BusinessStakeholder">BusinessStakeholder</span></a> <var>$businessStakeholder</var></span>): <a href="Hyperwallet.Model.BusinessStakeholder.html"><span title="Hyperwallet\Model\BusinessStakeholder">BusinessStakeholder</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a Business Stakeholder
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a Business Stakeholder</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$businessStakeholder</var>&nbsp;&nbsp;</td>
+										<td><p>The business stakeholder</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createBusinessStakeholder">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="updateBusinessStakeholder" id="_updateBusinessStakeholder">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2517-2534" title="Go to source code">updateBusinessStakeholder</a>(<span><var>$userToken</var></span>, <span><var>$businessToken</var></span>, <span><var>$businessStakeholder</var></span>): <a href="Hyperwallet.Model.BusinessStakeholder.html"><span title="Hyperwallet\Model\BusinessStakeholder">BusinessStakeholder</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Update a Business Stakeholder
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Update a Business Stakeholder</p>
+</div>
+
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_updateBusinessStakeholder">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listBusinessStakeholders" id="_listBusinessStakeholders">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2536-2561" title="Go to source code">listBusinessStakeholders</a>(<span><var>$userToken</var></span>, <span>array <var>$options</var></span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all Business Stakeholders
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all Business Stakeholders</p>
+</div>
+
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listBusinessStakeholders">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createBusinessStakeholderStatusTransition" id="_createBusinessStakeholderStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2563-2587" title="Go to source code">createBusinessStakeholderStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$businessToken</var></span>,
+	<span><a href="Hyperwallet.Model.BusinessStakeholderStatusTransition.html"><span title="Hyperwallet\Model\BusinessStakeholderStatusTransition">BusinessStakeholderStatusTransition</span></a> <var>$transition</var></span>,
+): <a href="Hyperwallet.Model.BusinessStakeholderStatusTransition.html"><span title="Hyperwallet\Model\BusinessStakeholderStatusTransition">BusinessStakeholderStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Create a Business Stakeholder status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Create a Business Stakeholder status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$businessToken</var>&nbsp;&nbsp;</td>
+										<td><p>The Business Token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$transition</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_createBusinessStakeholderStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="activateBusinessStakeholder" id="_activateBusinessStakeholder">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2589-2604" title="Go to source code">activateBusinessStakeholder</a>(<span>string <var>$userToken</var></span>, <span>string <var>$businessToken</var></span>): <a href="Hyperwallet.Model.BusinessStakeholderStatusTransition.html"><span title="Hyperwallet\Model\BusinessStakeholderStatusTransition">BusinessStakeholderStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		activate a Business Stakeholder
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>activate a Business Stakeholder</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$businessToken</var>&nbsp;&nbsp;</td>
+										<td><p>The Business Token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_activateBusinessStakeholder">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="deactivateBusinessStakeholder" id="_deactivateBusinessStakeholder">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2606-2621" title="Go to source code">deactivateBusinessStakeholder</a>(<span>string <var>$userToken</var></span>, <span>string <var>$businessToken</var></span>): <a href="Hyperwallet.Model.BusinessStakeholderStatusTransition.html"><span title="Hyperwallet\Model\BusinessStakeholderStatusTransition">BusinessStakeholderStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Deactivate a Business Stakeholder
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Deactivate a Business Stakeholder</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$businessToken</var>&nbsp;&nbsp;</td>
+										<td><p>The Business Token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_deactivateBusinessStakeholder">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessStakeholderStatusTransition" id="_getBusinessStakeholderStatusTransition">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2623-2651" title="Go to source code">getBusinessStakeholderStatusTransition</a>(
+	<span>string <var>$userToken</var></span>,
+	<span>string <var>$businessToken</var></span>,
+	<span>string <var>$statusTransitionToken</var></span>,
+): <a href="Hyperwallet.Model.BusinessStakeholderStatusTransition.html"><span title="Hyperwallet\Model\BusinessStakeholderStatusTransition">BusinessStakeholderStatusTransition</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get a Business Stakeholder status transition
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get a Business Stakeholder status transition</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$businessToken</var>&nbsp;&nbsp;</td>
+										<td><p>The Business Token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$statusTransitionToken</var>&nbsp;&nbsp;</td>
+										<td><p>The status transition token</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessStakeholderStatusTransition">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listBusinessStakeholderStatusTransitions" id="_listBusinessStakeholderStatusTransitions">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2653-2685" title="Go to source code">listBusinessStakeholderStatusTransitions</a>(<span>string <var>$userToken</var></span>, <span>string <var>$businessToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all Business Stakeholder status transitions
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all Business Stakeholder status transitions</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$businessToken</var>&nbsp;&nbsp;</td>
+										<td><p>The Business Token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletArgumentException.html"><span>Hyperwallet\Exception\HyperwalletArgumentException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletApiException.html"><span>Hyperwallet\Exception\HyperwalletApiException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listBusinessStakeholderStatusTransitions">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="listTransferMethods" id="_listTransferMethods">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Hyperwallet.html#2687-2706" title="Go to source code">listTransferMethods</a>(<span>string <var>$userToken</var></span>, <span>array <var>$options</var> = []</span>): <a href="Hyperwallet.Response.ListResponse.html"><span title="Hyperwallet\Response\ListResponse">ListResponse</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		List all Transfer Methods
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>List all Transfer Methods</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$userToken</var>&nbsp;&nbsp;</td>
+										<td><p>The user token</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$options</var>&nbsp;&nbsp;</td>
+										<td><p>The query parameters</p>
+</td>
+									</tr>
+							</table>
+
+							<h4>Returns</h4>
+							<div><p>of HyperwalletTransferMethod</p>
+</div>
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_listTransferMethods">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+
+
+		</div>
+
+		<div class="layout-footer">
+			 API documentation generated by <a href="https://www.apigen.org">ApiGen v7.0.0-alpha.3</a>
+		</div>
+	</div>
+
+	<div class="layout-rest">
+		<div class="navbar"></div>
+	</div>
+</body>
+</html>

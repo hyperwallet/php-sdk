@@ -1,0 +1,396 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Class Hyperwallet\Util\HyperwalletEncryption |  API</title>
+	<link rel="stylesheet" href="assets/main.css">
+	<script src="assets/main.js" defer></script>
+</head>
+
+<body class="layout">
+	<div class="layout-aside">
+	<div class="menu">
+			<div class="menu-section">
+				<h3>Namespaces</h3>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-ComposerScript.html">ComposerScript</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.html">Hyperwallet</a>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Exception.html">Exception</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Model.html">Model</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Response.html">Response</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.Util.html">Util</a>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</div>
+
+		<div class="menu-section">
+			<h3>Classes</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Util.ApiClient.html">
+							ApiClient
+						</a>
+					</li>
+					<li class="active">
+						<a href="Hyperwallet.Util.HyperwalletEncryption.html">
+							HyperwalletEncryption
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Util.HyperwalletUriTemplate.html">
+							HyperwalletUriTemplate
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Util.HyperwalletUUID.html">
+							HyperwalletUUID
+						</a>
+					</li>
+			</ul>
+		</div>
+
+
+
+
+
+	</div>
+	</div>
+
+	<div class="layout-main">
+		<div class="layout-navbar">
+	<nav class="navbar">
+		<div class="navbar-left">
+			<ul class="navbar-links">
+				<li>
+					<a href="index.html">Overview</a>
+				</li>
+				<li>
+					
+						<a href="namespace-Hyperwallet.Util.html">Namespace</a>
+					
+				</li>
+<li class="active"><a href="Hyperwallet.Util.HyperwalletEncryption.html">Class</a></li>				<li>
+					<a href="tree.html">Tree</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-right">
+	<div class="search" data-elements="assets/elements.js">
+		<input class="search-input" placeholder="Search class, function or namespace" autofocus>
+		<ul class="search-results"></ul>
+	</div>
+		</div>
+	</nav>
+		</div>
+
+		<div class="layout-content">
+		<h1>
+			Class <a href="namespace-Hyperwallet.html">Hyperwallet</a>\<a href="namespace-Hyperwallet.Util.html">Util</a>\<a href="Hyperwallet.Util.HyperwalletEncryption.html">HyperwalletEncryption</a>
+		</h1>
+
+
+	<table class="classLikeSignatureTable">
+
+
+
+
+	</table>
+		<div class="classLikeDescription">
+	<div class="description"><p>The encryption service for Hyperwallet client's requests/responses</p>
+</div>
+		</div>
+
+
+		<div class="classLikeSection">
+			<b>Located at</b> <a href="source-Hyperwallet.Util.HyperwalletEncryption.html#26" title="Go to source code">Hyperwallet/Util/HyperwalletEncryption.php</a><br>
+		</div>
+
+
+		<table class="table" id="methods">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Methods</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="__construct" id="___construct">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#84-104" title="Go to source code">__construct</a>(
+	<span>string <var>$clientPrivateKeySetLocation</var></span>,
+	<span>string <var>$hyperwalletKeySetLocation</var></span>,
+	<span>string <var>$encryptionAlgorithm</var> = <span class="php-str">'RSA-OAEP-256'</span></span>,
+	<span>string <var>$signAlgorithm</var> = <span class="php-str">'RS256'</span></span>,
+	<span>string <var>$encryptionMethod</var> = <span class="php-str">'A256CBC-HS512'</span></span>,
+	<span>integer <var>$jwsExpirationMinutes</var> = <span class="php-num">5</span></span>,
+)</code>
+
+
+	<div class="expandable-collapsedView">
+		Creates a instance of the HyperwalletEncryption
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Creates a instance of the HyperwalletEncryption</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$clientPrivateKeySetLocation</var>&nbsp;&nbsp;</td>
+										<td><p>String that can be a URL or path to file with client JWK set</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$hyperwalletKeySetLocation</var>&nbsp;&nbsp;</td>
+										<td><p>String that can be a URL or path to file with hyperwallet JWK set</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$encryptionAlgorithm</var>&nbsp;&nbsp;</td>
+										<td><p>JWE encryption algorithm, by default value = RSA-OAEP-256</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$signAlgorithm</var>&nbsp;&nbsp;</td>
+										<td><p>JWS signature algorithm, by default value = RS256</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$encryptionMethod</var>&nbsp;&nbsp;</td>
+										<td><p>JWE encryption method, by default value = A256CBC-HS512</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$jwsExpirationMinutes</var>&nbsp;&nbsp;</td>
+										<td><p>Minutes when JWS signature is valid, by default value = 5</p>
+</td>
+									</tr>
+							</table>
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#___construct">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="encrypt" id="_encrypt">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#106-126" title="Go to source code">encrypt</a>(<span>string <var>$body</var></span>): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Makes an encrypted request : 1) signs the request body; 2) encrypts payload after signature
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Makes an encrypted request : 1) signs the request body; 2) encrypts payload after signature</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$body</var>&nbsp;&nbsp;</td>
+										<td><p>The request body to be encrypted</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletException.html"><span>Hyperwallet\Exception\HyperwalletException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_encrypt">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="decrypt" id="_decrypt">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#128-146" title="Go to source code">decrypt</a>(<span>string <var>$body</var></span>): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Decrypts encrypted response : 1) decrypts the request body; 2) verifies the payload signature
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Decrypts encrypted response : 1) decrypts the request body; 2) verifies the payload signature</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$body</var>&nbsp;&nbsp;</td>
+										<td><p>The response body to be decrypted</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletException.html"><span>Hyperwallet\Exception\HyperwalletException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_decrypt">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="checkJwsExpiration" id="_checkJwsExpiration">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#334-352" title="Go to source code">checkJwsExpiration</a>(<span>array <var>$header</var></span>)</code>
+
+
+	<div class="expandable-collapsedView">
+		Checks if header 'exp' param has not expired value
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Checks if header 'exp' param has not expired value</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$header</var>&nbsp;&nbsp;</td>
+										<td><p>JWS header array</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletException.html"><span>Hyperwallet\Exception\HyperwalletException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_checkJwsExpiration">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getVendorPath" id="_getVendorPath">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#354-368" title="Go to source code">getVendorPath</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Finds the path of composer vendor directory
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Finds the path of composer vendor directory</p>
+</div>
+
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletException.html"><span>Hyperwallet\Exception\HyperwalletException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getVendorPath">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+
+
+		</div>
+
+		<div class="layout-footer">
+			 API documentation generated by <a href="https://www.apigen.org">ApiGen v7.0.0-alpha.3</a>
+		</div>
+	</div>
+
+	<div class="layout-rest">
+		<div class="navbar"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,1734 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Class Hyperwallet\Model\PrepaidCard |  API</title>
+	<link rel="stylesheet" href="assets/main.css">
+	<script src="assets/main.js" defer></script>
+</head>
+
+<body class="layout">
+	<div class="layout-aside">
+	<div class="menu">
+			<div class="menu-section">
+				<h3>Namespaces</h3>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-ComposerScript.html">ComposerScript</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.html">Hyperwallet</a>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Exception.html">Exception</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.Model.html">Model</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Response.html">Response</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Util.html">Util</a>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</div>
+
+		<div class="menu-section">
+			<h3>Classes</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.AuthenticationToken.html">
+							AuthenticationToken
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Balance.html">
+							Balance
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccount.html">
+							BankAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccountStatusTransition.html">
+							BankAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCard.html">
+							BankCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCardStatusTransition.html">
+							BankCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BaseModel.html">
+							BaseModel
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholder.html">
+							BusinessStakeholder
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholderStatusTransition.html">
+							BusinessStakeholderStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Error.html">
+							Error
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocument.html">
+							HyperwalletVerificationDocument
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentCollection.html">
+							HyperwalletVerificationDocumentCollection
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReason.html">
+							HyperwalletVerificationDocumentReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReasonCollection.html">
+							HyperwalletVerificationDocumentReasonCollection
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaperCheck.html">
+							PaperCheck
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaperCheckStatusTransition.html">
+							PaperCheckStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Payment.html">
+							Payment
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaymentStatusTransition.html">
+							PaymentStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccount.html">
+							PayPalAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccountStatusTransition.html">
+							PayPalAccountStatusTransition
+						</a>
+					</li>
+					<li class="active">
+						<a href="Hyperwallet.Model.PrepaidCard.html">
+							PrepaidCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PrepaidCardStatusTransition.html">
+							PrepaidCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Program.html">
+							Program
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.ProgramAccount.html">
+							ProgramAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Receipt.html">
+							Receipt
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.RejectReason.html">
+							RejectReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.StatusTransition.html">
+							StatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Transfer.html">
+							Transfer
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethod.html">
+							TransferMethod
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethodConfiguration.html">
+							TransferMethodConfiguration
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferRefund.html">
+							TransferRefund
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferStatusTransition.html">
+							TransferStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.User.html">
+							User
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.UserStatusTransition.html">
+							UserStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccount.html">
+							VenmoAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccountStatusTransition.html">
+							VenmoAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.WebhookNotification.html">
+							WebhookNotification
+						</a>
+					</li>
+			</ul>
+		</div>
+
+		<div class="menu-section">
+			<h3>Interfaces</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.IProgramAware.html">
+							IProgramAware
+						</a>
+					</li>
+			</ul>
+		</div>
+
+
+
+
+	</div>
+	</div>
+
+	<div class="layout-main">
+		<div class="layout-navbar">
+	<nav class="navbar">
+		<div class="navbar-left">
+			<ul class="navbar-links">
+				<li>
+					<a href="index.html">Overview</a>
+				</li>
+				<li>
+					
+						<a href="namespace-Hyperwallet.Model.html">Namespace</a>
+					
+				</li>
+<li class="active"><a href="Hyperwallet.Model.PrepaidCard.html">Class</a></li>				<li>
+					<a href="tree.html">Tree</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-right">
+	<div class="search" data-elements="assets/elements.js">
+		<input class="search-input" placeholder="Search class, function or namespace" autofocus>
+		<ul class="search-results"></ul>
+	</div>
+		</div>
+	</nav>
+		</div>
+
+		<div class="layout-content">
+		<h1>
+			Class <a href="namespace-Hyperwallet.html">Hyperwallet</a>\<a href="namespace-Hyperwallet.Model.html">Model</a>\<a href="Hyperwallet.Model.PrepaidCard.html">PrepaidCard</a>
+		</h1>
+
+
+	<table class="classLikeSignatureTable">
+
+
+
+		<tr>
+			<th><code>extends</code></th>
+			<td>
+<code><a href="Hyperwallet.Model.BaseModel.html"><span title="Hyperwallet\Model\BaseModel">BaseModel</span></a></code>			</td>
+		</tr>
+
+	</table>
+		<div class="classLikeDescription">
+	<div class="description"><p>Represents a V4 Prepaid Card</p>
+</div>
+		</div>
+
+			<div class="classLikeSection">
+	<ul class="classTree">
+	<li>
+<a href="Hyperwallet.Model.BaseModel.html"><span>Hyperwallet\Model\BaseModel</span></a>
+
+
+	<ul class="classTree">
+	<li>
+<b><span class="active">Hyperwallet\Model\PrepaidCard</span></b>
+
+
+	</li>
+	</ul>
+	</li>
+	</ul>
+			</div>
+
+		<div class="classLikeSection">
+			<b>Located at</b> <a href="source-Hyperwallet.Model.PrepaidCard.html#27" title="Go to source code">Hyperwallet/Model/PrepaidCard.php</a><br>
+		</div>
+
+
+		<table class="table" id="methods">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Methods</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="FILTERS_ARRAY" id="_FILTERS_ARRAY">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					static
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#62-64" title="Go to source code">FILTERS_ARRAY</a>()</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_FILTERS_ARRAY">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="__construct" id="___construct">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#66-73" title="Go to source code">__construct</a>(<span>string[] <var>$properties</var> = []</span>)</code>
+
+
+	<div class="expandable-collapsedView">
+		Creates a instance of PrepaidCard
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Creates a instance of PrepaidCard</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$properties</var>&nbsp;&nbsp;</td>
+										<td><p>The default properties</p>
+</td>
+									</tr>
+							</table>
+
+
+
+		<h4>Overrides</h4>
+		<ul>
+				<li>
+<a href="Hyperwallet.Model.BaseModel.html#___construct">						<code>Hyperwallet\Model\BaseModel::__construct()</code></a>				</li>
+		</ul>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#___construct">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCardPackage" id="_getCardPackage">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#75-82" title="Go to source code">getCardPackage</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the prepaid card package
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the prepaid card package</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCardPackage">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setCardPackage" id="_setCardPackage">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#84-93" title="Go to source code">setCardPackage</a>(<span>string <var>$cardPackage</var></span>): <b><span class="active" title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the prepaid card package
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the prepaid card package</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setCardPackage">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getToken" id="_getToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#95-102" title="Go to source code">getToken</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the prepaid card token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the prepaid card token</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setToken" id="_setToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#104-113" title="Go to source code">setToken</a>(<span>string <var>$token</var></span>): <b><span class="active" title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Get the prepaid card token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the prepaid card token</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getType" id="_getType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#115-122" title="Go to source code">getType</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transfer method type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transfer method type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setType" id="_setType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#124-133" title="Go to source code">setType</a>(<span>string <var>$type</var></span>): <b><span class="active" title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the transfer method type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the transfer method type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getStatus" id="_getStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#135-142" title="Go to source code">getStatus</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the prepaid card status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the prepaid card status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCreatedOn" id="_getCreatedOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#144-151" title="Go to source code">getCreatedOn</a>(): <a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get the prepaid card creation date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the prepaid card creation date</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCreatedOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getTransferMethodCountry" id="_getTransferMethodCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#153-160" title="Go to source code">getTransferMethodCountry</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transfer method country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transfer method country</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getTransferMethodCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getTransferMethodCurrency" id="_getTransferMethodCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#162-169" title="Go to source code">getTransferMethodCurrency</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transfer method currency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transfer method currency</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getTransferMethodCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCardType" id="_getCardType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#171-178" title="Go to source code">getCardType</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the prepaid card type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the prepaid card type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCardType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCardNumber" id="_getCardNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#180-187" title="Go to source code">getCardNumber</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the prepaid card number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the prepaid card number</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCardNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCardBrand" id="_getCardBrand">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#189-196" title="Go to source code">getCardBrand</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the prepaid card brand
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the prepaid card brand</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCardBrand">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDateOfExpiry" id="_getDateOfExpiry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#198-205" title="Go to source code">getDateOfExpiry</a>(): <a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get the prepaid card expiry date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the prepaid card expiry date</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDateOfExpiry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getReplacementOf" id="_getReplacementOf">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#208-215" title="Go to source code">getReplacementOf</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the prepaid card token to be replaced
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the prepaid card token to be replaced</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getReplacementOf">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setReplacementOf" id="_setReplacementOf">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#217-226" title="Go to source code">setReplacementOf</a>(<span>string <var>$replacementOf</var></span>): <b><span class="active" title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the prepaid card token to be replaced
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the prepaid card token to be replaced</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setReplacementOf">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getReplacementReason" id="_getReplacementReason">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#228-235" title="Go to source code">getReplacementReason</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the prepaid card's replacement reason
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the prepaid card's replacement reason</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getReplacementReason">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setReplacementReason" id="_setReplacementReason">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PrepaidCard.html#237-246" title="Go to source code">setReplacementReason</a>(<span>string <var>$replacementReason</var></span>): <b><span class="active" title="Hyperwallet\Model\PrepaidCard">PrepaidCard</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		set the prepaid card's replacement reason
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>set the prepaid card's replacement reason</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setReplacementReason">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+
+		<table class="table" id="constants">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Constants</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="TYPE_PREPAID_CARD" id="TYPE_PREPAID_CARD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#38" title="Go to source code">TYPE_PREPAID_CARD</a> = <span class="php-str">'PREPAID_CARD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PREPAID_CARD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_QUEUED" id="STATUS_QUEUED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#40" title="Go to source code">STATUS_QUEUED</a> = <span class="php-str">'QUEUED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_QUEUED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_PRE_ACTIVATED" id="STATUS_PRE_ACTIVATED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#41" title="Go to source code">STATUS_PRE_ACTIVATED</a> = <span class="php-str">'PRE_ACTIVATED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_PRE_ACTIVATED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_ACTIVATED" id="STATUS_ACTIVATED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#42" title="Go to source code">STATUS_ACTIVATED</a> = <span class="php-str">'ACTIVATED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_ACTIVATED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_DECLINED" id="STATUS_DECLINED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#43" title="Go to source code">STATUS_DECLINED</a> = <span class="php-str">'DECLINED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_DECLINED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_LOCKED" id="STATUS_LOCKED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#44" title="Go to source code">STATUS_LOCKED</a> = <span class="php-str">'LOCKED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_LOCKED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_SUSPENDED" id="STATUS_SUSPENDED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#45" title="Go to source code">STATUS_SUSPENDED</a> = <span class="php-str">'SUSPENDED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_SUSPENDED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_LOST_OR_STOLEN" id="STATUS_LOST_OR_STOLEN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#46" title="Go to source code">STATUS_LOST_OR_STOLEN</a> = <span class="php-str">'LOST_OR_STOLEN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_LOST_OR_STOLEN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_DE_ACTIVATED" id="STATUS_DE_ACTIVATED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#47" title="Go to source code">STATUS_DE_ACTIVATED</a> = <span class="php-str">'DE_ACTIVATED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_DE_ACTIVATED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_COMPLIANCE_HOLD" id="STATUS_COMPLIANCE_HOLD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#48" title="Go to source code">STATUS_COMPLIANCE_HOLD</a> = <span class="php-str">'COMPLIANCE_HOLD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_COMPLIANCE_HOLD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_KYC_HOLD" id="STATUS_KYC_HOLD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#49" title="Go to source code">STATUS_KYC_HOLD</a> = <span class="php-str">'KYC_HOLD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_KYC_HOLD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="CARD_TYPE_PERSONALIZED" id="CARD_TYPE_PERSONALIZED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#51" title="Go to source code">CARD_TYPE_PERSONALIZED</a> = <span class="php-str">'PERSONALIZED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#CARD_TYPE_PERSONALIZED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="CARD_TYPE_VIRTUAL" id="CARD_TYPE_VIRTUAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#52" title="Go to source code">CARD_TYPE_VIRTUAL</a> = <span class="php-str">'VIRTUAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#CARD_TYPE_VIRTUAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="CARD_BRAND_VISA" id="CARD_BRAND_VISA">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#54" title="Go to source code">CARD_BRAND_VISA</a> = <span class="php-str">'VISA'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#CARD_BRAND_VISA">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="CARD_BRAND_MASTERCARD" id="CARD_BRAND_MASTERCARD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#55" title="Go to source code">CARD_BRAND_MASTERCARD</a> = <span class="php-str">'MASTERCARD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#CARD_BRAND_MASTERCARD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="REPLACEMENT_REASON_LOST_STOLEN" id="REPLACEMENT_REASON_LOST_STOLEN">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#57" title="Go to source code">REPLACEMENT_REASON_LOST_STOLEN</a> = <span class="php-str">'LOST_STOLEN'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#REPLACEMENT_REASON_LOST_STOLEN">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="REPLACEMENT_REASON_DAMAGED" id="REPLACEMENT_REASON_DAMAGED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#58" title="Go to source code">REPLACEMENT_REASON_DAMAGED</a> = <span class="php-str">'DAMAGED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#REPLACEMENT_REASON_DAMAGED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="REPLACEMENT_REASON_COMPROMISED" id="REPLACEMENT_REASON_COMPROMISED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#59" title="Go to source code">REPLACEMENT_REASON_COMPROMISED</a> = <span class="php-str">'COMPROMISED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#REPLACEMENT_REASON_COMPROMISED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="REPLACEMENT_REASON_EXPIRED" id="REPLACEMENT_REASON_EXPIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PrepaidCard.html#60" title="Go to source code">REPLACEMENT_REASON_EXPIRED</a> = <span class="php-str">'EXPIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#REPLACEMENT_REASON_EXPIRED">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+		<table class="table" id="properties">
+			<tr>
+				<th class="table-heading sortable" colspan="4" title="Switch between natural and alphabetical order">Properties</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="token" id="$token">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$token</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The prepaid card token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The prepaid card token</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$token">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="type" id="$type">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$type</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transfer method type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transfer method type</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$type">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="status" id="$status">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$status</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The prepaid card status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The prepaid card status</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$status">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createdOn" id="$createdOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap"><a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$createdOn</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The prepaid card creation date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The prepaid card creation date</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$createdOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="transferMethodCountry" id="$transferMethodCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$transferMethodCountry</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transfer method country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transfer method country</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$transferMethodCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="transferMethodCurrency" id="$transferMethodCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$transferMethodCurrency</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transfer method currency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transfer method currency</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$transferMethodCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="cardType" id="$cardType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$cardType</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The prepaid card type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The prepaid card type</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$cardType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="replacementOf" id="$replacementOf">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">String</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$replacementOf</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The token of prepaid card to be replaced
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The token of prepaid card to be replaced</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$replacementOf">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="replacementReason" id="$replacementReason">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">String</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$replacementReason</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The prepaid card replacement reason
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The prepaid card replacement reason</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$replacementReason">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="cardPackage" id="$cardPackage">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$cardPackage</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The prepaid card package
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The prepaid card package</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$cardPackage">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="cardNumber" id="$cardNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$cardNumber</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The prepaid card number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The prepaid card number</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$cardNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="cardBrand" id="$cardBrand">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$cardBrand</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The prepaid card brand
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The prepaid card brand</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$cardBrand">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="dateOfExpiry" id="$dateOfExpiry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap"><a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PrepaidCard.html" title="Go to source code">$dateOfExpiry</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The prepaid card expiry date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The prepaid card expiry date</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$dateOfExpiry">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+		</div>
+
+		<div class="layout-footer">
+			 API documentation generated by <a href="https://www.apigen.org">ApiGen v7.0.0-alpha.3</a>
+		</div>
+	</div>
+
+	<div class="layout-rest">
+		<div class="navbar"></div>
+	</div>
+</body>
+</html>

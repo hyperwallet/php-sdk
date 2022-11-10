@@ -1,0 +1,766 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Class Hyperwallet\Model\ProgramAccount |  API</title>
+	<link rel="stylesheet" href="assets/main.css">
+	<script src="assets/main.js" defer></script>
+</head>
+
+<body class="layout">
+	<div class="layout-aside">
+	<div class="menu">
+			<div class="menu-section">
+				<h3>Namespaces</h3>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-ComposerScript.html">ComposerScript</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.html">Hyperwallet</a>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Exception.html">Exception</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.Model.html">Model</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Response.html">Response</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Util.html">Util</a>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</div>
+
+		<div class="menu-section">
+			<h3>Classes</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.AuthenticationToken.html">
+							AuthenticationToken
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Balance.html">
+							Balance
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccount.html">
+							BankAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccountStatusTransition.html">
+							BankAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCard.html">
+							BankCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCardStatusTransition.html">
+							BankCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BaseModel.html">
+							BaseModel
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholder.html">
+							BusinessStakeholder
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholderStatusTransition.html">
+							BusinessStakeholderStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Error.html">
+							Error
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocument.html">
+							HyperwalletVerificationDocument
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentCollection.html">
+							HyperwalletVerificationDocumentCollection
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReason.html">
+							HyperwalletVerificationDocumentReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReasonCollection.html">
+							HyperwalletVerificationDocumentReasonCollection
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaperCheck.html">
+							PaperCheck
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaperCheckStatusTransition.html">
+							PaperCheckStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Payment.html">
+							Payment
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaymentStatusTransition.html">
+							PaymentStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccount.html">
+							PayPalAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccountStatusTransition.html">
+							PayPalAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PrepaidCard.html">
+							PrepaidCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PrepaidCardStatusTransition.html">
+							PrepaidCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Program.html">
+							Program
+						</a>
+					</li>
+					<li class="active">
+						<a href="Hyperwallet.Model.ProgramAccount.html">
+							ProgramAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Receipt.html">
+							Receipt
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.RejectReason.html">
+							RejectReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.StatusTransition.html">
+							StatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Transfer.html">
+							Transfer
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethod.html">
+							TransferMethod
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethodConfiguration.html">
+							TransferMethodConfiguration
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferRefund.html">
+							TransferRefund
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferStatusTransition.html">
+							TransferStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.User.html">
+							User
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.UserStatusTransition.html">
+							UserStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccount.html">
+							VenmoAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccountStatusTransition.html">
+							VenmoAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.WebhookNotification.html">
+							WebhookNotification
+						</a>
+					</li>
+			</ul>
+		</div>
+
+		<div class="menu-section">
+			<h3>Interfaces</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.IProgramAware.html">
+							IProgramAware
+						</a>
+					</li>
+			</ul>
+		</div>
+
+
+
+
+	</div>
+	</div>
+
+	<div class="layout-main">
+		<div class="layout-navbar">
+	<nav class="navbar">
+		<div class="navbar-left">
+			<ul class="navbar-links">
+				<li>
+					<a href="index.html">Overview</a>
+				</li>
+				<li>
+					
+						<a href="namespace-Hyperwallet.Model.html">Namespace</a>
+					
+				</li>
+<li class="active"><a href="Hyperwallet.Model.ProgramAccount.html">Class</a></li>				<li>
+					<a href="tree.html">Tree</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-right">
+	<div class="search" data-elements="assets/elements.js">
+		<input class="search-input" placeholder="Search class, function or namespace" autofocus>
+		<ul class="search-results"></ul>
+	</div>
+		</div>
+	</nav>
+		</div>
+
+		<div class="layout-content">
+		<h1>
+			Class <a href="namespace-Hyperwallet.html">Hyperwallet</a>\<a href="namespace-Hyperwallet.Model.html">Model</a>\<a href="Hyperwallet.Model.ProgramAccount.html">ProgramAccount</a>
+		</h1>
+
+
+	<table class="classLikeSignatureTable">
+
+
+
+		<tr>
+			<th><code>extends</code></th>
+			<td>
+<code><a href="Hyperwallet.Model.BaseModel.html"><span title="Hyperwallet\Model\BaseModel">BaseModel</span></a></code>			</td>
+		</tr>
+
+	</table>
+		<div class="classLikeDescription">
+	<div class="description"><p>Represents a V4 Program Account</p>
+</div>
+		</div>
+
+			<div class="classLikeSection">
+	<ul class="classTree">
+	<li>
+<a href="Hyperwallet.Model.BaseModel.html"><span>Hyperwallet\Model\BaseModel</span></a>
+
+
+	<ul class="classTree">
+	<li>
+<b><span class="active">Hyperwallet\Model\ProgramAccount</span></b>
+
+
+	</li>
+	</ul>
+	</li>
+	</ul>
+			</div>
+
+		<div class="classLikeSection">
+			<b>Located at</b> <a href="source-Hyperwallet.Model.ProgramAccount.html#14" title="Go to source code">Hyperwallet/Model/ProgramAccount.php</a><br>
+		</div>
+
+
+		<table class="table" id="methods">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Methods</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="__construct" id="___construct">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.ProgramAccount.html#32-39" title="Go to source code">__construct</a>(<span>string[] <var>$properties</var> = []</span>)</code>
+
+
+	<div class="expandable-collapsedView">
+		Creates a instance of ProgramAccount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Creates a instance of ProgramAccount</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$properties</var>&nbsp;&nbsp;</td>
+										<td><p>The default properties</p>
+</td>
+									</tr>
+							</table>
+
+
+
+		<h4>Overrides</h4>
+		<ul>
+				<li>
+<a href="Hyperwallet.Model.BaseModel.html#___construct">						<code>Hyperwallet\Model\BaseModel::__construct()</code></a>				</li>
+		</ul>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#___construct">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getToken" id="_getToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.ProgramAccount.html#41-48" title="Go to source code">getToken</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the program account token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the program account token</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getType" id="_getType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.ProgramAccount.html#50-57" title="Go to source code">getType</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the program account type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the program account type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCreatedOn" id="_getCreatedOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.ProgramAccount.html#59-66" title="Go to source code">getCreatedOn</a>(): <a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get the program account creation date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the program account creation date</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCreatedOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getEmail" id="_getEmail">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.ProgramAccount.html#68-75" title="Go to source code">getEmail</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the program account email
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the program account email</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getEmail">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+
+		<table class="table" id="constants">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Constants</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="TYPE_FUNDING" id="TYPE_FUNDING">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.ProgramAccount.html#25" title="Go to source code">TYPE_FUNDING</a> = <span class="php-str">'FUNDING'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_FUNDING">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_MERCHANT" id="TYPE_MERCHANT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.ProgramAccount.html#26" title="Go to source code">TYPE_MERCHANT</a> = <span class="php-str">'MERCHANT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_MERCHANT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_REVENUE" id="TYPE_REVENUE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.ProgramAccount.html#27" title="Go to source code">TYPE_REVENUE</a> = <span class="php-str">'REVENUE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_REVENUE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_COLLECTIONS" id="TYPE_COLLECTIONS">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.ProgramAccount.html#28" title="Go to source code">TYPE_COLLECTIONS</a> = <span class="php-str">'COLLECTIONS'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_COLLECTIONS">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_VIRTUAL_INCENTIVES" id="TYPE_VIRTUAL_INCENTIVES">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.ProgramAccount.html#29" title="Go to source code">TYPE_VIRTUAL_INCENTIVES</a> = <span class="php-str">'VIRTUAL_INCENTIVES'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_VIRTUAL_INCENTIVES">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="TYPE_POST_FUNDING" id="TYPE_POST_FUNDING">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.ProgramAccount.html#30" title="Go to source code">TYPE_POST_FUNDING</a> = <span class="php-str">'POST_FUNDING'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_POST_FUNDING">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+		<table class="table" id="properties">
+			<tr>
+				<th class="table-heading sortable" colspan="4" title="Switch between natural and alphabetical order">Properties</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="token" id="$token">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.ProgramAccount.html" title="Go to source code">$token</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The program account token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The program account token</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$token">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="type" id="$type">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.ProgramAccount.html" title="Go to source code">$type</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The program account type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The program account type</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$type">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createdOn" id="$createdOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap"><a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.ProgramAccount.html" title="Go to source code">$createdOn</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The program account creation date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The program account creation date</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$createdOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="email" id="$email">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.ProgramAccount.html" title="Go to source code">$email</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The program account email
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The program account email</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$email">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+		</div>
+
+		<div class="layout-footer">
+			 API documentation generated by <a href="https://www.apigen.org">ApiGen v7.0.0-alpha.3</a>
+		</div>
+	</div>
+
+	<div class="layout-rest">
+		<div class="navbar"></div>
+	</div>
+</body>
+</html>

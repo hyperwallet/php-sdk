@@ -1,0 +1,1879 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Class Hyperwallet\Model\Transfer |  API</title>
+	<link rel="stylesheet" href="assets/main.css">
+	<script src="assets/main.js" defer></script>
+</head>
+
+<body class="layout">
+	<div class="layout-aside">
+	<div class="menu">
+			<div class="menu-section">
+				<h3>Namespaces</h3>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-ComposerScript.html">ComposerScript</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.html">Hyperwallet</a>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Exception.html">Exception</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.Model.html">Model</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Response.html">Response</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Util.html">Util</a>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</div>
+
+		<div class="menu-section">
+			<h3>Classes</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.AuthenticationToken.html">
+							AuthenticationToken
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Balance.html">
+							Balance
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccount.html">
+							BankAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccountStatusTransition.html">
+							BankAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCard.html">
+							BankCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCardStatusTransition.html">
+							BankCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BaseModel.html">
+							BaseModel
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholder.html">
+							BusinessStakeholder
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholderStatusTransition.html">
+							BusinessStakeholderStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Error.html">
+							Error
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocument.html">
+							HyperwalletVerificationDocument
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentCollection.html">
+							HyperwalletVerificationDocumentCollection
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReason.html">
+							HyperwalletVerificationDocumentReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReasonCollection.html">
+							HyperwalletVerificationDocumentReasonCollection
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaperCheck.html">
+							PaperCheck
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaperCheckStatusTransition.html">
+							PaperCheckStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Payment.html">
+							Payment
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaymentStatusTransition.html">
+							PaymentStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccount.html">
+							PayPalAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccountStatusTransition.html">
+							PayPalAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PrepaidCard.html">
+							PrepaidCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PrepaidCardStatusTransition.html">
+							PrepaidCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Program.html">
+							Program
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.ProgramAccount.html">
+							ProgramAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Receipt.html">
+							Receipt
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.RejectReason.html">
+							RejectReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.StatusTransition.html">
+							StatusTransition
+						</a>
+					</li>
+					<li class="active">
+						<a href="Hyperwallet.Model.Transfer.html">
+							Transfer
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethod.html">
+							TransferMethod
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethodConfiguration.html">
+							TransferMethodConfiguration
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferRefund.html">
+							TransferRefund
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferStatusTransition.html">
+							TransferStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.User.html">
+							User
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.UserStatusTransition.html">
+							UserStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccount.html">
+							VenmoAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccountStatusTransition.html">
+							VenmoAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.WebhookNotification.html">
+							WebhookNotification
+						</a>
+					</li>
+			</ul>
+		</div>
+
+		<div class="menu-section">
+			<h3>Interfaces</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.IProgramAware.html">
+							IProgramAware
+						</a>
+					</li>
+			</ul>
+		</div>
+
+
+
+
+	</div>
+	</div>
+
+	<div class="layout-main">
+		<div class="layout-navbar">
+	<nav class="navbar">
+		<div class="navbar-left">
+			<ul class="navbar-links">
+				<li>
+					<a href="index.html">Overview</a>
+				</li>
+				<li>
+					
+						<a href="namespace-Hyperwallet.Model.html">Namespace</a>
+					
+				</li>
+<li class="active"><a href="Hyperwallet.Model.Transfer.html">Class</a></li>				<li>
+					<a href="tree.html">Tree</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-right">
+	<div class="search" data-elements="assets/elements.js">
+		<input class="search-input" placeholder="Search class, function or namespace" autofocus>
+		<ul class="search-results"></ul>
+	</div>
+		</div>
+	</nav>
+		</div>
+
+		<div class="layout-content">
+		<h1>
+			Class <a href="namespace-Hyperwallet.html">Hyperwallet</a>\<a href="namespace-Hyperwallet.Model.html">Model</a>\<a href="Hyperwallet.Model.Transfer.html">Transfer</a>
+		</h1>
+
+
+	<table class="classLikeSignatureTable">
+
+
+
+		<tr>
+			<th><code>extends</code></th>
+			<td>
+<code><a href="Hyperwallet.Model.BaseModel.html"><span title="Hyperwallet\Model\BaseModel">BaseModel</span></a></code>			</td>
+		</tr>
+
+	</table>
+		<div class="classLikeDescription">
+	<div class="description"><p>Represents a V4 Transfer</p>
+</div>
+		</div>
+
+			<div class="classLikeSection">
+	<ul class="classTree">
+	<li>
+<a href="Hyperwallet.Model.BaseModel.html"><span>Hyperwallet\Model\BaseModel</span></a>
+
+
+	<ul class="classTree">
+	<li>
+<b><span class="active">Hyperwallet\Model\Transfer</span></b>
+
+
+	</li>
+	</ul>
+	</li>
+	</ul>
+			</div>
+
+		<div class="classLikeSection">
+			<b>Located at</b> <a href="source-Hyperwallet.Model.Transfer.html#28" title="Go to source code">Hyperwallet/Model/Transfer.php</a><br>
+		</div>
+
+
+		<table class="table" id="methods">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Methods</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="FILTERS_ARRAY" id="_FILTERS_ARRAY">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					static
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#49-51" title="Go to source code">FILTERS_ARRAY</a>()</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_FILTERS_ARRAY">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="__construct" id="___construct">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#53-60" title="Go to source code">__construct</a>(<span>string[] <var>$properties</var> = []</span>)</code>
+
+
+	<div class="expandable-collapsedView">
+		Creates a instance of Transfer
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Creates a instance of Transfer</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$properties</var>&nbsp;&nbsp;</td>
+										<td><p>The default properties</p>
+</td>
+									</tr>
+							</table>
+
+
+
+		<h4>Overrides</h4>
+		<ul>
+				<li>
+<a href="Hyperwallet.Model.BaseModel.html#___construct">						<code>Hyperwallet\Model\BaseModel::__construct()</code></a>				</li>
+		</ul>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#___construct">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getToken" id="_getToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#62-69" title="Go to source code">getToken</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transfer token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transfer token</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setToken" id="_setToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#71-80" title="Go to source code">setToken</a>(<span>string <var>$token</var></span>): <b><span class="active" title="Hyperwallet\Model\Transfer">Transfer</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the transfer token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the transfer token</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getStatus" id="_getStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#82-89" title="Go to source code">getStatus</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transfer status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transfer status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCreatedOn" id="_getCreatedOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#91-98" title="Go to source code">getCreatedOn</a>(): <a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transfer creation date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transfer creation date</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCreatedOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getClientTransferId" id="_getClientTransferId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#100-107" title="Go to source code">getClientTransferId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer clientTransferId
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer clientTransferId</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getClientTransferId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setClientTransferId" id="_setClientTransferId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#109-118" title="Go to source code">setClientTransferId</a>(<span>string <var>$clientTransferId</var></span>): <b><span class="active" title="Hyperwallet\Model\Transfer">Transfer</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set transfer clientTransferId
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set transfer clientTransferId</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setClientTransferId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getSourceToken" id="_getSourceToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#120-127" title="Go to source code">getSourceToken</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer sourceToken
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer sourceToken</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getSourceToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setSourceToken" id="_setSourceToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#129-138" title="Go to source code">setSourceToken</a>(<span>string <var>$sourceToken</var></span>): <b><span class="active" title="Hyperwallet\Model\Transfer">Transfer</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set transfer sourceToken
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set transfer sourceToken</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setSourceToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getSourceAmount" id="_getSourceAmount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#140-147" title="Go to source code">getSourceAmount</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer sourceAmount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer sourceAmount</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getSourceAmount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setSourceAmount" id="_setSourceAmount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#149-158" title="Go to source code">setSourceAmount</a>(<span>string <var>$sourceAmount</var></span>): <b><span class="active" title="Hyperwallet\Model\Transfer">Transfer</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set transfer sourceAmount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set transfer sourceAmount</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setSourceAmount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getSourceFeeAmount" id="_getSourceFeeAmount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#160-167" title="Go to source code">getSourceFeeAmount</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer sourceFeeAmount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer sourceFeeAmount</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getSourceFeeAmount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getSourceCurrency" id="_getSourceCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#169-176" title="Go to source code">getSourceCurrency</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer sourceCurrency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer sourceCurrency</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getSourceCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setSourceCurrency" id="_setSourceCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#178-187" title="Go to source code">setSourceCurrency</a>(<span>string <var>$sourceCurrency</var></span>): <b><span class="active" title="Hyperwallet\Model\Transfer">Transfer</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set transfer sourceCurrency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set transfer sourceCurrency</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setSourceCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDestinationToken" id="_getDestinationToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#189-196" title="Go to source code">getDestinationToken</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer destinationToken
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer destinationToken</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDestinationToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setDestinationToken" id="_setDestinationToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#198-207" title="Go to source code">setDestinationToken</a>(<span>string <var>$destinationToken</var></span>): <b><span class="active" title="Hyperwallet\Model\Transfer">Transfer</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set transfer destinationToken
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set transfer destinationToken</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setDestinationToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDestinationAmount" id="_getDestinationAmount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#209-216" title="Go to source code">getDestinationAmount</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer destinationAmount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer destinationAmount</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDestinationAmount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setDestinationAmount" id="_setDestinationAmount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#218-227" title="Go to source code">setDestinationAmount</a>(<span>string <var>$destinationAmount</var></span>): <b><span class="active" title="Hyperwallet\Model\Transfer">Transfer</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set transfer destinationAmount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set transfer destinationAmount</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setDestinationAmount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDestinationFeeAmount" id="_getDestinationFeeAmount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#229-236" title="Go to source code">getDestinationFeeAmount</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer destinationFeeAmount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer destinationFeeAmount</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDestinationFeeAmount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDestinationCurrency" id="_getDestinationCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#238-245" title="Go to source code">getDestinationCurrency</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer destinationCurrency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer destinationCurrency</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDestinationCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setDestinationCurrency" id="_setDestinationCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#247-256" title="Go to source code">setDestinationCurrency</a>(<span>string <var>$destinationCurrency</var></span>): <b><span class="active" title="Hyperwallet\Model\Transfer">Transfer</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set transfer destinationCurrency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set transfer destinationCurrency</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setDestinationCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getForeignExchanges" id="_getForeignExchanges">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#258-265" title="Go to source code">getForeignExchanges</a>(): array</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer foreignExchanges
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer foreignExchanges</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getForeignExchanges">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getNotes" id="_getNotes">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#267-274" title="Go to source code">getNotes</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer notes
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer notes</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getNotes">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setNotes" id="_setNotes">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#276-285" title="Go to source code">setNotes</a>(<span>string <var>$notes</var></span>): <b><span class="active" title="Hyperwallet\Model\Transfer">Transfer</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set transfer notes
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set transfer notes</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setNotes">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getMemo" id="_getMemo">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#287-294" title="Go to source code">getMemo</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer memo
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer memo</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getMemo">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setMemo" id="_setMemo">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#296-305" title="Go to source code">setMemo</a>(<span>string <var>$memo</var></span>): <b><span class="active" title="Hyperwallet\Model\Transfer">Transfer</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set transfer memo
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set transfer memo</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setMemo">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getExpiresOn" id="_getExpiresOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.Transfer.html#307-314" title="Go to source code">getExpiresOn</a>(): <a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get transfer expiresOn
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get transfer expiresOn</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getExpiresOn">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+
+		<table class="table" id="constants">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Constants</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="STATUS_QUOTED" id="STATUS_QUOTED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Transfer.html#39" title="Go to source code">STATUS_QUOTED</a> = <span class="php-str">'QUOTED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_QUOTED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_SCHEDULED" id="STATUS_SCHEDULED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Transfer.html#40" title="Go to source code">STATUS_SCHEDULED</a> = <span class="php-str">'SCHEDULED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_SCHEDULED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_IN_PROGRESS" id="STATUS_IN_PROGRESS">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Transfer.html#41" title="Go to source code">STATUS_IN_PROGRESS</a> = <span class="php-str">'IN_PROGRESS'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_IN_PROGRESS">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_VERIFICATION_REQUIRED" id="STATUS_VERIFICATION_REQUIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Transfer.html#42" title="Go to source code">STATUS_VERIFICATION_REQUIRED</a> = <span class="php-str">'VERIFICATION_REQUIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_VERIFICATION_REQUIRED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_COMPLETED" id="STATUS_COMPLETED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Transfer.html#43" title="Go to source code">STATUS_COMPLETED</a> = <span class="php-str">'COMPLETED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_COMPLETED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_CANCELLED" id="STATUS_CANCELLED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Transfer.html#44" title="Go to source code">STATUS_CANCELLED</a> = <span class="php-str">'CANCELLED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_CANCELLED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_RETURNED" id="STATUS_RETURNED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Transfer.html#45" title="Go to source code">STATUS_RETURNED</a> = <span class="php-str">'RETURNED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_RETURNED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_FAILED" id="STATUS_FAILED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Transfer.html#46" title="Go to source code">STATUS_FAILED</a> = <span class="php-str">'FAILED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_FAILED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_EXPIRED" id="STATUS_EXPIRED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.Transfer.html#47" title="Go to source code">STATUS_EXPIRED</a> = <span class="php-str">'EXPIRED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_EXPIRED">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+		<table class="table" id="properties">
+			<tr>
+				<th class="table-heading sortable" colspan="4" title="Switch between natural and alphabetical order">Properties</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="token" id="$token">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$token</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transfer token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transfer token</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$token">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="status" id="$status">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$status</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transfer status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transfer status</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$status">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createdOn" id="$createdOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap"><a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$createdOn</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transfer creation date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transfer creation date</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$createdOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="clientTransferId" id="$clientTransferId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$clientTransferId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The client transfer id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The client transfer id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$clientTransferId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="sourceToken" id="$sourceToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$sourceToken</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The source token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The source token</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$sourceToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="sourceAmount" id="$sourceAmount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$sourceAmount</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The source amount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The source amount</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$sourceAmount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="sourceFeeAmount" id="$sourceFeeAmount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$sourceFeeAmount</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The source fee amount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The source fee amount</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$sourceFeeAmount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="sourceCurrency" id="$sourceCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$sourceCurrency</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The source currency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The source currency</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$sourceCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="destinationToken" id="$destinationToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$destinationToken</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The destination token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The destination token</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$destinationToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="destinationAmount" id="$destinationAmount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$destinationAmount</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The destination amount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The destination amount</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$destinationAmount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="destinationFeeAmount" id="$destinationFeeAmount">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$destinationFeeAmount</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The destination fee amount
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The destination fee amount</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$destinationFeeAmount">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="destinationCurrency" id="$destinationCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$destinationCurrency</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The destination currency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The destination currency</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$destinationCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="foreignExchanges" id="$foreignExchanges">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">array</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$foreignExchanges</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The foreign exchanges
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The foreign exchanges</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$foreignExchanges">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="notes" id="$notes">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$notes</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The notes
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The notes</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$notes">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="memo" id="$memo">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$memo</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The memo
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The memo</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$memo">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="expiresOn" id="$expiresOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap"><a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.Transfer.html" title="Go to source code">$expiresOn</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transfer expiration date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transfer expiration date</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$expiresOn">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+		</div>
+
+		<div class="layout-footer">
+			 API documentation generated by <a href="https://www.apigen.org">ApiGen v7.0.0-alpha.3</a>
+		</div>
+	</div>
+
+	<div class="layout-rest">
+		<div class="navbar"></div>
+	</div>
+</body>
+</html>

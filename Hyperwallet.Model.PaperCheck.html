@@ -1,0 +1,3343 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Class Hyperwallet\Model\PaperCheck |  API</title>
+	<link rel="stylesheet" href="assets/main.css">
+	<script src="assets/main.js" defer></script>
+</head>
+
+<body class="layout">
+	<div class="layout-aside">
+	<div class="menu">
+			<div class="menu-section">
+				<h3>Namespaces</h3>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-ComposerScript.html">ComposerScript</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.html">Hyperwallet</a>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Exception.html">Exception</a>
+			</li>
+			<li class="menuGroup-item active">
+				<a href="namespace-Hyperwallet.Model.html">Model</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Response.html">Response</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Hyperwallet.Util.html">Util</a>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</div>
+
+		<div class="menu-section">
+			<h3>Classes</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.AuthenticationToken.html">
+							AuthenticationToken
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Balance.html">
+							Balance
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccount.html">
+							BankAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankAccountStatusTransition.html">
+							BankAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCard.html">
+							BankCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BankCardStatusTransition.html">
+							BankCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BaseModel.html">
+							BaseModel
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholder.html">
+							BusinessStakeholder
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.BusinessStakeholderStatusTransition.html">
+							BusinessStakeholderStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Error.html">
+							Error
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocument.html">
+							HyperwalletVerificationDocument
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentCollection.html">
+							HyperwalletVerificationDocumentCollection
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReason.html">
+							HyperwalletVerificationDocumentReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.HyperwalletVerificationDocumentReasonCollection.html">
+							HyperwalletVerificationDocumentReasonCollection
+						</a>
+					</li>
+					<li class="active">
+						<a href="Hyperwallet.Model.PaperCheck.html">
+							PaperCheck
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaperCheckStatusTransition.html">
+							PaperCheckStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Payment.html">
+							Payment
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PaymentStatusTransition.html">
+							PaymentStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccount.html">
+							PayPalAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PayPalAccountStatusTransition.html">
+							PayPalAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PrepaidCard.html">
+							PrepaidCard
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.PrepaidCardStatusTransition.html">
+							PrepaidCardStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Program.html">
+							Program
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.ProgramAccount.html">
+							ProgramAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Receipt.html">
+							Receipt
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.RejectReason.html">
+							RejectReason
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.StatusTransition.html">
+							StatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.Transfer.html">
+							Transfer
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethod.html">
+							TransferMethod
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferMethodConfiguration.html">
+							TransferMethodConfiguration
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferRefund.html">
+							TransferRefund
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.TransferStatusTransition.html">
+							TransferStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.User.html">
+							User
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.UserStatusTransition.html">
+							UserStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccount.html">
+							VenmoAccount
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.VenmoAccountStatusTransition.html">
+							VenmoAccountStatusTransition
+						</a>
+					</li>
+					<li>
+						<a href="Hyperwallet.Model.WebhookNotification.html">
+							WebhookNotification
+						</a>
+					</li>
+			</ul>
+		</div>
+
+		<div class="menu-section">
+			<h3>Interfaces</h3>
+			<ul>
+					<li>
+						<a href="Hyperwallet.Model.IProgramAware.html">
+							IProgramAware
+						</a>
+					</li>
+			</ul>
+		</div>
+
+
+
+
+	</div>
+	</div>
+
+	<div class="layout-main">
+		<div class="layout-navbar">
+	<nav class="navbar">
+		<div class="navbar-left">
+			<ul class="navbar-links">
+				<li>
+					<a href="index.html">Overview</a>
+				</li>
+				<li>
+					
+						<a href="namespace-Hyperwallet.Model.html">Namespace</a>
+					
+				</li>
+<li class="active"><a href="Hyperwallet.Model.PaperCheck.html">Class</a></li>				<li>
+					<a href="tree.html">Tree</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-right">
+	<div class="search" data-elements="assets/elements.js">
+		<input class="search-input" placeholder="Search class, function or namespace" autofocus>
+		<ul class="search-results"></ul>
+	</div>
+		</div>
+	</nav>
+		</div>
+
+		<div class="layout-content">
+		<h1>
+			Class <a href="namespace-Hyperwallet.html">Hyperwallet</a>\<a href="namespace-Hyperwallet.Model.html">Model</a>\<a href="Hyperwallet.Model.PaperCheck.html">PaperCheck</a>
+		</h1>
+
+
+	<table class="classLikeSignatureTable">
+
+
+
+		<tr>
+			<th><code>extends</code></th>
+			<td>
+<code><a href="Hyperwallet.Model.BaseModel.html"><span title="Hyperwallet\Model\BaseModel">BaseModel</span></a></code>			</td>
+		</tr>
+
+	</table>
+		<div class="classLikeDescription">
+	<div class="description"><p>Represents a V4 Paper Check</p>
+</div>
+		</div>
+
+			<div class="classLikeSection">
+	<ul class="classTree">
+	<li>
+<a href="Hyperwallet.Model.BaseModel.html"><span>Hyperwallet\Model\BaseModel</span></a>
+
+
+	<ul class="classTree">
+	<li>
+<b><span class="active">Hyperwallet\Model\PaperCheck</span></b>
+
+
+	</li>
+	</ul>
+	</li>
+	</ul>
+			</div>
+
+		<div class="classLikeSection">
+			<b>Located at</b> <a href="source-Hyperwallet.Model.PaperCheck.html#47" title="Go to source code">Hyperwallet/Model/PaperCheck.php</a><br>
+		</div>
+
+
+		<table class="table" id="methods">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Methods</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="FILTERS_ARRAY" id="_FILTERS_ARRAY">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					static
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#84-86" title="Go to source code">FILTERS_ARRAY</a>()</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_FILTERS_ARRAY">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="__construct" id="___construct">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#88-95" title="Go to source code">__construct</a>(<span>string[] <var>$properties</var> = []</span>)</code>
+
+
+	<div class="expandable-collapsedView">
+		Creates a instance of PaperCheck
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Creates a instance of PaperCheck</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$properties</var>&nbsp;&nbsp;</td>
+										<td><p>The default properties</p>
+</td>
+									</tr>
+							</table>
+
+
+
+		<h4>Overrides</h4>
+		<ul>
+				<li>
+<a href="Hyperwallet.Model.BaseModel.html#___construct">						<code>Hyperwallet\Model\BaseModel::__construct()</code></a>				</li>
+		</ul>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#___construct">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getToken" id="_getToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#97-104" title="Go to source code">getToken</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the paper check token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the paper check token</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setToken" id="_setToken">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#106-115" title="Go to source code">setToken</a>(<span>string <var>$token</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the paper check token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the paper check token</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setToken">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getStatus" id="_getStatus">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#117-124" title="Go to source code">getStatus</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the paper check status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the paper check status</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getStatus">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCreatedOn" id="_getCreatedOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#126-133" title="Go to source code">getCreatedOn</a>(): <a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get the paper check creation date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the paper check creation date</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCreatedOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getType" id="_getType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#135-142" title="Go to source code">getType</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transfer method type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transfer method type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setType" id="_setType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#144-153" title="Go to source code">setType</a>(<span>string <var>$type</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the transfer method type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the transfer method type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getTransferMethodCountry" id="_getTransferMethodCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#155-162" title="Go to source code">getTransferMethodCountry</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transfer method country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transfer method country</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getTransferMethodCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setTransferMethodCountry" id="_setTransferMethodCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#164-173" title="Go to source code">setTransferMethodCountry</a>(<span>string <var>$transferMethodCountry</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the transfer method country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the transfer method country</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setTransferMethodCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getTransferMethodCurrency" id="_getTransferMethodCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#175-182" title="Go to source code">getTransferMethodCurrency</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the transfer method currency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the transfer method currency</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getTransferMethodCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setTransferMethodCurrency" id="_setTransferMethodCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#184-193" title="Go to source code">setTransferMethodCurrency</a>(<span>string <var>$transferMethodCurrency</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the transfer method currency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the transfer method currency</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setTransferMethodCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getAddressLine1" id="_getAddressLine1">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#195-202" title="Go to source code">getAddressLine1</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the address line #1
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the address line #1</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getAddressLine1">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setAddressLine1" id="_setAddressLine1">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#204-213" title="Go to source code">setAddressLine1</a>(<span>string <var>$addressLine1</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the address line #1
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the address line #1</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setAddressLine1">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getAddressLine2" id="_getAddressLine2">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#215-222" title="Go to source code">getAddressLine2</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the address line #2
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the address line #2</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getAddressLine2">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setAddressLine2" id="_setAddressLine2">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#224-233" title="Go to source code">setAddressLine2</a>(<span>string <var>$addressLine2</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the address line #2
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the address line #2</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setAddressLine2">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessContactRole" id="_getBusinessContactRole">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#235-242" title="Go to source code">getBusinessContactRole</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business contact role
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business contact role</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessContactRole">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessName" id="_getBusinessName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#244-251" title="Go to source code">getBusinessName</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessOperatingName" id="_getBusinessOperatingName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#253-261" title="Go to source code">getBusinessOperatingName</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business operating name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business operating name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessOperatingName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessRegistrationCountry" id="_getBusinessRegistrationCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#263-270" title="Go to source code">getBusinessRegistrationCountry</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business registration country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business registration country</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessRegistrationCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessRegistrationId" id="_getBusinessRegistrationId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#272-279" title="Go to source code">getBusinessRegistrationId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business registration id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business registration id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessRegistrationId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessRegistrationStateProvince" id="_getBusinessRegistrationStateProvince">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#281-288" title="Go to source code">getBusinessRegistrationStateProvince</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business registration state province
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business registration state province</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessRegistrationStateProvince">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getBusinessType" id="_getBusinessType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#290-297" title="Go to source code">getBusinessType</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the business type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the business type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getBusinessType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCity" id="_getCity">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#299-306" title="Go to source code">getCity</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the city
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the city</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCity">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setCity" id="_setCity">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#308-317" title="Go to source code">setCity</a>(<span>string <var>$city</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the city
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the city</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setCity">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCountry" id="_getCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#319-326" title="Go to source code">getCountry</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the country</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setCountry" id="_setCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#328-337" title="Go to source code">setCountry</a>(<span>string <var>$country</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the country</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCountryOfBirth" id="_getCountryOfBirth">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#339-346" title="Go to source code">getCountryOfBirth</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the country of birth
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the country of birth</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCountryOfBirth">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getCountryOfNationality" id="_getCountryOfNationality">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#348-355" title="Go to source code">getCountryOfNationality</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the country of nationality
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the country of nationality</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getCountryOfNationality">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDateOfBirth" id="_getDateOfBirth">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#357-364" title="Go to source code">getDateOfBirth</a>(): <a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+
+
+	<div class="expandable-collapsedView">
+		Get the date of birth
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the date of birth</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDateOfBirth">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getDriversLicenseId" id="_getDriversLicenseId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#366-373" title="Go to source code">getDriversLicenseId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the drivers license id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the drivers license id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getDriversLicenseId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getEmployerId" id="_getEmployerId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#375-382" title="Go to source code">getEmployerId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the employer id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the employer id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getEmployerId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getFirstName" id="_getFirstName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#384-391" title="Go to source code">getFirstName</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the first name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the first name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getFirstName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getGender" id="_getGender">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#393-400" title="Go to source code">getGender</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the gender
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the gender</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getGender">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getGovernmentId" id="_getGovernmentId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#402-409" title="Go to source code">getGovernmentId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the government id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the government id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getGovernmentId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getGovernmentIdType" id="_getGovernmentIdType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#411-418" title="Go to source code">getGovernmentIdType</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the government id type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the government id type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getGovernmentIdType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getIsDefaultTransferMethod" id="_getIsDefaultTransferMethod">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#420-427" title="Go to source code">getIsDefaultTransferMethod</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the is default transfer method
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the is default transfer method</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getIsDefaultTransferMethod">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setIsDefaultTransferMethod" id="_setIsDefaultTransferMethod">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#429-438" title="Go to source code">setIsDefaultTransferMethod</a>(<span>string <var>$isDefaultTransferMethod</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the is default transfer method
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the is default transfer method</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setIsDefaultTransferMethod">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getLastName" id="_getLastName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#440-447" title="Go to source code">getLastName</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the last name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the last name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getLastName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getMiddleName" id="_getMiddleName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#449-456" title="Go to source code">getMiddleName</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the middle name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the middle name</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getMiddleName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getMobileNumber" id="_getMobileNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#458-465" title="Go to source code">getMobileNumber</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the mobile number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the mobile number</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getMobileNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPassportId" id="_getPassportId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#467-474" title="Go to source code">getPassportId</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the passport id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the passport id</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPassportId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPhoneNumber" id="_getPhoneNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#476-483" title="Go to source code">getPhoneNumber</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the phone number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the phone number</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPhoneNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getPostalCode" id="_getPostalCode">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#485-492" title="Go to source code">getPostalCode</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the postal code
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the postal code</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getPostalCode">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setPostalCode" id="_setPostalCode">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#494-503" title="Go to source code">setPostalCode</a>(<span>string <var>$postalCode</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the postal code
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the postal code</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setPostalCode">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getProfileType" id="_getProfileType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#505-512" title="Go to source code">getProfileType</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the profile type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the profile type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getProfileType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setProfileType" id="_setProfileType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#514-523" title="Go to source code">setProfileType</a>(<span>string <var>$profileType</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the profile type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the profile type</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setProfileType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getShippingMethod" id="_getShippingMethod">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#525-532" title="Go to source code">getShippingMethod</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the shipping method
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the shipping method</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getShippingMethod">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setShippingMethod" id="_setShippingMethod">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#534-543" title="Go to source code">setShippingMethod</a>(<span>string <var>$shippingMethod</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the shipping method
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the shipping method</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setShippingMethod">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getStateProvince" id="_getStateProvince">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#545-552" title="Go to source code">getStateProvince</a>(): string</code>
+
+
+	<div class="expandable-collapsedView">
+		Get the state province
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Get the state province</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getStateProvince">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="setStateProvince" id="_setStateProvince">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Model.PaperCheck.html#554-563" title="Go to source code">setStateProvince</a>(<span>string <var>$stateProvince</var></span>): <b><span class="active" title="Hyperwallet\Model\PaperCheck">PaperCheck</span></b></code>
+
+
+	<div class="expandable-collapsedView">
+		Set the state province
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Set the state province</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_setStateProvince">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+
+		<table class="table" id="constants">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Constants</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="TYPE_PAPER_CHECK" id="TYPE_PAPER_CHECK">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#58" title="Go to source code">TYPE_PAPER_CHECK</a> = <span class="php-str">'PAPER_CHECK'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#TYPE_PAPER_CHECK">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_ACTIVATED" id="STATUS_ACTIVATED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#60" title="Go to source code">STATUS_ACTIVATED</a> = <span class="php-str">'ACTIVATED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_ACTIVATED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_VERIFIED" id="STATUS_VERIFIED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#61" title="Go to source code">STATUS_VERIFIED</a> = <span class="php-str">'VERIFIED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_VERIFIED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_INVALID" id="STATUS_INVALID">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#62" title="Go to source code">STATUS_INVALID</a> = <span class="php-str">'INVALID'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_INVALID">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="STATUS_DE_ACTIVATED" id="STATUS_DE_ACTIVATED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#63" title="Go to source code">STATUS_DE_ACTIVATED</a> = <span class="php-str">'DE_ACTIVATED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#STATUS_DE_ACTIVATED">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESS_CONTACT_ROLE_DIRECTOR" id="BUSINESS_CONTACT_ROLE_DIRECTOR">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#65" title="Go to source code">BUSINESS_CONTACT_ROLE_DIRECTOR</a> = <span class="php-str">'DIRECTOR'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESS_CONTACT_ROLE_DIRECTOR">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESS_CONTACT_ROLE_OWNER" id="BUSINESS_CONTACT_ROLE_OWNER">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#66" title="Go to source code">BUSINESS_CONTACT_ROLE_OWNER</a> = <span class="php-str">'OWNER'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESS_CONTACT_ROLE_OWNER">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESS_CONTACT_ROLE_OTHER" id="BUSINESS_CONTACT_ROLE_OTHER">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#67" title="Go to source code">BUSINESS_CONTACT_ROLE_OTHER</a> = <span class="php-str">'OTHER'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESS_CONTACT_ROLE_OTHER">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESS_TYPE_CORPORATION" id="BUSINESS_TYPE_CORPORATION">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#69" title="Go to source code">BUSINESS_TYPE_CORPORATION</a> = <span class="php-str">'CORPORATION'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESS_TYPE_CORPORATION">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="BUSINESS_TYPE_PARTNERSHIP" id="BUSINESS_TYPE_PARTNERSHIP">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#70" title="Go to source code">BUSINESS_TYPE_PARTNERSHIP</a> = <span class="php-str">'PARTNERSHIP'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#BUSINESS_TYPE_PARTNERSHIP">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="GENDER_MALE" id="GENDER_MALE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#72" title="Go to source code">GENDER_MALE</a> = <span class="php-str">'MALE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#GENDER_MALE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="GENDER_FEMALE" id="GENDER_FEMALE">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#73" title="Go to source code">GENDER_FEMALE</a> = <span class="php-str">'FEMALE'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#GENDER_FEMALE">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="GOVERNMENT_ID_TYPE_PASSPORT" id="GOVERNMENT_ID_TYPE_PASSPORT">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#75" title="Go to source code">GOVERNMENT_ID_TYPE_PASSPORT</a> = <span class="php-str">'PASSPORT'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#GOVERNMENT_ID_TYPE_PASSPORT">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD" id="GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#76" title="Go to source code">GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD</a> = <span class="php-str">'NATIONAL_ID_CARD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#GOVERNMENT_ID_TYPE_NATIONAL_ID_CARD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="PROFILE_TYPE_INDIVIDUAL" id="PROFILE_TYPE_INDIVIDUAL">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#78" title="Go to source code">PROFILE_TYPE_INDIVIDUAL</a> = <span class="php-str">'INDIVIDUAL'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#PROFILE_TYPE_INDIVIDUAL">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="PROFILE_TYPE_BUSINESS" id="PROFILE_TYPE_BUSINESS">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#79" title="Go to source code">PROFILE_TYPE_BUSINESS</a> = <span class="php-str">'BUSINESS'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#PROFILE_TYPE_BUSINESS">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="SHIPPING_METHOD_STANDARD" id="SHIPPING_METHOD_STANDARD">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#81" title="Go to source code">SHIPPING_METHOD_STANDARD</a> = <span class="php-str">'STANDARD'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#SHIPPING_METHOD_STANDARD">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="SHIPPING_METHOD_EXPEDITED" id="SHIPPING_METHOD_EXPEDITED">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-Hyperwallet.Model.PaperCheck.html#82" title="Go to source code">SHIPPING_METHOD_EXPEDITED</a> = <span class="php-str">'EXPEDITED'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#SHIPPING_METHOD_EXPEDITED">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+		<table class="table" id="properties">
+			<tr>
+				<th class="table-heading sortable" colspan="4" title="Switch between natural and alphabetical order">Properties</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="token" id="$token">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$token</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The paper check token
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The paper check token</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$token">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="status" id="$status">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$status</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The paper check status
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The paper check status</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$status">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="createdOn" id="$createdOn">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap"><a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$createdOn</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The paper check creation date
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The paper check creation date</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$createdOn">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="type" id="$type">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$type</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transfer method type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transfer method type</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$type">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="transferMethodCountry" id="$transferMethodCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$transferMethodCountry</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transfer method country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transfer method country</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$transferMethodCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="transferMethodCurrency" id="$transferMethodCurrency">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$transferMethodCurrency</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The transfer method currency
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The transfer method currency</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$transferMethodCurrency">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="addressLine1" id="$addressLine1">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$addressLine1</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The address line #1
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The address line #1</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$addressLine1">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="addressLine2" id="$addressLine2">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$addressLine2</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The address line #2
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The address line #2</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$addressLine2">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessContactRole" id="$businessContactRole">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$businessContactRole</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business contact role
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business contact role</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessContactRole">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessName" id="$businessName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$businessName</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business name</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessOperatingName" id="$businessOperatingName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$businessOperatingName</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business operating name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business operating name</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessOperatingName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessRegistrationCountry" id="$businessRegistrationCountry">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$businessRegistrationCountry</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business registration country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business registration country</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessRegistrationCountry">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessRegistrationId" id="$businessRegistrationId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$businessRegistrationId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business registration id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business registration id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessRegistrationId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessRegistrationStateProvince" id="$businessRegistrationStateProvince">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$businessRegistrationStateProvince</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business registration state province
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business registration state province</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessRegistrationStateProvince">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="businessType" id="$businessType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$businessType</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The business type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The business type</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$businessType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="city" id="$city">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$city</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The city
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The city</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$city">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="country" id="$country">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$country</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The country
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The country</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$country">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="countryOfBirth" id="$countryOfBirth">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$countryOfBirth</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The country of birth
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The country of birth</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$countryOfBirth">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="countryOfNationality" id="$countryOfNationality">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$countryOfNationality</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The country of nationality
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The country of nationality</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$countryOfNationality">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="dateOfBirth" id="$dateOfBirth">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap"><a href="DateTime.html"><span title="DateTime">DateTime</span></a></code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$dateOfBirth</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The date of birth
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The date of birth</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$dateOfBirth">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="driversLicenseId" id="$driversLicenseId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$driversLicenseId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The drivers license id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The drivers license id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$driversLicenseId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="employerId" id="$employerId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$employerId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The employer id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The employer id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$employerId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="firstName" id="$firstName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$firstName</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The first name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The first name</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$firstName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="gender" id="$gender">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$gender</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The gender
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The gender</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$gender">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="governmentId" id="$governmentId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$governmentId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The government id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The government id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$governmentId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="governmentIdType" id="$governmentIdType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$governmentIdType</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The government id type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The government id type</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$governmentIdType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="isDefaultTransferMethod" id="$isDefaultTransferMethod">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$isDefaultTransferMethod</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The is default transfer method
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The is default transfer method</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$isDefaultTransferMethod">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="lastName" id="$lastName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$lastName</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The last name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The last name</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$lastName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="middleName" id="$middleName">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$middleName</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The middle name
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The middle name</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$middleName">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="mobileNumber" id="$mobileNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$mobileNumber</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The mobile number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The mobile number</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$mobileNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="passportId" id="$passportId">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$passportId</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The passport id
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The passport id</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$passportId">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="phoneNumber" id="$phoneNumber">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$phoneNumber</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The phone number
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The phone number</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$phoneNumber">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="postalCode" id="$postalCode">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$postalCode</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The postal code
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The postal code</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$postalCode">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="profileType" id="$profileType">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$profileType</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The profile type
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The profile type</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$profileType">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="shippingMethod" id="$shippingMethod">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$shippingMethod</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The shipping method
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The shipping method</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$shippingMethod">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="stateProvince" id="$stateProvince">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell table-shrink">
+				<code class="nowrap">string</code>
+			</td>
+
+			<td class="table-cell">
+<code><var><a href="source-Hyperwallet.Model.PaperCheck.html" title="Go to source code">$stateProvince</a></var></code>
+				
+	<div class="expandable-collapsedView">
+		The state province
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>The state province</p>
+</div>
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#$stateProvince">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+		</div>
+
+		<div class="layout-footer">
+			 API documentation generated by <a href="https://www.apigen.org">ApiGen v7.0.0-alpha.3</a>
+		</div>
+	</div>
+
+	<div class="layout-rest">
+		<div class="navbar"></div>
+	</div>
+</body>
+</html>
