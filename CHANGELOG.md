@@ -1,5 +1,11 @@
 ChangeLog
 =========
+2.2.4
+-------------------
+- Added field 'accountId' to PayPal.
+- PayPal account creation allowed using field 'accountId' which accepts Email, Phone Number, PayPal PayerID.
+- Venmo account creation allowed using field 'accountId' which accepts Email, Phone Number, Venmo Handle, Venmo External ID.
+
 2.2.3
 -------------------
 - Enhanced the code base to support PHP build from version 5.6 to 8.x

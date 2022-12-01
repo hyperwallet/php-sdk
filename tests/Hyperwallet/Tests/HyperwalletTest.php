@@ -1284,7 +1284,7 @@ class HyperwalletTest extends \PHPUnit\Framework\TestCase {
             $client->createPayPalAccount('test-user-token', $payPalAccount);
             $this->fail('HyperwalletArgumentException expected');
         } catch (HyperwalletArgumentException $e) {
-            $this->assertEquals('email/accountId is required!', $e->getMessage());
+            $this->assertEquals('email or accountId is required!', $e->getMessage());
         }
     }
 
