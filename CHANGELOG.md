@@ -1,5 +1,9 @@
 ChangeLog
 =========
+2.4.4
+-------------------
+- Added attribute 'isDefaultTransferMethod' to identify default accounts.
+
 2.2.3
 -------------------
 - Enhanced the code base to support PHP build from version 5.6 to 8.x
