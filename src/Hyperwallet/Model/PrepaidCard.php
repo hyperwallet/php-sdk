@@ -19,6 +19,7 @@ namespace Hyperwallet\Model;
  * @property string $cardNumber The prepaid card number
  * @property string $cardBrand The prepaid card brand
  * @property \DateTime $dateOfExpiry The prepaid card expiry date
+ * @property string $isDefaultTransferMethod The is default transfer method
  *
  * @package Hyperwallet\Model
  */
@@ -195,6 +196,26 @@ class PrepaidCard extends BaseModel {
      */
     public function getDateOfExpiry() {
         return $this->dateOfExpiry ? new \DateTime($this->dateOfExpiry) : null;
+    }
+
+    /**
+     * Get the is default transfer method
+     *
+     * @return string
+     */
+    public function getIsDefaultTransferMethod() {
+        return $this->isDefaultTransferMethod;
+    }
+
+    /**
+     * Set the is default transfer method
+     *
+     * @param string $isDefaultTransferMethod
+     * @return PayPalAccount
+     */
+    public function setIsDefaultTransferMethod($isDefaultTransferMethod) {
+        $this->isDefaultTransferMethod = $isDefaultTransferMethod;
+        return $this;
     }
 
 }
