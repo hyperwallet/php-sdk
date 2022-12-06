@@ -30,7 +30,7 @@ namespace Hyperwallet\Model;
  * @property string $gender The gender
  * @property string $governmentId The government id
  * @property string $governmentIdType The government id type
- * @property string $isDefaultTransferMethod The is default transfer method
+ * @property string $isDefaultTransferMethod The flag to denote default account
  * @property string $lastName The last name
  * @property string $middleName The middle name
  * @property string $mobileNumber The mobile number
