@@ -11,7 +11,7 @@ namespace Hyperwallet\Model;
  * @property string $type The transfer method type
  * @property string $transferMethodCountry The transfer method country
  * @property string $transferMethodCurrency The transfer method currency
- * @property string $isDefaultTransferMethod The is default transfer method
+ * @property string $isDefaultTransferMethod The flag to denote default account
  * @property string $accountId The Venmo account
  *
  * @package Hyperwallet\Model
