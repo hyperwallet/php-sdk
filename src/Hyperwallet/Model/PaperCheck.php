@@ -30,7 +30,7 @@ namespace Hyperwallet\Model;
  * @property string $gender The gender
  * @property string $governmentId The government id
  * @property string $governmentIdType The government id type
- * @property string $isDefaultTransferMethod The flag to denote default account
+ * @property bool $isDefaultTransferMethod The flag to denote default account
  * @property string $lastName The last name
  * @property string $middleName The middle name
  * @property string $mobileNumber The mobile number
@@ -420,7 +420,7 @@ class PaperCheck extends BaseModel {
     /**
      * Get the is default transfer method
      *
-     * @return string
+     * @return bool
      */
     public function getIsDefaultTransferMethod() {
         return $this->isDefaultTransferMethod;
@@ -429,7 +429,7 @@ class PaperCheck extends BaseModel {
     /**
      * Set the is default transfer method
      *
-     * @param string $isDefaultTransferMethod
+     * @param bool $isDefaultTransferMethod
      * @return PaperCheck
      */
     public function setIsDefaultTransferMethod($isDefaultTransferMethod) {
