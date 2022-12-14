@@ -63,7 +63,7 @@ namespace Hyperwallet\Model;
  * @property string $stateProvince The state or province
  * @property string $country The country
  * @property string $postalCode The postal code
- * @property string $isDefaultTransferMethod The flag to denote default account
+ * @property bool $isDefaultTransferMethod The flag to denote default account
  *
  * @package Hyperwallet\Model
  */
@@ -1023,7 +1023,7 @@ class BankAccount extends BaseModel {
     /**
      * Get the is default transfer method
      *
-     * @return string
+     * @return bool
      */
     public function getIsDefaultTransferMethod() {
         return $this->isDefaultTransferMethod;
@@ -1032,7 +1032,7 @@ class BankAccount extends BaseModel {
     /**
      * Set the is default transfer method
      *
-     * @param string $isDefaultTransferMethod
+     * @param bool $isDefaultTransferMethod
      * @return BankAccount
      */
     public function setIsDefaultTransferMethod($isDefaultTransferMethod) {

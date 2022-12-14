@@ -11,7 +11,7 @@ namespace Hyperwallet\Model;
  * @property string $type The transfer method type
  * @property string $transferMethodCountry The transfer method country
  * @property string $transferMethodCurrency The transfer method currency
- * @property string $isDefaultTransferMethod The flag to denote default account
+ * @property bool $isDefaultTransferMethod The flag to denote default account
  * @property string $accountId The Venmo account
  *
  * @package Hyperwallet\Model
@@ -140,7 +140,7 @@ class VenmoAccount extends BaseModel {
     /**
      * Get the is default transfer method
      *
-     * @return string
+     * @return bool
      */
     public function getIsDefaultTransferMethod() {
         return $this->isDefaultTransferMethod;
@@ -149,7 +149,7 @@ class VenmoAccount extends BaseModel {
     /**
      * Set the is default transfer method
      *
-     * @param string $isDefaultTransferMethod
+     * @param bool $isDefaultTransferMethod
      * @return VenmoAccount
      */
     public function setIsDefaultTransferMethod($isDefaultTransferMethod) {
