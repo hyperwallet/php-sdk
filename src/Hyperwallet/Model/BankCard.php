@@ -20,6 +20,7 @@ namespace Hyperwallet\Model;
  * @property string $cvv The bank card cvv
  * @property \DateTime $dateOfExpiry The bank card expiry date
  * @property string $processingTime The processing time
+ * @property bool $isDefaultTransferMethod The flag to denote default account
  *
  * @package Hyperwallet\Model
  */
@@ -258,4 +259,23 @@ class BankCard extends BaseModel {
         return $this;
     }
 
+    /**
+     * Get the is default transfer method
+     *
+     * @return bool
+     */
+    public function getIsDefaultTransferMethod() {
+        return $this->isDefaultTransferMethod;
+    }
+
+    /**
+     * Set the is default transfer method
+     *
+     * @param bool $isDefaultTransferMethod
+     * @return BankCard
+     */
+    public function setIsDefaultTransferMethod($isDefaultTransferMethod) {
+        $this->isDefaultTransferMethod = $isDefaultTransferMethod;
+        return $this;
+    }
 }
