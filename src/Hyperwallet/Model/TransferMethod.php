@@ -21,9 +21,9 @@ namespace Hyperwallet\Model;
  * @property \DateTime $dateOfExpiry The prepaid card expiry date
  *
  * @property string $email The email associated with the paypal account
- * 
+ *
  * @property string $accountId The accountId associated with the venmo account
- * 
+ *
  * @property string $bankName The bank name
  * @property string $bankId The bank id
  * @property string $branchName The branch name
@@ -74,6 +74,7 @@ namespace Hyperwallet\Model;
  * @property string $stateProvince The state or province
  * @property string $country The country
  * @property string $postalCode The postal code
+ * @property bool $isDefaultTransferMethod The flag to denote default account
  *
  * @package Hyperwallet\Model
  */
@@ -87,7 +88,7 @@ class TransferMethod extends BaseModel {
      * @var string[]
      */
     private static $READ_ONLY_FIELDS = array('token', 'status', 'cardType', 'cardNumber', 'cardBrand', 'dateOfExpiry', 'createdOn', 'email', 'accountId');
-    
+
     public static function FILTERS_ARRAY() {
         return array('status', 'type', 'createdBefore', 'createdAfter', 'sortBy', 'offset', 'limit');
     }
@@ -221,7 +222,7 @@ class TransferMethod extends BaseModel {
     public function getAccountId() {
         return $this->accountId;
     }
-    
+
     /**
      * Get the bank account id
      *
@@ -1121,4 +1122,23 @@ class TransferMethod extends BaseModel {
         return $this;
     }
 
+    /**
+     * Get the is default transfer method
+     *
+     * @return bool
+     */
+    public function getIsDefaultTransferMethod() {
+        return $this->isDefaultTransferMethod;
+    }
+
+    /**
+     * Set the is default transfer method
+     *
+     * @param bool $isDefaultTransferMethod
+     * @return TransferMethod
+     */
+    public function setIsDefaultTransferMethod($isDefaultTransferMethod) {
+        $this->isDefaultTransferMethod = $isDefaultTransferMethod;
+        return $this;
+    }
 }
