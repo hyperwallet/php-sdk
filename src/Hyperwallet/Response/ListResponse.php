@@ -59,7 +59,7 @@ class ListResponse implements \Countable , \ArrayAccess{
             $this->hasNextPage = $body['hasNextPage'];
             $this->hasPreviousPage = $body['hasPreviousPage'];
             $this->limit = $body['limit'];
-            $this->links = $body['links'];
+            $this->links = $body['links'] ?? $this->links;
             $this->data = array_map(function ($item) use ($convertEntry) {
                 return $convertEntry($item);
             }, $body['data']);
