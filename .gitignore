@@ -27,4 +27,4 @@ build/
 #unit test cache
 .phpunit.result.cache
 
-tools/
+tools/*
