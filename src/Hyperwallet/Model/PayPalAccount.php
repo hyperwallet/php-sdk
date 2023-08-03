@@ -10,7 +10,7 @@ namespace Hyperwallet\Model;
  * @property string $type The transfer method type
  * @property string $transferMethodCountry The transfer method country
  * @property string $transferMethodCurrency The transfer method currency
- * @property string $isDefaultTransferMethod The is default transfer method
+ * @property bool $isDefaultTransferMethod The flag to denote default account
  * @property string $email The PayPal account email
  * @property string $accountId The PayPal account identifier
 
@@ -143,7 +143,7 @@ class PayPalAccount extends BaseModel {
     /**
      * Get the is default transfer method
      *
-     * @return string
+     * @return bool
      */
     public function getIsDefaultTransferMethod() {
         return $this->isDefaultTransferMethod;
@@ -152,7 +152,7 @@ class PayPalAccount extends BaseModel {
     /**
      * Set the is default transfer method
      *
-     * @param string $isDefaultTransferMethod
+     * @param bool $isDefaultTransferMethod
      * @return PayPalAccount
      */
     public function setIsDefaultTransferMethod($isDefaultTransferMethod) {
