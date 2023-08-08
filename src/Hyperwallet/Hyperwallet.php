@@ -666,8 +666,8 @@ class Hyperwallet {
         if (empty($payPalAccount->getTransferMethodCurrency())) {
             throw new HyperwalletArgumentException('transferMethodCurrency is required!');
         }
-        if (empty($payPalAccount->getEmail())) {
-            throw new HyperwalletArgumentException('email is required!');
+        if (empty($payPalAccount->getEmail()) and empty($payPalAccount->getAccountId()) ) {
+            throw new HyperwalletArgumentException('email or accountId is required!');
         }
         $body = $this->client->doPost('/rest/v4/users/{user-token}/paypal-accounts', array('user-token' => $userToken), $payPalAccount, array());
         return new PayPalAccount($body);

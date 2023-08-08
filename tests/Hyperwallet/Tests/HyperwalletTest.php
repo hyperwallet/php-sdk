@@ -1284,7 +1284,7 @@ class HyperwalletTest extends \PHPUnit\Framework\TestCase {
             $client->createPayPalAccount('test-user-token', $payPalAccount);
             $this->fail('HyperwalletArgumentException expected');
         } catch (HyperwalletArgumentException $e) {
-            $this->assertEquals('email is required!', $e->getMessage());
+            $this->assertEquals('email or accountId is required!', $e->getMessage());
         }
     }
 
@@ -4036,7 +4036,7 @@ class HyperwalletTest extends \PHPUnit\Framework\TestCase {
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/prepaid-cards/{prepaid-card-token}/receipts', array('user-token' => 'test-user-token', 'prepaid-card-token' => 'test-prepaid-card-token'), array('createdBefore' => 'value'));
     }
-    
+
     public function testListReceiptsForPrepaidCard_withInvalidFilter() {
         $client = new Hyperwallet('test-username', 'test-password', 'test-program-token');
         try {
@@ -5774,5 +5774,26 @@ class HyperwalletTest extends \PHPUnit\Framework\TestCase {
 
         // Validate mock
         \Phake::verify($apiClientMock)->doGet('/rest/v4/users/{user-token}/transfer-methods', array('user-token' => 'test-user-token'), array('type'=>TransferMethod::TYPE_PREPAID_CARD));
+    }
+
+    public function testCreatePayPalAccount_WithAccountId() {
+        // Setup
+        $client = new Hyperwallet('test-username', 'test-password');
+        $apiClientMock = $this->createAndInjectApiClientMock($client);
+        $payPalAccount = new PayPalAccount();
+        $payPalAccount->setTransferMethodCountry('test-transferMethodCountry');
+        $payPalAccount->setTransferMethodCurrency('test-transferMethodCurrency');
+        $payPalAccount->setAccountId('test-accountId');
+
+        \Phake::when($apiClientMock)->doPost('/rest/v4/users/{user-token}/paypal-accounts', array('user-token' => 'test-user-token'), $payPalAccount, array())->thenReturn(array('token' => 'test-token'));
+
+        // Run test
+        $newPayPalAccount = $client->createPayPalAccount('test-user-token', $payPalAccount);
+        $this->assertNotNull($newPayPalAccount);
+        $this->assertEquals(array('token' => 'test-token'), $newPayPalAccount->getProperties());
+
+
+        // Validate mock
+        \Phake::verify($apiClientMock)->doPost('/rest/v4/users/{user-token}/paypal-accounts', array('user-token' => 'test-user-token'), $payPalAccount, array());
     }
 }

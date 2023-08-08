@@ -12,6 +12,7 @@ namespace Hyperwallet\Model;
  * @property string $transferMethodCurrency The transfer method currency
  * @property bool $isDefaultTransferMethod The flag to denote default account
  * @property string $email The PayPal account email
+ * @property string $accountId The PayPal account identifier
 
  *
  * @package Hyperwallet\Model
@@ -177,5 +178,25 @@ class PayPalAccount extends BaseModel {
     public function setEmail($email) {
         $this->email = $email;
         return $this;
+    }
+
+    /**
+     * Set the PayPal account identifier
+     *
+     * @param string $accountId
+     * @return PayPalAccount
+     */
+    public function setAccountId($accountId) {
+        $this->accountId = $accountId;
+        return $this;
+    }
+
+    /**
+     * Get the PayPal account identifier
+     *
+     * @return string
+     */
+    public function getAccountId() {
+        return $this->accountId;
     }
 }
