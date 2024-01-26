@@ -3,6 +3,7 @@ namespace Hyperwallet\Util;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\GuzzleException;
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
@@ -149,6 +150,8 @@ class ApiClient {
      * @return array
      *
      * @throws HyperwalletApiException
+     * @throws HyperwalletException
+     * @throws GuzzleException
      */
     private function doRequest($method, $url, array $urlParams, array $options) {
         try {
@@ -169,10 +172,8 @@ class ApiClient {
                 return array();
             }
             $this->checkResponseHeaderContentType($response);
-            $body = $this->isEncrypted ? \GuzzleHttp\json_decode(\GuzzleHttp\json_encode($this->encryption->decrypt($response->getBody())), true) :
-                \GuzzleHttp\json_decode($response->getBody(), true);
 
-            return $body;
+            return $this->getBodyFromResponse($response);
         } catch (ConnectException $e) {
             $errorResponse = new ErrorResponse(0, array('errors' => array(
                 array(
@@ -182,7 +183,7 @@ class ApiClient {
             )));
             throw new HyperwalletApiException($errorResponse, $e);
         } catch (BadResponseException $e) {
-            $body = \GuzzleHttp\json_decode($e->getResponse()->getBody(), true);
+            $body = $this->getBodyFromResponse($e->getResponse());
             if (is_null($body) || !isset($body['errors']) || empty($body['errors'])) {
                 $body = array('errors' => array(
                     array(
@@ -194,6 +195,17 @@ class ApiClient {
             $errorResponse = new ErrorResponse($e->getResponse()->getStatusCode(), $body);
             throw new HyperwalletApiException($errorResponse, $e);
         }
+    }
+
+    /**
+     * Get body from response and decrypt it if necessary
+     *
+     * @throws HyperwalletException
+     */
+    private function getBodyFromResponse(ResponseInterface $response) {
+        return $this->isEncrypted
+            ? \GuzzleHttp\json_decode(\GuzzleHttp\json_encode($this->encryption->decrypt($response->getBody())), true)
+            : \GuzzleHttp\json_decode($response->getBody(), true);
     }
 
     /**
