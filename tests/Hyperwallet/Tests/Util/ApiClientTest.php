@@ -410,6 +410,67 @@ class ApiClientTest extends \PHPUnit\Framework\TestCase {
         $this->validateRequest('POST', '/test', '', array('test2' => 'value2'), true);
     }
 
+    /**
+     * @throws HyperwalletException
+     */
+    public function testDoPost_throw_exception_bad_request_with_encryption() {
+        $clientPath = __DIR__ . "/../../../resources/private-jwkset1";
+        $hyperwalletPath = __DIR__ . "/../../../resources/public-jwkset1";
+        $originalMessage = array(
+            'errors' => array(
+                array(
+                    'fieldName' => 'testField',
+                    'code' => 'MY_CODE',
+                    'message' => 'My test message',
+                    'relatedResources' => array(
+                        'trm-f3d38df1-adb7-4127-9858-e72ebe682a79', 'trm-601b1401-4464-4f3f-97b3-09079ee7723b')
+                ),
+                array(
+                    'code' => 'MY_SECOND_CODE',
+                    'message' => 'My second test message'
+                )
+            )
+        );
+
+        // Setup data
+        $encryption = new HyperwalletEncryption($clientPath, $hyperwalletPath);
+        $encryptedMessage = $encryption->encrypt($originalMessage);
+
+        $mockHandler = new MockHandler(array(
+            new Response(400, array('Content-Type' => 'application/jose+json'), $encryptedMessage)
+        ));
+        $this->createApiClientWithEncryption($mockHandler);
+
+        $model = new BaseModel(array(), array('test2' => 'value2'));
+
+        // Execute test
+        try {
+            $this->apiClient->doPost('/test', array(), $model, array());
+            $this->fail('HyperwalletApiException expected');
+        } catch (HyperwalletApiException $e) {
+            $this->assertEquals('My test message', $e->getMessage());
+            $this->assertNotNull($e->getErrorResponse());
+
+            $this->assertEquals(400, $e->getErrorResponse()->getStatusCode());
+            $this->assertCount(2, $e->getErrorResponse()->getErrors());
+
+            $this->assertEquals('MY_CODE', $e->getErrorResponse()->getErrors()[0]->getCode());
+            $this->assertEquals('My test message', $e->getErrorResponse()->getErrors()[0]->getMessage());
+            $this->assertEquals('testField', $e->getErrorResponse()->getErrors()[0]->getFieldName());
+
+            $this->assertEquals('MY_SECOND_CODE', $e->getErrorResponse()->getErrors()[1]->getCode());
+            $this->assertEquals('My second test message', $e->getErrorResponse()->getErrors()[1]->getMessage());
+            $this->assertNull($e->getErrorResponse()->getErrors()[1]->getFieldName());
+
+            $this->assertCount(2, $e->getRelatedResources());
+            $this->assertEquals('trm-f3d38df1-adb7-4127-9858-e72ebe682a79', $e->getRelatedResources()[0]);
+            $this->assertEquals('trm-601b1401-4464-4f3f-97b3-09079ee7723b', $e->getRelatedResources()[1]);
+        }
+
+        // Validate api request
+        $this->validateRequest('POST', '/test', '', array('test2' => 'value2'), true, array(), true);
+    }
+
     public function testDoPost_throw_exception_server_error() {
         // Setup data
         $mockHandler = new MockHandler(array(
