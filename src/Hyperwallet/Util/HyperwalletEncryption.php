@@ -9,7 +9,7 @@ use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Response\ErrorResponse;
 use Composer\Autoload\ClassLoader;
-use phpseclib\Crypt\RSA;
+use phpseclib3\Crypt\RSA;
 use phpseclib3\Math\BigInteger;
 use phpseclib\Crypt\Hash;
 use JOSE_URLSafeBase64;
