@@ -23,7 +23,7 @@
     "php": ">=5.6.0",
     "ext-json": "*",
     "guzzlehttp/guzzle": "^6.2.1 || ^7.0.1",
-    "phpseclib/phpseclib": "^2.0.11",
+    "phpseclib/phpseclib": "^2.0.11 || ^3.0.0",
     "gree/jose": "^2.2.1"
   },
   "autoload": {
