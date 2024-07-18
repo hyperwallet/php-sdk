@@ -1,22 +1,15 @@
 <?php
 namespace Hyperwallet\Util;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\BadResponseException;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\UriTemplate\UriTemplate;
-use Hyperwallet\Exception\HyperwalletApiException;
+
 use Hyperwallet\Exception\HyperwalletException;
-use Hyperwallet\Model\BaseModel;
-use Hyperwallet\Response\ErrorResponse;
 use Composer\Autoload\ClassLoader;
-use phpseclib\Crypt\RSA;
-use phpseclib\Math\BigInteger;
-use phpseclib\Crypt\Hash;
-use JOSE_URLSafeBase64;
-use JOSE_JWS;
-use JOSE_JWE;
-use JOSE_JWK;
-use JOSE_JWT;
+use phpseclib3\Crypt\RSA;
+use phpseclib3\Math\BigInteger;
+use Services\Jose\URLSafeBase64;
+use Services\Jose\JOSE_JWS;
+use Services\Jose\JOSE_JWE;
+use Services\Jose\JOSE_JWK;
+use Services\Jose\JOSE_JWT;
 
 /**
  * The encryption service for Hyperwallet client's requests/responses
@@ -100,7 +93,6 @@ class HyperwalletEncryption {
         $this->signAlgorithm = $signAlgorithm;
         $this->encryptionMethod = $encryptionMethod;
         $this->jwsExpirationMinutes = $jwsExpirationMinutes;
-        file_put_contents($this->getVendorPath() . "/gree/jose/src/JOSE/JWE.php", file_get_contents(__DIR__ . "/../../JWE"));
     }
 
     /**
@@ -113,6 +105,8 @@ class HyperwalletEncryption {
      */
     public function encrypt($body) {
         $privateJwsKey = $this->getPrivateJwsKey();
+        var_dump($privateJwsKey);
+        exit;
         $jws = new JOSE_JWS(new JOSE_JWT($body));
         $jws->header['exp'] = $this->getSignatureExpirationTime();
         $jws->header['kid'] = $this->jwsKid;
@@ -202,6 +196,7 @@ class HyperwalletEncryption {
      * @return RSA
      */
     private function getPrivateKey($privateKeyData) {
+        var_dump($privateKeyData);
         $n = $this->keyParamToBigInteger($privateKeyData['n']);
         $e = $this->keyParamToBigInteger($privateKeyData['e']);
         $d = $this->keyParamToBigInteger($privateKeyData['d']);
@@ -237,7 +232,10 @@ class HyperwalletEncryption {
      * @return BigInteger
      */
     private function keyParamToBigInteger($param) {
-        return new BigInteger('0x' . bin2hex(JOSE_URLSafeBase64::decode($param)), 16);
+        var_dump(URLSafeBase64::decode($param));
+        exit;
+
+        return new BigInteger('0x' . bin2hex(URLSafeBase64::decode($param)), 16);
     }
 
     /**

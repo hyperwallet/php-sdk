@@ -1,8 +1,13 @@
 <?php
 
-use phpseclib\Crypt\RSA;
-use phpseclib\Crypt\AES;
-use phpseclib\Crypt\Random;
+namespace Services\Jose;
+
+use phpseclib3\Crypt\RSA;
+use phpseclib3\Crypt\AES;
+use phpseclib3\Crypt\Random;
+use Services\Jose\Exception\DecryptionFailed;
+use Services\Jose\Exception\EncryptionFailed;
+use Services\Jose\Exception\UnexpectedAlgorithm;
 
 class JOSE_JWE extends JOSE_JWT {
     var $plain_text;
@@ -24,6 +29,11 @@ class JOSE_JWE extends JOSE_JWT {
         unset($this->header['typ']);
     }
 
+    /**
+     * @throws EncryptionFailed
+     * @throws UnexpectedAlgorithm
+     * @throws DecryptionFailed
+     */
     function encrypt($public_key_or_secret, $algorithm = 'RSA1_5', $encryption_method = 'A128CBC-HS256') {
         $this->header['alg'] = $algorithm;
         $this->header['enc'] = $encryption_method;
@@ -44,6 +54,10 @@ class JOSE_JWE extends JOSE_JWT {
         return $this;
     }
 
+    /**
+     * @throws UnexpectedAlgorithm
+     * @throws DecryptionFailed
+     */
     function decrypt($private_key_or_secret) {
         $this->decryptContentEncryptionKey($private_key_or_secret);
         $this->deriveEncryptionAndMacKeys();
@@ -79,13 +93,13 @@ class JOSE_JWE extends JOSE_JWT {
         switch ($this->header['enc']) {
             case 'A128GCM':
             case 'A256GCM':
-                throw new JOSE_Exception_UnexpectedAlgorithm('Algorithm not supported');
+                throw new UnexpectedAlgorithm('Algorithm not supported');
             case 'A128CBC-HS256':
             case 'A256CBC-HS512':
                 $cipher = new AES(AES::MODE_CBC);
                 break;
             default:
-                throw new JOSE_Exception_UnexpectedAlgorithm('Unknown algorithm');
+                throw new UnexpectedAlgorithm('Unknown algorithm');
         }
         switch ($this->header['enc']) {
             case 'A128GCM':
@@ -97,7 +111,7 @@ class JOSE_JWE extends JOSE_JWT {
                 $cipher->setBlockLength(256);
                 break;
             default:
-                throw new JOSE_Exception_UnexpectedAlgorithm('Unknown algorithm');
+                throw new UnexpectedAlgorithm('Unknown algorithm');
         }
         return $cipher;
     }
@@ -110,15 +124,14 @@ class JOSE_JWE extends JOSE_JWT {
         switch ($this->header['enc']) {
             case 'A128GCM':
             case 'A128CBC-HS256':
-            case 'A256CBC-HS512':
                 $this->iv = $this->generateRandomBytes(128 / 8);
                 break;
             case 'A256GCM':
-            //case 'A256CBC-HS512':
+            case 'A256CBC-HS512':
                 $this->iv = $this->generateRandomBytes(256 / 8);
                 break;
             default:
-                throw new JOSE_Exception_UnexpectedAlgorithm('Unknown algorithm');
+                throw new UnexpectedAlgorithm('Unknown algorithm');
         }
     }
 
@@ -136,7 +149,7 @@ class JOSE_JWE extends JOSE_JWT {
                     $this->content_encryption_key = $this->generateRandomBytes(512 / 8);
                     break;
                 default:
-                    throw new JOSE_Exception_UnexpectedAlgorithm('Unknown algorithm');
+                    throw new UnexpectedAlgorithm('Unknown algorithm');
             }
         }
     }
@@ -147,7 +160,6 @@ class JOSE_JWE extends JOSE_JWT {
                 $rsa = $this->rsa($public_key_or_secret, RSA::ENCRYPTION_PKCS1);
                 $this->jwe_encrypted_key = $rsa->encrypt($this->content_encryption_key);
                 break;
-            case 'RSA-OAEP-256':
             case 'RSA-OAEP':
                 $rsa = $this->rsa($public_key_or_secret, RSA::ENCRYPTION_OAEP);
                 $this->jwe_encrypted_key = $rsa->encrypt($this->content_encryption_key);
@@ -160,12 +172,12 @@ class JOSE_JWE extends JOSE_JWT {
             case 'ECDH-ES':
             case 'ECDH-ES+A128KW':
             case 'ECDH-ES+A256KW':
-                throw new JOSE_Exception_UnexpectedAlgorithm('Algorithm not supported');
+                throw new UnexpectedAlgorithm('Algorithm not supported');
             default:
-                throw new JOSE_Exception_UnexpectedAlgorithm('Unknown algorithm');
+                throw new UnexpectedAlgorithm('Unknown algorithm');
         }
         if (!$this->jwe_encrypted_key) {
-            throw new JOSE_Exception_EncryptionFailed('Master key encryption failed');
+            throw new EncryptionFailed('Master key encryption failed');
         }
     }
 
@@ -177,7 +189,6 @@ class JOSE_JWE extends JOSE_JWT {
                 $rsa = $this->rsa($private_key_or_secret, RSA::ENCRYPTION_PKCS1);
                 $this->content_encryption_key = $rsa->decrypt($this->jwe_encrypted_key);
                 break;
-            case 'RSA-OAEP-256':
             case 'RSA-OAEP':
                 $rsa = $this->rsa($private_key_or_secret, RSA::ENCRYPTION_OAEP);
                 $this->content_encryption_key = $rsa->decrypt($this->jwe_encrypted_key);
@@ -190,9 +201,9 @@ class JOSE_JWE extends JOSE_JWT {
             case 'ECDH-ES':
             case 'ECDH-ES+A128KW':
             case 'ECDH-ES+A256KW':
-                throw new JOSE_Exception_UnexpectedAlgorithm('Algorithm not supported');
+                throw new UnexpectedAlgorithm('Algorithm not supported');
             default:
-                throw new JOSE_Exception_UnexpectedAlgorithm('Unknown algorithm');
+                throw new UnexpectedAlgorithm('Unknown algorithm');
         }
         if (!$this->content_encryption_key) {
             # NOTE:
@@ -217,10 +228,10 @@ class JOSE_JWE extends JOSE_JWT {
                 $this->deriveEncryptionAndMacKeysCBC(512);
                 break;
             default:
-                throw new JOSE_Exception_UnexpectedAlgorithm('Unknown algorithm');
+                throw new UnexpectedAlgorithm('Unknown algorithm');
         }
         if (!$this->encryption_key || !$this->mac_key) {
-            throw new JOSE_Exception_DecryptionFailed('Encryption/Mac key derivation failed');
+            throw new DecryptionFailed('Encryption/Mac key derivation failed');
         }
     }
 
@@ -235,7 +246,7 @@ class JOSE_JWE extends JOSE_JWT {
         $cipher->setIV($this->iv);
         $this->cipher_text = $cipher->encrypt($this->plain_text);
         if (!$this->cipher_text) {
-            throw new JOSE_Exception_DecryptionFailed('Payload encryption failed');
+            throw new DecryptionFailed('Payload encryption failed');
         }
     }
 
@@ -245,7 +256,7 @@ class JOSE_JWE extends JOSE_JWT {
         $cipher->setIV($this->iv);
         $this->plain_text = $cipher->decrypt($this->cipher_text);
         if (!$this->plain_text) {
-            throw new JOSE_Exception_DecryptionFailed('Payload decryption failed');
+            throw new DecryptionFailed('Payload decryption failed');
         }
     }
 
@@ -257,13 +268,13 @@ class JOSE_JWE extends JOSE_JWT {
         switch ($this->header['enc']) {
             case 'A128GCM':
             case 'A256GCM':
-                throw new JOSE_Exception_UnexpectedAlgorithm('Algorithm not supported');
+                throw new UnexpectedAlgorithm('Algorithm not supported');
             case 'A128CBC-HS256':
                 return $this->calculateAuthenticationTagCBC(256);
             case 'A256CBC-HS512':
                 return $this->calculateAuthenticationTagCBC(512);
             default:
-                throw new JOSE_Exception_UnexpectedAlgorithm('Unknown algorithm');
+                throw new UnexpectedAlgorithm('Unknown algorithm');
         }
     }
 
@@ -290,7 +301,7 @@ class JOSE_JWE extends JOSE_JWT {
         if (hash_equals($this->authentication_tag, $this->calculateAuthenticationTag())) {
             return true;
         } else {
-            throw new JOSE_Exception_UnexpectedAlgorithm('Invalid authentication tag');
+            throw new UnexpectedAlgorithm('Invalid authentication tag');
         }
     }
 }
