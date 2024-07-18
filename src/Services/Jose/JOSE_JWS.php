@@ -63,12 +63,8 @@ class JOSE_JWS extends JOSE_JWT {
         } else if ($public_or_private_key instanceof RSA) {
             $rsa = $public_or_private_key;
         } else {
-            $rsa = new RSA();
-            $rsa->loadKey($public_or_private_key);
+            $rsa = RSA::loadPrivateKey($public_or_private_key);
         }
-        $rsa->setHash($this->digest());
-        $rsa->setMGFHash($this->digest());
-        $rsa->setSignatureMode($padding_mode);
         return $rsa;
     }
 

@@ -53,8 +53,6 @@ class JOSE_JWT {
 
     static function decode($jwt_string) {
         $segments = explode('.', $jwt_string);
-        var_dump($jwt_string);
-        exit;
         switch (count($segments)) {
             case 3:
                 $jwt = new self();

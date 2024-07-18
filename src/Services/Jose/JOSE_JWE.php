@@ -82,10 +82,8 @@ class JOSE_JWE extends JOSE_JWT {
         } else if ($public_or_private_key instanceof RSA) {
             $rsa = $public_or_private_key;
         } else {
-            $rsa = new RSA();
-            $rsa->loadKey($public_or_private_key);
+
         }
-        $rsa->setEncryptionMode($padding_mode);
         return $rsa;
     }
 
@@ -96,7 +94,7 @@ class JOSE_JWE extends JOSE_JWT {
                 throw new UnexpectedAlgorithm('Algorithm not supported');
             case 'A128CBC-HS256':
             case 'A256CBC-HS512':
-                $cipher = new AES(AES::MODE_CBC);
+                $cipher = new AES('cbc');
                 break;
             default:
                 throw new UnexpectedAlgorithm('Unknown algorithm');
@@ -108,7 +106,7 @@ class JOSE_JWE extends JOSE_JWT {
                 break;
             case 'A256GCM':
             case 'A256CBC-HS512':
-                $cipher->setBlockLength(256);
+//                $cipher->setBlockLength(256);
                 break;
             default:
                 throw new UnexpectedAlgorithm('Unknown algorithm');
@@ -128,7 +126,7 @@ class JOSE_JWE extends JOSE_JWT {
                 break;
             case 'A256GCM':
             case 'A256CBC-HS512':
-                $this->iv = $this->generateRandomBytes(256 / 8);
+                $this->iv = $this->generateRandomBytes(128 / 8);
                 break;
             default:
                 throw new UnexpectedAlgorithm('Unknown algorithm');
@@ -161,6 +159,7 @@ class JOSE_JWE extends JOSE_JWT {
                 $this->jwe_encrypted_key = $rsa->encrypt($this->content_encryption_key);
                 break;
             case 'RSA-OAEP':
+            case 'RSA-OAEP-256':
                 $rsa = $this->rsa($public_key_or_secret, RSA::ENCRYPTION_OAEP);
                 $this->jwe_encrypted_key = $rsa->encrypt($this->content_encryption_key);
                 break;
@@ -189,6 +188,7 @@ class JOSE_JWE extends JOSE_JWT {
                 $rsa = $this->rsa($private_key_or_secret, RSA::ENCRYPTION_PKCS1);
                 $this->content_encryption_key = $rsa->decrypt($this->jwe_encrypted_key);
                 break;
+            case 'RSA-OAEP-256':
             case 'RSA-OAEP':
                 $rsa = $this->rsa($private_key_or_secret, RSA::ENCRYPTION_OAEP);
                 $this->content_encryption_key = $rsa->decrypt($this->jwe_encrypted_key);
