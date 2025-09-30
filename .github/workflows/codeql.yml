@@ -1,0 +1,36 @@
+name: CodeQL (php)
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Semgrep (PHP)
+        run: >
+          semgrep scan
+          --config p/default
+          --include '**/*.php'
+          --include '**/*.phtml'
+          --include '**/*.php5'
+          --include '**/*.php7'
+          --include '**/*.inc'
+          --sarif --output semgrep.sarif
+      - name: Upload SARIF
+        uses: hyperwallet/public-security-workflows/.github/actions/upload-sarif@main
+        if: always()
+        with:
+          sarif_file: semgrep.sarif
