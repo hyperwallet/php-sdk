@@ -7,7 +7,7 @@
 
 
 
-Hyperwallet REST SDK
+Hyperwallet REST SDK Test
 ====================
 
 A library to manage users, transfer methods and payments through the Hyperwallet v4 API.
