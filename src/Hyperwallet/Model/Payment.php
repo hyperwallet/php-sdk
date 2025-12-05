@@ -176,7 +176,6 @@ class Payment extends BaseModel implements IProgramAware {
      */
     public function setDescription($description) {
         $this->notes = $description;
-        $this->description = $description;
         return $this;
     }
 
