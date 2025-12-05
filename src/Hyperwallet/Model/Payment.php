@@ -158,26 +158,6 @@ class Payment extends BaseModel implements IProgramAware {
     }
 
     /**
-     * Get the payment description
-     * @deprecated Use getNotes() instead.
-     * @return string
-     */
-    public function getDescription() {
-        return $this->description;
-    }
-
-    /**
-     * Set the payment description ()
-     * @deprecated Use setNotes(string $notes) instead.
-     * @param string $description
-     * @return Payment
-     */
-    public function setDescription($description) {
-        $this->description = $description;
-        return $this;
-    }
-
-    /**
      * Get the payment notes
      *
      * @return string

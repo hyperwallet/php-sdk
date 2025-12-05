@@ -2,7 +2,8 @@ ChangeLog
 =========
 2.2.6
 -------------------
-- Added field 'notes' to Payment.
+- Added a new notes field to the Payment object, allowing users to include supplementary information or comments related to a payment.
+- Removed the description field from the Payment object. Please use the new notes field in its place for all future implementations.
 
 2.2.5
 -------------------
