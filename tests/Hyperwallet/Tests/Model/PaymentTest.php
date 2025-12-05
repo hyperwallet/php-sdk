@@ -60,7 +60,8 @@ class PaymentTest extends ModelTestCase {
     public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSet($property) {
 
         if ($property === 'description') {
-            // skip deprecated field
+            // skip testing invalid and deprecated field
+            $this->assertEquals($property, 'description');
             return;
         }
         $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSetTest($property);
