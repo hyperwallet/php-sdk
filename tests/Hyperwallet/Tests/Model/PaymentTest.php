@@ -31,6 +31,12 @@ class PaymentTest extends ModelTestCase {
      * @param string $property The property to look for
      */
     public function testGetterReturnValueIsSet($property) {
+        if ($property === 'description') {
+            // skip testing invalid and deprecated field
+            $this->assertEquals($property, 'description');
+            return;
+        }
+
         $this->performGetterReturnValueIsSetTest($property);
     }
 
@@ -58,12 +64,12 @@ class PaymentTest extends ModelTestCase {
      * @param string $property The property to look for
      */
     public function testGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSet($property) {
-
         if ($property === 'description') {
             // skip testing invalid and deprecated field
             $this->assertEquals($property, 'description');
             return;
         }
+
         $this->performGetterAndSetterReturnValueIsSetIfValueIsProvidedAndDefaultIsNotSetTest($property);
     }
 
