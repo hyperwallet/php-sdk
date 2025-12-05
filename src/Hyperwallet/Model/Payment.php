@@ -163,7 +163,7 @@ class Payment extends BaseModel implements IProgramAware {
      * @return string
      */
     public function getDescription() {
-        return $this->notes;
+        return $this->description;
     }
 
     /**
@@ -173,7 +173,7 @@ class Payment extends BaseModel implements IProgramAware {
      * @return Payment
      */
     public function setDescription($description) {
-        $this->notes = $description;
+        $this->description = $description;
         return $this;
     }
 
