@@ -1,5 +1,9 @@
 ChangeLog
 =========
+2.2.6
+-------------------
+- Added field 'notes' to Payment.
+
 2.2.5
 -------------------
 - Added field 'accountId' to PayPal.

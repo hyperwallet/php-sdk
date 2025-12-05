@@ -13,6 +13,7 @@ namespace Hyperwallet\Model;
  * @property string $currency The payment currency
  *
  * @property string $description The payment description
+ * @property string $notes The payment notes
  * @property string $memo The payment memo
  * @property string $purpose The payment purpose
  * @property \DateTime $releaseOn The payment release date
@@ -158,21 +159,41 @@ class Payment extends BaseModel implements IProgramAware {
 
     /**
      * Get the payment description
-     *
+     * @deprecated Use getNotes() instead.
      * @return string
      */
     public function getDescription() {
-        return $this->description;
+        return $this->notes;
     }
 
     /**
-     * Set the payment description
-     *
+     * Set the payment description ()
+     * @deprecated Use setNotes(string $notes) instead.
      * @param string $description
      * @return Payment
      */
     public function setDescription($description) {
-        $this->description = $description;
+        $this->notes = $description;
+        return $this;
+    }
+
+    /**
+     * Get the payment notes
+     *
+     * @return string
+     */
+    public function getNotes() {
+        return $this->notes;
+    }
+
+    /**
+     * Set the payment notes
+     *
+     * @param string $notes
+     * @return notes
+     */
+    public function setNotes($notes) {
+        $this->notes = $notes;
         return $this;
     }
 

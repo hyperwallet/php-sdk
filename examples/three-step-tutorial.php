@@ -89,6 +89,7 @@ $payment
     ->setClientPaymentId(uniqid('psdk-'))
     ->setCurrency('USD')
     ->setAmount('50.25')
+    ->setNotes("Payment")
     ->setPurpose('OTHER');
 try {
     $payment = $hyperwallet->createPayment($payment);
