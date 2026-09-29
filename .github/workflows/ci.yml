@@ -36,7 +36,7 @@ jobs:
 
       #get dependencies
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress --no-suggest --no-blocking
 
       #get static analysis tool
       - name: Install static analysis tool
@@ -72,7 +72,7 @@ jobs:
         run: composer validate
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress --no-suggest --no-blocking
 
       - name: Run test suite
         run: |
@@ -102,7 +102,7 @@ jobs:
         run: composer validate
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress --no-suggest --no-blocking
 
       - name: Run test suite
         run: |
