@@ -36,6 +36,8 @@ jobs:
 
       #get dependencies
       - name: Install dependencies
+        env:
+          COMPOSER_NO_BLOCKING: 1
         run: composer install --prefer-dist --no-progress --no-suggest
 
       #get static analysis tool
@@ -72,6 +74,8 @@ jobs:
         run: composer validate
 
       - name: Install dependencies
+        env:
+          COMPOSER_NO_BLOCKING: 1
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Run test suite
@@ -102,6 +106,8 @@ jobs:
         run: composer validate
 
       - name: Install dependencies
+        env:
+          COMPOSER_NO_BLOCKING: 1
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Run test suite

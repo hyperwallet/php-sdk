@@ -137,6 +137,68 @@ class HyperwalletEncryptionTest extends \PHPUnit\Framework\TestCase {
         }
     }
 
+    public function testShouldThrowExceptionWhenJweAlgHeaderDoesNotMatchExpectedAlgorithm() {
+        // Setup data
+        $header = array(
+            "alg" => "RSA1_5",
+            "enc" => "A256CBC-HS512"
+        );
+        $clientPath = __DIR__ . "/../../../resources/private-jwkset1";
+        $hyperwalletPath = __DIR__ . "/../../../resources/public-jwkset1";
+        $encryption = new HyperwalletEncryption($clientPath, $hyperwalletPath);
+
+        // Execute test
+        try {
+            $encryption->checkJweHeaderAlgorithm($header);
+            $this->fail('HyperwalletException expected');
+        } catch (HyperwalletException $e) {
+            $this->assertEquals('While trying to decrypt JWE, unexpected [alg] header found', $e->getMessage());
+        }
+    }
+
+    public function testShouldThrowExceptionWhenJweEncHeaderDoesNotMatchExpectedEncryptionMethod() {
+        // Setup data
+        $header = array(
+            "alg" => "RSA-OAEP-256",
+            "enc" => "A128CBC-HS256"
+        );
+        $clientPath = __DIR__ . "/../../../resources/private-jwkset1";
+        $hyperwalletPath = __DIR__ . "/../../../resources/public-jwkset1";
+        $encryption = new HyperwalletEncryption($clientPath, $hyperwalletPath);
+
+        // Execute test
+        try {
+            $encryption->checkJweHeaderAlgorithm($header);
+            $this->fail('HyperwalletException expected');
+        } catch (HyperwalletException $e) {
+            $this->assertEquals('While trying to decrypt JWE, unexpected [enc] header found', $e->getMessage());
+        }
+    }
+
+    public function testShouldRejectTamperedJweAlgHeaderBeforeDecryption() {
+        // Setup data: an attacker downgrades the alg header on an intercepted, otherwise valid JWE
+        $clientPath = __DIR__ . "/../../../resources/private-jwkset1";
+        $hyperwalletPath = __DIR__ . "/../../../resources/public-jwkset1";
+        $originalMessage = "Test message";
+        $encryption = new HyperwalletEncryption($clientPath, $hyperwalletPath);
+        $encryptedMessage = $encryption->encrypt($originalMessage);
+
+        $parts = explode('.', $encryptedMessage);
+        $header = json_decode(base64_decode(strtr($parts[0], '-_', '+/')), true);
+        $header['alg'] = 'RSA1_5';
+        $tamperedHeader = rtrim(strtr(base64_encode(json_encode($header)), '+/', '-_'), '=');
+        $parts[0] = $tamperedHeader;
+        $tamperedMessage = implode('.', $parts);
+
+        // Execute test
+        try {
+            $encryption->decrypt($tamperedMessage);
+            $this->fail('HyperwalletException expected');
+        } catch (HyperwalletException $e) {
+            $this->assertEquals('While trying to decrypt JWE, unexpected [alg] header found', $e->getMessage());
+        }
+    }
+
     public function testShouldThrowExceptionWhenJwsSignatureHasExpired() {
         // Setup data
         $header = array(

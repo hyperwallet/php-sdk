@@ -136,6 +136,7 @@ class HyperwalletEncryption {
     public function decrypt($body) {
         $privateJweKey = $this->getPrivateJweKey();
         $jwe = JOSE_JWT::decode($body);
+        $this->checkJweHeaderAlgorithm($jwe->header);
         $decryptedBody = $jwe->decrypt($privateJweKey);
 
         $publicJwsKey = $this->getPublicJwsKey();
@@ -348,6 +349,25 @@ class HyperwalletEncryption {
         }
         if((int)time() > (int)$exp) {
             throw new HyperwalletException('JWS signature has expired, checked by [exp] JWS header');
+        }
+    }
+
+    /**
+     * Checks that the JWE header advertises the key-management algorithm and content-encryption method
+     * this client expects, before the header-controlled algorithm is ever used to decrypt with the
+     * private key. Prevents an attacker from forcing algorithm downgrade (e.g. to legacy RSA1_5) by
+     * tampering with the untrusted alg/enc header fields of an intercepted response.
+     *
+     * @param array $header JWE header array
+     *
+     * @throws HyperwalletException
+     */
+    public function checkJweHeaderAlgorithm($header) {
+        if (!isset($header['alg']) || $header['alg'] !== $this->encryptionAlgorithm) {
+            throw new HyperwalletException('While trying to decrypt JWE, unexpected [alg] header found');
+        }
+        if (!isset($header['enc']) || $header['enc'] !== $this->encryptionMethod) {
+            throw new HyperwalletException('While trying to decrypt JWE, unexpected [enc] header found');
         }
     }
 
