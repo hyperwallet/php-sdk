@@ -122,7 +122,10 @@ class HyperwalletEncryption {
         $jwsToken = (new JWSCompactSerializer())->serialize($jws);
 
         $publicJweKey = $this->getPublicJweKey();
-        $jwe = (new JWEBuilder(new AlgorithmManager([new RSAOAEP256(), new A256CBCHS512()])))
+        $jwe = (new JWEBuilder(
+            new AlgorithmManager([new RSAOAEP256()]),
+            new AlgorithmManager([new A256CBCHS512()])
+        ))
             ->create()->withPayload($jwsToken)
             ->withSharedProtectedHeader(['alg' => $this->encryptionAlgorithm, 'enc' => $this->encryptionMethod, 'kid' => $this->jweKid])
             ->addRecipient($publicJweKey)->build();
