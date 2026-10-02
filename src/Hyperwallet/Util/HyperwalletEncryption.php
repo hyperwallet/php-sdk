@@ -114,8 +114,9 @@ class HyperwalletEncryption {
      */
     public function encrypt($body) {
         $privateJwsKey = $this->getPrivateJwsKey();
+        $payload = is_string($body) ? $body : json_encode($body);
         $jws = (new JWSBuilder(new AlgorithmManager([new RS256()])))->create()
-            ->withPayload($body)
+            ->withPayload($payload)
             ->addSignature($privateJwsKey, ['alg' => $this->signAlgorithm, 'kid' => $this->jwsKid, 'exp' => $this->getSignatureExpirationTime()])
             ->build();
         $jwsToken = (new JWSCompactSerializer())->serialize($jws);
@@ -150,7 +151,8 @@ class HyperwalletEncryption {
         if (!(new JWSVerifier(new AlgorithmManager([new RS256()])))->verifyWithKey($jwsToVerify, $publicJwsKey, 0)) {
             throw new HyperwalletException('Signature verification failed');
         }
-        return json_decode($jwsToVerify->getPayload(), true);
+        $claims = json_decode($jwsToVerify->getPayload(), true);
+        return is_array($claims) ? $claims : array('scalar' => $claims);
     }
 
     /**
