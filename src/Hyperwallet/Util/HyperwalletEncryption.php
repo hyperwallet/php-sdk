@@ -8,15 +8,17 @@ use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Response\ErrorResponse;
-use Composer\Autoload\ClassLoader;
-use phpseclib\Crypt\RSA;
-use phpseclib\Math\BigInteger;
-use phpseclib\Crypt\Hash;
-use JOSE_URLSafeBase64;
-use JOSE_JWS;
-use JOSE_JWE;
-use JOSE_JWK;
-use JOSE_JWT;
+use Jose\Component\Core\AlgorithmManager;
+use Jose\Component\Core\JWK;
+use Jose\Component\Signature\Algorithm\RS256;
+use Jose\Component\Signature\JWSBuilder;
+use Jose\Component\Signature\JWSVerifier;
+use Jose\Component\Signature\Serializer\CompactSerializer as JWSCompactSerializer;
+use Jose\Component\Encryption\Algorithm\KeyEncryption\RSAOAEP256;
+use Jose\Component\Encryption\Algorithm\ContentEncryption\A256CBCHS512;
+use Jose\Component\Encryption\JWEBuilder;
+use Jose\Component\Encryption\JWEDecrypter;
+use Jose\Component\Encryption\Serializer\CompactSerializer as JWECompactSerializer;
 
 /**
  * The encryption service for Hyperwallet client's requests/responses
@@ -100,7 +102,6 @@ class HyperwalletEncryption {
         $this->signAlgorithm = $signAlgorithm;
         $this->encryptionMethod = $encryptionMethod;
         $this->jwsExpirationMinutes = $jwsExpirationMinutes;
-        file_put_contents($this->getVendorPath() . "/gree/jose/src/JOSE/JWE.php", file_get_contents(__DIR__ . "/../../JWE"));
     }
 
     /**
@@ -113,16 +114,18 @@ class HyperwalletEncryption {
      */
     public function encrypt($body) {
         $privateJwsKey = $this->getPrivateJwsKey();
-        $jws = new JOSE_JWS(new JOSE_JWT($body));
-        $jws->header['exp'] = $this->getSignatureExpirationTime();
-        $jws->header['kid'] = $this->jwsKid;
-        $jws->sign($privateJwsKey, $this->signAlgorithm);
+        $jws = (new JWSBuilder(new AlgorithmManager([new RS256()])))->create()
+            ->withPayload($body)
+            ->addSignature($privateJwsKey, ['alg' => $this->signAlgorithm, 'kid' => $this->jwsKid, 'exp' => $this->getSignatureExpirationTime()])
+            ->build();
+        $jwsToken = (new JWSCompactSerializer())->serialize($jws);
 
         $publicJweKey = $this->getPublicJweKey();
-        $jwe = new JOSE_JWE($jws);
-        $jwe->header['kid'] = $this->jweKid;
-        $jwe->encrypt($publicJweKey, $this->encryptionAlgorithm, $this->encryptionMethod);
-        return $jwe->toString();
+        $jwe = (new JWEBuilder(new AlgorithmManager([new RSAOAEP256(), new A256CBCHS512()])))
+            ->create()->withPayload($jwsToken)
+            ->withSharedProtectedHeader(['alg' => $this->encryptionAlgorithm, 'enc' => $this->encryptionMethod, 'kid' => $this->jweKid])
+            ->addRecipient($publicJweKey)->build();
+        return (new JWECompactSerializer())->serialize($jwe, 0);
     }
 
     /**
@@ -135,15 +138,19 @@ class HyperwalletEncryption {
      */
     public function decrypt($body) {
         $privateJweKey = $this->getPrivateJweKey();
-        $jwe = JOSE_JWT::decode($body);
-        $this->checkJweHeaderAlgorithm($jwe->header);
-        $decryptedBody = $jwe->decrypt($privateJweKey);
+        $serializer = new JWECompactSerializer();
+        $jwe = $serializer->unserialize($body);
+        $this->checkJweHeaderAlgorithm($jwe->getSharedProtectedHeader());
+        (new JWEDecrypter(new AlgorithmManager([new RSAOAEP256(), new A256CBCHS512()])))->decryptUsingKey($jwe, $privateJweKey, 0);
 
         $publicJwsKey = $this->getPublicJwsKey();
-        $jwsToVerify = JOSE_JWT::decode($decryptedBody->plain_text);
-        $this->checkJwsExpiration($jwsToVerify->header);
-        $jwsVerificationResult = $jwsToVerify->verify($publicJwsKey, $this->signAlgorithm);
-        return $jwsVerificationResult->claims;
+        $jwsToVerify = (new JWSCompactSerializer())->unserialize($jwe->getPayload());
+        $header = $jwsToVerify->getSignature(0)->getProtectedHeader();
+        $this->checkJwsExpiration($header);
+        if (!(new JWSVerifier(new AlgorithmManager([new RS256()])))->verifyWithKey($jwsToVerify, $publicJwsKey, 0)) {
+            throw new HyperwalletException('Signature verification failed');
+        }
+        return json_decode($jwsToVerify->getPayload(), true);
     }
 
     /**
@@ -156,7 +163,7 @@ class HyperwalletEncryption {
     private function getPrivateJwsKey() {
         $privateKeyData = $this->getJwk($this->clientPrivateKeySetLocation, $this->signAlgorithm);
         $this->jwsKid = $privateKeyData['kid'];
-        return $this->getPrivateKey($privateKeyData);
+        return new JWK($privateKeyData);
     }
 
     /**
@@ -169,7 +176,7 @@ class HyperwalletEncryption {
     private function getPublicJweKey() {
         $publicKeyData = $this->getJwk($this->hyperwalletKeySetLocation, $this->encryptionAlgorithm);
         $this->jweKid = $publicKeyData['kid'];
-        return $this->getPublicKey($this->convertPrivateKeyToPublic($publicKeyData));
+        return new JWK($this->convertPrivateKeyToPublic($publicKeyData));
     }
 
     /**
@@ -181,7 +188,7 @@ class HyperwalletEncryption {
      */
     private function getPrivateJweKey() {
         $privateKeyData = $this->getJwk($this->clientPrivateKeySetLocation, $this->encryptionAlgorithm);
-        return $this->getPrivateKey($privateKeyData);
+        return new JWK($privateKeyData);
     }
 
     /**
@@ -193,7 +200,7 @@ class HyperwalletEncryption {
      */
     private function getPublicJwsKey() {
         $publicKeyData = $this->getJwk($this->hyperwalletKeySetLocation, $this->signAlgorithm);
-        return $this->getPublicKey($this->convertPrivateKeyToPublic($publicKeyData));
+        return new JWK($this->convertPrivateKeyToPublic($publicKeyData));
     }
 
     /**
@@ -202,61 +209,6 @@ class HyperwalletEncryption {
      * @param array $privateKeyData The JWK key data
      * @return RSA
      */
-    private function getPrivateKey($privateKeyData) {
-        $n = $this->keyParamToBigInteger($privateKeyData['n']);
-        $e = $this->keyParamToBigInteger($privateKeyData['e']);
-        $d = $this->keyParamToBigInteger($privateKeyData['d']);
-        $p = $this->keyParamToBigInteger($privateKeyData['p']);
-        $q = $this->keyParamToBigInteger($privateKeyData['q']);
-        $qi = $this->keyParamToBigInteger($privateKeyData['qi']);
-        $dp = $this->keyParamToBigInteger($privateKeyData['dp']);
-        $dq = $this->keyParamToBigInteger($privateKeyData['dq']);
-        $primes = array($p, $q);
-        $exponents = array($dp, $dq);
-        $coefficients = array($qi, $qi);
-        array_unshift($primes, "phoney");
-        unset($primes[0]);
-        array_unshift($exponents, "phoney");
-        unset($exponents[0]);
-        array_unshift($coefficients, "phoney");
-        unset($coefficients[0]);
-
-        $pemData = (new RSA())->_convertPrivateKey($n, $e, $d, $primes, $exponents, $coefficients);
-        $privateKey = new RSA();
-        $privateKey->loadKey($pemData);
-        if ($privateKeyData['alg'] == 'RSA-OAEP-256') {
-            $privateKey->setHash('sha256');
-            $privateKey->setMGFHash('sha256');
-        }
-        return $privateKey;
-    }
-
-    /**
-     * Converts base 64 encoded string to BigInteger
-     *
-     * @param string $param base 64 encoded string
-     * @return BigInteger
-     */
-    private function keyParamToBigInteger($param) {
-        return new BigInteger('0x' . bin2hex(JOSE_URLSafeBase64::decode($param)), 16);
-    }
-
-    /**
-     * Retrieves RSA public key by JWK key data
-     *
-     * @param array $publicKeyData The JWK key data
-     * @return RSA
-     */
-    private function getPublicKey($publicKeyData) {
-        $publicKeyRaw = new JOSE_JWK($publicKeyData);
-        $publicKey = $publicKeyRaw->toKey();
-        if ($publicKeyData['alg'] == 'RSA-OAEP-256') {
-            $publicKey->setHash('sha256');
-            $publicKey->setMGFHash('sha256');
-        }
-        return $publicKey;
-    }
-
     /**
      * Retrieves JWK key by JWK key set location and algorithm
      *
@@ -371,19 +323,4 @@ class HyperwalletEncryption {
         }
     }
 
-    /**
-     * Finds the path of composer vendor directory
-     *
-     * @return string
-     *
-     * @throws HyperwalletException
-     */
-    public function getVendorPath() {
-        $reflector = new \ReflectionClass(ClassLoader::class);
-        $vendorPath = preg_replace('/^(.*)\/composer\/ClassLoader\.php$/', '$1', $reflector->getFileName() );
-        if($vendorPath && is_dir($vendorPath)) {
-            return $vendorPath . '/';
-        }
-        throw new HyperwalletException('Failed to find a vendor path');
-    }
 }
