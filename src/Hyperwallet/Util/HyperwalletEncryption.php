@@ -142,7 +142,10 @@ class HyperwalletEncryption {
         $serializer = new JWECompactSerializer();
         $jwe = $serializer->unserialize($body);
         $this->checkJweHeaderAlgorithm($jwe->getSharedProtectedHeader());
-        (new JWEDecrypter(new AlgorithmManager([new RSAOAEP256(), new A256CBCHS512()]), null))->decryptUsingKey($jwe, $privateJweKey, 0);
+        (new JWEDecrypter(
+            new AlgorithmManager([new RSAOAEP256()]),
+            new AlgorithmManager([new A256CBCHS512()])
+        ))->decryptUsingKey($jwe, $privateJweKey, 0);
 
         $publicJwsKey = $this->getPublicJwsKey();
         $jwsToVerify = (new JWSCompactSerializer())->unserialize($jwe->getPayload());
