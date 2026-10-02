@@ -69,6 +69,9 @@ class HyperwalletVerificationDocumentReason extends BaseModel {
  */
 class HyperwalletVerificationDocumentReasonCollection {
 
+    /** @var HyperwalletVerificationDocumentReason[] */
+    private $reasons;
+
     public function __construct(HyperwalletVerificationDocumentReason ...$reasons) {
         $this->reasons = $reasons;
     }
