@@ -162,6 +162,9 @@ class HyperwalletVerificationDocument extends BaseModel {
  */
 class HyperwalletVerificationDocumentCollection {
 
+    /** @var HyperwalletVerificationDocument[] */
+    public $documents;
+
     public function __construct(HyperwalletVerificationDocument ...$documents) {
         $this->documents = $documents;
     }
