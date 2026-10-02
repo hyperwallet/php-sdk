@@ -9,9 +9,9 @@ use Hyperwallet\Exception\HyperwalletException;
 use Hyperwallet\Model\BaseModel;
 use Hyperwallet\Response\ErrorResponse;
 use Composer\Autoload\ClassLoader;
-use phpseclib3\Crypt\RSA;
-use phpseclib3\Math\BigInteger;
-use phpseclib3\Crypt\Hash;
+use phpseclib\Crypt\RSA;
+use phpseclib\Math\BigInteger;
+use phpseclib\Crypt\Hash;
 use JOSE_URLSafeBase64;
 use JOSE_JWS;
 use JOSE_JWE;
@@ -221,7 +221,16 @@ class HyperwalletEncryption {
         array_unshift($coefficients, "phoney");
         unset($coefficients[0]);
 
-        $privateKey = RSA::createKey();
+        $pemData = (new RSA())->_convertPrivateKey(
+            $n,
+            $e,
+            $d,
+            $primes,
+            $exponents,
+            $coefficients
+        );
+        
+        $privateKey = new RSA();
         $privateKey->loadKey($pemData);
         if ($privateKeyData['alg'] == 'RSA-OAEP-256') {
             $privateKey->setHash('sha256');
