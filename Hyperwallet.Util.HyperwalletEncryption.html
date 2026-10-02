@@ -248,7 +248,7 @@
 			</td>
 
 			<td class="table-cell">
-				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#128-146" title="Go to source code">decrypt</a>(<span>string <var>$body</var></span>): string</code>
+				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#128-147" title="Go to source code">decrypt</a>(<span>string <var>$body</var></span>): string</code>
 
 
 	<div class="expandable-collapsedView">
@@ -294,7 +294,7 @@
 			</td>
 
 			<td class="table-cell">
-				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#334-352" title="Go to source code">checkJwsExpiration</a>(<span>array <var>$header</var></span>)</code>
+				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#335-353" title="Go to source code">checkJwsExpiration</a>(<span>array <var>$header</var></span>)</code>
 
 
 	<div class="expandable-collapsedView">
@@ -329,6 +329,56 @@
 			<a href="#_checkJwsExpiration">#</a>
 		</td>
 	</tr>
+	<tr class="expandable collapsed" data-order="checkJweHeaderAlgorithm" id="_checkJweHeaderAlgorithm">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#355-372" title="Go to source code">checkJweHeaderAlgorithm</a>(<span>array <var>$header</var></span>)</code>
+
+
+	<div class="expandable-collapsedView">
+		Checks that the JWE header advertises the key-management algorithm and content-encryption method
+this client expects,…
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Checks that the JWE header advertises the key-management algorithm and content-encryption method
+this client expects, before the header-controlled algorithm is ever used to decrypt with the
+private key. Prevents an attacker from forcing algorithm downgrade (e.g. to legacy RSA1_5) by
+tampering with the untrusted alg/enc header fields of an intercepted response.</p>
+</div>
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$header</var>&nbsp;&nbsp;</td>
+										<td><p>JWE header array</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Hyperwallet.Exception.HyperwalletException.html"><span>Hyperwallet\Exception\HyperwalletException</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_checkJweHeaderAlgorithm">#</a>
+		</td>
+	</tr>
 	<tr class="expandable collapsed" data-order="getVendorPath" id="_getVendorPath">
 			<td class="table-cell table-shrink">
 				<code class="nowrap">
@@ -340,7 +390,7 @@
 			</td>
 
 			<td class="table-cell">
-				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#354-368" title="Go to source code">getVendorPath</a>(): string</code>
+				<code><a href="source-Hyperwallet.Util.HyperwalletEncryption.html#374-388" title="Go to source code">getVendorPath</a>(): string</code>
 
 
 	<div class="expandable-collapsedView">
