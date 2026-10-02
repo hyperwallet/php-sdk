@@ -439,7 +439,7 @@ class User extends BaseModel implements IProgramAware {
      * @param \DateTime|null $dateOfBirth
      * @return User
      */
-    public function setDateOfBirth(\DateTime $dateOfBirth = null) {
+    public function setDateOfBirth(?\DateTime $dateOfBirth = null) {
         $this->dateOfBirth = $dateOfBirth == null ? null : $dateOfBirth->format('Y-m-d');
         return $this;
     }

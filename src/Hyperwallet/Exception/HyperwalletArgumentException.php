@@ -15,7 +15,7 @@ class HyperwalletArgumentException extends HyperwalletException {
      * @param int $code The error code
      * @param \Exception|null $previous The original exception
      */
-    public function __construct($message, $code = 0, \Exception $previous = null) {
+    public function __construct($message, $code = 0, ?\Exception $previous = null) {
         parent::__construct($message, $code, $previous);
     }
 
