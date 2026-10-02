@@ -221,8 +221,7 @@ class HyperwalletEncryption {
         array_unshift($coefficients, "phoney");
         unset($coefficients[0]);
 
-        $pemData = (new RSA())->_convertPrivateKey($n, $e, $d, $primes, $exponents, $coefficients);
-        $privateKey = new RSA();
+        $privateKey = RSA::createKey();
         $privateKey->loadKey($pemData);
         if ($privateKeyData['alg'] == 'RSA-OAEP-256') {
             $privateKey->setHash('sha256');
