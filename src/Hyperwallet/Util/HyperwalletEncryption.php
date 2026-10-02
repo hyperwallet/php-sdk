@@ -114,7 +114,7 @@ class HyperwalletEncryption {
      */
     public function encrypt($body) {
         $privateJwsKey = $this->getPrivateJwsKey();
-        $payload = is_string($body) ? $body : json_encode($body);
+        $payload = json_encode($body);
         $jws = (new JWSBuilder(new AlgorithmManager([new RS256()])))->create()
             ->withPayload($payload)
             ->addSignature($privateJwsKey, ['alg' => $this->signAlgorithm, 'kid' => $this->jwsKid, 'exp' => $this->getSignatureExpirationTime()])
