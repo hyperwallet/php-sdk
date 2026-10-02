@@ -28,12 +28,12 @@ jobs:
       - name: Install dependencies
         env:
           COMPOSER_NO_BLOCKING: 1
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress
 
       - name: Install API doc generator tool
         env:
           COMPOSER_NO_BLOCKING: 1
-        run: composer create-project --no-dev apigen/apigen:^7.0@alpha tools/apigen
+        run: composer create-project --no-dev apigen/apigen:^7.0 tools/apigen
 
       - name: Generate Documentation
         run: tools/apigen/bin/apigen src --output docs
