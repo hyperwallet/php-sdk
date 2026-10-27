@@ -1,5 +1,9 @@
 ChangeLog
 =========
+2.3.0
+-------------------
+- Security fix: Sunset phpseclib, add support to PHP 8.2, 8.3, 8.4 and 8.5 
+
 2.2.7
 -------------------
 - Security fix: JWE decryption now validates the `alg`/`enc` header fields against the client's configured algorithm before decrypting, preventing an algorithm-confusion/downgrade attack where a tampered response header could force use of the legacy, Bleichenbacher-vulnerable RSA1_5 key-management algorithm.
