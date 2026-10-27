@@ -253,7 +253,7 @@ class Payment extends BaseModel implements IProgramAware {
      * @param \DateTime $releaseOn
      * @return Payment
      */
-    public function setReleaseOn(\DateTime $releaseOn = null) {
+    public function setReleaseOn(?\DateTime $releaseOn = null) {
         $this->releaseOn = $releaseOn == null ? null : $releaseOn->format('Y-m-d\TH:i:s');
         return $this;
     }
@@ -272,7 +272,7 @@ class Payment extends BaseModel implements IProgramAware {
      * @param \DateTime $expiresOn
      * @return Payment
      */
-    public function setExpiresOn(\DateTime $expiresOn = null) {
+    public function setExpiresOn(?\DateTime $expiresOn = null) {
         $this->expiresOn = $expiresOn == null ? null : $expiresOn->format('Y-m-d\TH:i:s');
         return $this;
     }

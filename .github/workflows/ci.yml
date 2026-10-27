@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ 'ubuntu-latest' ]
-        php-versions: [ '7.1', '7.2', '7.3', '7.4', '8.0', '8.1' ]
+        php-versions: [ '8.1', '8.2', '8.3', '8.4' ]
 
     steps:
       - uses: actions/checkout@master
@@ -36,9 +36,7 @@ jobs:
 
       #get dependencies
       - name: Install dependencies
-        env:
-          COMPOSER_NO_BLOCKING: 1
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress
 
       #get static analysis tool
       - name: Install static analysis tool
@@ -58,7 +56,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: ['ubuntu-latest']
-        php-versions: ['5.6', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1']
+        php-versions: ['8.1', '8.2', '8.3', '8.4']
 
     steps:
       - uses: actions/checkout@master
@@ -74,9 +72,7 @@ jobs:
         run: composer validate
 
       - name: Install dependencies
-        env:
-          COMPOSER_NO_BLOCKING: 1
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress
 
       - name: Run test suite
         run: |
@@ -91,7 +87,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ 'ubuntu-latest' ]
-        php-versions: [ '5.6' ]
+        php-versions: [ '8.1' ]
 
     steps:
       - uses: actions/checkout@master
@@ -106,9 +102,7 @@ jobs:
         run: composer validate
 
       - name: Install dependencies
-        env:
-          COMPOSER_NO_BLOCKING: 1
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress
 
       - name: Run test suite
         run: |

@@ -329,7 +329,7 @@ class BusinessStakeholder extends BaseModel {
      * @param \DateTime|null $dateOfBirth
      * @return BusinessStakeholder
      */
-    public function setDateOfBirth(\DateTime $dateOfBirth = null) {
+    public function setDateOfBirth(?\DateTime $dateOfBirth = null) {
         $this->dateOfBirth = $dateOfBirth == null ? null : $dateOfBirth->format('Y-m-d');
         return $this;
     }

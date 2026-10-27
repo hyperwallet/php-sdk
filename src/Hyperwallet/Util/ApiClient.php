@@ -21,7 +21,7 @@ class ApiClient {
      *
      * @var string
      */
-    const VERSION = '2.2.7';
+    const VERSION = '2.3.0';
 
     /**
      * The Guzzle http client
@@ -92,7 +92,7 @@ class ApiClient {
      *
      * @throws HyperwalletApiException
      */
-    public function doPost($partialUrl, array $uriParams, BaseModel $data = null, array $query = array(), array $headers = array()) {
+    public function doPost($partialUrl, array $uriParams, ?BaseModel $data = null, array $query = array(), array $headers = array()) {
        return $this->doRequest('POST', $partialUrl, $uriParams, array(
             'query' => $query,
             'body' => $data ? \GuzzleHttp\json_encode($data->getPropertiesForCreate(), JSON_FORCE_OBJECT) : '{}',
