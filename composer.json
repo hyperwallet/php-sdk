@@ -20,7 +20,7 @@
     }
   ],
   "require": {
-    "php": ">=8.1.0",
+    "php": ">=8.2.0",
     "ext-json": "*",
     "guzzlehttp/guzzle": "^6.2.1 || ^7.0.1",
     "web-token/jwt-core": "^3.4",
