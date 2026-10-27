@@ -18,7 +18,7 @@ For Hyperwallet v3 API calls, please use the latest SDK version 1.x.x. See [here
 Prerequisites
 ------------
 
-Hyperwallet's PHP server SDK requires PHP 8.1 or later.
+Hyperwallet's PHP server SDK requires PHP 8.2 or later.
 
 Installation
 ------------
