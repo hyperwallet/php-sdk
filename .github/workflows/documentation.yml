@@ -13,32 +13,42 @@ jobs:
 
     strategy:
       matrix:
-        operating-system: [ 'ubuntu-latest' ]
-        php-versions: [ '8.3' ]
+        operating-system:
+          - ubuntu-latest
+        php-versions:
+          - '8.4'
 
     steps:
-      - uses: actions/checkout@master
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          coverage: xdebug
+          coverage: none
+          tools: composer
 
       - name: Install dependencies
-        env:
-          COMPOSER_NO_BLOCKING: 1
-        run: composer install --prefer-dist --no-progress
+        run: composer install \
+          --prefer-dist \
+          --no-progress \
+          --no-interaction
 
-      - name: Install API doc generator tool
-        env:
-          COMPOSER_NO_BLOCKING: 1
-        run: composer create-project --no-dev apigen/apigen:7.0.0-alpha.6 tools/apigen
+      - name: Install ApiGen PHAR
+        run: |
+          mkdir -p tools
+          curl --fail --location --retry 3 \
+            https://github.com/ApiGen/ApiGen/releases/latest/download/apigen.phar \
+            --output tools/apigen
+          chmod +x tools/apigen
 
       - name: Generate Documentation
-        run: tools/apigen/bin/apigen src --output docs
+        run: |
+          rm -rf docs
+          tools/apigen src --output docs
 
-      - name: Push
+      - name: Push documentation
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
