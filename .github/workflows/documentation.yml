@@ -29,12 +29,6 @@ jobs:
           coverage: none
           tools: composer
 
-      - name: Install dependencies
-        run: composer install \
-          --prefer-dist \
-          --no-progress \
-          --no-interaction
-
       - name: Install ApiGen PHAR
         run: |
           mkdir -p tools
